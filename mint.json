@@ -31,13 +31,17 @@
   "tabs": [
     {
       "name": "Product Updates",
-      "url": "changelog/release-notes"
+      "url": "release-notes"
+    },
+    {
+      "name": "Trust & Security",
+      "url": "security"
     }
   ],
   "navigation": [
     {
       "group": "Get Started",
-      "pages": ["introduction", "release-notes"]
+      "pages": ["introduction", "release-notes", "security"]
     }
   ],
   "footerSocials": {
