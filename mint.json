@@ -28,7 +28,6 @@
     "name": "Platform",
     "url": "https://platform.langdock.com"
   },
-  "openapi": ["openapi.yml"],
   "api": {
     "baseUrl": "https://engine.langdock.com/api", 
     "auth": {
