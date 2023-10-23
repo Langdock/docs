@@ -44,7 +44,7 @@
       "url": "security"
     }, {
       "name": "API",
-      "url": "api/completion"
+      "url": "api"
     }  ],
   "navigation": [
     {
@@ -53,7 +53,7 @@
     },
     {
       "group": "API Documentation",
-      "pages": ["api/completion"]
+      "pages": ["api"]
     }
   ],
   "footerSocials": {
