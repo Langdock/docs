@@ -1,0 +1,54 @@
+---
+title: Prompting Guide
+description: "An overview of prompting methods and principles."
+---
+
+<img src="/images/files.png" alt="Hero" />
+
+This guide will help you to get started with prompting. It provides an overview of the different prompting methods and principles.
+
+## User Prompt
+
+A prompt is a specific instruction or question given to a language model to guide its response. It helps set the context and provides a starting point for the model to generate relevant output. The prompt can be a sentence, a phrase, or even a longer paragraph depending on the desired task. By providing a prompt, we can direct the model's attention towards a particular topic or task, ensuring that the generated response aligns with our intentions. Prompts are essential in shaping the behavior and output of the model, allowing us to have more control over the generated content.
+
+### Principles
+
+- **Use instructions:** Provide a clear instruction to guide the model's behavior. This helps to ensure that the generated output aligns with the user's expectations. This can be achieved by using explicit commands, such as "Write", "Classify", "Summarize", "Translate" or "Explain", in the prompt.
+- **Be specific:** When instructions are unclear, similar to humans, the LLM cannot generate a coherent response. For example, "Write an email to Alex" is a lot more ambigious than "Write an email to my colleague Alex to ask him about the status of his ticket ABC-45 in a polite way".
+- **Avoid dont's:** Avoid using `dont's` in the prompt. Due to the proabilistic nature of the LLM, the semantic meaning of double negations are often not picked up by the LLM. For example, use "Be polite" instead of "Don't be rude".
+- **Use examples:** Provide examples of the desired output to guide the model's behavior. This helps to ensure that the generated output aligns with the user's expectations. For example, "Generate 3 titles for a fantasy book. Example: 'The Lord of the Rings', 'Harry Potter', 'The Hobbit'". This technique is also known as [Few-Shot Learning](https://www.promptingguide.ai/techniques/fewshot).
+
+For more tips and tricks, refer to the [Prompting Guide](https://www.promptingguide.ai/introduction/tips).
+
+## System Prompt
+
+A system prompt is the initial instruction or query that is given to a language model to generate a response. It sets the context and provides guidance for the model to generate a relevant and coherent output. The system prompt serves as the starting point for the model to understand the desired task or topic and generate a response accordingly. It helps to provide specific instructions or ask a question to guide the model's behavior and ensure that the generated output aligns with the user's expectations. Example of a system prompt:
+
+```
+You are a weather assistant. A user asks, 'What will the weather be
+like tomorrow?'. Generate a response providing a weather forecast
+for tomorrow based on the user's query.
+```
+
+## Retrieval Augmented Generation (RAG)
+
+Retrieval-Augmented Generation (RAG) is a popular approach that combines information retrieval and natural language generation. It retrieves useful knowledge from a big collection of information (eg. a collection of documents or a Confluence space) and uses it to create accurate and informative responses.
+
+In simple terms, the prompt by the user is enriched with relevant information from one or multiple documents. The enriched prompt is then sent to the LLM to generate a response. The prompt consists of three components:
+
+```
+### USER PROMPT ###
+Where do Bananas come from?
+
+### INSTRUCTION ###
+Use the provided context to answer the prompt of the user.
+
+### CONTEXT ###
+[Content from one or multiple documents]
+```
+
+For a more detailed explanation of RAG, please refer to the [Prompting Guide](https://www.promptingguide.ai/techniques/rag).
+
+### Instruction
+
+The instruction is a short sentence that instructs the model to use the provided context to answer the prompt of the user.

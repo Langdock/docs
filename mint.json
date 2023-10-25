@@ -34,21 +34,14 @@
       "method": "bearer" 
     }
   },
-  "tabs": [
-    {
-      "name": "Product Updates",
-      "url": "release-notes"
-    }, {
-      "name": "Trust & Security",
-      "url": "security"
-    }, {
-      "name": "API",
-      "url": "api"
-    }  ],
   "navigation": [
     {
       "group": "Get Started",
       "pages": ["introduction", "release-notes", "security"]
+    },
+    {
+      "group": "Guides",
+      "pages": ["prompting"]
     },
     {
       "group": "API Documentation",
