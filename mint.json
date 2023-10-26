@@ -29,27 +29,36 @@
     "url": "https://platform.langdock.com"
   },
   "api": {
-    "baseUrl": "https://engine.langdock.com/api", 
+    "baseUrl": "https://engine.langdock.com/api",
     "auth": {
-      "method": "bearer" 
+      "method": "bearer"
     }
   },
   "navigation": [
     {
       "group": "Get Started",
-      "pages": ["introduction", "release-notes", "security"]
+      "pages": [
+        "introduction",
+        "release-notes",
+        "security"
+      ]
     },
     {
       "group": "Guides",
-      "pages": ["prompting"]
+      "pages": [
+        "prompting"
+      ]
     },
     {
       "group": "API Documentation",
-      "pages": ["api"]
+      "pages": [
+        "api"
+      ]
     }
   ],
   "footerSocials": {
     "twitter": "https://twitter.com/langdock_hq",
     "linkedin": "https://www.linkedin.com/company/langdock"
-  }
+  },
+  "feedback.thumbsRating": true,
 }
