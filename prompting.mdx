@@ -30,6 +30,20 @@ like tomorrow?'. Generate a response providing a weather forecast
 for tomorrow based on the user's query.
 ```
 
+The system prompt, combined with the user prompt is then sent to the LLM.
+
+```
+[{
+    "role": "system",
+    "content": "You are a weather assistant. A user asks, 'What will the weather be
+        like tomorrow?'. Generate a response providing a weather forecast
+        for tomorrow based on the user's query."
+}, {
+    "role": "user",
+    "content": "What is the weather in London?"
+}]
+```
+
 ## Retrieval Augmented Generation (RAG)
 
 Retrieval-Augmented Generation (RAG) is a popular approach that combines information retrieval and natural language generation. It retrieves useful knowledge from a big collection of information (eg. a collection of documents or a Confluence space) and uses it to create accurate and informative responses.
@@ -52,3 +66,22 @@ For a more detailed explanation of RAG, please refer to the [Prompting Guide](ht
 ### Instruction
 
 The instruction is a short sentence that instructs the model to use the provided context to answer the prompt of the user.
+
+The system prompt, combined with the augmented user prompt for RAG is then sent to the LLM.
+
+```
+[{
+    "role": "system",
+    "content": "You are a helpful assistant."
+}, {
+    "role": "user",
+    "content": "### USER PROMPT ###
+        Where do Bananas come from?
+
+        ### INSTRUCTION ###
+        Use the provided context to answer the prompt of the user.
+
+        ### CONTEXT ###
+        Bananas come from Chile"
+}]
+```
