@@ -60,5 +60,7 @@
     "twitter": "https://twitter.com/langdock_hq",
     "linkedin": "https://www.linkedin.com/company/langdock"
   },
-  "feedback.thumbsRating": true,
+  "feedback": {
+    "thumbsRating": true
+  }
 }
