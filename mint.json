@@ -46,7 +46,8 @@
     {
       "group": "Guides",
       "pages": [
-        "prompting"
+        "prompting",
+        "assistants"
       ]
     },
     {
