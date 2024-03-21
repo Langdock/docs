@@ -3,85 +3,77 @@ title: Prompting Guide
 description: "An overview of prompting methods and principles."
 ---
 
+
 <img src="/images/files.png" alt="Hero" />
+<img src="/images/chat.jpeg" alt="Hero" />
+
 
 This guide will help you to get started with prompting. It provides an overview of the different prompting methods and principles.
 
+
 ## User Prompt
+A prompt is a specific instruction or question given to a language model to guide its response. It helps set the context and provides a starting point for the model to generate relevant output. Depending on the desired task, the prompt can be a sentence, phrase, or even a longer paragraph. We can direct the model's attention towards a particular topic or task by providing a prompt, ensuring that the generated response aligns with our intentions. Prompts are essential in shaping the behavior and output of the model, allowing us to have more control over the generated content.
 
-A prompt is a specific instruction or question given to a language model to guide its response. It helps set the context and provides a starting point for the model to generate relevant output. The prompt can be a sentence, a phrase, or even a longer paragraph depending on the desired task. By providing a prompt, we can direct the model's attention towards a particular topic or task, ensuring that the generated response aligns with our intentions. Prompts are essential in shaping the behavior and output of the model, allowing us to have more control over the generated content.
 
-### Principles
+## Principles
+To receive a good response from the AI model, provide as much specific and detailed information as possible. Here's a short checklist to help structure your prompts for optimal results:
 
-- **Use instructions:** Provide a clear instruction to guide the model's behavior. This helps to ensure that the generated output aligns with the user's expectations. This can be achieved by using explicit commands, such as "Write", "Classify", "Summarize", "Translate" or "Explain", in the prompt.
-- **Be specific:** When instructions are unclear, similar to humans, the LLM cannot generate a coherent response. For example, "Write an email to Alex" is a lot more ambigious than "Write an email to my colleague Alex to ask him about the status of his ticket ABC-45 in a polite way".
-- **Avoid dont's:** Avoid using `dont's` in the prompt. Due to the proabilistic nature of the LLM, the semantic meaning of double negations are often not picked up by the LLM. For example, use "Be polite" instead of "Don't be rude".
-- **Use examples:** Provide examples of the desired output to guide the model's behavior. This helps to ensure that the generated output aligns with the user's expectations. For example, "Generate 3 titles for a fantasy book. Example: 'The Lord of the Rings', 'Harry Potter', 'The Hobbit'". This technique is also known as [Few-Shot Learning](https://www.promptingguide.ai/techniques/fewshot).
+### 1. Clear Objective:
+Write clear objectives to define what you want to have as a result.
+Formulate open-ended questions to receive extensive information.
+Which format should the outcome be in? (e.g., list, email, blog post, JSON).
+If you have several questions, sequence them logically.
 
-For more tips and tricks, refer to the [Prompting Guide](https://www.promptingguide.ai/introduction/tips).
+**Example** <br />
+Not: `Write me an email to Julia.` <br />
+Instead: `Write me an email to my colleague Julia about the status of the ticket ABC-123 regarding our Jira integration.`
 
-## System Prompt
+### 2. Relevant Context:
+What are you generally working on, and how does this prompt help you achieve that goal?
+Who is the audience for the response that will be generated? (experts/beginners, colleagues/the public,...).
 
-A system prompt is the initial instruction or query that is given to a language model to generate a response. It sets the context and provides guidance for the model to generate a relevant and coherent output. The system prompt serves as the starting point for the model to understand the desired task or topic and generate a response accordingly. It helps to provide specific instructions or ask a question to guide the model's behavior and ensure that the generated output aligns with the user's expectations. Example of a system prompt:
+**Example:** <br />
+Not: `Write a marketing copy for biscuits.` <br />
+Instead: `Write a marketing copy for an advertisement in a newspaper about biscuits. The target group is adults and young families.`
 
-```
-You are a weather assistant. A user asks, 'What will the weather be
-like tomorrow?'. Generate a response providing a weather forecast
-for tomorrow based on the user's query.
-```
+### 3. Defined Style:
+Specify if the response should emulate a famous person, profession, or role.
+Define the tone of the reply (formal, friendly, funny, etc.).
 
-The system prompt, combined with the user prompt is then sent to the LLM.
+**Example:** <br /> 
+If available, provide examples of the expected answers and their desired structure to guide the model effectively.
 
-```
-[{
-    "role": "system",
-    "content": "You are a weather assistant. A user asks, 'What will the weather be
-        like tomorrow?'. Generate a response providing a weather forecast
-        for tomorrow based on the user's query."
-}, {
-    "role": "user",
-    "content": "What is the weather in London?"
-}]
-```
+Working with AI models often involves some experimentation and iteration. You can adjust your prompts as needed to achieve the desired results.
 
-## Retrieval Augmented Generation (RAG)
 
-Retrieval-Augmented Generation (RAG) is a popular approach that combines information retrieval and natural language generation. It retrieves useful knowledge from a big collection of information (eg. a collection of documents or a Confluence space) and uses it to create accurate and informative responses.
 
-In simple terms, the prompt by the user is enriched with relevant information from one or multiple documents. The enriched prompt is then sent to the LLM to generate a response. The prompt consists of three components:
 
-```
-### USER PROMPT ###
-Where do Bananas come from?
+## Advanced tricks
 
-### INSTRUCTION ###
-Use the provided context to answer the prompt of the user.
 
-### CONTEXT ###
-[Content from one or multiple documents]
-```
+- Avoid negations: Avoid using don'ts in the prompt. Due to the probabilistic nature of the LLM, the semantic meaning of negations is often not picked up by the LLM.
 
-For a more detailed explanation of RAG, please refer to the [Prompting Guide](https://www.promptingguide.ai/techniques/rag).
+   **For example:** `Be polite` instead of `Don’t be rude`.
 
-### Instruction
 
-The instruction is a short sentence that instructs the model to use the provided context to answer the prompt of the user.
+- Use examples: Provide examples of the desired output to guide the model’s behavior. This helps to ensure that the generated output aligns with the user’s expectations. This technique is also known as "Few-Shot Learning".
 
-The system prompt, combined with the augmented user prompt for RAG is then sent to the LLM.
+   **For example:** `Generate three titles for a fantasy book. Examples: ‘The Lord of the Rings’, ‘Harry Potter’, ‘The Hobbit’`.
 
-```
-[{
-    "role": "system",
-    "content": "You are a helpful assistant."
-}, {
-    "role": "user",
-    "content": "### USER PROMPT ###
-        Where do Bananas come from?
 
-        ### INSTRUCTION ###
-        Use the provided context to answer the prompt of the user.
+- Provide step-by-step instructions: This sequential approach can help the model process complex tasks more effectively.
 
-        ### CONTEXT ###
-        Bananas come from Chile"
-}]
-```
+   **For example:** First, summarize the given text. Then, translate the text to Spanish.
+
+- Let the model think: It's beneficial to ask the model to explain its reasoning to avoid errors and promote more reliable answers.
+
+
+- Highlight parts of the input to have them treated differently (with triple quotation marks, XML tags, titles,...):
+
+   **For example:** <br />
+   `Improve the following email in terms of professionalism and formality.
+   “”” insert email “””`<br />
+   or <br />
+   `Improve the following email in terms of professionalism and formality.<p> insert email here </p>`
+
+
