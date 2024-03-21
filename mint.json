@@ -36,24 +36,32 @@
   },
   "navigation": [
     {
-      "group": "Get Started",
+      "group": "Getting Started",
       "pages": [
         "introduction",
-        "release-notes",
-        "security"
+        "prompting",
+        "chat",
+        "integrations"
+        "challenges"
       ]
     },
     {
       "group": "Guides",
       "pages": [
-        "prompting",
-        "assistants"
+        "models",
+        "prompt-library",
+        "workflows",
+        "assistants",
+        "groups",
+        "custom-instructions"
       ]
     },
     {
-      "group": "API Documentation",
+      "group": "General",
       "pages": [
-        "api"
+        "api",
+        "release-notes",
+        "security"
       ]
     }
   ],
