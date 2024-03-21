@@ -61,7 +61,7 @@
         "release-notes",
         "security"
       ]
-    }
+    },
     {
       "group": "API",
       "pages": [
