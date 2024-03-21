@@ -57,11 +57,16 @@
       ]
     },
     {
-      "group": "General",
+      "group": "Other",
       "pages": [
-        "api",
         "release-notes",
         "security"
+      ]
+    }
+    {
+      "group": "API",
+      "pages": [
+        "api"
       ]
     }
   ],
