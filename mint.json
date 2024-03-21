@@ -39,7 +39,6 @@
       "group": "Getting Started",
       "pages": [
         "introduction",
-        "prompting",
         "chat",
         "integrations",
         "challenges"
