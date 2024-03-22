@@ -56,13 +56,6 @@
       ]
     },
     {
-      "group": "Other",
-      "pages": [
-        "release-notes",
-        "security"
-      ]
-    },
-    {
       "group": "API",
       "pages": [
         "api"
