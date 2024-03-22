@@ -24,7 +24,12 @@ With this workflow, you are able to ask a question about an integrated item. Any
 
 
 ## Bulk actions
-This workflow is different than the others. The other workflows can be performed in a normal chat as well with a prompt specifying the length, the tone etc. With bulk actions you can perform a prompt many times for each row of a CSV file. 
+This workflow is different than the others. The other workflows can be performed in a normal chat as well with a prompt specifying the length, the tone etc. With bulk actions you can perform a prompt many times for each row of a CSV file. An example is a product list with names and descriptions. We want to translate this list to have descriptions in another language.
 
-For example, upload a product list with names and descriptions. Select the “descriptions” column and translate it into the new column.
-To do that, upload your CSV, select the columns you want to perform the prompt on and write your prompt. Langdock will generate a new column with the output. We first only show the first five rows, so you can quickly check if the result is satisfactory before generating the results for the entire CSV. You can either improve the prompt or generate the rest of the CSV. For large files, this can take a moment. We support CSVs with up to 1000 rows at this point.
+To do that, you can follow these steps:
+1. Upload your CSV in the bulk actions workflow.
+2. Then, select the columns you want to perform the prompt on and write your prompt. 
+3. Langdock will generate a new column with the output. Only the first five rows are generated in this step, so you can quickly check if the result is satisfactory before generating the results for the entire CSV.
+4. If you are not happy with the result yet, you can improve the prompt. If you are happy, you can generate the rest of the CSV. For large files, this can take a moment.
+
+We support CSVs with up to 1000 rows at this point.
