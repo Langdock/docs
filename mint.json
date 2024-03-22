@@ -41,7 +41,6 @@
         "introduction",
         "chat",
         "integrations",
-        "challenges"
       ]
     },
     {
@@ -53,6 +52,13 @@
         "assistants",
         "groups",
         "instructions"
+      ]
+    },
+    {
+      "group": "Troubleshooting",
+      "pages": [
+        "challenges",
+        "Integrations"
       ]
     },
     {
