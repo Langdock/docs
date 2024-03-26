@@ -57,7 +57,7 @@
     {
       "group": "Troubleshooting",
       "pages": [
-        "chat",
+        "troubles-chat",
         "troubles-integrations"
       ]
     },
