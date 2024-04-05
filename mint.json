@@ -46,6 +46,7 @@
     {
       "group": "Guides",
       "pages": [
+        "prompting",
         "models",
         "prompt-library",
         "workflows",
