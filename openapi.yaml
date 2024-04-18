@@ -18,7 +18,7 @@ paths:
                   description: The prompt to be completed.
                 provider:
                   type: string
-                  enum: [openai, meta, anthropic]
+                  enum: [openai, anthropic]
                   description: The provider of the model to use for completion. Defaults to `openai`.
                 model:
                   type: string
@@ -26,13 +26,11 @@ paths:
                     [
                       gpt-3.5-turbo,
                       gpt-4,
-                      llama-2-70b-chat,
-                      codellama-34b-instruct,
-                      codellama-13b-instruct,
-                      codellama-7b-instruct,
                       claude-2,
-                      claude-1,
                       claude-instant-1,
+                      claude-3-haiku,
+                      claude-3-sonnet,
+                      claude-3-opus,
                     ]
                   description: The name of the model to use for completion. Defaults to `gpt-3.5-turbo`.
                 region:
