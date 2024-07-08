@@ -76,14 +76,23 @@
     {
         "group": "Prompt Engineering",
         "pages": [
-            "prompt-engineering/basics",
-            "prompt-engineering/prompt-elements",
-            "prompt-engineering/techniques",
-            "prompt-engineering/resources",
-            "prompt-engineering/dictionary"
+          {
+            "group": "Basics of Prompting",
+            "pages": [
+              "prompt-engineering/basics/instructions",
+              "prompt-engineering/basics/structure",
+              "prompt-engineering/basics/output",
+              "prompt-engineering/basics/chain-prompts",
+              "prompt-engineering/basics/context-window",
+              "prompt-engineering/basics/role"
+            ]
+          },
+          "prompt-engineering/prompt-elements",
+          "prompt-engineering/techniques",
+          "prompt-engineering/resources",
+          "prompt-engineering/dictionary"
         ]
-    }
-    ],
+    },
   "footerSocials": {
     "twitter": "https://twitter.com/langdock_hq",
     "linkedin": "https://www.linkedin.com/company/langdock"
