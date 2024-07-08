@@ -37,39 +37,45 @@
   "tabs": [
     {
       "name": "Product Guide",
-      "url": "product",
-      "navigation": [
+      "url": "product"
+    },
+    {
+      "name": "Prompt Engineering Guide",
+        "url": "prompting"
+    }
+  ],
+  "navigation": [
         {
         "group": "Getting started",
           "pages": [
-            "introduction",
-            "models",
-            "prompt-library",
-            "workflows",
-            "assistants",
-            "groups",
-            "instructions",
+            "product/introduction",
+            "product/models",
+            "product/prompt-library",
+            "product/workflows",
+            "product/assistants",
+            "product/groups",
+            "product/instructions",
             {
               "group": "Troubleshooting",
               "pages": [
-                "troubles-chat",
-                "troubles-integrations"
+                "product/troubles-chat",
+                "product/troubles-integrations"
               ]
             },
             {
               "group": "API",
               "pages": [
-                "api"
+                "product/api"
               ]
             }
           ]
+        },
+        {
+          "group": "Getting started",
+          "pages": [
+            "prompting/prompting"
+          ]
         }
-      ]
-    },
-    {
-      "name": "Prompt Engineering Guide",
-        "url": "prompt-engineering"
-    }
   ],
   "footerSocials": {
     "twitter": "https://twitter.com/langdock_hq",
