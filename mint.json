@@ -48,18 +48,18 @@
     {
       "group": "Getting started",
         "pages": [
-          "product/introduction",
-          "product/models",
-          "product/prompt-library",
-          "product/workflows",
-          "product/assistants",
-          "product/groups",
-          "product/instructions",
+          "introduction",
+          "models",
+          "prompt-library",
+          "workflows",
+          "assistants",
+          "groups",
+          "instructions",
           {
             "group": "Troubleshooting",
             "pages": [
-              "product/troubles-chat",
-              "product/troubles-integrations"
+              "troubles-chat",
+              "troubles-integrations"
             ]
           }
         ]
@@ -67,7 +67,7 @@
     {
       "group": "API",
       "pages": [
-          "product/api"
+          "api"
       ]
     }
   ],
