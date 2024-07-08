@@ -6,33 +6,36 @@ description: 'Understand functionalities of the chat.'
 The chat is the central feature Langdock is built on. This guide explains all the features and modes of the chat.
 
 ## Chat Modes
-Langdock offers five different chat modes for various situations. You can change the mode by clicking the button in the left corner of the chat field.
+Langdock offers different chat modes for various situations. You can change the mode by instructing the model to perform an according task.
 
 <img src="/images/chat.jpeg" alt="Hero" />
 <br />
 The different chat modes are:
 
-### 1. Plain
-With the plain mode, you use the model without additional data. This is the traditional mode that you might know from ChatGPT.
+### 1. Just the model
+With the plain model mode, you use the model without additional data. This is the traditional mode that you might know from ChatGPT. When asking for general knowledge or performing tasks where no additional input apart from your prompt is needed, this mode is used
 
 
 ### 2. Web
 In this mode, the model searches the web to generate a reply, allowing it to access and utilize real-time data for generating responses.
 
-
-### 3. Custom
-Use integrations to third-party tools, files, and websites to give the model-specific knowledge specific to your organization. Integrations need to be enabled by the admin of your Langdock workspace. You can learn more about the knowledge you can connect [here](/integrations).
+You can prompt the model by saying `Search the web for...`
 
 
-### 4. Auto
-The system autonomously searches through all your connected data and browses the web to generate the best response for your prompt.
+### 3. Internal sources
+Use integrations to third-party tools, files, and websites to give the model-specific knowledge unique to your situation and your organization. 
 
+Click on the paper click in the left corner of the chat input field to either upload files or select files from your integrations.
+
+Integrations need to be enabled by the admin of your Langdock workspace. You can learn more about the knowledge you can connect [here](/integrations).
 
 ### 5. Image (beta)
 Generate images and logos from text input using DALL-E, expanding the scope of creative and visual outputs.
 
+You can prompt the model to create an image by writing `Create an image`.
+
 ## Image analysis
-In Langdock, you can process uploaded images and analyze them. Ensure you select GPT-4 in the model selection (upper left corner of the chat interface). A third button will appear at the bottom of the chat input field called “Image”. Here, you can upload images.
+In Langdock, you can process uploaded images and analyze them. Ensure you select GPT-4o or one of the Claude models in the model selection (upper left corner of the chat interface). You can upload PNG or JPG files by clicking on the paper clip in the left corner of the chat input field.
 
 Then, write a prompt to instruct the model what you are trying to do. You can analyze, describe, extract text from an image, or compare several photos.
 
