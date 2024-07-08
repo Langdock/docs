@@ -36,25 +36,25 @@
   },
   "navigation": [
     {
-      "group": "Getting Started",
-      "pages": [
-        "introduction",
-        "chat",
-        "integrations"
-      ]
-    },
+      "tabs": [
     {
-      "group": "Guides",
-      "pages": [
-        "prompting",
+        "name": "Product Guides",
+        "url": "product",
+        "pages": ["introduction",
         "models",
         "prompt-library",
         "workflows",
         "assistants",
         "groups",
         "instructions"
-      ]
+]
     },
+    {
+        "name": "Prompt Engineering Guide",
+        "url": "prompt-engineering",
+        "pages": ["Getting Started",
+          "What kind of Prompt Engineer are you?"]
+    }
     {
       "group": "Troubleshooting",
       "pages": [
