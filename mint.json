@@ -79,12 +79,12 @@
         {
           "group": "Basics of Prompting",
           "pages": [
-            "prompt-engineering/basics/instructions",
-            "prompt-engineering/basics/structure",
-            "prompt-engineering/basics/output",
-            "prompt-engineering/basics/chain-prompts",
-            "prompt-engineering/basics/context-window",
-            "prompt-engineering/basics/role"
+            "prompt-engineering/instructions",
+            "prompt-engineering/structure",
+            "prompt-engineering/output",
+            "prompt-engineering/chain-prompts",
+            "prompt-engineering/context-window",
+            "prompt-engineering/role"
           ]
         },
         "prompt-engineering/prompt-elements",
