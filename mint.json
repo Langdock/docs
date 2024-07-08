@@ -37,7 +37,7 @@
   "navigation": [
     {
       "tabs": [
-    {
+      {
         "name": "Product Guides",
         "url": "product",
         "pages": ["introduction",
@@ -47,25 +47,15 @@
         "assistants",
         "groups",
         "instructions"
-    ]
-    },
-    {
+        ]
+      },
+      {
         "name": "Prompt Engineering Guide",
         "url": "prompt-engineering",
         "pages": ["Getting Started",
-          "What kind of Prompt Engineer are you?"]
-    },
-    {
-      "group": "Troubleshooting",
-      "pages": [
-        "troubles-chat",
-        "troubles-integrations"
-      ]
-    },
-    {
-      "group": "API",
-      "pages": [
-        "api"
+          "What kind of Prompt Engineer are you?"
+          ]
+      }
       ]
     }
   ],
