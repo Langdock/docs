@@ -1,9 +1,7 @@
 ---
-title: 'Basics of Prompting'
+title: '1) Write Clear and Specific Instructions'
 description: 'This part of the Prompt Engineering Guide gives you an introduction to the main guidelines of prompt engineering.'
 ---
-
-# 1) Write Clear and Specific Instructions
 
 Providing clear and specific instructions is crucial for guiding the responses of LLMs. Vague or ambiguous prompts can lead to irrelevant or incomplete answers. Clear instructions help the LLM understand exactly what is expected, leading to more accurate and useful outputs.
 Provide as many details as possible that are relevant to the prompt.
@@ -14,144 +12,13 @@ Provide as many details as possible that are relevant to the prompt.
 **Prompt with instructions:**
 `Provide a brief overview of the solar system, including the names and key characteristics of each planet.`
 
-# 2) Structure Your Prompt
-
-There are several ways to structure your prompts for clarity and effectiveness. The most commonly used options are **simple delimiters** and/or **XML tags**.
-
-## Simple Delimiters
-Simple delimiters help structure your prompts and responses for greater clarity. 
-
-Examples of simple delimiters include:
-- Single quotes: `“TEXT”`
-- Triple quotes: `“”” TEXT ”””`
-- Triple dashes: `--- TEXT ---`
-- Angle brackets: `<TEXT>`
-
-Prompt with angle brackets:
-`Summarize the text delimited by angle brackets into a single sentence.
-< {text} >`
-
-## XML Tags
-For more advanced structuring and complex prompts, you can incorporate XML tags. XML (eXtensible Markup Language) tags are used to define the structure and content of data.
-
-**Structure of the tag:**
-1. Opening Tag: Marks the beginning of an element, enclosed in angle brackets (e.g., `<name>`).
-2. Closing Tag: Marks the end of an element, similar to the opening tag but includes a forward slash (e.g., `</name>`).
-3. Content: The data or text contained within the opening and closing tags (e.g., in `<name>John Doe</name>`, _John Doe_ is the content).
-
-**Use the advantage of nesting tags:**
-You can nest tags for hierarchical content.
-
-**Prompt with XML tags:**
-```
-<task>
-    <instruction> </instruction>
-    <document>
-        <title> </title>
-           <content>
-            <paragraph id="1"> </paragraph>
-        </content>
-    </document>
-</task>
-```
-
-## When to use delimiters and when to use XML tags?
-- Use Delimiters when you need a simple separation of sections, instructions, or examples within a prompt.
-- Use XML Tags when you need to represent complex, hierarchical structures, or include metadata.
-
-<Tip>
-**Hint from Langdock:** We recommend using XML tags when creating templates in any scenario where data needs to be modified by others while maintaining a consistent structure across the company or with more complex assistant instructions.
-Although creating a well-structured prompt with XML tags may take time, the investment is worthwhile as it enables easy sharing and reuse within the organization.
-</Tip>
-
-
-# 3) Control Output Format
-One of the simplest ways to control the output is by explicitly stating the desired format.
-Langdock supports these output formats:
-- JSON
-- XML
-- HTML
-- Markdown
-- Bullet points 
-- Tables
-- Custom defined 
-
-**Prompt without instructions:**
-`Tell me how the weather will be next week in Berlin, Hamburg and Munich.`
-
-**Prompt with instructions:**
-`Tell me how the weather will be next week in Berlin, Hamburg and Munich. Summarize the weather for each day in a markdown table with the columns <Berlin>, <Hamburg> and <Munich`>
-
-
-# 4) Chain Prompts
-Divide complex tasks into smaller, manageable steps for better results.
-If you write 3-4 tasks in one prompt without any structure, LLMs might overlook one or more tasks or fail to execute them well. This is connected to the concept of [Chain-of-Thought prompting](/prompt-engineering/chain-of-thought).
-
-By breaking down the tasks, you provide a clear structure that guides LLMs through each step, ensuring comprehensive and high-quality outcomes.
-
-## Breaking down in one prompt:
-You can ask the AI model to break down a task and following the instructions step by step.
-
-**Example:** <br />
-`Search the attached documents for information about office guidelines in our Berlin office. 
-Then, list relevant items as bullet points and sort them by importance. 
-Afterwards, write a piece of concise information to post on our company's Slack channel to remind everyone about the 10 most important things to remember.`
-
-## Breaking down in several prompts:
-If a complex instruction does not work by dividing it into several steps in one prompt, try to divide this instruction into several prompts.
-
-**Example:** <br />
->_Prompt 1:_
-`Please search for our office guidelines in the Berlin office in the attached document.` <br />
-_Response:_ `…`
->
->_Prompt 2:_
-`Sort the guidelines by importance. Explain your reasoning.`
-_Response:_ `…`
->
->_Prompt 3:_
-`Write a Slack Post explaining the 10 most important guidelines.`
-_Response:_ `…`
 
 
 
-# 5) Long Context Window Tips
-The context window length for LLMs refers to the maximum number of tokens (1 token is roughly equivalent to 4 characters) that the model can process in a single conversation. This length determines how much text the model can process at once when generating responses.
-
-Overview of context window length for different LLMs provided on Langdock:
-
-| Model                 | Context Window Size                    |
-| ----------------------| ------------------------------------- |
-| GPT-4o                | 128k tokens                     |
-| GPT-4 Turbo           | 128k tokens                          |
-| GPT-3.5               | 16k tokens |
-| Claude 3 Haiku        | 200k tokens |
-| Claude 3 Sonnet       | 200k tokens |
-| Claude 3 Opus         | 200k tokens |
-| Mistral Large         | 16k tokens |
-| Mistral Small         | 16k tokens |
 
 
-For the end user, the larger the context window, the better it can handle longer documents or conversations without losing track of the context, resulting in more accurate and relevant outputs.
 
-When using LLMs with long context windows, it's crucial to effectively structure your prompts to leverage the extended memory. Here are some tips:
-- **Use Consistent Terminology:** Consistency in terminology helps the model link different parts of the conversation or document, enhancing coherence.
-- **Explicit References:** Always refer back to specific parts of the previous conversation or document. This helps the model understand the context and provide relevant responses.
-- **Summarize Key Points:** Periodically summarize key points to reinforce the context. This can help the model maintain coherence over long interactions.
 
-<Tip>
- For every **new topic**, we strongly advise starting a new conversation. Furthermore, after **more than 60 interactions** in one conversation, we recommend opening a new conversation. If you have some prompts that you want to reuse, save them to your prompt library so you can quickly use them in the new conversations.
-</Tip>
 
-# 6) Give the LLM a Role
-
-When interacting with an LLM, you can significantly enhance its performance by assigning it a specific role. This technique, known as "priming", involves instructing the LLM to adopt the perspective or expertise of a particular character or professional. By doing so, the LLM can generate more relevant, accurate, and contextually appropriate responses tailored to your needs.
-For example, if you need project management advice, you can prime the LLM to act as a project manager. If you need marketing strategies, you can prime it to act as a marketing consultant. This approach helps the LLM focus on the relevant knowledge and language patterns associated with that role, leading to better and more useful outputs.
-
-**Prompt without instructions:**
-`Help me to develop a marketing strategy.`
-
-**Prompt with instructions:**
-`As a growth marketing expert, can you help me write a marketing strategy?`
 
 

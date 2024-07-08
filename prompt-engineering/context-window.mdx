@@ -1,0 +1,31 @@
+---
+title: '5) Long Context Window Tips'
+description: 'This part of the Prompt Engineering Guide gives you an introduction to the main guidelines of prompt engineering.'
+---
+
+The context window length for LLMs refers to the maximum number of tokens (1 token is roughly equivalent to 4 characters) that the model can process in a single conversation. This length determines how much text the model can process at once when generating responses.
+
+Overview of context window length for different LLMs provided on Langdock:
+
+| Model                 | Context Window Size                    |
+| ----------------------| ------------------------------------- |
+| GPT-4o                | 128k tokens                     |
+| GPT-4 Turbo           | 128k tokens                          |
+| GPT-3.5               | 16k tokens |
+| Claude 3 Haiku        | 200k tokens |
+| Claude 3 Sonnet       | 200k tokens |
+| Claude 3 Opus         | 200k tokens |
+| Mistral Large         | 16k tokens |
+| Mistral Small         | 16k tokens |
+
+
+For the end user, the larger the context window, the better it can handle longer documents or conversations without losing track of the context, resulting in more accurate and relevant outputs.
+
+When using LLMs with long context windows, it's crucial to effectively structure your prompts to leverage the extended memory. Here are some tips:
+- **Use Consistent Terminology:** Consistency in terminology helps the model link different parts of the conversation or document, enhancing coherence.
+- **Explicit References:** Always refer back to specific parts of the previous conversation or document. This helps the model understand the context and provide relevant responses.
+- **Summarize Key Points:** Periodically summarize key points to reinforce the context. This can help the model maintain coherence over long interactions.
+
+<Tip>
+ For every **new topic**, we strongly advise starting a new conversation. Furthermore, after **more than 60 interactions** in one conversation, we recommend opening a new conversation. If you have some prompts that you want to reuse, save them to your prompt library so you can quickly use them in the new conversations.
+</Tip>
