@@ -76,6 +76,7 @@
     {
       "group": "Prompt Engineering",
       "pages": [
+        "prompt-engineering/prompt-elements",
         {
           "group": "Basics of Prompting",
           "pages": [
@@ -87,7 +88,6 @@
             "prompt-engineering/role"
           ]
         },
-        "prompt-engineering/prompt-elements",
         "prompt-engineering/techniques",
         "prompt-engineering/resources",
         "prompt-engineering/dictionary"
