@@ -89,9 +89,14 @@
           ]
         },
         "prompt-engineering/techniques",
-        "prompt-engineering/resources",
-        "prompt-engineering/dictionary"
       ]
+    },
+    {
+        "group": "Knowledge",
+        "pages": [
+            "prompt-engineering/resources",
+            "prompt-engineering/dictionary"
+        ]
     }
   ],
   "footerSocials": {
