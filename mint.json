@@ -67,7 +67,7 @@
       ]
     },
     {
-      "group": "Introduction",
+      "group": "Getting started",
       "pages": [
         "prompt-engineering/introduction",
         "prompt-engineering/engineering-type"
