@@ -1,6 +1,6 @@
 {
   "$schema": "https://mintlify.com/schema.json",
-  "name": "Documentation Langdock",
+  "name": "Documentation",
   "logo": {
     "dark": "/logo/dark.svg",
     "light": "/logo/light.svg"
@@ -37,39 +37,41 @@
   "tabs": [
     {
       "name": "Product Guides",
-      "url": "product"
-    },
-    {
-      "name": "Prompt Engineering Guide",
-        "url": "prompt-engineering"
-    }
-  ],
-  "navigation": [
-    {
-      "group": "Getting started",
-        "pages": [
-          "introduction",
-          "models",
-          "prompt-library",
-          "workflows",
-          "assistants",
-          "groups",
-          "instructions",
-          {
-            "group": "Troubleshooting",
-            "pages": [
-              "troubles-chat",
-              "troubles-integrations"
-            ]
-          }
-        ]
-    },
+      "url": "product",
+      "navigation": [
+        {
+        "group": "Getting started",
+          "pages": [
+            "introduction",
+            "models",
+            "prompt-library",
+            "workflows",
+            "assistants",
+            "groups",
+            "instructions",
+            {
+              "group": "Troubleshooting",
+              "pages": [
+                "troubles-chat",
+                "troubles-integrations"
+              ]
+            }
+          ]
+        }
+      ]
     {
       "group": "API",
       "pages": [
           "api"
       ]
     }
+
+    },
+    {
+      "name": "Prompt Engineering Guide",
+        "url": "prompt-engineering"
+    }
+  ],
   ],
   "footerSocials": {
     "twitter": "https://twitter.com/langdock_hq",
