@@ -36,30 +36,26 @@
   },
   "tabs": [
     {
-      "name": "Product Guides",
-      "url": "product"
-    },
-    {
       "name": "Prompt Engineering Guide",
-        "url": "prompting"
+        "url": "prompt-engineering"
     }
   ],
   "navigation": [
     {
       "group": "Getting started",
         "pages": [
-          "introduction",
-          "models",
-          "prompt-library",
-          "workflows",
-          "assistants",
-          "groups",
-          "instructions",
+          "product/introduction",
+          "product/models",
+          "product/prompt-library",
+          "product/workflows",
+          "product/assistants",
+          "product/groups",
+          "product/instructions",
           {
             "group": "Troubleshooting",
             "pages": [
-              "troubles-chat",
-              "troubles-integrations"
+              "product/troubles-chat",
+              "product/troubles-integrations"
             ]
           }
         ]
@@ -69,6 +65,25 @@
       "pages": [
           "api"
       ]
+    },
+    {
+        "group": "Introduction",
+        "pages": [
+            "introduction",
+            "prompt-engineering/engineering-type",
+        ]
+    },
+    {
+        "group": "Prompt Engineering",
+        "pages": [
+            "prompt-engineering/basics",
+            "prompt-engineering/techniques",
+            "prompt-engineering/resources",
+            "prompt-engineering/dictionary"
+        ]
+    },
+    {
+        "group": "Prompt Engineering"
     }
   ],
   "footerSocials": {
