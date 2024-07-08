@@ -1,0 +1,62 @@
+---
+title: 'Assistants'
+description: 'An overview of assistants.'
+---
+
+This guide will help you to get started with assistants. It provides an overview of the assistant building process and examples.
+
+<img src="/images/assistant-hero.png" alt="Hero"/>
+
+## Assistants
+Assistants are LLM-based chat interfaces that can be enriched with your company's internal data. You can integrate your company knowledge into an assistant.
+
+## Assistants vs Chat
+Chats function as a daily companion for employees, allowing brainstorming, drafting emails, and debugging code with integrations to internal knowledge. They support collaboration, sharing prompts, and are customizable with security measures.
+
+Assistants are built to integrate internal knowledge, deployable within Langdock or other apps like Slack and Microsoft Teams, aimed at streamlining information access. They can handle specific tasks like HR queries, onboarding, and customer support, with a focus on data security and compliance. These tasks are just examples. The range of use cases is infinitely long. 
+
+## Assistant Builder
+The Assistant Builder enables you to set up and configure your own custom assistants. We offer an interface that lets you configure the characteristics and capabilities of your assistant. 
+To build a useful assistant, there are a few variables you need to define and you can start using your own assistants within just a few moments. 
+
+## Use Cases
+There is a wide range of use cases for Assistants. From Onboarding Assistance or an IT-Helpdesk to building an assistant that knows everything about your user manual.
+Here are a few of the wide-ranging examples: 
+
+#### HR ####
+Integrate your employees handbook, your onboarding checklists, or your benefits information. Your employees can now ask your assistant everything that can be answered with these documents.  
+<img src="/images/HR-questions.jpeg" alt="HR" width="350" height="275"/>
+
+#### Onboarding ####
+Incorporate the assistant into the onboarding process to answer common questions for new hires about company policies, specific job functions, training timelines, and necessary paperwork. This can help new employees acclimate more quickly and find information when needed.
+<img src="/images/OnboardNewEmployees.jpeg" width="350" height="275"/>
+
+#### Customer Support ####
+Equip your customer support with an assistant that has access to FAQs, product details, and service protocols. The assistant can provide information, assist with troubleshooting, and navigate customers through product or service issues, aiming to resolve queries efficiently.
+<img src="/images/CustomerSupport.jpeg" width="350" height="275"/>
+
+## Building an Assistant ##
+This is a step by step example on how to build and deploy custom assistants with Langdock's Assistant Builder. 
+
+Let's build an HR Assistant. 
+
+### Launch the Assistant Configurator ###
+<img src="/images/createAssistant.png" width="350" height="275"/>
+### Configure basic information ###
+Give your assistant a name and a description that is rendered to the user.
+<img src="/images/nameAndDescription.png" width="350" height="275"/>
+### Add Custom Instructions ###
+You can give your assistants custom instructions of any kind. For example you can add instructions about the tone of voice the assistant should respond in. 
+<img src="/images/customInstructions.png" width="400" height="275"/>
+### Set Prompt Examples ###
+You can add Prompt Examples to the assistant. For example the most frequently asked questions in the HR department. 
+<img src="/images/promptSuggestions.png" width="400" height="275"/>
+### Select AI Model and adjust Model Temperature ###
+You can select between all of our available foundational models and also adjust the temparature of the model. In simple terms, the "temperature" of an AI model is like a creativity dial: turn it down for more predictable answers, or turn it up for more surprising ones. But you won't need to adjust it in most of the assistant building cases - you are good to go with our default settings and don't have to change anything. 
+<img src="/images/Screenshot 2023-12-11 at 15.29.38.png" width="400" height="275"/>
+### Enrich Assistant Knowledge ###
+This is the part that makes the interaction with assistants so beneficial and special in a company context. You can insert the knowledge that the assistant should response upon. In the case of building an HR assistant for your employees, you are all set if you integrate your Employee Handbook PDF, or the corresponding pages from Confluence or Notion. 
+<img src="/images/integrations.png" width="350" height="275"/>
+### Define desired Output Format 
+This is a configuration for more advanced assistant builders, but worth to have a look at. Just like with the custom instructions you can give the LLM instructions on what format the responses should be in. For instance, if you need the assistant to provide responses in a bullet-point list for easy reading, you could specify that format in your output format instructions. Another example could be requesting summaries to be structured with a title, main points, and a conclusion.
+<img src="/images/outputFormat.png" width="400" height="275"/>
