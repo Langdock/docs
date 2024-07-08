@@ -82,7 +82,7 @@
           "pages": [
             "prompt-engineering/instructions",
             "prompt-engineering/structure",
-            "prompt-engineering/output",
+            "prompt-engineering/output-format",
             "prompt-engineering/chain-prompts",
             "prompt-engineering/context-window",
             "prompt-engineering/role"
