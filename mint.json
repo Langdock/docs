@@ -70,7 +70,7 @@
         "group": "Introduction",
         "pages": [
             "introduction",
-            "prompt-engineering/engineering-type",
+            "prompt-engineering/engineering-type"
         ]
     },
     {
@@ -81,11 +81,8 @@
             "prompt-engineering/resources",
             "prompt-engineering/dictionary"
         ]
-    },
-    {
-        "group": "Prompt Engineering"
     }
-  ],
+    ],
   "footerSocials": {
     "twitter": "https://twitter.com/langdock_hq",
     "linkedin": "https://www.linkedin.com/company/langdock"
