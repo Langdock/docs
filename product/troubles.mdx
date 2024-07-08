@@ -1,0 +1,66 @@
+---
+title: 'Common Challenges'
+description: 'Solutions to challenges when working with LLMs.'
+---
+
+We are used to deterministic software (if you press a button, the same specific action always happens). With stochastic interfaces (the results when using an AI model are always different), getting the desired outcome can sometimes be challenging.
+
+We collected some common issues to help you get the expected result and improve your prompting. We are also always happy to help you individually: thomas@langdock.com
+
+## You are unhappy with the Response
+If you are unhappy with the quality of the response, try to regenerate it by clicking on the circle arrow below the response (it appears when hovering over the response). If this does not help, try editing the prompt by clicking on the pen below the prompt (it also appears when hovering over the prompt). Now you can provide more context on what you expect from the AI model (we provided some ways to improve the prompt in our [prompting guide](/prompting))
+
+## AI model replies to an email instead of improving it
+
+**Solution:** Ask for an improvement to this email. Give clear instructions on what should be improved (tone, grammar, readability, …).
+
+
+**Example prompt:** `You are an email writing assistant. Improve the provided email in tone, grammar, professionalism and readability. Keep the level of formality. Only return the email, nothing else.
+“””[insert email]”””`
+
+## Responses are not generated or
+Sometimes, the answer is not generated due to a lost internet connection. Try using the regenerate response button (circle arrow below the response) or editing the prompt.
+
+## Outputs are too long / too short.
+**Solution:** Ask for brief/elaborate replies. Define how many sentences or paragraphs you would like to receive
+
+**Example prompt:** `[Add context, objectives and other information here] Reply with a brief response in bullet points. Each bullet point should be one to two sentences long.`
+
+
+
+## Outputs end suddenly
+**Solution:** The AI model has been interrupted. Write ´continue´ to continue creating the response.
+
+
+
+## The knowledge from the document was not used to create the response
+
+**Solution:** Maybe the document/integration has not been fully imported yet. You can check the status of the files in the list. “Imported” means that the import of the document is complete. Extensive integrations (Slack accounts with many users, channels and messages; large team drives; complex Notion spaces could take a moment to load). If you run into issues here or it takes a long time, please get in touch with the Langdock team (thomas@langdock.com).
+
+
+
+## Hallucinations - The model gives false/made-up responses
+
+A common issue with AI models is made up of facts if it does not know the answer exactly. You should never trust the output of an AI 100%. Always review the information in the responses for accuracy and correctness.
+
+**Solution:** Ensure that your response is tailored to a clearly defined subject, draw exclusively from the content found in the attached documents, and restrict the source of information to publications from the past five years.
+
+**Example:** `Can you provide me with a summary of the techniques used to reduce errors in machine learning models based on established methods and practices? Only use the attached knowledge from the last five years.`
+
+
+## My image is not generating
+
+
+**Solution:**
+Try using a short, easier prompt
+Try avoiding conflicting requests
+For any problems, please reach out to us so we can improve the product and facilitate your request in the future.
+
+## My chat can not be shared
+Only chats in web or plain mode can be shared at this point. If the chat can not be shared, the chat is or has been at one point in a different mode.
+
+
+## My assistant or prompt can not be published.
+
+To share an item with others, please make sure that you are a member of a group. You can set up groups [here](https://platform.langdock.com/?settings=workspace&category=groups). If there is no button to create groups, your technical administrators might need to set up Okta (SCIM). Please get in touch with the Langdock team.
+
