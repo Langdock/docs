@@ -1,0 +1,35 @@
+---
+title: 'Workflows'
+description: 'Get introduced to workflows.'
+---
+
+We provide ready-to-use [workflows](https://platform.langdock.com/workflows) for every user. First, this is a simple interface for new users to guide them in providing the necessary context, e.g., an email. Second, we support cases that are impossible to do in the regular chat (like bulk actions).
+The current workflows are:
+
+
+## Email
+Write emails and reply iteratively to them. Provide as much information as possible, such as the tone, length, previous messages, and background information. With more information, you give the model less space for interpretation and the result will be better. After the first generated draft, you can change the length of the email and ask for changes. It is completely normal to have this back and forth to get closer to the desired response.
+
+
+## Summaries
+Summarize large amounts of text. This functionality can process longer texts than normal chats but is focused only on summarizing. You can copy-paste or upload a file and pre-define the tone and the length of the text you want to generate.
+
+
+## Improve text
+Improve texts with as specific instructions as possible (formal, informal, …). Similarly to summarizing a text, you can either copy-paste a text or upload it through a file.
+
+
+## Ask a question
+With this workflow, you are able to ask a question about an integrated item. Any integration works.
+
+
+## Bulk actions
+This workflow is different than the others. The other workflows can be performed in a normal chat as well with a prompt specifying the length, the tone etc. With bulk actions you can perform a prompt many times for each row of a CSV file. An example is a product list with names and descriptions. We want to translate this list to have descriptions in another language.
+
+To do that, you can follow these steps:
+1. Upload your CSV in the bulk actions workflow.
+2. Then, select the columns you want to perform the prompt on and write your prompt. 
+3. Langdock will generate a new column with the output. Only the first five rows are generated in this step, so you can quickly check if the result is satisfactory before generating the results for the entire CSV.
+4. If you are not happy with the result yet, you can improve the prompt. If you are happy, you can generate the rest of the CSV. For large files, this can take a moment.
+
+We support CSVs with up to 1000 rows at this point.
