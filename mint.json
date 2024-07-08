@@ -47,14 +47,14 @@
         "assistants",
         "groups",
         "instructions"
-]
+    ]
     },
     {
         "name": "Prompt Engineering Guide",
         "url": "prompt-engineering",
         "pages": ["Getting Started",
           "What kind of Prompt Engineer are you?"]
-    }
+    },
     {
       "group": "Troubleshooting",
       "pages": [
