@@ -1,0 +1,75 @@
+---
+title: 'Prompting Techniques'
+description: 'Now that we have covered the basics of prompting, it iss time to dive into advanced techniques that will refine your ability to craft precise and powerful prompts, unlocking new possibilities and deeper interactions with LLMs.'
+---
+
+# Zero-shot Prompting
+There are a few techniques you can use when prompting LLMs.The first one is “zero-shot prompting”. As these models have been trained on a large amount of data, their internal knowledge makes them capable of performing a large number of tasks without examples or precise demonstrations. As soon as we set guiding examples, we are speaking of [few-shot prompting](/prompting-guide/techniques/few-shot-prompting). 
+
+We can imagine zero-shot prompting as someone asking a guitar player to play the piano, even though they never played the piano before. They would apply their previous knowledge about music and instruments to play the piano.
+
+Most prompts we use are, by default, zero-shot prompts. 
+
+**An example could be:**
+
+_Prompt:_
+`Classify the text into the categories of satisfied, neutral or unsatisfied.
+Text: I was happy with the customer support today.`
+
+_Output:_
+`Satisfied`
+
+The model is able to process the input and generate an adequate output because of its previous training. We recommend using zero-shot prompting for general and high-level tasks like classification, translation, and answering questions with general knowledge.
+
+We recommend using few-shot prompting as soon as you want to work on nuanced or complex tasks and desire a specific outcome format.
+
+
+# Few-shot Prompting
+Few-shot prompting means providing demonstrations of how to perform a task being asked for. So, in addition to the broad, general knowledge the AI model has, the few shots are specific examples that steer the model to perform a task in a more qualitative manner.
+
+If we continue with the example of the guitar player being asked to play the piano for the first time, few-shot prompting would be a mini-lesson before getting started.
+
+**An example of few-shot prompting is:** <br />
+_Prompt:_
+`I was happy with the customer support today - satisfied
+The product is horrible! - very unsatisfied
+This is one of the best products I have ever used - very satisfied
+This is such a great product! -`
+
+_Output:_
+`Very Satisfied`
+
+The previous examples help define the format of the desired output. Also, they provide more context, which helps to give more adequate responses.
+
+Few-shot prompting helps with more complex or nuanced tasks. Providing 3-4 examples of the task you want the model to perform or the answer format you expect helps to get the right answer in the right format.
+
+With more complex reasoning tasks, this few-shot approach might reach its limitations. For that, we recommend adding chain-of-thought principles to the prompting.
+
+
+# Chain-of-Thought Prompting
+While LLMs are generally capable of performing reasoning tasks, they are probabilistic models that rely on their internal training data. If the problem you want to solve is particularly complex or unfamiliar to the model, it might produce an incorrect result. However, you can enhance the model's reasoning by instructing it to "think step by step".
+
+Encouraging step-by-step thinking can significantly enhance the quality of outputs from LLMs, especially when they need to perform analyses or tackle complex tasks. 
+
+Here are three effective tactics to nudge an LLM to think more thoroughly:
+1. **Use Explicit Instructions:** The simplest method is to include the phrase "Think step by step" at the end of your prompt. This direct instruction guides LLMs to break down the problem into manageable steps.
+
+2. **Provide a Logical Framework:** After describing the task and providing necessary sources, outline how you would logically solve the problem. This helps LLMs follow a structured approach. Check Chain Prompts for more insights. 
+
+    **Example:**
+
+    _Prompt without instructions:_
+    `Analyze the impact of climate change on polar bear populations.`
+    
+    _Prompt with instructions:_
+    `Analyze the impact of climate change on polar bear populations. Here is a logical framework to follow:
+    Describe the current state of polar bear populations.
+    Identify the key factors of climate change affecting their habitat.
+    Explain the direct and indirect impacts on polar bears.
+    Summarize the overall impact and potential future scenarios.`
+
+3. **Use XML Tags for Structure:** Adding XML tags like `<thinking> </thinking>`  and `<answer> </answer>` can help define how the prompt should be processed and structured. This method is useful for more complex prompts where you want to clearly separate the thinking process from the final answer. You find our section section about XML tags [here](/prompt-engineering/basics/structure-your-prompt/xml-tags)
+
+
+
+
