@@ -34,28 +34,40 @@
       "method": "bearer"
     }
   },
+  "tabs": [
+    {
+      "name": "Product Guides",
+      "url": "product"
+    },
+    {
+      "name": "Prompt Engineering Guide",
+        "url": "prompt-engineering"
+    }
+  ],
   "navigation": [
     {
-      "tabs": [
-      {
-        "name": "Product Guides",
-        "url": "product",
-        "pages": ["introduction",
-        "models",
-        "prompt-library",
-        "workflows",
-        "assistants",
-        "groups",
-        "instructions"
+      "group": "Getting started",
+        "pages": [
+          "introduction",
+          "models",
+          "prompt-library",
+          "workflows",
+          "assistants",
+          "groups",
+          "instructions",
+          {
+            "group": "Troubleshooting",
+            "pages": [
+              "troubles-chat",
+              "troubles-integrations"
+            ]
+          }
         ]
-      },
-      {
-        "name": "Prompt Engineering Guide",
-        "url": "prompt-engineering",
-        "pages": ["Getting Started",
-          "What kind of Prompt Engineer are you?"
-          ]
-      }
+    },
+    {
+      "group": "API",
+      "pages": [
+          "api"
       ]
     }
   ],
