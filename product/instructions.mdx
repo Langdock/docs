@@ -3,20 +3,37 @@ title: 'Custom instructions'
 description: 'Provide custom instructions to improve responses.'
 ---
 
-To improve the responses you receive, you can provide additional information about yourself, your company or the replies you expect.
+To improve the responses you receive, you can provide additional information about yourself or the replies you expect.
 
 ## Company information
-In the [company settings](https://platform.langdock.com/?settings=workspace&category=general), the admin of a Langdock workspace can give the AI model context about the company by mentioning your industry, who your customers are (B2B, B2C, public institutions, enterprises, small agencies,...), what the company is doing or which company-specific terminology is used (acronyms, names of essential product areas,...). This helps the model provide better responses without you saying what the industry is every time, etc.
+In the [company settings](https://platform.langdock.com/?settings=workspace&category=general), the admin of a Langdock workspace can give the AI model context about the company. This helps the model provide better responses without you having to provide such context in every conversation.
+
+<Accordion title="Examples">
+- Company Name
+- Industry
+- Customers (B2B, B2C, public institutions, enterprises, small agencies)
+- specific internal terminology (acronyms, names of essential product areas,…)
+</Accordion>
+
 
 ## Custom instructions about you
-There is a second place where each user can provide more context to improve response quality. Go to your [individual preferences](https://platform.langdock.com/) in the settings. You can see two text fields. In the first field about yourself, you can specify what the model should know about you and your work context.
+You can find “Custom Instructions” in the [individual preferences](https://platform.langdock.com/?settings=account&category=preferences) of your settings. Move the toggle on the right to “Active”. Now, you can enter information about yourself and how you expect the model to reply to you.
 
-**Examples:**
+The way these instructions work is that they are sent to the model together with every message you send.
+
+**An example:** <br />
+If you ask to `Write me a short thank you message for the colleagues in my department for going the extra mile the last 2 weeks`, the model does not know which department you work in. 
+
+If you specify in the [custom instructions](https://platform.langdock.com/?settings=account&category=preferences), `I work in marketing`, the prompt asking for the thank you message is sent to the model together with your custom instructions that you work in marketing. The response you will receive will be more tailored to your team.
+
+
+<Accordion title="Examples">
 - What is your job?
 - What is important to you in communication
 - What are the main topics you are working with?
 - What tasks do you want to accomplish with Langdock?
 - What is your target audience? To whom should the answers be addressed?
+</Accordion>
 
 
 
@@ -25,47 +42,47 @@ There is a second place where each user can provide more context to improve resp
 In the second field for answers, you can describe what role the AI model should take on, what answers should look like, and in what style they should be written:
 
 
-You can ask to always write in continuous text, in a particular style or as if the answer were written by a specific person/role or
+You can ask to always write in continuous text, in a particular style or as if the answer were written by a specific person/role.
+
+<Accordion title="Examples">
+- Always write in [Du/Sie] form.
+
+- NEVER mention that you are an AI.
+
+- If events or information go beyond your knowledge, answer with "I don't know" without further explaining why the information is unavailable.
+
+- Keep answers unique and free from repetition. 
 
 
-`Always write in [Du/Sie] form.`
-
-`NEVER mention that you are an AI.`
+- Always focus on the critical points in my questions to recognize my intent. 
 
 
-`If events or information go beyond your knowledge, answer with "I don't know" without further explaining why the information is unavailable.`
+- Break down complex problems or tasks into smaller, manageable steps and explain each one with arguments.
 
 
-`Keep answers unique and free from repetition. `
+- Offer multiple perspectives or solutions.
 
 
-`Always focus on the critical points in my questions to recognize my intent. `
+- If a question is unclear or ambiguous, ask for more details before answering to confirm your understanding.
 
 
-`Break down complex problems or tasks into smaller, manageable steps and explain each one with arguments.`
+- Avoid paragraphs with more than three sentences.
 
 
-`Offer multiple perspectives or solutions.`
+- Use analogies or metaphors to explain complex topics.
 
 
-`If a question is unclear or ambiguous, ask for more details before answering to confirm your understanding.`
+- Sum up the most important insights at the end of your response.
 
 
-`Avoid paragraphs with more than three sentences.`
+- Provide credible sources or references to support your answers, if available, with links.
 
 
-`Use analogies or metaphors to explain complex topics.`
+- If you made a mistake in a previous answer, acknowledge and correct it.
 
 
-`Sum up the most important insights at the end of your response.`
+- After an answer, ask three follow-up questions that are phrased as if I were asking you. Format them in bold as Q1, Q2, and Q3. To maintain spacing, place two line breaks ("\n") before and after each question. These questions should be thought-provoking and further deepen the original topic.
+</Accordion>
 
-
-`Provide credible sources or references to support your answers, if available, with links.`
-
-
-`If you made a mistake in a previous answer, acknowledge and correct it.`
-
-
-`After an answer, ask three follow-up questions that are phrased as if I were asking you. Format them in bold as Q1, Q2, and Q3. To maintain spacing, place two line breaks ("\n") before and after each question. These questions should be thought-provoking and further deepen the original topic.`
 
 

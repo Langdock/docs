@@ -77,6 +77,7 @@
         "group": "Prompt Engineering",
         "pages": [
             "prompt-engineering/basics",
+            "prompt-engineering/prompt-elements",
             "prompt-engineering/techniques",
             "prompt-engineering/resources",
             "prompt-engineering/dictionary"
