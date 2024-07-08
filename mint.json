@@ -56,16 +56,15 @@
                 "troubles-integrations"
               ]
             }
+            {
+              "group": "API",
+              "pages": [
+                "api"
+              ]
+            }
           ]
         }
       ]
-    {
-      "group": "API",
-      "pages": [
-          "api"
-      ]
-    }
-
     },
     {
       "name": "Prompt Engineering Guide",
