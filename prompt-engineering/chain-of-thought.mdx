@@ -1,0 +1,30 @@
+---
+title: 'Chain-of-Thought Prompting'
+description: 'Learn advanced concepts from research and level up your prompt engineering.'
+---
+
+
+While LLMs are generally capable of performing reasoning tasks, they are probabilistic models that rely on their internal training data. If the problem you want to solve is particularly complex or unfamiliar to the model, it might produce an incorrect result. However, you can enhance the model's reasoning by instructing it to "think step by step".
+
+Encouraging step-by-step thinking can significantly enhance the quality of outputs from LLMs, especially when they need to perform analyses or tackle complex tasks. 
+
+Here are three effective tactics to nudge an LLM to think more thoroughly:
+
+1. **Use Explicit Instructions:** The simplest method is to include the phrase "Think step by step" at the end of your prompt. This direct instruction guides LLMs to break down the problem into manageable steps.
+
+2. **Provide a Logical Framework:** After describing the task and providing necessary sources, outline how you would logically solve the problem. This helps LLMs follow a structured approach. Check Chain Prompts for more insights. 
+
+    **Example:**
+    
+    _Prompt without instructions:_ <br />
+    `Analyze the impact of climate change on polar bear populations.`
+    
+    _Prompt with instructions:_ <br />
+    `Analyze the impact of climate change on polar bear populations. Here is a logical framework to follow:
+    Describe the current state of polar bear populations.
+    Identify the key factors of climate change affecting their habitat.
+    Explain the direct and indirect impacts on polar bears.
+    Summarize the overall impact and potential future scenarios.`
+
+3. **Use XML Tags for Structure:** Adding XML tags like `<thinking> </thinking>`  and `<answer> </answer>` can help define how the prompt should be processed and structured. This method is useful for more complex prompts where you want to clearly separate the thinking process from the final answer. You find our section section about XML tags [here](/prompt-engineering/basics/structure-your-prompt/xml-tags)
+
