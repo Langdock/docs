@@ -1,6 +1,5 @@
 ---
 title: 'Chain-of-Thought Prompting'
-description: 'Learn advanced concepts from research and level up your prompt engineering.'
 ---
 
 
@@ -16,15 +15,15 @@ Here are three effective tactics to nudge an LLM to think more thoroughly:
 
     **Example:**
     
-    _Prompt without instructions:_ <br />
-    `Analyze the impact of climate change on polar bear populations.`
+    _Prompt without instructions:_ 
+    <br />`Analyze the impact of climate change on polar bear populations.`
     
-    _Prompt with instructions:_ <br />
-    `Analyze the impact of climate change on polar bear populations. Here is a logical framework to follow:
-    Describe the current state of polar bear populations.
-    Identify the key factors of climate change affecting their habitat.
-    Explain the direct and indirect impacts on polar bears.
-    Summarize the overall impact and potential future scenarios.`
+    _Prompt with instructions:_ 
+    <br /> `Analyze the impact of climate change on polar bear populations. Here is a logical framework to follow:`
+    <br /> `Describe the current state of polar bear populations.`
+     <br /> `Identify the key factors of climate change affecting their habitat.`
+     <br /> `Explain the direct and indirect impacts on polar bears.`
+    <br />`Summarize the overall impact and potential future scenarios.`
 
 3. **Use XML Tags for Structure:** Adding XML tags like `<thinking> </thinking>`  and `<answer> </answer>` can help define how the prompt should be processed and structured. This method is useful for more complex prompts where you want to clearly separate the thinking process from the final answer. You find our section section about XML tags [here](/prompt-engineering/basics/structure-your-prompt/xml-tags)
 
