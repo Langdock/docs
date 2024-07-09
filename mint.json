@@ -89,7 +89,14 @@
             "prompt-engineering/role"
           ]
         },
-        "prompt-engineering/techniques",
+        {
+          "group": "Techniques",
+          "pages": [
+            "prompt-engineering/zero-shot-prompting",
+            "prompt-engineering/few-shot-prompting",
+            "prompt-engineering/chain-of-thought",
+          ]
+        },
         "prompt-engineering/tricks"
       ]
     },
