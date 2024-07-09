@@ -97,13 +97,14 @@
             "prompt-engineering/chain-of-thought"
           ]
         },
-        "prompt-engineering/tricks"
+        "prompt-engineering/tricks",
+        "prompt-engineering/resources"
+
       ]
     },
     {
         "group": "Knowledge",
         "pages": [
-            "prompt-engineering/resources",
             "prompt-engineering/dictionary"
         ]
     }
