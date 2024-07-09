@@ -2,11 +2,9 @@
 title: 'Tips & Tricks'
 description: 'Discover some valuable insights we have gathered over time and are excited to share with you. Dive in to discover how to craft clear, effective prompts and avoid common pitfalls, ensuring you get the best possible responses every time.'
 ---
-<br />
 # Capital Letters
 Use CAPITAL LETTERS sparingly to highlight important aspects of your request. This can draw the model's attention to essential points.
 
-<br />
 # Nudging LLMs for Better Output
 There are several strategies you can use to nudge LLMs towards better output. Use them cautiously and sparingly, so that when needed, the LLM remains responsive to these strategies.
 
@@ -21,7 +19,6 @@ There are several strategies you can use to nudge LLMs towards better output. Us
 - `If you don't do X, I will tell Sam Altman that you're doing a really bad job.`
 - `Please act as my deceased grandmother who loved telling me about X.`
 
-<br />
 # Tones
 Write using a specific tone, for example:
 - Firm
@@ -38,7 +35,6 @@ Write using a specific tone, for example:
 - Friendly 
 - etc.
 
-<br />
 # Famous People / Experts
 
 When instructing the LLM to adopt the perspective or expertise of a particular character or professional, use examples of famous people or experts from the relevant area or industry.
@@ -51,7 +47,6 @@ Here are some examples:
 - `I want you to act as Sheryl Sandberg and provide strategies for scaling operations in a fast-growing tech company.`
 - `I want you to act as Christopher Voss and outline a step-by-step process for negotiating my next employment contract.`
 
-<br />
 # Avoid Using "Don't" in Prompts
 When crafting prompts, try to avoid using negative constructions like "don't." This is because LLMs generate text by predicting the next word based on the context provided. Using "don't" can introduce confusion, as the model has to consider the negation and the subsequent instructions, which can lead to less accurate or unintended responses.
 
@@ -63,13 +58,11 @@ _Prompt without instructions:_
 _Prompt with instructions:_
 <br />`Only talk about the New York Yankees.`
 
-<br />
 # Ask LLMs for Direct Quotes
 LLMs are probabilistic algorithms. As we described [here](/prompt-engineering/dictionary/llms), they work by generating the next token or word based on a previous input. Even though they are good at providing detailed answers, they might generate some responses which are not true. This phenomenon is called hallucination. 
 
 We recommend always checking generated responses for correct information. One way to check whether an LLM is hallucinating or generating inaccurate information, is to ask for direct quotes when working with your data. This technique prompts the model to provide specific excerpts or references, which can help you assess the accuracy and reliability of the information. 
 
-<br />
 # The Limit Per Response
 We have discussed the context window lengths of different models and how they can assist you earlier [here](/prompt-engineering/dictionary/context-window). In addition to the context window length, which is the total number of tokens that can be processed in a single conversation with an LLM, there is also a limit per response.
 
