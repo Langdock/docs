@@ -1,6 +1,5 @@
 ---
 title: '4) Chain Prompts'
-description: 'This part of the Prompt Engineering Guide gives you an introduction to the main guidelines of prompt engineering.'
 ---
 
 Divide complex tasks into smaller, manageable steps for better results.
@@ -12,8 +11,8 @@ By breaking down the tasks, you provide a clear structure that guides LLMs throu
 You can ask the AI model to break down a task and following the instructions step by step.
 
 **Example:** <br />
-`Search the attached documents for information about office guidelines in our Berlin office. 
-Then, list relevant items as bullet points and sort them by importance. 
+`Search the attached documents for information about office guidelines in our Berlin office.
+Then, list relevant items as bullet points and sort them by importance.
 Afterwards, write a piece of concise information to post on our company's Slack channel to remind everyone about the 10 most important things to remember.`
 
 ## Breaking down in several prompts:
@@ -22,13 +21,16 @@ If a complex instruction does not work by dividing it into several steps in one 
 **Example:** <br />
 >_Prompt 1:_
 `Please search for our office guidelines in the Berlin office in the attached document.` <br />
+
 _Response:_ `…`
 >
 >_Prompt 2:_
 `Sort the guidelines by importance. Explain your reasoning.`
+
 _Response:_ `…`
 >
 >_Prompt 3:_
 `Write a Slack Post explaining the 10 most important guidelines.`
+
 _Response:_ `…`
 
