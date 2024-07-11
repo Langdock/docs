@@ -38,10 +38,6 @@
     {
       "name": "Prompt Engineering Guide",
       "url": "prompt-engineering"
-    },
-    {
-      "name": "API",
-      "url": "api"
     }
   ],
   "navigation": [
@@ -105,12 +101,6 @@
         "group": "Knowledge",
         "pages": [
             "prompt-engineering/dictionary"
-        ]
-    },
-    {
-        "group": "API",
-        "pages": [
-            "api/completion"
         ]
     }
   ],
