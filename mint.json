@@ -38,33 +38,32 @@
     {
       "name": "Prompt Engineering Guide",
       "url": "prompt-engineering"
+    },
+    {
+      "name": "API",
+      "url": "api"
     }
   ],
   "navigation": [
     {
       "group": "Getting started",
+      "pages": "product/introduction"
+    },
+    {
+      "group": "Product",
       "pages": [
-        "product/introduction",
         "product/chat",
-        "product/models",
-        "product/prompt-library",
-        "product/workflows",
         "product/assistants",
-        "product/groups",
-        "product/instructions",
-        {
-          "group": "Troubleshooting",
-          "pages": [
-            "product/troubles-chat",
-            "product/troubles-integrations"
-          ]
-        }
+        "product/prompt-library",
+        "product/models"
       ]
     },
     {
-      "group": "API",
-      "pages": [
-        "api"
+      "group": "Settings",
+      "pages":  [
+        "product/integrations",
+        "product/groups",
+        "product/instructions"
       ]
     },
     {
