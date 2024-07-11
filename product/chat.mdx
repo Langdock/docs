@@ -3,53 +3,67 @@ title: Chat
 description: 'Understand functionalities of the chat.'
 ---
 
-The chat is the central feature Langdock is built on. This guide explains all the features and modes of the chat.
+Langdock AI Chat is the central feature Langdock is built on. It boosts your efficiency by leveraging the latest language models, allowing for web browsing, document uploads, analysis, and image generation. 
 
-## Chat Modes
-Langdock offers different chat modes for various situations. You can change the mode by instructing the model to perform an according task.
-
-<img src="/images/chat.jpeg" alt="Hero" />
-<br />
-The different chat modes are:
-
-### 1. Just the model
-With the plain model mode, you use the model without additional data. This is the traditional mode that you might know from ChatGPT. When asking for general knowledge or performing tasks where no additional input apart from your prompt is needed, this mode is used
+This guide explains all the features and modes related to chat.
 
 
-### 2. Web
-In this mode, the model searches the web to generate a reply, allowing it to access and utilize real-time data for generating responses.
+## Chat Modes ##
+Langdock automatically chooses the best mode for your message, depending on your query. 
 
-You can prompt the model by saying `Search the web for...`
+### Plain Mode ###
+Use the model without additional data with the plain mode. This is the traditional mode that you might know from ChatGPT. When asking for general knowledge or performing tasks where no additional input apart from your prompt is needed, this mode will be used.
+
+### Document Upload & Search ###
+Effortlessly upload your files from your desktop or seamlessly select them from your connected integrations.
+
+Click on the paper click in the left corner of the chat input field to either upload files or select files from your connected integrations.
+
+Integrations need to be enabled by the admin of your Langdock workspace. You can learn more about integrations you can connect [here](/integrations).
+
+IMAGE
+
+_Langdock supports document upload for the following file formats:_
+- PDF
+- Word /Google Docs 
+- PowerPoint
+- TXT
+- Markdown
+- Excel / Google Sheets / csv. documents → `coming soon`
 
 
-### 3. Internal sources
-Use integrations to third-party tools, files, and websites to give the model-specific knowledge unique to your situation and your organization. 
+### Web Browsing Mode ###
+Use this mode to search the web and generate replies based on real-time data. This allows the model to access and utilize the latest information on current events, recent developments, and other topics that require up-to-date data. 
 
-Click on the paper click in the left corner of the chat input field to either upload files or select files from your integrations.
+Prompt the model by saying `Search the web for...` to leverage this capability.
 
-Integrations need to be enabled by the admin of your Langdock workspace. You can learn more about the knowledge you can connect [here](/integrations).
 
-### 5. Image (beta)
-Generate images and logos from text input using DALL-E, expanding the scope of creative and visual outputs.
+### Image Generation Mode ###
+Generate images and logos from text input using DALL-E 3, expanding the scope of creative and visual outputs. 
 
 You can prompt the model to create an image by writing `Create an image`.
 
-## Image analysis
-In Langdock, you can process uploaded images and analyze them. Ensure you select GPT-4o or one of the Claude models in the model selection (upper left corner of the chat interface). You can upload PNG or JPG files by clicking on the paper clip in the left corner of the chat input field.
-
+### Image Analysis Mode ###
+In Langdock, you can process uploaded images and analyze them. Ensure you select GPT-4o or one of the Claude models in the model selection field (upper left corner of the chat interface). You can upload PNG or JPG files by clicking on the paper clip in the left corner of the chat input field.
 Then, write a prompt to instruct the model what you are trying to do. You can analyze, describe, extract text from an image, or compare several photos.
 
-## Sharing chats
-Additionally, Langdock allows users to share chats with colleagues, share best practices and work together in a chat.
+## Prompt Actions ##
 
-Only chats in plain or web mode can be shared for compliance reasons. If the chat was at any point before in custom, auto or image mode, it can not be shared. To share a chat, click on the "Invite" button in the upper right corner after you have sent at least one message.
+### Edit Prompt ###
+If you are unsatisfied with a response, you can edit the instructions by clicking on the pen icon next to your prompt. Click save when you are ready.
 
-## Edit prompt
-If you are unsatisfied with a response, you can edit the instructions you give the model different context. This can be done by clicking on the pen icon below the prompt. Hit send when you are ready.
+### Save Prompt ###
+If you like a prompt and want to reuse it in the future, save it by clicking on the “+” icon. You need to choose a folder where you want to save your prompt in the prompt library and give your prompt a name. You can learn more about it [here](/prompt-library).
 
-Afterwards, a second answer will be generated, and the chat will be split, similar to a path that splits into two directions. You can switch between the different paths and continue chatting or generate responses in both directions.
+### Regenerate Prompt ###
+If you are unsatisfied with the response you received, simply click on the circular arrow below your response to regenerate it. This feature is particularly useful because models are non-deterministic, meaning you will always get a slightly different result for the same prompt. You can then review the various responses and select the one that best meets your needs.
 
-## Regenerate response
-Similarly to the edit prompt functionality, the "regenerate response" feature in Langdock allows you to regenerate a response from the model if you are unsatisfied with the initial response. This might be helpful because models are non-deterministic software. You will always get a slightly different result for the same prompt. You can regenerate a response by clicking on the circle arrow below the reaction and the response will be regenerated. You can then review the different responses and pick the best one.
+## Models ##
+You can enhance your prompting experience by selecting different models from the model selection field, located in the upper left corner of the chat interface.
+Langdock positions itself as a model-agnostic tool, committed to providing you with flexibility and freedom of choice, rather than locking you into a single model.
+Each model has its own unique strengths, and we encourage you to explore and test different models to find the best fit for your needs. Find out about different models [here](/models). 
+
+
+
 
 
