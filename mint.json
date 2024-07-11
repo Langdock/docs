@@ -47,7 +47,7 @@
   "navigation": [
     {
       "group": "Getting started",
-      "pages": "product/introduction"
+      "pages": ["product/introduction"]
     },
     {
       "group": "Product",
