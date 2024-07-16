@@ -55,16 +55,16 @@
       ]
     },
     {
+      "group": "Integrations",
+      "pages": [
+        "product/integrations/oauth",
+        "product/integrations/drive",
+        "product/integrations/confluence"
+      ]
+    },
+    {
       "group": "Settings",
       "pages":  [
-        {
-          "group": "Integrations",
-          "pages": [
-            "product/integrations/oauth",
-            "product/drive",
-            "product/confluence"
-          ]
-        },
         "product/integrations",
         "product/groups",
         "product/instructions"
