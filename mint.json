@@ -58,8 +58,13 @@
       "group": "Integrations",
       "pages": [
         "product/integrations/oauth",
-        "product/integrations/drive",
-        "product/integrations/confluence"
+        {
+        "group": "Workspace-level Integrations",
+        "pages": [
+          "product/integrations/drive",
+          "product/integrations/confluence"
+        ]
+        }
       ]
     },
     {
