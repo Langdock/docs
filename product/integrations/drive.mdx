@@ -7,6 +7,8 @@ This page is still being build. 🚧 Please contact support@langdock.com for sup
 **Important:**
 - You need to be a workspace-admin to connect a Google Drive for the entire workspace. If you are not an admin, please reach out to your admin or refer to the [user-level integration guide](/product/integrations/oauth).
 - You need the Google Administrator account to set up this integration for the entire workspace.
+- This integration uses domain-wide delegation [More Information](https://support.google.com/a/answer/162106?hl=en#zippy=%2Cview-edit-or-delete-clients-and-scopes)
+
 
 -----------
 
@@ -19,13 +21,26 @@ This page is still being build. 🚧 Please contact support@langdock.com for sup
 
 3. You get to the integration management page. Here you can set up the connection.
 
-4. Now switch to your Google Admin Console to give your Langdock account the required scopes from Google Drive. You might need to refer to your company-internal Google Admin if you do not have administrator rights in your Google account. Enter the four URLs shown to give the reading permissions:
 
-```https://www.googleapis.com/auth/admin.directory.group.readonly, https://www.googleapis.com/auth/admin.directory.user.readonly, https://www.googleapis.com/auth/drive.readonly, https://www.googleapis.com/auth/admin.reports.audit.readonly```
+4. Click on "Setup Connection" to view the required connection fields.
 
-5. Now, create a service account in your Google Workspace.
+5. In a new tab, sign in to [Google Cloud](https://console.developers.google.com/) as a super administrator. 
+    - Click IAM & Admin and then Service accounts. Create a new Service Account for Langdock: Give it a name (e.g. Langdock Service Account) and enter a service account id. Click on create and continue. Then click done.
+    - Click on the newly created service account, navigate to the tab "Keys" and click on "Add Key". Select "Create new key" and then "JSON" as the key type. You will receive the key as a JSON file in your downloads. Copy the clientID of the service account (labelled as `Unique ID` in Cloud Console)
 
-6. Add the service email of the Google Drive service account it in Langdock.
+6. Enable the Google Drive API in the Google Cloud Console: https://console.developers.google.com/apis/api/drive.googleapis.com/overview
+
+7. Setting up domain-wide delegation:
+    - Ensure your logged-in Google Account has super administrator rights, before continuing with this guide
+    - Open the Google Workspace admin console: [Google Admin Console](https://admin.google.com/)
+    - In the Google Admin console, go to Menu -> Security -> Access and data control -> API controls -> Manage Domain Wide Delegation.
+    - Click Add New:
+        - Client ID is unique id of your service account
+        - OAuth scopes should be the following: ```https://www.googleapis.com/auth/admin.directory.group.readonly, https://www.googleapis.com/auth/admin.directory.user.readonly, https://www.googleapis.com/auth/drive.readonly, https://www.googleapis.com/auth/admin.reports.audit.readonly```
+
+
+
+8. Add the service email of the Google Drive service account it in Langdock.
 
 7. Enter the private key of the service account in Langdock.
 
