@@ -21,16 +21,16 @@ To do this, follow these steps:
 
 4. Select the option "Integrate any other application you don't find in the gallery (Non-gallery)"
 
-<img src="/images/Frame_1.png"/>
-<img src="/images/Frame_2.png"/>
+<img src="/images/frame-1.png"/>
+<img src="/images/frame-2.png"/>
 
 ## SAML Configuration
 After creating the application, you need to configure the SAML settings, which will allow Langdock to authenticate users via SAML.
 
 First, navigate to the "Sing sign-on" settings of your newly created application, by selecting "Set Up SSO". Set up single sign-on" and choosing "SAML" as the single sign-on method.
 
-<img src="/images/Frame_3.png"/>
-<img src="/images/Frame_4.png"/>
+<img src="/images/frame-3.png"/>
+<img src="/images/frame-4.png"/>
 
 Next, you need to get the SAML metadata from Langdock, which you can find in your [Security settings](https://app.langdock.com/workspace/security), after activating the "SAML Active" toggle.
 
@@ -39,7 +39,7 @@ Here, you need to copy two values from the SAML metadata:
 1. The "Audience URI (SP Entity ID)" value (langdock.com)
 2. The "Single Sign-On URL" value
 
-<img src="/images/Frame_5.png"/>
+<img src="/images/frame-5.png"/>
 
 Now, you can configure the SAML settings in your Entra ID portal, by first clicking "Edit" in the "Basic SAML Configuration" section, and then filling in the following values:
 
@@ -49,8 +49,8 @@ Now, you can configure the SAML settings in your Entra ID portal, by first click
 
 You can leave the other fields empty or with their default values. Finally, save the configuration by clicking "Save".
 
-<img src="/images/Frame_6.png"/>
-<img src="/images/Frame_7.png"/>
+<img src="/images/frame-6.png"/>
+<img src="/images/frame-7.png"/>
 
 To finalize the SAML setup, you need to copy the Login URL and the SAML Signing certificate from Entra ID to Langdock.
 
@@ -64,7 +64,7 @@ To finalize the SAML setup, you need to copy the Login URL and the SAML Signing 
 
 2. Copy the "Login URL" value from the "Set up Langdock" section in your Entra ID portal.
 
-<img src="/images/Frame_8.png"/>
+<img src="/images/frame-8.png"/>
 
 In your Langdock workspace, navigate to the [Security settings](https://app.langdock.com/workspace/security) again and paste the copied values into the respective fields:
 
@@ -72,7 +72,7 @@ In your Langdock workspace, navigate to the [Security settings](https://app.lang
 2. Paste the "Login URL" value from Entra ID into the "Sign on URL" field.
 3. Paste the SAML Signing certificate content into the "Certificate" field.
 
-<img src="/images/Frame_9.png"/>
+<img src="/images/frame-9.png"/>
 
 ## Test the SAML setup
 
@@ -81,8 +81,8 @@ Enter an email address of a user in your Entra ID account and click "Continue". 
 You will be redirected to the Entra ID login page, where you can enter your credentials. <br />
 After successful authentication, you will be redirected back to Langdock and logged in.
 
-<img src="/images/Frame_10.png"/>
-<img src="/images/Frame_11.png"/>
+<img src="/images/frame-10.png"/>
+<img src="/images/frame-11.png"/>
 
 ## Troubleshooting
 
