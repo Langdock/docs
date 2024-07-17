@@ -76,16 +76,16 @@
           ]
     },
     {
-  "group": "Security",
+  "group": "security",
   "pages": [
     {
-      "group": "SAML",
+      "group": "saml",
       "pages": [
         "security/saml"
       ]
     },
     {
-      "group": "SCIM",
+      "group": "scim",
       "pages": [
         "security/scim/entra"
       ]
