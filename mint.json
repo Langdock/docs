@@ -71,7 +71,7 @@
     {
       "group": "Settings",
       "pages":  [
-        "settings/accoung",
+        "settings/account",
         "settings/workspace"
           ]
     },
@@ -81,12 +81,12 @@
         {
           "group": "SAML",
           "pages": 
-            "saml/entra"
+            ["saml/entra"]
         },
         {
         "group": "SCIM",
         "pages":
-          "scim/setup"
+          ["scim/setup"]
         }
       ]
     },
