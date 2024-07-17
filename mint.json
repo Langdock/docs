@@ -76,7 +76,7 @@
           ]
     },
     {
-      "group": "security",
+      "group": "Security",
       "pages": [
         {
           "group": "SAML",
