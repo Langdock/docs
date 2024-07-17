@@ -78,14 +78,19 @@
     {
   "group": "Security",
   "pages": [
-    "settings/saml"
-  ],
- {
-    "group": "scim",
-    "pages": [
-      "security/scim/entra"
-    ]
-  }
+    {
+      "group": "SAML",
+      "pages": [
+        "settings/saml"
+      ]
+    },
+    {
+      "group": "SCIM",
+      "pages": [
+        "security/scim/entra"
+      ]
+    }
+  ]
 }
     {
       "group": "Getting started",
