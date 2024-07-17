@@ -76,22 +76,22 @@
           ]
     },
     {
-  "group": "security",
-  "pages": [
-    {
-      "group": "saml",
+      "group": "security",
       "pages": [
-        "security/saml"
+        {
+          "group": "saml",
+          "pages": [
+            "security/saml"
+          ]
+        },
+        {
+          "group": "scim",
+          "pages": [
+            "security/scim/entra"
+          ]
+        }
       ]
     },
-    {
-      "group": "scim",
-      "pages": [
-        "security/scim/entra"
-      ]
-    }
-  ]
-}
     {
       "group": "Getting started",
       "pages": [
