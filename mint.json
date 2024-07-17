@@ -79,12 +79,12 @@
       "group": "security",
       "pages": [
         {
-          "group": "saml",
+          "group": "SAML",
           "pages": [
-            "security/entra"
+            "security/ENTRA"
           ]
         },
-        "security/scim"
+        "security/SCIM"
       ]
     },
     {
