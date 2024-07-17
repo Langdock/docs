@@ -60,7 +60,7 @@
       "pages": [
         "product/integrations/oauth",
         {
-        "group": "Workspace-level Integrations",
+        "group": "Workspace Integrations",
         "pages": [
           "product/integrations/drive",
           "product/integrations/confluence"
