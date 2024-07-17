@@ -81,15 +81,10 @@
         {
           "group": "saml",
           "pages": [
-            "security/saml"
-          ]
-        },
-        {
-          "group": "scim",
-          "pages": [
             "security/entra"
           ]
-        }
+        },
+        "security/scim"
       ]
     },
     {
