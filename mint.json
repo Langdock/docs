@@ -87,7 +87,7 @@
         {
           "group": "scim",
           "pages": [
-            "security/scim/entra"
+            "security/entra"
           ]
         }
       ]
