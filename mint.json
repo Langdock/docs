@@ -51,7 +51,8 @@
         "product/chat",
         "product/assistants",
         "product/prompt-library",
-        "product/models"
+        "product/models",
+        "product/instructions"
       ]
     },
     {
@@ -70,9 +71,23 @@
     {
       "group": "Settings",
       "pages":  [
-        "product/integrations",
-        "product/groups",
-        "product/instructions"
+        "settings/accoung",
+        "settings/workspace"
+          ]
+    },
+    {
+      "group": "Security",
+      "pages": [
+        {
+          "group": "SAML",
+          "pages": 
+            "saml/entra"
+        },
+        {
+        "group": "SCIM",
+        "pages":
+          "scim/setup"
+        }
       ]
     },
     {
