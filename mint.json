@@ -79,7 +79,7 @@
       "group": "security",
       "pages": [
         {
-          "group": "SAML",
+          "group": "saml",
           "pages": [
             "security/entra"
           ]
