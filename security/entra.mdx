@@ -36,11 +36,11 @@ First, navigate to the "Single sign-on" settings of your newly created applicati
 <img src="/images/entra-id-3.png" />
 <img src="/images/entra-id-4.png" />
 
-Next, you need to get the SAML metadata from Langdock, which you can find in your [Security settings](https://app.langdock.com/workspace/security), after activating the "SAML Active" toggle.
+Next, you need to get the SAML metadata from Langdock, which you can find in your [Security settings](https://app.langdock.com/settings/workspace/security), after activating the "SAML Active" toggle.
 
 Here, you need to copy two values from the SAML metadata:
 
-1. The "Audience URI (SP Entity ID)" value (langdock.com)
+1. The "Audience URI (SP Entity ID)" value (`langdock.com`)
 2. The "Assertion Consumer Service (ACS) URL" value
 
 <img src="/images/entra-id-5.png" />
@@ -49,7 +49,7 @@ Now, you can configure the SAML settings in your Entra ID portal, by first click
 
 1. "Identifier (Entity ID)": The "Audience URI (SP Entity ID)" value from Langdock
 2. "Reply URL (Assertion Consumer Service URL)": The "Assertion Consumer Service (ACS) URL" value from Langdock
-3. "Sign on URL": The "Single Sign-On URL" value from Langdock
+3. "Sign on URL": The "Assertion Consumer Service (ACS) URL" value from Langdock
 
 You can leave the other fields empty or with their default values. Finally, save the configuration by clicking "Save".
 
@@ -70,7 +70,7 @@ To finalize the SAML setup, you need to copy the Login URL and the SAML Signing 
 
 <img src="/images/entra-id-8.png" />
 
-In your Langdock workspace, navigate to the [Security settings](https://app.langdock.com/workspace/security) again and paste the copied values into the respective fields:
+In your Langdock workspace, navigate to the [Security settings](https://app.langdock.com/settings/workspace/security) again and paste the copied values into the respective fields:
 
 1. Fill in the "Issuer" field with the Audience URI specified earlier (`langdock.com`).
 2. Paste the "Login URL" value from Entra ID into the "Sign on URL" field.
