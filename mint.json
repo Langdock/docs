@@ -49,7 +49,14 @@
       "group": "Product",
       "pages": [
         "product/chat",
-        "product/assistants",
+        {
+          "group": "Assistants",
+          "pages": [
+            "product/assistants-vs-chats",
+            "product/assistant-library",
+            "product/assistant-builder"
+          ]
+        },
         "product/prompt-library",
         "product/models",
         "product/instructions"
@@ -58,6 +65,8 @@
     {
       "group": "Integrations",
       "pages": [
+        "product/integrations/how-to-use-integrations",
+        "product/integrations/choosing-the-right-integration-type",
         "product/integrations/oauth",
         {
         "group": "Workspace Integrations",

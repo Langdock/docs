@@ -8,62 +8,63 @@ Langdock AI Chat is the central feature Langdock is built on. It boosts your eff
 This guide explains all the features and modes related to chat.
 
 
-## Chat Modes ##
+## Chat Modes
 Langdock automatically chooses the best mode for your message, depending on your query. 
 
-### Plain Chat ###
+### Plain Chat
 Use the model without additional data. This is the traditional mode that you might know from ChatGPT. When asking for general knowledge or performing tasks where no additional input apart from your prompt is needed, this mode will be used.
 
-### Document Upload & Search ###
-Effortlessly upload your files from your desktop or seamlessly select them from your connected integrations.
-
-Click on the paper click in the left corner of the chat input field to either upload files or select files from your connected integrations.
-
-Integrations need to be enabled by the admin of your Langdock workspace. You can learn more about integrations you can connect [here](/product/integrations).
+### Document Upload & Search
+Upload your files from your desktop or seamlessly select them from your connected integrations (see our [integration guide](/product/integrations/oauth) to set them up).
 
 <img src="/images/Chat_1.png"/>
 
-_Langdock supports document upload for the following file formats:_
+**Uploading files from your computer:** Click on the **paperclip** in the left end of the chat input field and then on **Upload file** Your computer's finder opens and you can select the according files you want to upload to the chat. You can also drag and drop files or paste them with CMD + V (Mac) or CNTRL + V (Windows).to either upload files or select files from your connected integrations.
+
+**Selecting files from connected integrations:** To use files from your integrations, also click on the paperclip in the left end of the chat input field. A search bar opens with which you can search for the according files. This search searches through all integrations, so if you have Confluence and Google Drive connected both of these apps are searched for the most fitting results. Files are sorted by relevance (how often you used them in Langdock and how recently they have been edited) to show the most relevant results for you.
+
+**Supported file formats in Langdock:**
 - PDF
-- Word /Google Docs 
-- PowerPoint
+- Word, Google Docs 
+- PowerPoint, Google Slides
 - TXT
 - Markdown
-- Excel / Google Sheets / csv. documents → `coming soon`
+- PNG, JPG
+- `(coming soon!)` Excel, Google Sheets, CSV files
 
 
-### Web Browsing Mode ###
+### Web Browsing Mode
 Use this mode to search the web and generate replies based on real-time data. This allows the model to access and utilize the latest information on current events, recent developments, and other topics that require up-to-date data. 
 
 Prompt the model by saying `Search the web for...` to leverage this capability.
 
 
-### Image Generation Mode ###
+### Image Generation Mode
 Generate images and logos from text input using DALL-E 3, expanding the scope of creative and visual outputs. 
 
 You can prompt the model to create an image by writing `Create an image`.
 
 You can also try different models a e.g. Claude Sonnet writes different prompts to the DALL-E 3 model than GPT-4.
 
-### Image Analysis Mode ###
+### Image Analysis Mode
 In Langdock, you can process uploaded images and analyze them. Ensure you select GPT-4o or one of the Claude models in the model selection field (upper left corner of the chat interface).
 
 You can upload PNG or JPG files by clicking on the paper clip in the left corner of the chat input field.
 
 Then, write a prompt to instruct the model what you are trying to do. You can analyze, describe, extract text from an image, or compare several photos.
 
-## Prompt Actions ##
+## Prompt Actions
 
-### Edit Prompt ###
+### Edit Prompt
 If you are unsatisfied with a response, you can edit the instructions by clicking on the pen icon next to your prompt. Click save when you are ready.
 
-### Save Prompt ###
+### Save Prompt
 If you like a prompt and want to reuse it in the future, save it by clicking on the “+” icon. You need to choose a folder where you want to save your prompt in the prompt library and give your prompt a name. You can learn more about it [here](/product/prompt-library).
 
-### Regenerate Prompt ###
+### Regenerate Prompt
 If you are unsatisfied with the response you received, simply click on the circular arrow below your response to regenerate it. This feature is particularly useful because models are non-deterministic, meaning you will always get a slightly different result for the same prompt. You can then review the various responses and select the one that best meets your needs.
 
-## Models ##
+## Models
 You can enhance your prompting experience by selecting different models from the model selection field, located in the upper left corner of the chat interface.
 
 Langdock positions itself as a model-agnostic tool, committed to providing you with flexibility and freedom of choice, rather than locking you into a single model.
