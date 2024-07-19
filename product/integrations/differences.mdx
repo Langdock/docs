@@ -4,22 +4,28 @@ description: 'Langdock supports personal integrations and workspace integrations
 Both provide similar functionality to the Langdock user, but they differ in capability and setup complexity. In the following, we will provide guidance on when to use which integration type.'
 ---
 ## Personal Integrations
-Personal integrations are OAuth2-based integrations that the individual user needs to set-up for himself. They grant the user access to the exact view of files that he would be able to access in the integration source app. 
+Personal integrations are OAuth2-based integrations that the individual user needs to set-up for himself. 
+
+They grant the user access to the exact view of files that he would be able to access in the integration source app. 
 
 ## Workspace Integrations
-Workspace integrations enable admins to connect an integration for the entire workspace, without any effort required by the individual user. These integrations use delegated access permissions: Users can only access the exact content in Langdock, that they would be able to access in the integration source app. Setting up workspace integrations requires admin permissions both in Langdock and the integration to connect.
+Workspace integrations enable admins to connect an integration for the entire workspace, without any effort required by the individual user. 
+
+These integrations use delegated access permissions: Users can only access the exact content in Langdock, that they would be able to access in the integration source app. 
+
+Setting up workspace integrations requires admin permissions both in Langdock and the integration to connect.
 
 ## Should I choose Personal or Workspace Integrations?
 Choosing the right integration type depends on your account type and permissions for the integration you would like to connect:
-- **If you are an admin at Langdock:** We recommend setting up workspace integrations, since they greatly decrease the setup effort for all of your team members: With a single setup by the admin, anyone in the team can immmediately use integrations in their Langdock App. Be aware that you also need admin permissions in the integration that you would like to connect.
+- **If you are an admin at Langdock:** We recommend setting up workspace integrations, since they greatly decrease the setup effort for all of your team members: With a single setup by the admin, anyone in the team can immmediately use integrations in their Langdock App. Be aware that you also need admin permissions in the integration that you would like to connect in order to successfully setup the workspace integration.
 - **If you are not an admin at Langdock:** We recommend setting up a personal integration, since they allow you to get started quickly without any advanced setup.
 
 To set up workspace integrations, we have prepared guides for each tool. 
 
-Personal Integrations: 
+**Personal Integrations**: 
 - [Personal Integrations Guide]('product/integrations/oauth')
 
-Workspace Integrations:
+**Workspace Integrations**:
 - [Confluence Workspace Integration]('product/integrations/confluence')
 - [Google Drive Workspace Integration]('product/integrations/drive')
 
