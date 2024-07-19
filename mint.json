@@ -58,6 +58,7 @@
     {
       "group": "Integrations",
       "pages": [
+        "product/integrations/differences",
         "product/integrations/oauth",
         {
         "group": "Workspace Integrations",
