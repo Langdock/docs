@@ -56,8 +56,7 @@
             "product/assistant-library",
             "product/assistant-builder"
           ]
-        }
-        "product/assistants",
+        },
         "product/prompt-library",
         "product/models",
         "product/instructions"
