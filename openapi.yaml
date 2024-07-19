@@ -2,11 +2,6 @@ openapi: 3.0.0
 info:
   title: Langdock API
   version: 3.0.0
-  contact:
-    name: Langdock Support
-    email: support@langdock.com
-servers:
-  - url: https://api.langdock.com
 paths:
   /openai:
     post:
