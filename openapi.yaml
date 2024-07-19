@@ -8,7 +8,7 @@ info:
 servers:
   - url: https://api.langdock.com
 paths:
-  /openai/{region}/v1/chat/completions:
+  /openai:
     post:
       tags:
         - Chat
