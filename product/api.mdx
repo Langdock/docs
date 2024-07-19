@@ -1,12 +1,47 @@
 ---
-title: "/completion"
-description: "Endpoint to complete a prompt"
-openapi: "POST /completion"
+title: "Create chat completion"
+description: "Creates a model response for the given chat conversation."
+openapi: "POST /openai/{region}/v1/chat/completions"
 ---
 
-The completions endpoint allows you to complete a prompt with the selected model. To configure the model, you can use the `model` as well as the `provider` parameter. More models will be added over time.
+<Warning>
+  This page is under construction and the API is not yet available.
+</Warning>
+
+Creates a model response for the given chat conversation. This endpoint follows the OpenAI API specification and the requests are sent to the Azure OpenAI endpoint.
 
 <Info>
   To use the API you need an API key. To request access, please contact us at
   [support@langdock.com](mailto:support@langdock.com)
 </Info>
+
+All parameters from the [OpenAI Chat Completion endpoint](https://platform.openai.com/docs/api-reference/chat/create) are supported according to the OpenAI specifications, with the following exceptions:
+
+- `model`: Currently only the `gpt-4o`, `gpt-4` and `gpt-3.5-turbo` models are supported.
+- `n`: Not supported.
+- `service_tier`: Not supported.
+- `parallel_tool_calls`: Not supported.
+- `stream_options`: Not supported.
+
+As the request and response format is the same as the OpenAI API, you can use popular libraries like the [Vercel AI SDK](https://sdk.vercel.ai/docs/introduction) to use the Langdock API.
+
+For example using the Vercel AI SDK in Node.js:
+
+```typescript
+import { streamText } from "ai";
+import { createOpenAI } from "@ai-sdk/openai";
+
+const langdockProvider = createOpenAI({
+  baseURL: "https://api.langdock.com/openai/eu/v1",
+  apiKey: "<YOUR_LANGDOCK_API_KEY>",
+});
+
+const result = await streamText({
+  model: langdockProvider("gpt-4o"),
+  prompt: "Write a short poem about cats",
+});
+
+for await (const textPart of result.textStream) {
+  process.stdout.write(textPart);
+}
+```
