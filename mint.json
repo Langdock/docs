@@ -49,6 +49,14 @@
       "group": "Product",
       "pages": [
         "product/chat",
+        {
+          "group": "Assistants",
+          "pages": [
+            "product/assistants-vs-chats",
+            "product/assistant-library",
+            "product/assistant-builder"
+          ]
+        }
         "product/assistants",
         "product/prompt-library",
         "product/models",
