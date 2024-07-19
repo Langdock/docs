@@ -65,8 +65,8 @@
     {
       "group": "Integrations",
       "pages": [
-        "product/integrations/choosing-the-right-integration-type",
         "product/integrations/how-to-use-integrations",
+        "product/integrations/choosing-the-right-integration-type",
         "product/integrations/oauth",
         {
         "group": "Workspace Integrations",
