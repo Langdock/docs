@@ -1,35 +1,28 @@
 ---
-title: 'Personal vs. Workspace Integrations'
-description: 'In Langdock there are personal integrations and workspace integrations. Both integration types work the same for the user, the difference is that personal integrations can only be used by the specific user setting them up and workspace integrations are usable by all users after an admin set them up.'
+title: 'Personal vs. Workspace Integrations - How to choose'
+description: 'Langdock supports personal integrations and workspace integrations. 
+Both provide similar functionality to the Langdock user, but at the same time there are some clear differences in their setup and capabilities. In the following, we will provide guidance on when to use which integration type.'
 ---
-
 ## Personal Integrations
-Personal integrations are only set up for the individual user setting them up. If one user connects e.g. Google Drive, it is not connected for any other user, until the other user sets it up themselves. Admins can allow or permit setting up these integrations in the settings. Personal integrations use OAuth2 and users can inly access the same files through Langdock that they can access in the according app.
+Personal integrations are OAuth2-based integrations that the individual user needs to set-up for himself. They grant the user access to the exact view of files that he would be able to access in the integration source app. 
 
 ## Workspace Integrations
-The admins can connect integrations for the entire workspace so that individual users don't have to connect the app themselves. Langdock uses the API of the according tool, you can find out more about that in the guides for each integration. Automatically, all permissions are synchronized, so each file is synchronized with the emails that have access to it. This means that with this integration, users can only access the files they have access to in the according tool. 
+Workspace integrations enable admins to connect an integration for the entire workspace, without any effort required by the individual user. These integrations use delegated access permissions: Users can only access the exact content in Langdock, that they would be able to access in the integration source app. Setting up workspace integrations requires admin permissions both in Langdock and the integration to connect.
 
-To set up workspace integrations, we have prepared guides for each tool. If you have any question here or want to set up the integration together with the Langdock team, you can contact us at support@langdock.com
+## Should I choose Personal or Workspace Integrations?
+Choosing the right integration type depends on your account type and permissions for the integration you would like to connect:
+- **If you are an admin at Langdock:** We recommend setting up workspace integrations, since they greatly decrease the setup effort for all of your team members: With a single setup by the admin, anyone in the team can immmediately use integrations in their Langdock App. Be aware that you also need admin permissions in the integration that you would like to connect.
+- **If you are not an admin at Langdock:** We recommend setting up a personal integration, since they allow you to get started quickly without any advanced setup.
 
-## How to use Integrations
+To set up workspace integrations, we have prepared guides for each tool. 
 
-Both integration types work the same for the user, the only difference is how they are set up.
+Personal Integrations: 
+- [Personal Integrations Guide]('product/integrations/oauth')
 
-### Using integrations in the Chat
-To use files from your integrations, go to a [chat](https://app.langdock.com/chat) and click on the **paperclip** in the left end of the chat input field. After hovering over **Select file**, a search bar opens with which you can search for the according files. 
+Workspace Integrations:
+- [Confluence Workspace Integration]('product/integrations/confluence')
+- [Google Drive Workspace Integration]('product/integrations/drive')
 
-This search searches through all integrations, so if you have Confluence and Google Drive connected both of these apps are searched for the most fitting results. Files are sorted by relevance (how often you used them in Langdock and how recently they have been edited) to show the most relevant results for you.
+If you want to find out more about how you can use integrations within Langdock, please click [here]('product/integrations/how-to-use-integrations').
 
-### Using integrations in the Assistant
-You can also use the integrations to attach knowledge to an [assistant](https://app.langdock.com/assistants). Here, you can click on **Attach** in the **Knowledge** section. The same menu opens where you can hover over **Select file** and then search through the integrations you have connected.
-
-
-## Supported file formats in Langdock
-- PDF
-- Word, Google Docs 
-- PowerPoint, Google Slides
-- Confluence pages
-- TXT
-- Markdown
-- PNG, JPG
-- `(coming soon!)` Excel, Google Sheets, CSV files
+Please contact us at support@langdock.com for any questions or support!
