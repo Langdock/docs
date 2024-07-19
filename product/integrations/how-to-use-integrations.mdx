@@ -1,22 +1,48 @@
 ---
 title: 'How to use Integrations'
-description: 'In Langdock there are personal integrations and workspace integrations. Both integration types work the same for the user, the difference is that personal integrations can only be used by the specific user setting them up and workspace integrations are usable by all users after an admin set them up.'
+description: 'Learn how to use Integrations in the chat and in assistants.'
 ---
 
-# How to use Integrations
+### Using integrations in the Chat
+1. To use files from your integrations in the chat, go to a [chat](https://app.langdock.com/chat).
 
-Both integration types work the same for the user, the only difference is how they are set up.
-
-## Using integrations in the Chat
-To use files from your integrations, go to a [chat](https://app.langdock.com/chat) and click on the **paperclip** in the left end of the chat input field. After hovering over **Select file**, a search bar opens with which you can search for the according files. 
-
-This search searches through all integrations, so if you have Confluence and Google Drive connected both of these apps are searched for the most fitting results. Files are sorted by relevance (how often you used them in Langdock and how recently they have been edited) to show the most relevant results for you.
-
-## Using integrations in the Assistant
-You can also use the integrations to attach knowledge to an [assistant](https://app.langdock.com/assistants). Here, you can click on **Attach** in the **Knowledge** section. The same menu opens where you can hover over **Select file** and then search through the integrations you have connected.
+2. Click on the **paperclip** in the left end of the chat input field. 
+<img src="/images/Chat_1.png"/>
 
 
-## Supported file formats in Langdock
+3. Hover over **Select file**. A search bar opens with which you can search for the according files. 
+<img src="/images/Chat_Search_Integrations.png"/>
+
+4. Click the file you want to use in the chat to attach it to your prompt. Enter your prompt to work with the document (e.g. `Summarize the attached document`)
+<img src="/images/attached_document_to_chat.png"/>
+
+This search searches through all integrations, so if you have Confluence and Google Drive connected both of these apps are searched for the most fitting results. 
+
+Files are sorted by relevance (how often you used them in Langdock and how recently they have been edited) to show the most relevant results for you.
+
+### Using integrations in the Assistant
+1. You can also use the integrations to attach knowledge to an assistant (a specialized chatbot you can set up). [Here](https://app.langdock.com/assistants) you can create a new assistant. Click on **Create assistant**.
+
+2. Now you are in the editor of a new assistant. On the left, you find settings to build this assistant. We have a detailed guide about the assistants [here]().
+
+
+3. In the knowledge section, click on **Attach**. A menu opens where you can hover over **Select file**.
+<img src="/images/assistant_attach.png"/>
+
+4. Then you can search through the integrations you have connected.
+<img src="/images/assistant_search.png"/>
+
+5. Select the file you want to attach to the assistant.
+<img src="/images/assistant_knowledge_connected.png"/>
+
+6. You can now start using the assistant by writing a prompt. This can be done on the right in the preview (the preview helps to build the assistant) or after publishing it in the normal mode. 
+
+    Every time you use the assistant, the attached knowledge is searched and used to provide a response to your prompt. 
+
+    <img src="/images/assistant_preview_publishing.png"/>
+
+
+## Supported file formats in Langdock:
 - PDF
 - Word, Google Docs 
 - PowerPoint, Google Slides
@@ -24,4 +50,4 @@ You can also use the integrations to attach knowledge to an [assistant](https://
 - TXT
 - Markdown
 - PNG, JPG
-- `(coming soon!)` Excel, Google Sheets, CSV files
+- `(coming soon)` Excel, Google Sheets, CSV files
