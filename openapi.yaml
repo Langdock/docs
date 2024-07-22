@@ -3,7 +3,7 @@ info:
   title: My API
   version: 1.0.0
 paths:
-  /openai/{region}/v1/chat/completions:
+  /openai:
     post:
       summary: Complete a prompt
       requestBody:
