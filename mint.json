@@ -29,7 +29,7 @@
     "url": "https://platform.langdock.com"
   },
   "api": {
-    "baseUrl": "https://engine.langdock.com/api",
+    "baseUrl": "https://api.langdock.com",
     "auth": {
       "method": "bearer"
     }
@@ -43,7 +43,9 @@
   "navigation": [
     {
       "group": "Getting started",
-      "pages": ["product/introduction"]
+      "pages": [
+        "product/introduction"
+      ]
     },
     {
       "group": "Product",
@@ -69,20 +71,20 @@
         "product/integrations/choosing-the-right-integration-type",
         "product/integrations/oauth",
         {
-        "group": "Workspace Integrations",
-        "pages": [
-          "product/integrations/drive",
-          "product/integrations/confluence"
-        ]
+          "group": "Workspace Integrations",
+          "pages": [
+            "product/integrations/drive",
+            "product/integrations/confluence"
+          ]
         }
       ]
     },
     {
       "group": "Settings",
-      "pages":  [
+      "pages": [
         "settings/account",
         "settings/workspace"
-          ]
+      ]
     },
     {
       "group": "Security",
@@ -128,14 +130,13 @@
         },
         "prompt-engineering/tricks",
         "prompt-engineering/resources"
-
       ]
     },
     {
-        "group": "Knowledge",
-        "pages": [
-            "prompt-engineering/dictionary"
-        ]
+      "group": "Knowledge",
+      "pages": [
+        "prompt-engineering/dictionary"
+      ]
     }
   ],
   "footerSocials": {
