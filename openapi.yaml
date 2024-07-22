@@ -12,15 +12,15 @@ paths:
           in: path
           description: The region of the API to use.
           schema:
-            type: string
-            enum: ["eu", "us"]
-            default: "eu"
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/CreateChatCompletionRequest'
+          type: string
+          enum: ["eu", "us"]
+          default: "eu"
+      # requestBody:
+      #   required: true
+      #   content:
+      #     application/json:
+      #       schema:
+              # $ref: '#/components/schemas/CreateChatCompletionRequest'
       responses:
         "200":
           description: Completion successful
