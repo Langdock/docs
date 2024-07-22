@@ -5,43 +5,22 @@ info:
 paths:
   /openai/{region}/v1/chat/completions:
     post:
-      summary: Complete a prompt
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                query:
-                  type: string
-                  description: The prompt to be completed.
-                provider:
-                  type: string
-                  enum: [openai, meta, anthropic]
-                  description: The provider of the model to use for completion. Defaults to `openai`.
-                model:
-                  type: string
-                  enum:
-                    [
-                      gpt-3.5-turbo,
-                      gpt-4,
-                      llama-2-70b-chat,
-                      codellama-34b-instruct,
-                      codellama-13b-instruct,
-                      codellama-7b-instruct,
-                      claude-2,
-                      claude-1,
-                      claude-instant-1,
-                    ]
-                  description: The name of the model to use for completion. Defaults to `gpt-3.5-turbo`.
-                region:
-                  type: string
-                  enum: [eu, us]
-                  description: The region of the model to use for completion. Defaults to `eu`.
-                temperature:
-                  type: number
-                  description: The sampling temperature to use for completion. The allowed range is between `0` and `1`. Defaults to `0.7`.
+      summary: Creates a model response for the given chat conversation.
+      parameters:
+        - name: region
+          in: path
+          required: true
+          description: The region of the API to use.
+          schema:
+            type: string
+            enum: ["eu", "us"]
+            default: "eu"
+      # requestBody:
+      #   required: true
+      #   content:
+      #     application/json:
+      #       schema:
+      #         $ref: '#/components/schemas/CreateChatCompletionRequest'
       responses:
         "200":
           description: Completion successful
