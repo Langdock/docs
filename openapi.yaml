@@ -1,14 +1,50 @@
 openapi: 3.0.0
 info:
-  title: Langdock API
-  version: 3.0.0
+  title: My API
+  version: 1.0.0
 paths:
-  /hello:
-    get:
-      summary: Returns a hello message
+  /completion:
+    post:
+      summary: Complete a prompt
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                query:
+                  type: string
+                  description: The prompt to be completed.
+                provider:
+                  type: string
+                  enum: [openai, meta, anthropic]
+                  description: The provider of the model to use for completion. Defaults to `openai`.
+                model:
+                  type: string
+                  enum:
+                    [
+                      gpt-3.5-turbo,
+                      gpt-4,
+                      llama-2-70b-chat,
+                      codellama-34b-instruct,
+                      codellama-13b-instruct,
+                      codellama-7b-instruct,
+                      claude-2,
+                      claude-1,
+                      claude-instant-1,
+                    ]
+                  description: The name of the model to use for completion. Defaults to `gpt-3.5-turbo`.
+                region:
+                  type: string
+                  enum: [eu, us]
+                  description: The region of the model to use for completion. Defaults to `eu`.
+                temperature:
+                  type: number
+                  description: The sampling temperature to use for completion. The allowed range is between `0` and `1`. Defaults to `0.7`.
       responses:
-        '200':
-          description: A hello message
+        "200":
+          description: Completion successful
           content:
             application/json:
               schema:
@@ -16,7 +52,34 @@ paths:
                 properties:
                   message:
                     type: string
-                    example: Hello, World!
+                    description: The completion performed by the model.
+                  model:
+                    type: object
+                    description: The user name.
+                    properties:
+                      provider:
+                        type: string
+                        description: The provider of the model used for the completion.
+                      model:
+                        type: string
+                        description: The name of the model used for the completion.
+                      region:
+                        type: string
+                        description: The region of the model used for the completion.
+                  usage:
+                    type: object
+                    description: Contains relevant information about the consumption of the prompt.
+                    properties:
+                      promptTokens:
+                        type: integer
+                        description: The number of tokens consumed by the prompt.
+                      completionTokens:
+                        type: integer
+                        description: The number of tokens consumed by the completion.
+        "400":
+          description: Invalid request payload
+        "500":
+          description: Internal server error
 #   /openai/{region}/v1/chat/completions:
 #     post:
 #       tags:
