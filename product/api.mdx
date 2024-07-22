@@ -1,14 +1,10 @@
 ---
 title: "/completion"
-description: "Endpoint to complete a prompt"
+description: "Creates a model response for the given chat conversation."
 openapi: "POST /openai/{region}/v1/chat/completions"
 ---
 
-<Warning>
-  This page is under construction and the API is not yet available.
-</Warning>
-
-Creates a model response for the given chat conversation. This endpoint follows the OpenAI API specification and the requests are sent to the Azure OpenAI endpoint.
+Creates a model response for the given chat conversation. This endpoint follows the [OpenAI API specification](https://platform.openai.com/docs/api-reference/chat/create) and the requests are sent to the Azure OpenAI endpoint.
 
 <Info>
   To use the API you need an API key. To request access, please contact us at
@@ -45,5 +41,3 @@ for await (const textPart of result.textStream) {
   process.stdout.write(textPart);
 }
 ```
-
-.
