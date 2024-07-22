@@ -8,14 +8,6 @@ paths:
       tags:
         - Chat
       summary: Creates a model response for the given chat conversation.
-      parameters:
-        - name: region
-          in: path
-          required: true
-          description: The region of the API to use.
-          schema:
-            type: string
-            enum: ["eu", "us"]  
       requestBody:
         required: true
         content:
