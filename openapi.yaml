@@ -24,6 +24,13 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/CreateChatCompletionRequest'
+            example:
+              model: "gpt-4o"
+              messages:
+                - role: "sytem"
+                  content: "You are a helpful assistant."
+                - role: "user"
+                  content: "Write a short poem about cats."
       responses:
         "200":
             description: OK
@@ -31,6 +38,23 @@ paths:
                 application/json:
                     schema:
                         $ref: "#/components/schemas/CreateChatCompletionResponse"
+                    example:
+                        choices:
+                          - message:
+                              content: "In moonlit shadows soft they prowl,\nWith eyes aglow in night's dark cowl."
+                              role: assistant
+                            index: 0
+                            finish_reason: "stop"
+                            logprobs: null
+                        created: 1721722200
+                        id: "chatcmpl-8o4sq3sSzGVqS0aQyjlXuuEGVZnSj"
+                        model: "gpt-4o-2024-05-13"
+                        object: "chat.completion"
+                        system_fingerprint: "fp_asd28019bf"
+                        usage:
+                          completion_tokens: 34
+                          prompt_tokens: 14
+                          total_tokens: 48
 components:
   schemas:
     Error:
