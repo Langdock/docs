@@ -19,9 +19,30 @@ All parameters from the [OpenAI Chat Completion endpoint](https://platform.opena
 - `parallel_tool_calls`: Not supported.
 - `stream_options`: Not supported.
 
-As the request and response format is the same as the OpenAI API, you can use popular libraries like the [Vercel AI SDK](https://sdk.vercel.ai/docs/introduction) to use the Langdock API.
+## Using OpenAI-compatible libraries
 
-For example using the Vercel AI SDK in Node.js:
+As the request and response format is the same as the OpenAI API, you can use popular libraries like the [OpenAI Python library](https://github.com/openai/openai-python) or the [Vercel AI SDK](https://sdk.vercel.ai/docs/introduction) to use the Langdock API.
+
+### Example using the official OpenAI Python library
+
+```python
+from openai import OpenAI
+client = OpenAI(
+  base_url="https://api.langdock.com/openai/eu/v1",
+  api_key="<YOUR_LANGDOCK_API_KEY>"
+)
+
+completion = client.chat.completions.create(
+  model="gpt-4o",
+  messages=[
+    {"role": "user", "content": "Write a short poem about cats."}
+  ]
+)
+
+print(completion.choices[0].message.content)
+```
+
+### Example using the Vercel AI SDK in Node.js
 
 ```typescript
 import { streamText } from "ai";
