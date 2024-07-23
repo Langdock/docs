@@ -61,7 +61,13 @@
         },
         "product/prompt-library",
         "product/models",
-        "product/instructions"
+        "product/instructions",
+        {
+          "group": "API",
+          "pages": [
+            "product/api/openai"
+          ]
+        }
       ]
     },
     {
