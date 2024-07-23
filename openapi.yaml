@@ -27,7 +27,7 @@ paths:
             example:
               model: "gpt-4o"
               messages:
-                - role: "sytem"
+                - role: "system"
                   content: "You are a helpful assistant."
                 - role: "user"
                   content: "Write a short poem about cats."
