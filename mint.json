@@ -62,6 +62,7 @@
         "product/prompt-library",
         "product/models",
         "product/instructions",
+        "product/slack-bot",
         {
           "group": "API",
           "pages": [
