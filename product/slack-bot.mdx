@@ -1,0 +1,64 @@
+---
+title: "Slack Bot"
+description: "Use Langdock models and Assistants directly in Slack"
+---
+
+<Info>
+  To use Langdock in Slack, the Langdock app must be installed in your Slack
+  workspace. This can only be done by a workspace admin following the steps
+  detailed on the [Slack Bot integration
+  page](https://docs.langdock.com/product/integrations/slack).
+</Info>
+
+## Basic Usage
+
+The Langdock Slack Bot allows you to use Langdock models and Assistants directly in Slack. Once the Langdock Slack App is installed, you can interact with it by:
+
+- Tagging the **@Langdock** app in a private or public channel where the app is a member.
+- Sending a direct message to the **@Langdock** app.
+
+<img src="/images/slack-bot-1.png" />
+
+After tagging **@Langdock** or messaging it directly, the bot will respond in a thread and you can choose either the default model or an Assistant that should respond to your message.
+
+<img src="/images/slack-bot-2.png" />
+
+## What does the Slack Bot see?
+
+The Langdock Slack Bot only sees messages in threads where it is tagged or messaged directly. It does not take into account other messages and threads in channels. If you want to make sure the bot sees a specific message, tag it in the same thread.
+
+In the example below you can see that the bot sees the previous message and can translate it into another language.
+
+<img src="/images/slack-bot-4.png" />
+
+## Using Assistants
+
+You can use all [Assistants](https://docs.langdock.com/product/assistants-vs-chats) which are available to you in your Langdock workspace. To use an Assistant, you can search and select one after tagging **@Langdock** or messaging it directly, as shown in the image below. The Assistant will then respond to your message, using all of its knowledge and capabilities.
+
+<img src="/images/slack-bot-5.png" />
+
+## Continue conversation in Langdock
+
+The messages you send to the Langdock Slack Bot are by default not visible in your message history in Langdock. If you want to continue the conversation in Langdock, you can click on the "Continue conversation in Langdock" link in any reply from the Slack Bot. This will open the conversation in your web browser and you can continue the conversation from the point where you left off in Slack.
+
+It's important to note that while you can see what the Slack Bot replies to other users in Slack, you cannot continue replies written to other users. Instead, you can send a new message in the same thread to continue the conversation.
+
+<img src="/images/slack-bot-6.png" />
+<img src="/images/slack-bot-7.png" />
+
+## Web search, data analyst, image generation
+
+The Langdock Slack Bot has the same capabilities as the Langdock web app. You can expect the same results when using the Slack Bot as you would when using the web app.
+
+<img src="/images/slack-bot-8.png" />
+
+## Images and documents
+
+The Langdock Slack Bot can also handle images and documents. You can attach an image or a document to a message and the bot is able to read and analyze it - just like in the web app.
+
+<img src="/images/slack-bot-9.png" />
+
+## Limitations of the Slack Bot
+
+- The Slack Bot cannot be used in Direct Messages with another user. It can only be used in channels or directly messaging the bot.
+- The Slack Bot does not see information across your Slack workspace. It does not have information about members of a channel, messages in a channel, or any other information that is not in a thread where it is tagged.
