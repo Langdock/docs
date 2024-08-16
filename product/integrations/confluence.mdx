@@ -1,62 +1,75 @@
 ---
-title: 'Confluence'
-description: 'Connect Confluence for every user in your workspace.'
+title: "Confluence"
+description: "Connect Confluence for every user in your workspace."
 ---
 
 You can reach out to support@langdock.com to set up your integration together in a call.
 
 **Important:**
-- You need to be a workspace-admin to connect a Google Drive for the entire workspace. If you are not an admin, please reach out to your admin or refer to the [user-level integration guide](/product/integrations/oauth).
 
-------
+- You need to be a workspace-admin to connect a Confluence Space for the entire workspace. If you are not an admin, please reach out to your admin or refer to the [user-level integration guide](/product/integrations/oauth).
+
+---
+
 ## Part 1: Import the Langdock App in your Confluence Space.
 
-1. Navigate to your Atlassian plugin settings in a new tab: <br />
-`https://< YOUR_DOMAIN >.atlassian.net/wiki/plugins/servlet/upm`
+1.  Navigate to your Atlassian plugin settings in a new tab: <br />
+    `https://< YOUR_DOMAIN >.atlassian.net/wiki/plugins/servlet/upm`
     <img src="/images/confluence-app-import-2.png" alt="Atlassian Plugin Settings" />
 
+2.  Open the settings and check if **Verify private listings** and **Enable Development Mode** is checked. If not, check the boxes and click “Apply”. The development mode is only temporary, while the Langdock app is being verified by Atlassian.
 
-2. Open the settings and check if **Verify private listings** and **Enable Development Mode** is checked. If not, check the boxes and click “Apply”. The development mode is only temporary, while the Langdock app is being verified by Atlassian.
-    <img src="/images/confluence-app-import-3.png" alt="Enable Development mode and private listings" />
+    <img
+      src="/images/confluence-app-import-3.png"
+      alt="Enable Development mode and private listings"
+    />
 
+3.  Refresh the page so that the **Upload App** button appears.
 
-3. Refresh the page so that the **Upload App** button appears.
-    <img src="/images/confluence-app-import-4.png" alt="Confluence App Overview" />
+    <img
+      src="/images/confluence-app-import-4.png"
+      alt="Confluence App Overview"
+    />
 
-4. Click **Upload App** and enter the following URL:
-```https://app.langdock.com/api/connect/confluence/admin-install```
-    
-    <img src="/images/confluence-app-import-5.png" alt="Entering Langdock App URL in Confluence" />
+4.  Click **Upload App** and enter the following URL:
+    `https://app.langdock.com/api/connect/confluence/admin-install`
 
-5. Press **Upload** to add the Langdock app to Confluence. The success screen looks like this:
-<img src="/images/confluence-app-import-6.png" alt="Confluence Langdock App created" />
+        <img src="/images/confluence-app-import-5.png" alt="Entering Langdock App URL in Confluence" />
 
-
-
+5.  Press **Upload** to add the Langdock app to Confluence. The success screen looks like this:
+    <img
+      src="/images/confluence-app-import-6.png"
+      alt="Confluence Langdock App created"
+    />
 
 ## Part 2: Create a Confluence API Token and Organization ID
 
 5. Open https://admin.atlassian.com/. Select the organization you want to access through Langdock.
 
 6. Select Settings > API keys.
-    <img src="/images/confluence-api-token-a.png" alt="Create API Token" />
 
+   <img src="/images/confluence-api-token-a.png" alt="Create API Token" />
 
 7. Select **Create API key** in the top right.
 
 8. Enter a name to identify the API key (e.g. “Langdock API key”) and define an expiry date.
-    <img src="/images/confluence-api-token-2.png" alt="Name API Key" />
-    By default, the key expires one week from today. If you’d like to change the expiration date, pick a new date under Expires on. You’re unable to select a date longer than a year from the date of creation.
+
+   <img src="/images/confluence-api-token-2.png" alt="Name API Key" />
+   By default, the key expires one week from today. If you’d like to change the expiration
+   date, pick a new date under Expires on. You’re unable to select a date longer
+   than a year from the date of creation.
 
 9. Select **Create** to create the API key.
 
 10. Copy the values for your Organization ID and API key. Add the API key and the Organization ID to the respective fields in the Langdock app.
 
-    <Info> Make sure you store these values in a safe place, as they won't be shown again.</Info>
+    <Info>
+      {" "}
+      Make sure you store these values in a safe place, as they won't be shown again.
+    </Info>
 
-    <img src="/images/confluence-api-token-2.png" alt="Enter API Token"/>
+    <img src="/images/confluence-api-token-2.png" alt="Enter API Token" />
 
+11. Click on **Find installed Langdock App** and click **Save**.
 
-12. Click on **Find installed Langdock App** and click **Save**.
-
-13. Click **Done** in the admin menu of Confluence to close the API key window. Make sure you have copied the API keys as they can not be shown again.
+12. Click **Done** in the admin menu of Confluence to close the API key window. Make sure you have copied the API keys as they can not be shown again.
