@@ -13,7 +13,7 @@ Creates a model response for the given chat conversation. This endpoint follows 
 
 All parameters from the [OpenAI Chat Completion endpoint](https://platform.openai.com/docs/api-reference/chat/create) are supported according to the OpenAI specifications, with the following exceptions:
 
-- `model`: Currently only the `gpt-4o`, `gpt-4` and `gpt-3.5-turbo` models are supported.
+- `model`: Currently only the `gpt-4o`, `gpt-4o-mini`, `gpt-4` and `gpt-3.5-turbo` models are supported.
 - `n`: Not supported.
 - `service_tier`: Not supported.
 - `parallel_tool_calls`: Not supported.
@@ -33,7 +33,7 @@ client = OpenAI(
 )
 
 completion = client.chat.completions.create(
-  model="gpt-4o",
+  model="gpt-4o-mini",
   messages=[
     {"role": "user", "content": "Write a short poem about cats."}
   ]
@@ -54,7 +54,7 @@ const langdockProvider = createOpenAI({
 });
 
 const result = await streamText({
-  model: langdockProvider("gpt-4o"),
+  model: langdockProvider("gpt-4o-mini"),
   prompt: "Write a short poem about cats",
 });
 
