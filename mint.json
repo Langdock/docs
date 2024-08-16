@@ -80,7 +80,8 @@
           "group": "Workspace Integrations",
           "pages": [
             "product/integrations/drive",
-            "product/integrations/confluence"
+            "product/integrations/confluence",
+            "product/integrations/slack"
           ]
         }
       ]
