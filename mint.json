@@ -100,7 +100,8 @@
         {
           "group": "SAML",
           "pages": [
-            "security/entra"
+            "security/entra",
+            "security/google"
           ]
         },
         "security/scim"
