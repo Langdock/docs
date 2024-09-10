@@ -49,8 +49,13 @@
     },
     {
       "group": "Product",
-      "pages": [
-        "product/chat",
+      "pages": [{
+          "group": "Chat",
+          "pages": [
+            "product/chat",
+            "product/chat-capabilities"
+          ]
+        },
         {
           "group": "Assistants",
           "pages": [
