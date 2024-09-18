@@ -49,7 +49,8 @@
     },
     {
       "group": "Product",
-      "pages": [{
+      "pages": [
+        {
           "group": "Chat",
           "pages": [
             "product/chat",
@@ -71,7 +72,8 @@
         {
           "group": "API",
           "pages": [
-            "product/api/openai"
+            "product/api/openai",
+            "product/api/anthropic"
           ]
         }
       ]
