@@ -86,7 +86,7 @@ paths:
           description: |-
             Error response.
 
-            See our [errors documentation](https://docs.anthropic.com/en/api/errors) for more details.
+            See Anthropic's [errors documentation](https://docs.anthropic.com/en/api/errors) for more details.
           content:
             application/json:
               schema:
@@ -429,7 +429,7 @@ components:
       properties:
         model:
           description: &model_description |
-            ID of the model to use. You can use the [List models](/docs/api-reference/models/list) API to see all of your available models, or see our [Model overview](/docs/models/overview) for descriptions of them.
+            ID of the model to use. You can use the [List models](/docs/api-reference/models/list) API to see all of your available models, or see Anthropic's [Model overview](/docs/models/overview) for descriptions of them.
           anyOf:
             - type: string
             - type: string
@@ -541,7 +541,7 @@ components:
           maximum: 9223372036854775807
           nullable: true
           description: |
-            If specified, our system will make a best effort to sample deterministically, such that repeated requests with the same `seed` and parameters should return the same result.
+            If specified, Anthropic's system will make a best effort to sample deterministically, such that repeated requests with the same `seed` and parameters should return the same result.
 
             Determinism is not guaranteed, and you should refer to the `system_fingerprint` response parameter to monitor changes in the backend.
         stop:
@@ -694,7 +694,7 @@ components:
           nullable: true
           description: |
             This feature is in Beta.
-            If specified, our system will make a best effort to sample deterministically, such that repeated requests with the same `seed` and parameters should return the same result.
+            If specified, Anthropic's system will make a best effort to sample deterministically, such that repeated requests with the same `seed` and parameters should return the same result.
             Determinism is not guaranteed, and you should refer to the `system_fingerprint` response parameter to monitor changes in the backend.
           x-oaiMeta:
             beta: true
@@ -800,7 +800,7 @@ components:
                 description: &chat_completion_finish_reason_description |
                   The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence,
                   `length` if the maximum number of tokens specified in the request was reached,
-                  `content_filter` if content was omitted due to a flag from our content filters,
+                  `content_filter` if content was omitted due to a flag from Anthropic's content filters,
                   `tool_calls` if the model called a tool, or `function_call` (deprecated) if the model called a function.
                 enum:
                   [
@@ -1004,7 +1004,7 @@ components:
           description: |-
             Input messages.
 
-            Our models are trained to operate on alternating `user` and `assistant` conversational turns. When creating a new `Message`, you specify the prior conversational turns with the `messages` parameter, and the model then generates the next `Message` in the conversation.
+            Anthropic's models are trained to operate on alternating `user` and `assistant` conversational turns. When creating a new `Message`, you specify the prior conversational turns with the `messages` parameter, and the model then generates the next `Message` in the conversation.
 
             Each input message must be an object with a `role` and `content`. You can specify a single `user`-role message, or you can include multiple `user` and `assistant` messages. The first message must always use the `user` role.
 
@@ -1074,7 +1074,7 @@ components:
           description: |-
             The maximum number of tokens to generate before stopping.
 
-            Note that our models may stop _before_ reaching this maximum. This parameter only specifies the absolute maximum number of tokens to generate.
+            Note that Anthropic's models may stop _before_ reaching this maximum. This parameter only specifies the absolute maximum number of tokens to generate.
 
             Different models have different maximum values for this parameter.  See [models](https://docs.anthropic.com/en/docs/models-overview) for details.
           example:
@@ -1090,7 +1090,7 @@ components:
           description: |-
             Custom text sequences that will cause the model to stop generating.
 
-            Our models will normally stop when they have naturally completed their turn, which will result in a response `stop_reason` of `"end_turn"`.
+            Anthropic's models will normally stop when they have naturally completed their turn, which will result in a response `stop_reason` of `"end_turn"`.
 
             If you want the model to stop generating when it encounters custom strings of text, you can use the `stop_sequences` parameter. If the model encounters one of the custom sequences, the response `stop_reason` value will be `"stop_sequence"` and the response `stop_sequence` value will contain the matched stop sequence.
           items:
@@ -1115,7 +1115,7 @@ components:
           description: |-
             System prompt.
 
-            A system prompt is a way of providing context and instructions to Claude, such as specifying a particular goal or role. See our [guide to system prompts](https://docs.anthropic.com/en/docs/system-prompts).
+            A system prompt is a way of providing context and instructions to Claude, such as specifying a particular goal or role. See Anthropic's [guide to system prompts](https://docs.anthropic.com/en/docs/system-prompts).
           example:
             - - text: Today's date is 2024-06-01.
                 type: text
@@ -1207,7 +1207,7 @@ components:
 
             Tools can be used for workflows that include running client-side tools and functions, or more generally whenever you want the model to produce a particular JSON structure of output.
 
-            See our [guide](https://docs.anthropic.com/en/docs/tool-use) for more details.
+            See Anthropic's [guide](https://docs.anthropic.com/en/docs/tool-use) for more details.
           example:
             - description: Get the current weather in a given location
               input_schema:
@@ -1369,17 +1369,17 @@ components:
     Message:
       example:
         - content:
-            - text: Hi! My name is Claude.
+            - text: Here is a haiku about cats:\n\nFeline grace and charm,\nPurring softly by the fire,\nCats reign supreme.
               type: text
           id: msg_013Zva2CMHLNnXjNJJKqJ2EF
-          model: claude-3-5-sonnet-20240620
+          model: claude-3-haiku-20240307
           role: assistant
           stop_reason: end_turn
           stop_sequence: null
           type: message
           usage:
-            input_tokens: 2095
-            output_tokens: 503
+            input_tokens: 14
+            output_tokens: 35
       properties:
         id:
           description: |-
@@ -1482,9 +1482,7 @@ components:
           allOf:
             - $ref: '#/components/schemas/Usage'
           description: |-
-            Billing and rate-limit usage.
-
-            Anthropic's API bills and rate-limits by token counts, as tokens represent the underlying cost to our systems.
+            Input and output token counts, representing the underlying cost to our systems.
 
             Under the hood, the API transforms requests into a format suitable for the model. The model's output then goes through a parsing stage before becoming an API response. As a result, the token counts in `usage` will not match one-to-one with the exact visible content of an API request or response.
 
@@ -1614,7 +1612,7 @@ components:
       required:
         - type
         - source
-      title: RequestImageBlock
+      title: Image
       type: object
     RequestTextBlock:
       additionalProperties: false
@@ -1632,7 +1630,7 @@ components:
       required:
         - type
         - text
-      title: RequestTextBlock
+      title: Text
       type: object
     RequestToolResultBlock:
       additionalProperties: false
@@ -1673,7 +1671,7 @@ components:
       required:
         - type
         - tool_use_id
-      title: RequestToolResultBlock
+      title: Tool Result
       type: object
     RequestToolUseBlock:
       additionalProperties: false
@@ -1702,7 +1700,7 @@ components:
         - id
         - name
         - input
-      title: RequestToolUseBlock
+      title: Tool Use
       type: object
     ResponseTextBlock:
       properties:
@@ -1721,7 +1719,7 @@ components:
       required:
         - type
         - text
-      title: ResponseTextBlock
+      title: Text
       type: object
     ResponseToolUseBlock:
       properties:
@@ -1748,7 +1746,7 @@ components:
         - id
         - name
         - input
-      title: ResponseToolUseBlock
+      title: Tool Use
       type: object
     Tool:
       additionalProperties: false
@@ -1868,18 +1866,15 @@ components:
         - $ref: '#/components/schemas/ResponseToolUseBlock'
     Model:
       title: Model
-      description: The model that will complete your prompt.\n\nSee [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+      description: The model that will complete your prompt. 
+        See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
       anyOf:
-        - type: string
         - type: string
           enum:
             - claude-3-5-sonnet-20240620
             - claude-3-opus-20240229
             - claude-3-sonnet-20240229
             - claude-3-haiku-20240307
-            - claude-2.1
-            - claude-2.0
-            - claude-instant-1.2
           x-enum-descriptions:
             - Our most intelligent model
             - Excels at writing and complex tasks
