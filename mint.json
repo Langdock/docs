@@ -124,6 +124,7 @@
     {
       "group": "Prompt Engineering",
       "pages": [
+        "prompt-engineering/llm-basics",
         "prompt-engineering/prompt-elements",
         {
           "group": "Advanced: Principles of Prompting",
