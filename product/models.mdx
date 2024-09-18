@@ -77,20 +77,23 @@ It is recommended for complex tasks like coding, strategy, reasoning, and text g
 
 It is also considered to be the first equally good model to the OpenAI models.
 
+## Gemini
+Gemini models are AI language models developed by Google DeepMind. They are noted for their capabilities in generating human-like text, understanding complex queries and processing large amounts of data. They have a very large context window (=the amount of text the model can process at once) of 1 million or 2 million tokens. This is impressive compared to the other models, most of which have a context limit of 128k tokens.
+
+### Gemini 1.5 Pro
+Gemini 1.5 Pro is the medium-sized model in the Gemini family. It is comparable to GPT-4, beating it in some benchmarks. Pro is good for working with tools, like document search, image generation or web search. Particularly the large context window of 2 million tokens makes it suitable to work with large documents.
+
+### Gemini 1.5 Flash
+Flash is the smallest model in the model family. It is a faster model, similar to GPT-4o mini or Claude 3 Haiku and ideal for summarization, classification or translations. It also has a large context window of 1 million tokens.
+
 ## Mistral
 Mistral is a French AI company focused on developing language models that excel in both performance and efficiency. The company was praised for its open-source approach with many models, increasing transparency for users and researchers. The latest Mistral models also have a 128k token context window. Especially the Mistral Large 2 model is an improvement to Mistral's previous Mistral Large model:
 
 ### Mistral Large 2
-The model significantly improved compared to the previous Mistral Large, especially in code generation, mathematics reasoning, multi-lingual support and toll-calling. It supports dozens of languages and 80+ coding languages. The model performs similarly to the other flagship models, GPT-4o, Claude 3.5 and Llama 3.1 405B, especially in coding and math tasks.
+The model significantly improved compared to the previous Mistral Large, especially in code generation, mathematics reasoning, native multi-lingual support and tool-calling. It has good reasoning capabilities, supports dozens of languages and 80+ coding languages. The model performs similarly to the other flagship models, GPT-4o, Claude 3.5 and Llama 3.1 405B, especially in coding and math tasks.
 
 ### Mistral NeMo
 The NeMo model was built in collaboration with NVIDIA and has 12B parameters, making it smaller than the Mistral Large 2 model. It has sound reasoning and coding capabilities because of its size, making it suitable for translation and summarization
-
-### Mistral Large
-Mistral’s flagship model, Mistral Large, has good reasoning capabilities and is good at coding, maths and follows instructions precisely. It has native mult-lingual capabilities, especially in French, German, Spanish and Italian.
-
-### Mistral Small
-Mistral Small is the smaller version of Mistral Large. Similarly to Anthropic’s Claude 3 Haiku model, it has a lower quality than Mistral Large, but is faster, making it more suitable for less complex but faster tasks.
 
 ## Llama
 The Llama models are built by Meta and the best open-source modelsThe Llama 3.1 models are a significant moment in AI development. They are open-source AI models (meaning the source code is publicly accessible and reviewable), surpassing most other open-source and even some closed-source models. They all have a 128k token context window (meaning they can process the same amount of text or documents as GPT-4o) and excel in language tasks, contextual understanding and multi-step tasks.
@@ -109,15 +112,16 @@ We will add the Llama 3.1 405B model (rivalling the top models GPT-4o and Claude
 
 | Model                 | Context Window Size                    |
 | ----------------------| ------------------------------------- |
-| GPT-4o                | 128k tokens                     |
-| GPT-4o mini           | 128k tokens                     |
-| GPT-4 Turbo           | 128k tokens                          |
-| GPT-3.5               | 16k tokens |
-| Claude 3.5 Sonnet       | 200k tokens |
+| GPT-4o                | 128k tokens |
+| GPT-4o mini           | 128k tokens |
+| GPT-4 Turbo           | 128k tokens |
+| GPT-3.5               | 16k tokens  |
+| Claude 3.5 Sonnet     | 200k tokens |
 | Claude 3 Haiku        | 200k tokens |
 | Claude 3 Sonnet       | 200k tokens |
 | Claude 3 Opus         | 200k tokens |
-| Mistral Large         | 16k tokens |
+| Gemini 1.5 Pro        | 2m tokens   |
+| Gemini 1.5 Flash      | 1m tokens   |
 | Mistral Large 2       | 128k tokens |
 | Mistral NeMo          | 128k tokens |
 | Llama 3.1 8B          | 128k tokens |
