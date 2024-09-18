@@ -55,34 +55,56 @@ paths:
                           completion_tokens: 34
                           prompt_tokens: 14
                           total_tokens: 48
+  /anthropic/{region}/v1/messages:
+    post:
+      tags:
+        - Messages
+      summary: Create a Message
+      description: |-
+        Create a Message.
+
+        Send a structured list of input messages with text and/or image content, and the model will generate the next message in the conversation.
+
+        The Messages API can be used for either single queries or stateless multi-turn conversations.
+      parameters:
+        - name: region
+          in: path
+          required: true
+          description: The region of the API to use.
+          schema:
+            type: string
+            enum: ["eu", "us"]  
+      operationId: messages_post
+      responses:
+        '200':
+          description: Message object.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
+        4XX:
+          description: |-
+            Error response.
+
+            See our [errors documentation](https://docs.anthropic.com/en/api/errors) for more details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateMessageParams'
+        required: true
 components:
   schemas:
-    Error:
-      type: object
-      properties:
-        code:
-          type: string
-          nullable: true
-        message:
-          type: string
-          nullable: false
-        param:
-          type: string
-          nullable: true
-        type:
-          type: string
-          nullable: false
-      required:
-        - type
-        - message
-        - param
-        - code
+    # OpenAI schemas
     ChatCompletionRequestMessageContentPart:
       oneOf:
         - $ref: "#/components/schemas/ChatCompletionRequestMessageContentPartText"
         - $ref: "#/components/schemas/ChatCompletionRequestMessageContentPartImage"
       x-oaiExpandable: true
-
     ChatCompletionRequestMessageContentPartImage:
       type: object
       title: Image content part
@@ -108,7 +130,6 @@ components:
       required:
         - type
         - image_url
-
     ChatCompletionRequestMessageContentPartText:
       type: object
       title: Text content part
@@ -123,7 +144,6 @@ components:
       required:
         - type
         - text
-
     ChatCompletionRequestMessage:
       oneOf:
         - $ref: "#/components/schemas/ChatCompletionRequestSystemMessage"
@@ -132,7 +152,6 @@ components:
         - $ref: "#/components/schemas/ChatCompletionRequestToolMessage"
         - $ref: "#/components/schemas/ChatCompletionRequestFunctionMessage"
       x-oaiExpandable: true
-
     ChatCompletionRequestSystemMessage:
       type: object
       title: System message
@@ -150,7 +169,6 @@ components:
       required:
         - content
         - role
-
     ChatCompletionRequestUserMessage:
       type: object
       title: User message
@@ -179,7 +197,6 @@ components:
       required:
         - content
         - role
-
     ChatCompletionRequestAssistantMessage:
       type: object
       title: Assistant message
@@ -215,7 +232,6 @@ components:
             - name
       required:
         - role
-
     ChatCompletionRequestToolMessage:
       type: object
       title: Tool message
@@ -234,7 +250,6 @@ components:
         - role
         - content
         - tool_call_id
-
     ChatCompletionRequestFunctionMessage:
       type: object
       title: Function message
@@ -255,12 +270,10 @@ components:
         - role
         - content
         - name
-
     FunctionParameters:
       type: object
       description: "The parameters the functions accepts, described as a JSON Schema object. See the [guide](/docs/guides/function-calling) for examples, and the [JSON Schema reference](https://json-schema.org/understanding-json-schema/) for documentation about the format. \n\nOmitting `parameters` defines a function with an empty parameter list."
       additionalProperties: true
-
     ChatCompletionFunctions:
       type: object
       deprecated: true
@@ -275,7 +288,6 @@ components:
           $ref: "#/components/schemas/FunctionParameters"
       required:
         - name
-
     ChatCompletionFunctionCallOption:
       type: object
       description: >
@@ -286,7 +298,6 @@ components:
           description: The name of the function to call.
       required:
         - name
-
     ChatCompletionTool:
       type: object
       properties:
@@ -299,7 +310,6 @@ components:
       required:
         - type
         - function
-
     FunctionObject:
       type: object
       properties:
@@ -313,7 +323,6 @@ components:
           $ref: "#/components/schemas/FunctionParameters"
       required:
         - name
-
     ChatCompletionToolChoiceOption:
       description: |
         Controls which (if any) tool is called by the model.
@@ -332,7 +341,6 @@ components:
           enum: [none, auto, required]
         - $ref: "#/components/schemas/ChatCompletionNamedToolChoice"
       x-oaiExpandable: true
-
     ChatCompletionNamedToolChoice:
       type: object
       description: Specifies a tool the model should use. Use to force the model to call a specific function.
@@ -352,13 +360,11 @@ components:
       required:
         - type
         - function
-
     ChatCompletionMessageToolCalls:
       type: array
       description: The tool calls generated by the model, such as function calls.
       items:
         $ref: "#/components/schemas/ChatCompletionMessageToolCall"
-
     ChatCompletionMessageToolCall:
       type: object
       properties:
@@ -387,42 +393,6 @@ components:
         - id
         - type
         - function
-
-    ChatCompletionMessageToolCallChunk:
-      type: object
-      properties:
-        index:
-          type: integer
-        id:
-          type: string
-          description: The ID of the tool call.
-        type:
-          type: string
-          enum: ["function"]
-          description: The type of the tool. Currently, only `function` is supported.
-        function:
-          type: object
-          properties:
-            name:
-              type: string
-              description: The name of the function to call.
-            arguments:
-              type: string
-              description: The arguments to call the function with, as generated by the model in JSON format. Note that the model does not always generate valid JSON, and may hallucinate parameters not defined by your function schema. Validate the arguments in your code before calling your function.
-      required:
-        - index
-
-    # Note, this isn't referenced anywhere, but is kept as a convenience to record all possible roles in one place.
-    ChatCompletionRole:
-      type: string
-      description: The role of the author of a message
-      enum:
-        - system
-        - user
-        - assistant
-        - tool
-        - function
-
     ChatCompletionResponseMessage:
       type: object
       description: A chat completion message generated by the model.
@@ -454,35 +424,6 @@ components:
       required:
         - role
         - content
-
-    ChatCompletionStreamResponseDelta:
-      type: object
-      description: A chat completion delta generated by streamed model responses.
-      properties:
-        content:
-          type: string
-          description: The contents of the chunk message.
-          nullable: true
-        function_call:
-          deprecated: true
-          type: object
-          description: "Deprecated and replaced by `tool_calls`. The name and arguments of a function that should be called, as generated by the model."
-          properties:
-            arguments:
-              type: string
-              description: The arguments to call the function with, as generated by the model in JSON format. Note that the model does not always generate valid JSON, and may hallucinate parameters not defined by your function schema. Validate the arguments in your code before calling your function.
-            name:
-              type: string
-              description: The name of the function to call.
-        tool_calls:
-          type: array
-          items:
-            $ref: "#/components/schemas/ChatCompletionMessageToolCallChunk"
-        role:
-          type: string
-          enum: ["system", "user", "assistant", "tool"]
-          description: The role of the author of this message.
-
     CreateCompletionRequest:
       type: object
       properties:
@@ -665,8 +606,6 @@ components:
       required:
         - model
         - prompt
-
-
     CreateChatCompletionRequest:
       type: object
       properties:
@@ -838,8 +777,6 @@ components:
       required:
         - model
         - messages
-
-
     CreateChatCompletionResponse:
       type: object
       description: Represents a chat completion response returned by model, based on the provided input.
@@ -939,7 +876,6 @@ components:
                               "completion_tokens": 12,
                               "total_tokens": 21
                             }
-
     ChatCompletionTokenLogprob:
       type: object
       properties:
@@ -973,104 +909,6 @@ components:
         - logprob
         - bytes
         - top_logprobs
-
-    CreateChatCompletionStreamResponse:
-      type: object
-      description: Represents a streamed chunk of a chat completion response returned by model, based on the provided input.
-      properties:
-        id:
-          type: string
-          description: A unique identifier for the chat completion. Each chunk has the same ID.
-        choices:
-          type: array
-          description: |
-            A list of chat completion choices.
-          items:
-            type: object
-            required:
-              - delta
-              - finish_reason
-              - index
-            properties:
-              delta:
-                $ref: "#/components/schemas/ChatCompletionStreamResponseDelta"
-              logprobs: *chat_completion_response_logprobs
-              finish_reason:
-                type: string
-                description: *chat_completion_finish_reason_description
-                enum:
-                  [
-                    "stop",
-                    "length",
-                    "tool_calls",
-                    "content_filter",
-                    "function_call",
-                  ]
-                nullable: true
-              index:
-                type: integer
-                description: The index of the choice in the list of choices.
-        created:
-          type: integer
-          description: The Unix timestamp (in seconds) of when the chat completion was created. Each chunk has the same timestamp.
-        model:
-          type: string
-          description: The model to generate the completion.
-        system_fingerprint:
-          type: string
-          description: |
-            This fingerprint represents the backend configuration that the model runs with.
-            Can be used in conjunction with the `seed` request parameter to understand when backend changes have been made that might impact determinism.
-        object:
-          type: string
-          description: The object type, which is always `chat.completion.chunk`.
-          enum: [chat.completion.chunk]
-      required:
-        - choices
-        - created
-        - id
-        - model
-        - object
-      x-oaiMeta:
-        name: The chat completion chunk object
-        group: chat
-        example: &chat_completion_chunk_example |
-                          {"id":"chatcmpl-123","object":"chat.completion.chunk","created":1694268190,"model":"gpt-4o-mini", "system_fingerprint": "fp_44709d6fcb", "choices":[{"index":0,"delta":{"role":"assistant","content":""},"logprobs":null,"finish_reason":null}]}
-
-                          {"id":"chatcmpl-123","object":"chat.completion.chunk","created":1694268190,"model":"gpt-4o-mini", "system_fingerprint": "fp_44709d6fcb", "choices":[{"index":0,"delta":{"content":"Hello"},"logprobs":null,"finish_reason":null}]}
-
-                          ....
-
-                          {"id":"chatcmpl-123","object":"chat.completion.chunk","created":1694268190,"model":"gpt-4o-mini", "system_fingerprint": "fp_44709d6fcb", "choices":[{"index":0,"delta":{},"logprobs":null,"finish_reason":"stop"}]}
-
-    CreateChatCompletionImageResponse:
-      type: object
-      description: Represents a streamed chunk of a chat completion response returned by model, based on the provided input.
-      x-oaiMeta:
-        name: The chat completion chunk object
-        group: chat
-        example: &chat_completion_image_example |
-                          {
-                            "id": "chatcmpl-123",
-                            "object": "chat.completion",
-                            "created": 1677652288,
-                            "model": "gpt-4o-mini",
-                            "system_fingerprint": "fp_44709d6fcb",
-                            "choices": [{
-                              "index": 0,
-                              "message": {
-                                "role": "assistant",
-                                "content": "\n\nThis image shows a wooden boardwalk extending through a lush green marshland.",
-                              },
-                              "logprobs": null,
-                              "finish_reason": "stop"
-                            }],
-                            "usage": {
-                              "prompt_tokens": 9,
-                              "completion_tokens": 12,
-                              "total_tokens": 21
-                            }
-                          }
     CompletionUsage:
       type: object
       description: Usage statistics for the completion request.
@@ -1088,3 +926,966 @@ components:
           - prompt_tokens
           - completion_tokens
           - total_tokens
+    # Anthropic schemas
+    APIError:
+      properties:
+        type:
+          default: api_error
+          enum:
+            - api_error
+          title: Type
+          type: string
+        message:
+          default: Internal server error
+          title: Message
+          type: string
+      required:
+        - type
+        - message
+      title: APIError
+      type: object
+    AuthenticationError:
+      properties:
+        type:
+
+          default: authentication_error
+          enum:
+            - authentication_error
+          title: Type
+          type: string
+        message:
+          default: Authentication error
+          title: Message
+          type: string
+      required:
+        - type
+        - message
+      title: AuthenticationError
+      type: object
+    Base64ImageSource:
+      additionalProperties: false
+      properties:
+        type:
+
+          enum:
+            - base64
+          title: Type
+          type: string
+        media_type:
+          enum:
+            - image/jpeg
+            - image/png
+            - image/gif
+            - image/webp
+          title: Media Type
+          type: string
+        data:
+          format: byte
+          title: Data
+          type: string
+      required:
+        - type
+        - media_type
+        - data
+      title: Base64ImageSource
+      type: object
+    CreateMessageParams:
+      additionalProperties: false
+      example:
+        max_tokens: 1024
+        messages:
+          - content: Write a haiku about cats.
+            role: user
+        model: claude-3-haiku-20240307
+      properties:
+        model:
+          $ref: '#/components/schemas/Model'
+        messages:
+          description: |-
+            Input messages.
+
+            Our models are trained to operate on alternating `user` and `assistant` conversational turns. When creating a new `Message`, you specify the prior conversational turns with the `messages` parameter, and the model then generates the next `Message` in the conversation.
+
+            Each input message must be an object with a `role` and `content`. You can specify a single `user`-role message, or you can include multiple `user` and `assistant` messages. The first message must always use the `user` role.
+
+            If the final message uses the `assistant` role, the response content will continue immediately from the content in that message. This can be used to constrain part of the model's response.
+
+            Example with a single `user` message:
+
+            ```json
+            [{"role": "user", "content": "Hello, Claude"}]
+            ```
+
+            Example with multiple conversational turns:
+
+            ```json
+            [
+              {"role": "user", "content": "Hello there."},
+              {"role": "assistant", "content": "Hi, I'm Claude. How can I help you?"},
+              {"role": "user", "content": "Can you explain LLMs in plain English?"},
+            ]
+            ```
+
+            Example with a partially-filled response from Claude:
+
+            ```json
+            [
+              {"role": "user", "content": "What's the Greek name for Sun? (A) Sol (B) Helios (C) Sun"},
+              {"role": "assistant", "content": "The best answer is ("},
+            ]
+            ```
+
+            Each input message `content` may be either a single `string` or an array of content blocks, where each block has a specific `type`. Using a `string` for `content` is shorthand for an array of one content block of type `"text"`. The following input messages are equivalent:
+
+            ```json
+            {"role": "user", "content": "Hello, Claude"}
+            ```
+
+            ```json
+            {"role": "user", "content": [{"type": "text", "text": "Hello, Claude"}]}
+            ```
+
+            Starting with Claude 3 models, you can also send image content blocks:
+
+            ```json
+            {"role": "user", "content": [
+              {
+                "type": "image",
+                "source": {
+                  "type": "base64",
+                  "media_type": "image/jpeg",
+                  "data": "/9j/4AAQSkZJRg...",
+                }
+              },
+              {"type": "text", "text": "What is in this image?"}
+            ]}
+            ```
+
+            We currently support the `base64` source type for images, and the `image/jpeg`, `image/png`, `image/gif`, and `image/webp` media types.
+
+            See [examples](https://docs.anthropic.com/en/api/messages-examples#vision) for more input examples.
+
+            Note that if you want to include a [system prompt](https://docs.anthropic.com/en/docs/system-prompts), you can use the top-level `system` parameter â€” there is no `"system"` role for input messages in the Messages API.
+          items:
+            $ref: '#/components/schemas/InputMessage'
+          title: Messages
+          type: array
+        max_tokens:
+          description: |-
+            The maximum number of tokens to generate before stopping.
+
+            Note that our models may stop _before_ reaching this maximum. This parameter only specifies the absolute maximum number of tokens to generate.
+
+            Different models have different maximum values for this parameter.  See [models](https://docs.anthropic.com/en/docs/models-overview) for details.
+          example:
+            - 1024
+          minimum: 1
+          title: Max Tokens
+          type: integer
+        metadata:
+          allOf:
+            - $ref: '#/components/schemas/Metadata'
+          description: An object describing metadata about the request.
+        stop_sequences:
+          description: |-
+            Custom text sequences that will cause the model to stop generating.
+
+            Our models will normally stop when they have naturally completed their turn, which will result in a response `stop_reason` of `"end_turn"`.
+
+            If you want the model to stop generating when it encounters custom strings of text, you can use the `stop_sequences` parameter. If the model encounters one of the custom sequences, the response `stop_reason` value will be `"stop_sequence"` and the response `stop_sequence` value will contain the matched stop sequence.
+          items:
+            type: string
+          title: Stop Sequences
+          type: array
+        stream:
+          description: |-
+            Whether to incrementally stream the response using server-sent events.
+
+            See [streaming](https://docs.anthropic.com/en/api/messages-streaming) for details.
+          title: Stream
+          type: boolean
+        system:
+          anyOf:
+            - type: string
+              x-stainless-skip:
+                - go
+            - items:
+                $ref: '#/components/schemas/RequestTextBlock'
+              type: array
+          description: |-
+            System prompt.
+
+            A system prompt is a way of providing context and instructions to Claude, such as specifying a particular goal or role. See our [guide to system prompts](https://docs.anthropic.com/en/docs/system-prompts).
+          example:
+            - - text: Today's date is 2024-06-01.
+                type: text
+            - Today's date is 2023-01-01.
+          title: System
+        temperature:
+          description: |-
+            Amount of randomness injected into the response.
+
+            Defaults to `1.0`. Ranges from `0.0` to `1.0`. Use `temperature` closer to `0.0` for analytical / multiple choice, and closer to `1.0` for creative and generative tasks.
+
+            Note that even with `temperature` of `0.0`, the results will not be fully deterministic.
+          example:
+            - 1
+          maximum: 1
+          minimum: 0
+          title: Temperature
+          type: number
+        tool_choice:
+          description: How the model should use the provided tools. The model can use a specific tool, any available tool, or decide by itself.
+          discriminator:
+            mapping:
+              any: '#/components/schemas/ToolChoiceAny'
+              auto: '#/components/schemas/ToolChoiceAuto'
+              tool: '#/components/schemas/ToolChoiceTool'
+            propertyName: type
+          oneOf:
+            - $ref: '#/components/schemas/ToolChoiceAuto'
+            - $ref: '#/components/schemas/ToolChoiceAny'
+            - $ref: '#/components/schemas/ToolChoiceTool'
+          title: Tool Choice
+        tools:
+          description: |-
+            Definitions of tools that the model may use.
+
+            If you include `tools` in your API request, the model may return `tool_use` content blocks that represent the model's use of those tools. You can then run those tools using the tool input generated by the model and then optionally return results back to the model using `tool_result` content blocks.
+
+            Each tool definition includes:
+
+            * `name`: Name of the tool.
+            * `description`: Optional, but strongly-recommended description of the tool.
+            * `input_schema`: [JSON schema](https://json-schema.org/) for the tool `input` shape that the model will produce in `tool_use` output content blocks.
+
+            For example, if you defined `tools` as:
+
+            ```json
+            [
+              {
+                "name": "get_stock_price",
+                "description": "Get the current stock price for a given ticker symbol.",
+                "input_schema": {
+                  "type": "object",
+                  "properties": {
+                    "ticker": {
+                      "type": "string",
+                      "description": "The stock ticker symbol, e.g. AAPL for Apple Inc."
+                    }
+                  },
+                  "required": ["ticker"]
+                }
+              }
+            ]
+            ```
+
+            And then asked the model "What's the S&P 500 at today?", the model might produce `tool_use` content blocks in the response like this:
+
+            ```json
+            [
+              {
+                "type": "tool_use",
+                "id": "toolu_01D7FLrfh4GYq7yT1ULFeyMV",
+                "name": "get_stock_price",
+                "input": { "ticker": "^GSPC" }
+              }
+            ]
+            ```
+
+            You might then run your `get_stock_price` tool with `{"ticker": "^GSPC"}` as an input, and return the following back to the model in a subsequent `user` message:
+
+            ```json
+            [
+              {
+                "type": "tool_result",
+                "tool_use_id": "toolu_01D7FLrfh4GYq7yT1ULFeyMV",
+                "content": "259.75 USD"
+              }
+            ]
+            ```
+
+            Tools can be used for workflows that include running client-side tools and functions, or more generally whenever you want the model to produce a particular JSON structure of output.
+
+            See our [guide](https://docs.anthropic.com/en/docs/tool-use) for more details.
+          example:
+            - description: Get the current weather in a given location
+              input_schema:
+                properties:
+                  location:
+                    description: The city and state, e.g. San Francisco, CA
+                    type: string
+                  unit:
+                    description: Unit for the output - one of (celsius, fahrenheit)
+                    type: string
+                required:
+                  - location
+                type: object
+              name: get_weather
+          items:
+            $ref: '#/components/schemas/Tool'
+          title: Tools
+          type: array
+        top_k:
+          description: |-
+            Only sample from the top K options for each subsequent token.
+
+            Used to remove "long tail" low probability responses. [Learn more technical details here](https://towardsdatascience.com/how-to-sample-from-language-models-682bceb97277).
+
+            Recommended for advanced use cases only. You usually only need to use `temperature`.
+          example:
+            - 5
+          minimum: 0
+          title: Top K
+          type: integer
+        top_p:
+          description: |-
+            Use nucleus sampling.
+
+            In nucleus sampling, we compute the cumulative distribution over all the options for each subsequent token in decreasing probability order and cut it off once it reaches a particular probability specified by `top_p`. You should either alter `temperature` or `top_p`, but not both.
+
+            Recommended for advanced use cases only. You usually only need to use `temperature`.
+          example:
+            - 0.7
+          maximum: 1
+          minimum: 0
+          title: Top P
+          type: number
+      required:
+        - model
+        - messages
+        - max_tokens
+      title: CreateMessageParams
+      type: object
+    ErrorResponse:
+      properties:
+        type:
+
+          default: error
+          enum:
+            - error
+          title: Type
+          type: string
+        error:
+          discriminator:
+            mapping:
+              api_error: '#/components/schemas/APIError'
+              authentication_error: '#/components/schemas/AuthenticationError'
+              invalid_request_error: '#/components/schemas/InvalidRequestError'
+              not_found_error: '#/components/schemas/NotFoundError'
+              overloaded_error: '#/components/schemas/OverloadedError'
+              permission_error: '#/components/schemas/PermissionError'
+              rate_limit_error: '#/components/schemas/RateLimitError'
+            propertyName: type
+          oneOf:
+            - $ref: '#/components/schemas/InvalidRequestError'
+            - $ref: '#/components/schemas/AuthenticationError'
+            - $ref: '#/components/schemas/PermissionError'
+            - $ref: '#/components/schemas/NotFoundError'
+            - $ref: '#/components/schemas/RateLimitError'
+            - $ref: '#/components/schemas/APIError'
+            - $ref: '#/components/schemas/OverloadedError'
+          title: Error
+      required:
+        - type
+        - error
+      title: ErrorResponse
+      type: object
+    InputMessage:
+      additionalProperties: false
+      properties:
+        role:
+          enum:
+            - user
+            - assistant
+          title: Role
+          type: string
+        content:
+          anyOf:
+            - type: string
+              x-stainless-skip:
+                - go
+            - items:
+                discriminator:
+                  mapping:
+                    image: '#/components/schemas/RequestImageBlock'
+                    text: '#/components/schemas/RequestTextBlock'
+                    tool_result: '#/components/schemas/RequestToolResultBlock'
+                    tool_use: '#/components/schemas/RequestToolUseBlock'
+                  propertyName: type
+                oneOf:
+                  - $ref: '#/components/schemas/RequestTextBlock'
+                  - $ref: '#/components/schemas/RequestImageBlock'
+                  - $ref: '#/components/schemas/RequestToolUseBlock'
+                  - $ref: '#/components/schemas/RequestToolResultBlock'
+                x-stainless-python-extend-union:
+                  - ContentBlock
+                x-stainless-python-extend-union-imports:
+                  - from .content_block import ContentBlock
+              type: array
+              example:
+                - type: text
+                  text: What is a quaternion?
+          title: Content
+      required:
+        - role
+        - content
+      title: InputMessage
+      type: object
+    InputSchema:
+      additionalProperties: true
+      properties:
+        type:
+          enum:
+            - object
+          title: Type
+          type: string
+        properties:
+          anyOf:
+            - type: object
+          default: null
+          title: Properties
+      required:
+        - type
+      title: InputSchema
+      type: object
+    InvalidRequestError:
+      properties:
+        type:
+          default: invalid_request_error
+          enum:
+            - invalid_request_error
+          title: Type
+          type: string
+        message:
+          default: Invalid request
+          title: Message
+          type: string
+      required:
+        - type
+        - message
+      title: InvalidRequestError
+      type: object
+    Message:
+      example:
+        - content:
+            - text: Hi! My name is Claude.
+              type: text
+          id: msg_013Zva2CMHLNnXjNJJKqJ2EF
+          model: claude-3-5-sonnet-20240620
+          role: assistant
+          stop_reason: end_turn
+          stop_sequence: null
+          type: message
+          usage:
+            input_tokens: 2095
+            output_tokens: 503
+      properties:
+        id:
+          description: |-
+            Unique object identifier.
+
+            The format and length of IDs may change over time.
+          example:
+            - msg_013Zva2CMHLNnXjNJJKqJ2EF
+          title: Id
+          type: string
+        type:
+
+          default: message
+          description: |-
+            Object type.
+
+            For Messages, this is always `"message"`.
+          enum:
+            - message
+          title: Type
+          type: string
+        role:
+
+          default: assistant
+          description: |-
+            Conversational role of the generated message.
+
+            This will always be `"assistant"`.
+          enum:
+            - assistant
+          title: Role
+          type: string
+        content:
+          description: |-
+            Content generated by the model.
+
+            This is an array of content blocks, each of which has a `type` that determines its shape.
+
+            Example:
+
+            ```json
+            [{"type": "text", "text": "Hi, I'm Claude."}]
+            ```
+
+            If the request input `messages` ended with an `assistant` turn, then the response `content` will continue directly from that last turn. You can use this to constrain the model's output.
+
+            For example, if the input `messages` were:
+            ```json
+            [
+              {"role": "user", "content": "What's the Greek name for Sun? (A) Sol (B) Helios (C) Sun"},
+              {"role": "assistant", "content": "The best answer is ("}
+            ]
+            ```
+
+            Then the response `content` might be:
+
+            ```json
+            [{"type": "text", "text": "B)"}]
+            ```
+          example:
+            - - text: Hi! My name is Claude.
+                type: text
+          items:
+            $ref: '#/components/schemas/ContentBlock'
+          title: Content
+          type: array
+        model:
+          $ref: '#/components/schemas/Model'
+        stop_reason:
+          anyOf:
+            - enum:
+                - end_turn
+                - max_tokens
+                - stop_sequence
+                - tool_use
+              type: string
+
+          description: |-
+            The reason that we stopped.
+
+            This may be one the following values:
+            * `"end_turn"`: the model reached a natural stopping point
+            * `"max_tokens"`: we exceeded the requested `max_tokens` or the model's maximum
+            * `"stop_sequence"`: one of your provided custom `stop_sequences` was generated
+            * `"tool_use"`: the model invoked one or more tools
+
+            In non-streaming mode this value is always non-null. In streaming mode, it is null in the `message_start` event and non-null otherwise.
+          title: Stop Reason
+        stop_sequence:
+          anyOf:
+            - type: string
+
+          default: null
+          description: |-
+            Which custom stop sequence was generated, if any.
+
+            This value will be a non-null string if one of your custom stop sequences was generated.
+          title: Stop Sequence
+        usage:
+          allOf:
+            - $ref: '#/components/schemas/Usage'
+          description: |-
+            Billing and rate-limit usage.
+
+            Anthropic's API bills and rate-limits by token counts, as tokens represent the underlying cost to our systems.
+
+            Under the hood, the API transforms requests into a format suitable for the model. The model's output then goes through a parsing stage before becoming an API response. As a result, the token counts in `usage` will not match one-to-one with the exact visible content of an API request or response.
+
+            For example, `output_tokens` will be non-zero, even for an empty string response from Claude.
+          example:
+            - input_tokens: 2095
+              output_tokens: 503
+      required:
+        - id
+        - type
+        - role
+        - content
+        - model
+        - stop_reason
+        - stop_sequence
+        - usage
+      title: Message
+      type: object
+      x-stainless-python-custom-imports:
+        - from .content_block import ContentBlock as ContentBlock
+    Metadata:
+      additionalProperties: false
+      properties:
+        user_id:
+          anyOf:
+            - maxLength: 256
+              type: string
+
+          description: |-
+            An external identifier for the user who is associated with the request.
+
+            This should be a uuid, hash value, or other opaque identifier. Anthropic may use this id to help detect abuse. Do not include any identifying information such as name, email address, or phone number.
+          example:
+            - 13803d75-b4b5-4c3e-b2a2-6f21399b021b
+          title: User Id
+      title: Metadata
+      type: object
+    NotFoundError:
+      properties:
+        type:
+
+          default: not_found_error
+          enum:
+            - not_found_error
+          title: Type
+          type: string
+        message:
+          default: Not found
+          title: Message
+          type: string
+      required:
+        - type
+        - message
+      title: NotFoundError
+      type: object
+    OverloadedError:
+      properties:
+        type:
+
+          default: overloaded_error
+          enum:
+            - overloaded_error
+          title: Type
+          type: string
+        message:
+          default: Overloaded
+          title: Message
+          type: string
+      required:
+        - type
+        - message
+      title: OverloadedError
+      type: object
+    PermissionError:
+      properties:
+        type:
+
+          default: permission_error
+          enum:
+            - permission_error
+          title: Type
+          type: string
+        message:
+          default: Permission denied
+          title: Message
+          type: string
+      required:
+        - type
+        - message
+      title: PermissionError
+      type: object
+    RateLimitError:
+      properties:
+        type:
+
+          default: rate_limit_error
+          enum:
+            - rate_limit_error
+          title: Type
+          type: string
+        message:
+          default: Rate limited
+          title: Message
+          type: string
+      required:
+        - type
+        - message
+      title: RateLimitError
+      type: object
+    RequestImageBlock:
+      additionalProperties: false
+      properties:
+        type:
+
+          enum:
+            - image
+          title: Type
+          type: string
+        source:
+          discriminator:
+            mapping:
+              base64: '#/components/schemas/Base64ImageSource'
+            propertyName: type
+          oneOf:
+            - $ref: '#/components/schemas/Base64ImageSource'
+          title: Source
+      required:
+        - type
+        - source
+      title: RequestImageBlock
+      type: object
+    RequestTextBlock:
+      additionalProperties: false
+      properties:
+        type:
+
+          enum:
+            - text
+          title: Type
+          type: string
+        text:
+          minLength: 1
+          title: Text
+          type: string
+      required:
+        - type
+        - text
+      title: RequestTextBlock
+      type: object
+    RequestToolResultBlock:
+      additionalProperties: false
+      properties:
+        type:
+
+          enum:
+            - tool_result
+          title: Type
+          type: string
+        tool_use_id:
+          pattern: ^[a-zA-Z0-9_-]+$
+          title: Tool Use Id
+          type: string
+        is_error:
+          default: false
+          title: Is Error
+          type: boolean
+        content:
+          anyOf:
+            - type: string
+              x-stainless-skip:
+                - go
+            - items:
+                discriminator:
+                  mapping:
+                    image: '#/components/schemas/RequestImageBlock'
+                    text: '#/components/schemas/RequestTextBlock'
+                  propertyName: type
+                oneOf:
+                  - $ref: '#/components/schemas/RequestTextBlock'
+                  - $ref: '#/components/schemas/RequestImageBlock'
+              type: array
+              x-stainless-naming:
+                python:
+                  type_name: Content
+          title: Content
+      required:
+        - type
+        - tool_use_id
+      title: RequestToolResultBlock
+      type: object
+    RequestToolUseBlock:
+      additionalProperties: false
+      properties:
+        type:
+
+          enum:
+            - tool_use
+          title: Type
+          type: string
+        id:
+          pattern: ^[a-zA-Z0-9_-]+$
+          title: Id
+          type: string
+        name:
+          maxLength: 64
+          minLength: 1
+          pattern: ^[a-zA-Z0-9_-]{1,64}$
+          title: Name
+          type: string
+        input:
+          title: Input
+          type: object
+      required:
+        - type
+        - id
+        - name
+        - input
+      title: RequestToolUseBlock
+      type: object
+    ResponseTextBlock:
+      properties:
+        type:
+
+          default: text
+          enum:
+            - text
+          title: Type
+          type: string
+        text:
+          maxLength: 5000000
+          minLength: 0
+          title: Text
+          type: string
+      required:
+        - type
+        - text
+      title: ResponseTextBlock
+      type: object
+    ResponseToolUseBlock:
+      properties:
+        type:
+
+          default: tool_use
+          enum:
+            - tool_use
+          title: Type
+          type: string
+        id:
+          pattern: ^[a-zA-Z0-9_-]+$
+          title: Id
+          type: string
+        name:
+          minLength: 1
+          title: Name
+          type: string
+        input:
+          title: Input
+          type: object
+      required:
+        - type
+        - id
+        - name
+        - input
+      title: ResponseToolUseBlock
+      type: object
+    Tool:
+      additionalProperties: false
+      properties:
+        description:
+          description: |-
+            Description of what this tool does.
+
+            Tool descriptions should be as detailed as possible. The more information that the model has about what the tool is and how to use it, the better it will perform. You can use natural language descriptions to reinforce important aspects of the tool input JSON schema.
+          example:
+            - Get the current weather in a given location
+          title: Description
+          type: string
+        name:
+          maxLength: 64
+          minLength: 1
+          pattern: ^[a-zA-Z0-9_-]{1,64}$
+          title: Name
+          type: string
+        input_schema:
+          allOf:
+            - $ref: '#/components/schemas/InputSchema'
+          description: |-
+            [JSON schema](https://json-schema.org/) for this tool's input.
+
+            This defines the shape of the `input` that your tool accepts and that the model will produce.
+          example:
+            - properties:
+                location:
+                  description: The city and state, e.g. San Francisco, CA
+                  type: string
+                unit:
+                  description: Unit for the output - one of (celsius, fahrenheit)
+                  type: string
+              required:
+                - location
+              type: object
+      required:
+        - name
+        - input_schema
+      title: Tool
+      type: object
+    ToolChoiceAny:
+      additionalProperties: false
+      description: The model will use any available tools.
+      properties:
+        type:
+
+          enum:
+            - any
+          title: Type
+          type: string
+      required:
+        - type
+      title: ToolChoiceAny
+      type: object
+    ToolChoiceAuto:
+      additionalProperties: false
+      description: The model will automatically decide whether to use tools.
+      properties:
+        type:
+
+          enum:
+            - auto
+          title: Type
+          type: string
+      required:
+        - type
+      title: ToolChoiceAuto
+      type: object
+    ToolChoiceTool:
+      additionalProperties: false
+      description: The model will use the specified tool with `tool_choice.name`.
+      properties:
+        type:
+
+          enum:
+            - tool
+          title: Type
+          type: string
+        name:
+          description: The name of the tool to use.
+          title: Name
+          type: string
+      required:
+        - type
+        - name
+      title: ToolChoiceTool
+      type: object
+    Usage:
+      properties:
+        input_tokens:
+          description: The number of input tokens which were used.
+          example:
+            - 2095
+          title: Input Tokens
+          type: integer
+        output_tokens:
+          description: The number of output tokens which were used.
+          example:
+            - 503
+          title: Output Tokens
+          type: integer
+      required:
+        - input_tokens
+        - output_tokens
+      title: Usage
+      type: object
+    ContentBlock:
+      discriminator:
+        mapping:
+          text: '#/components/schemas/ResponseTextBlock'
+          tool_use: '#/components/schemas/ResponseToolUseBlock'
+        propertyName: type
+      oneOf:
+        - $ref: '#/components/schemas/ResponseTextBlock'
+        - $ref: '#/components/schemas/ResponseToolUseBlock'
+    Model:
+      title: Model
+      description: The model that will complete your prompt.\n\nSee [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+      anyOf:
+        - type: string
+        - type: string
+          enum:
+            - claude-3-5-sonnet-20240620
+            - claude-3-opus-20240229
+            - claude-3-sonnet-20240229
+            - claude-3-haiku-20240307
+            - claude-2.1
+            - claude-2.0
+            - claude-instant-1.2
+          x-enum-descriptions:
+            - Our most intelligent model
+            - Excels at writing and complex tasks
+            - Balance of speed and intelligence
+            - Fast and cost-effective
+            - null
+            - null
+            - null
+          x-stainless-nominal: false
