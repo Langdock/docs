@@ -1,5 +1,5 @@
 ---
-title: 'Vertex Setup'
+title: 'Gemini Setup'
 description: 'This is a short step by step guide how to set up Gemini models through Google Vertex.'
 ---
 
