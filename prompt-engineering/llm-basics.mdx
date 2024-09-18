@@ -1,0 +1,42 @@
+---
+title: 'AI model crashcourse'
+description: 'This is a basic guide to understand the fundamentals of how AI models work. It lays the foundation for deeper concepts explained in this guide.'
+---
+
+## The life cycle of an LLM
+
+A Large Language Model undergoes two main phases: 
+1. The training phase
+2. The usage phase.
+
+<img src="/images/llm-basics-4.png"/>
+
+### Training an LLM
+To build an AI model, it needs to be trained on large data sets. This happens with large sets of data. Based on this data, the model learns which words are most likely semantically connected.
+
+<img src="/images/llm-basics-1.png"/>
+
+For example, it will be tested to fill out gaps in a text. With that, it learns probabilities of words in different situations (more about that below).
+
+After the model is fully trained, it can not learn anymore. The date when the model is stopped to train is called "knowledge cutoff date", because the model only learned facts up until this date and does not know anything happening afterwards.
+
+### Using an LLM
+After that, the model is deployed and can be used to generate an answer. With the data from the training phase, it learned probabilities of different words occuring together. Obviously, the probability that `Artificial Intelligence` and `Large Language Model` appear together, than `Artifical Intelligence` and `Banana Cake`.
+
+<img src="/images/llm-basics-2.png"/>
+
+When a user sends a prompt to the model, the model will choose the next word or word-piece (token) based on these probabilities. 
+For example, the word `Hi`from the user lets the model probably answer with a greeting. It answers with `Hello`. 
+Then, it generates the next most likely word based on `Hi`and `Hello`. This process is repeated until the model decides the request was sufficiently answered.
+
+### Influencing the output of a response
+As mentioned above, the models can not learn after being deployed and after the training has been finished. So how do the models now know about the user and refer to previous messages in a chat?
+
+For that, you can take a look at how Langdock works. Simplified speaking, the user sends a prompt in the interface to the model, the model generates an answer and sends the answer back to the user.
+
+<img src="/images/llm-basics-5.png"/>
+
+The model is always set back to zero, as it can not learn over time. The way it works is by not only sending the prompt from the user to the model, but also the previous chat, attached documents, assistant instructions etc. All this is put into the context window of the LLM (=the maximum amount of text a model can process in one message it receives).
+
+<img src="/images/llm-basics-6.png"/>
+
