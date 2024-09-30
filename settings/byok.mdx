@@ -1,0 +1,23 @@
+---
+title: 'Bring your own Keys'
+description: 'By default, users use API keys from Langdock. Optionally, you can use your own API keys instead.'
+---
+
+Every time, a user submits a prompt and sends it to the model, an answer is generated and sent back to the user. For this answer generation, costs occur for the underlying AI Model.
+
+There are two options of paying these costs to the model provider (e.g. Microsoft Azure for GPT-models):
+
+## Option 1: Flat fee for LLM costs
+- The customer uses Langdock's API keys to e.g. Microsoft.
+- All usage is billed through Langdock.
+- Langdock offers all users in the workspace access to all models, with a flat fee.
+- This flat fee costs 5€ per user per month.
+
+## Option 2: Bring your own keys (BYOK)
+- The customer brings their own API keys from the model provider (for example Microsoft).
+- For Langdock, only the licensing fee for the platform is paid.
+- All model/usage related costs are directly between the customer and the model provider.
+
+Option 1 is the "all-inclusive" version of Langdock, where the customer does not have to do any setup and management of keys on their side (getting keys for the models, requesting quota, keeping models updated,...). Option 2 tends to be a bit cheaper, our current cost estimate per active user is about 2-4 € per month.
+
+For transparency: We offer the use of our API keys cheaply as we don’t want to incentivize ourselves to make money with LLM API arbitrage and to keep us focused on building a great application layer on top of LLMs.

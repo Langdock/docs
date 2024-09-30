@@ -98,7 +98,8 @@
       "group": "Settings",
       "pages": [
         "settings/account",
-        "settings/workspace"
+        "settings/workspace",
+        "settings/byok"
       ]
     },
     {
