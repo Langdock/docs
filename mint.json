@@ -99,7 +99,8 @@
       "pages": [
         "settings/account",
         "settings/workspace",
-        "settings/byok"
+        "settings/byok",
+        "settings/fair-usage-policy"
       ]
     },
     {
