@@ -150,7 +150,8 @@
       "group": "Billing",
       "pages": [
         "billing-legal/pricing",
-        "billing-legal/invoices"
+        "billing-legal/invoices",
+                "billing-legal/links/"
       ]
     },
     {
