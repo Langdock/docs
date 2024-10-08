@@ -104,6 +104,19 @@
         "settings/workspace"
       ]
     },
+        {
+      "group": "Security",
+      "pages": [
+        {
+          "group": "SAML",
+          "pages": [
+            "settings/security/entra",
+            "settings/security/google"
+          ]
+        },
+        "settings/security/scim"
+      ]
+    },
     {
       "group": "Integrations",
       "pages": [
@@ -126,19 +139,6 @@
         "settings/byok",
         "settings/fair-usage-policy"
           ]
-    },
-    {
-      "group": "Security",
-      "pages": [
-        {
-          "group": "SAML",
-          "pages": [
-            "settings/security/entra",
-            "settings/security/google"
-          ]
-        },
-        "settings/security/scim"
-      ]
     },
     {
       "group": "Legal & Compliance",
