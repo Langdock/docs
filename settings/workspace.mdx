@@ -1,101 +1,153 @@
 ---
 title: 'Workspace Settings'
-description: 'We distinguish between Account Settings, which influence only your personal account, and Workspace Settings, which impact the entire workspace.'
+description: 'The workspace settings apply to multiple users, usually the entire workspace. This is only accessible for admins (except groups if the admins allow individual users to create groups).'
 ---
 
-Workspace settings are only available to Admins.
-
-To access your Workspace Settings, simply click on your workspace name located in the upper left corner, then select "Workspace Settings”. 
-
 ## Overview
-_Here you can quickly get an overview of your workspace._
-
-You can see what products are activated and learn more about them.  <br />
-Following products are presented:
-- [Chat](/product/chat)
-- [Assistants](/product/assistants)
-- Search (coming soon)
-
-Furthermore, you can see your workspace billing plan as well as usage.
+The overview serves as a brief overview of the workspace. It lists the different products you can use in the Langdock platform and shows which ones are activated.
+Below, you can see the current plan and access the subscription portal.
+At the bottom, you will see a summary of usage analytics in the last few days, the total number of users, and the total messages sent in the workspace.
+All these sections have a redirect to the individual section in the workspace settings with further insights and more detailed settings.
 
 ## General
-_Here you can configure the basics of your workspace._
-- Upload your workspace icon.
-- Change your workspace name.
-- Add your company description to your workspace so that the models have background information about your company.
-- Delete your workspace. Note that this action is irreversible.
-
+The general workspace includes the most important customizations of the workspace. You can upload your company logo here, give the tool an adequate name, and enter a short description. This description is sent to the model with all prompts for every workspace user (like the custom instructions on a user level). Here, you also find the option to delete the workspace.
 
 ## Subscription
-_Here you can manage your workspace subscription._ 
-
-Manage your billing and invoices, as well as explore the business plans we have to offer.
+The subscription page shows the plan you are currently on and the other plans Langdock offers. For details and a pricing calculator, refer to our [pricing page](https://www.langdock.com/pricing) on our website. We have written a **guide here** if you have any questions regarding invoices.
 
 ## Security
-_Here you can configure your security settings._
+You can add different security measures to manage who can access the space.
+At the top, you can define specific domains that are allowed to access the space. If you set it to “langdock.com”, only users with the email address @langdock.com can sign up for this space. This is overwritten if you manually invite the person with their email address (see user management below).
 
-Security settings consist of:
-- Join by domain: Set up a domain to allow sign-up to this workspace.
-- SAML: [See our guide here](/security/entra).
-- SCIM: [See our guide here](/security/scim).
+Below, you can add SSO via SAML and user synchronization via SCIM here.
+
+<Info>You can find guides for SSO, SAML and SCIM **[here]**. If you have any questions, please reach out to support@langdock.com.</Info>
 
 ## User Management
-_Here you can manage members, their roles, groups, and customize permissions for each role._
-
 ### Members
-- Invite new users to your workspace.
-- Manage existing members and their permissions.
-- Export all members as CSV document.
+The members sections in the user management allow you to invite new members, assign different roles to them, or remove members. You can also export a list of all users. This helps with internal rollout planning and communication, such as regularly sending an internal AI newsletter.
+
+<Warning> The different roles refer to the permissions in the [Roles](https://docs.langdock.com/settings/workspace##user-management###roles) section below. A **workspace editor is not the same as an assistant editor** and can only edit assistants when the editing access is explicitly given to them.</Warning>
 
 ### Groups
-- Create new groups.
-- Edit existing groups by managing members, changing names, descriptions.
+Assistants and prompts in the prompt library can be shared with the entire workspace (if this permission is set, see the [Roles section]((https://docs.langdock.com/settings/workspace##user-management###roles) below) or with specific groups. This allows, for example, the marketing team to share a SEO copywriting prompt with marketing colleagues or the engineering team to share a coding assistant with fellow developers.
+
+There are three ways groups can be created:
+1. Groups can be defined by your SCIM tool for user synchronization,
+2. Set up by admins or
+3. Set up by users themselves.
+
+We recommend creating groups based on departments and projects or an AI exchange group that regularly shares experiences. 
+
+When creating a group, you can enter a name a short description, and define whether the group is public. Public groups can be discovered and joined by anyone in the workspace.
+
+After creating the group, you can invite users to join the group and send them an email notification.
+
+Group admins can give other group members different roles. These roles have the following permissions:
+
+**Group member:**
+- See group name and description
+- See all users of the group
+- Share prompts with the group
+- Share assistants with the group
+- Leave the group
+
+**Group editor:**
+- Everything members can do
+- Change group name and description
+- Add other users as editor/user
+- Change other editors' or members' roles to editor/member
+
+**Group admin:**
+- Everything editors can do
+- Delete group
+- Remove users from the group
+- Add other users as admin/editor/member
+- Change other users' roles to admin/editor/member
+
+<Info>Group admins and editors are different from workspace admins or editors. The role applies only to the specific group but does not allow e.g. group admins to manage the workspace settings. </Info>
 
 ### Roles
-- Customize the specific permissions for each role.
-- You can decide if Members, Editors, and Admins are allowed to share the assistant or create groups.
-- We will add more permissions that can be customized for each role.
+Admins can set up different permissions utilizing different roles in the workspace. There are three roles a user can have:
+Admins are allowed to do anything, the main difference is that they can access the workspace settings, the subscription portal, or other areas to manage the workspace setup.
 
-## Product
-_Here you can customize settings for each product individually._
+Editors and Members are different groups, and different permissions can be given to them.
 
-### Product Settings
-- ***General access:*** Decide if everyone in your workspace can use chat or if you want to put some limitations.
-- ***Allow web search:*** If web search is enabled, the model is able to search the web for information. This can improve the quality of the responses, especially for factual or news related questions.
-- ***Allow image generation:*** If image generation is enabled the model is able to generate images. This can improve the quality of the responses, especially for creative tasks.
-- ***Data retention:*** Configure for how long messages and chats should be saved. Available options are: 7 days, 30 days, 90 days, 12 months, forever. If data is deleted it can't be recovered.
+The permissions you can enable or disable for Members and Editors are about sharing assistants and prompts in the prompt library with everyone and whether the role is allowed to create private and public groups.
 
+<Info>A workspace editor differs from an editor in a group or an assistant. The workspace editor role refers to these permissions but not to groups or assistants. The permissions for these are managed in the according features.</Info>
 
+## Product Settings
+### Chat
+Like on a user level, admins can enable or disable the capabilities for all users in the workspace. Simply toggle the settings for web search, image generation, or data analysis.
+As an admin, you can define how long chat data should be stored in Langdock. Set the data retention to the preferred duration (7 days, 1 month, 3 months, 12 months, forever). This defines how long chats that are not used anymore are stored. Once a day, it is checked which conversations have not been used in the selected period and deleted. This deletes all chat messages, including uploaded documents, and is irreversible.
 
-### Assistants Settings
-- ***General access:*** Decide if everyone in your workspace can use assistants or if you want to put some limitations.
-- ***Data rentention:*** Configure for how long assistant messages and chats should be saved. Available options are: 7 days, 30 days, 90 days, 12 months, forever. If data is deleted it can't be recovered.
+### Assistants
+Assistants can show the sources used to generate a response, just like a normal chat. If users click on the source, the source is opened. Admins can disable this so users can not click and open sources to prevent users from accessing the source.
+
+### Search
+Search can be toggled on and off to allow the whole workspace to use this feature or only define specific people to use it.
+
+Langdock uses past search queries to optimize the search results. You can define how long the queries are saved. Setting the retention time to 12 months is recommended for the best experience.
 
 ## Integrations
-_Here you can enable and disable specific integration in your workspace._
+The [integration settings](https://app.langdock.com/settings/workspace/integrations) allow you to turn on integrations and allow the general ability to connect integrations in the product. To set up integrations, go to the [integration tab](https://app.langdock.com/integrations) in the main navbar. You can find the guides to set up the individual integrations **here**.
 
-Check our guide for integrations to learn more about it [here](/product/integrations).
+Generally, Langdock synchronizes the permissions of the according tool. That means that a user can find exactly and only the files they have access to in the individual tool.
 
 ## Models
+The model section in the workspace section allows you to manage the models available. You can see which models are available in Langdock and enable or disable the individual models. By default, only models hosted in the EU are enabled.
+You can also add your models at the bottom. To add your models, you can refer to our guides **here**.
 
-_Here you can select the models you allow in your workspace, set a default model for every new chat, as well as add custom models._
+With the models you added and/or enabled, you can select a default model for all users in the workspace. This model is used in every new chat and assistant by default.
 
-**Models**  <br />
-If you are interested to learn more about different models, check out our Models page [here](/product/models).
+To exclusively use your models, please refer to [this guide about BYOK](https://docs.langdock.com/settings/byok) (bring your own keys).
 
-**Default Model**  <br />
-Set the default model for every new chat.   <br />
-Note: A member can override this by setting their personal default model in the account settings.
+Also, please reach out to the Langdock team. If BYOK is not enabled, Langdock still uses the models from Langdock in the background (for embeddings and image generation). Technically, BYOK needs to be manually enabled to switch to your keys.
+
+## Analytics
+The analytics screen allows you to monitor the usage and adoption of AI in your company and take measures to improve the rollout. The purpose is to learn which measures help your organization adopt AI and which power users can help you share use cases and onboard team members to enable them in their daily work.
+
+The analytics are optional and, while helpful, can be turned off. Contact the Langdock team if you want to disabled this functionality.
+
+**General insights** <br />
+The top insights show your workspace's total number of users, assistants, and groups.
+
+**Usage insights** <br />
+Below, a diagram shows the number of active users for each day. Active users sent at least one message in a chat or an assistant.
+Also, you can see the total number of messages for each day. This is split into different categories for the normal chat, for assistants, and Bots in Slack and Teams. You can customize the timeframe to understand usage for any timeframe.
+
+**Leaderboards** <br />
+At the bottom, you will see the lists of users and groups most active in the workspace. The first list shows the groups, ordered by the number of messages they sent. The second list shows all users, sorted by how active they were. You can set the product you want to monitor (assistants or chat) and define a custom timeframe.
 
 ## Customizations
-_Here you can customize Langdock to match your brand and legal requirements._
+You can customize Langdock to fit your branding and legal requirements.
+These are the options you have to customize your workspace:
 
-**Custom color**  <br />
-Add your company’s main color for buttons and highlights in your workspace.
+**Custom color** <br />
+Change the color of buttons to fit your brand colors. You can use online tools to find the hex code (e.g. #4469FC) of your branding. 
+We recommend not using white, light grey, black, dark blue, or dark grey. They might not be contrasting enough to the background color of the workspace in light and dark mode.
 
-**Chat Settings** <br />
-- ***Chat disclaimer:*** Here you can add a disclaimer which will be displayed below every prompt input field. For example, many of our users include a legal disclaimer.
-- ***Prompt recommendations:*** Here you can add up to 20 prompt recommendations that will be randomly displayed on the new chat screen.
+**Background image** <br />
+You can add your own background image, which will be shown in the chat screen.
 
+**Show the Workspace logo in a new chat** <br />
+This controls where the logo and name of the workspace are shown when you open a new chat.
 
+**Workspace Tagline** <br />
+Add a tagline to the workspace that greets and encourages users to use the product.
 
+**Hide the model logo in chat.** <br />
+You can turn this on if you want to display the workspace logo instead of the model logo when generating a response.
+
+**Chat disclaimer** <br />
+Chat disclaimers are displayed below the prompt input field and usually contain a legal disclaimer or the hint that models can make mistakes.
+
+**Prompt recommendations** <br />
+To help new users get started with AI, you can add recommendations that randomly appear above the prompt input field in a new chat. We recommend adding prompts that are tailored to your company but general enough to help all departments understand what they can do with AI.
+
+**Custom info boxes** <br />
+You can add info boxes with hints and links above the prompt input field to give tips and recommendations. This only appears in new chats.
+
+**Custom links** <br />
+If you want to include your internal AI documentation, a link to this documentation (docs.langdock.com), or a calendar link to get consulting, you can add them in the nav bar. They are displayed below the chat, prompt library, assistants, search, and integrations sections.
