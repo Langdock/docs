@@ -429,7 +429,7 @@ components:
       properties:
         model:
           description: &model_description |
-            ID of the model to use. You can use the [List models](https://platform.openai.com/docs/api-reference/models/list) API to see all of your available models, or see Anthropic's [Model overview](https://platform.openai.com/docs/models/overview) for descriptions of them.
+            ID of the model to use. You can use the [List models](https://platform.openai.com/docs/api-reference/models/list) API to see all of your available models, or see OpenAI's [Model overview](https://platform.openai.com/docs/models/overview) for descriptions of them.
           anyOf:
             - type: string
             - type: string
@@ -541,7 +541,7 @@ components:
           maximum: 9223372036854775807
           nullable: true
           description: |
-            If specified, Anthropic's system will make a best effort to sample deterministically, such that repeated requests with the same `seed` and parameters should return the same result.
+            If specified, OpenAI's system will make a best effort to sample deterministically, such that repeated requests with the same `seed` and parameters should return the same result.
 
             Determinism is not guaranteed, and you should refer to the `system_fingerprint` response parameter to monitor changes in the backend.
         stop:
@@ -694,7 +694,7 @@ components:
           nullable: true
           description: |
             This feature is in Beta.
-            If specified, Anthropic's system will make a best effort to sample deterministically, such that repeated requests with the same `seed` and parameters should return the same result.
+            If specified, OpenAI's system will make a best effort to sample deterministically, such that repeated requests with the same `seed` and parameters should return the same result.
             Determinism is not guaranteed, and you should refer to the `system_fingerprint` response parameter to monitor changes in the backend.
           x-oaiMeta:
             beta: true
@@ -800,7 +800,7 @@ components:
                 description: &chat_completion_finish_reason_description |
                   The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence,
                   `length` if the maximum number of tokens specified in the request was reached,
-                  `content_filter` if content was omitted due to a flag from Anthropic's content filters,
+                  `content_filter` if content was omitted due to a flag from OpenAI's content filters,
                   `tool_calls` if the model called a tool, or `function_call` (deprecated) if the model called a function.
                 enum:
                   [
@@ -926,7 +926,7 @@ components:
           - prompt_tokens
           - completion_tokens
           - total_tokens
-    # Anthropic schemas
+    #============== Anthropic schemas ==============
     APIError:
       properties:
         type:
