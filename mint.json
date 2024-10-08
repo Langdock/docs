@@ -36,12 +36,16 @@
   },
   "tabs": [
     {
-      "name": "Product Guide",
+      "name": "Products",
       "url": "product"
     },
+        {
+      "name": "Resources",
+      "url": "resources"
+    },
     {
-      "name": "Prompt Engineering Guide",
-      "url": "prompt-engineering"
+      "name": "Settings & Integrations",
+      "url": "settings"
     }
   ],
   "navigation": [
@@ -52,21 +56,21 @@
       ]
     },
     {
-      "group": "Product",
+      "group": "Products",
       "pages": [
         {
           "group": "Chat",
           "pages": [
-            "product/chat",
-            "product/chat-capabilities"
+            "product/chat/functionalities",
+            "product/chat/tools",
+            "product/chat/prompt-library"
           ]
         },
         {
           "group": "Assistants",
           "pages": [
-            "product/assistants-vs-chats",
-            "product/assistant-library",
-            "product/assistant-builder"
+            "product/assistants/introduction",
+            "product/assistants/configuration",
           ]
         },
         "product/prompt-library",
