@@ -107,7 +107,7 @@
         {
           "group": "Workspace Integrations",
           "pages": [
-            "settings/integrations/drive",
+            "settings/integrations/google-drive",
             "settings/integrations/confluence",
             "settings/integrations/slack"
           ]
