@@ -76,27 +76,11 @@
           "product/api/openai",
           "product/api/anthropic"
           ]
-        }
-
-          ]
-        },
-        "product/prompt-library",
-        "product/models",
-        "product/instructions",
-        "product/slack-bot",
-        {
-          "group": "API",
-          "pages": [
-            "product/api/openai",
-            "product/api/anthropic"
-          ]
-        }
-      ]
     },
     {
-      "group": "Integrations",
+      "group": "Settings & Integrations",
       "pages": [
-        "product/integrations/how-to-use-integrations",
+        "settings/integrations/how-to-use-integrations",
         "product/integrations/choosing-the-right-integration-type",
         "product/integrations/oauth",
         {
@@ -114,10 +98,14 @@
       "pages": [
         "settings/account",
         "settings/workspace",
-        "settings/byok",
-        "settings/fair-usage-policy"
-      ]
-    },
+        {
+          "group": "Models",
+          "pages": [
+            "settings/adding-model",
+            "settings/byok",
+            "settings/fair-usage-policy"
+          ]
+        },
     {
       "group": "Security",
       "pages": [
