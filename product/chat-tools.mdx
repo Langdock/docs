@@ -1,0 +1,75 @@
+---
+title: 'Chat Tools'
+description: 'Description of the different chat capabilities like image generation, document search or data analysis.'
+---
+
+## Chat Capabilities
+Langdock automatically chooses the best mode for your message, depending on your query. 
+
+### Plain Chat
+Use the model without additional data. This is the traditional mode that you might know from ChatGPT. When asking for general knowledge or performing tasks where no additional input apart from your prompt is needed, this mode will be used.
+
+### Document Upload & Search
+Upload your files from your desktop or seamlessly select them from your connected integrations (see our [integration guide](/product/integrations/oauth) to set them up).
+
+<img src="/images/Chat_1.png"/>
+
+**Uploading files from your computer:** Click on the **paperclip** in the left end of the chat input field and then on **Upload file** Your computer's finder opens and you can select the according files you want to upload to the chat. You can also drag and drop files or paste them with CMD + V (Mac) or CNTRL + V (Windows).to either upload files or select files from your connected integrations.
+
+**Selecting files from connected integrations:** To use files from your integrations, also click on the paperclip in the left end of the chat input field. A search bar opens with which you can search for the according files. This search searches through all integrations, so if you have Confluence and Google Drive connected both of these apps are searched for the most fitting results. Files are sorted by relevance (how often you used them in Langdock and how recently they have been edited) to show the most relevant results for you.
+
+#### Supported file formats in Langdock:
+- PDF
+- Word, Google Docs 
+- PowerPoint, Google Slides
+- TXT
+- Markdown
+- PNG, JPG
+- Excel, Google Sheets, CSV files
+
+
+### Web Browsing
+Use this mode to search the web and generate replies based on real-time data. This allows the model to access and utilize the latest information on current events, recent developments, and other topics that require up-to-date data. 
+
+Prompt the model by saying `Search the web for...` to leverage this capability.
+
+
+### Image Generation
+Generate images and logos from text input using DALL-E 3, expanding the scope of creative and visual outputs. 
+
+You can prompt the model to create an image by writing `Create an image`.
+
+You can also try different models a e.g. Claude Sonnet writes different prompts to the DALL-E 3 model than GPT-4.
+
+### Image Analysis
+In Langdock, you can process uploaded images and analyze them. Ensure you select GPT-4o or one of the Claude models in the model selection field (upper left corner of the chat interface).
+
+You can upload PNG or JPG files by clicking on the paper clip in the left corner of the chat input field.
+
+Then, write a prompt to instruct the model what you are trying to do. You can analyze, describe, extract text from an image, or compare several photos.
+
+### Data Analyst
+
+The data analyst in Langdock allows to (among other things) read and process CSV files, Excel sheets or Google sheets.
+
+**What is the data analyst?**
+
+The data analyst is a capability the AI models in Langdock can use. They decide if and how to use this feature. If it is used, the model will generate Python code, that is executed.
+
+**With these functionality, you can:**
+
+- Read tabular data (CSVs, Excel sheets and Google sheets),
+- Perform mathematical operations
+- Create graphs and charts
+- Create new files (CSVs, Excel, Powerpoint,...)
+
+**Tips and Troubleshooting:**
+- We recommend the model GPT-4o when using the data analyst.
+- Make sure to enable the data analysis functionality in your settings and (if you are using a sheet in an assistant) also in the capabilities section at the bottom of the assistant editor.
+- To work properly, the column names need to be in the first row. Avoid merged cells and try to display all data in vertical columns.
+- Try to describe what you expect as precisely as possible. You can use the prompt elements from our prompt engineering guide (especially task, context, response format)
+- In order to parse the file correctly, all column titles should have a descriptive name. When referring to the column name, ideally use the full column title and not “Column K”. This is relevant as the AI model creates Python code which can only reference the correct column if the name is the same. Giving the same column name reduces the risk of letting the model generate code that references an incorrect column.
+- If possible, avoid empty cells in a sheet.
+- When you expect complex operations and receive no result or incorrect results, try to break the instruction into different prompts.
+
+If you run into any issues or have any questions, feel free to reach out to: thomas@langdock.com

@@ -25,88 +25,64 @@ Start by uploading an icon or selecting an emoji of the assistant, defining a na
 In our case, we call the assistant “Job Description Assistant” and describe it with: “This assistant will write job descriptions for you. Provide the details about the job you want to hire someone for and receive a finished job description.”
 
 ### Instructions
-The most important part of the assistant configuration is to give the right instructions. You can use the [prompt engineering guide](https://docs.langdock.com/prompt-engineering/prompt-elements) to craft good instructions. The prompt elements (persona, task, context, format) especially help to define what the assistant should do.
+The most important part of the assistant configuration is to give the right instructions. You can use the [prompt engineering guide](https://docs.langdock.com/resources/prompt-elements) to craft good instructions. The prompt elements (persona, task, context, format) especially help to define what the assistant should do.
+
+#### Persona
 
 Let’s give the assistant the persona we defined earlier:
 
->_You are the job description assistant._
+```
+You are the job description assistant.
+```
 
-__________
-
+#### Task
 We can include our considerations of what the assistant should do for the other elements. We include the task and the process the assistant should follow. First, the user should provide details about the position. The assistant should ask for relevant information if something is missing. While this is a simpler example, there are use cases where different conditions apply, what the assistant should do (First do x, then do y; If the user replies with a answer with b, otherwise with c;...)
 
->_Your job is to write job descriptions for Langdock. The user will give you a role they want to hire for and the details about the job position. Always make sure you have enough information from the user. If some information is missing, ask the user to provide the information before answering. NEVER assume any information._
->_This information is needed to fill out the role:_
-> - _Job role_
-> - _Location_
-> - _Job type (full-time, part-time, working student, internship)_
-> - _Experience in years_
-> - _The person responsible for hiring_
-> - _Responsibilities_
-> - _Skills_
+```
+Your job is to write job descriptions for Langdock. The user will give you a role they want to hire for and the details about the job position. Always make sure you have enough information from the user. If some information is missing, ask the user to provide the information before answering. NEVER assume any information.
 
-__________
+This information is needed to fill out the role:
+- Job role
+- Location
+- Job type (full-time, part-time, working student, internship)
+- Experience in years
+- The person responsible for hiring
+- Responsibilities
+- Skills
+```
 
+#### Context
 Now, we have added a persona and a task. Let’s add context about the company the job description should be written for:
+```
+Here is information about the company this position is from:_
 
->_Here is information about the company this position is from:_
->
-> _We are building the AI platform for team productivity. We help companies from enterprises to startups, to empower their employees with LLMs while fully controlling their data. We connect to internal knowledge, deploy custom assistants, and automate workflows. We are a small, experienced team with TU Munich, Stanford, Berkeley, and CODE alumni._
+We are building the AI platform for team productivity. We help companies from enterprises to startups, to empower their employees with LLMs while fully controlling their data. We connect to internal knowledge, deploy custom assistants, and automate workflows. We are a small, experienced team with TU Munich, Stanford, Berkeley, and CODE alumni.
+```
 
-__________
-
-We can also add previous job posts as examples for style and format:
-
->_Here is a previous example of a job posting:_ <br />
->## _Full Stack Engineer (Next.js)_
->_Location: Berlin, BE, DE_ <br />
->_Job Type: Full-time_ <br />
->_Experience: 3+ years_ <br />
->_Hiring contact: Lennard Schmidt_ <br />
->
->### _About the role_
->_We're seeking a highly skilled and proactive engineer to join our team full-time and in person._ <br />
-_This is a fantastic opportunity for someone eager to make a substantial impact in a fast-paced, early-stage startup environment. You are expected to thrive in a demanding and fast-moving environment. We are hiring for an on-site role in our HQ in Berlin, Germany._
->
->### _Responsibilities_
->- _Own and develop core product features on both the frontend and backend of our product._
->- _Collaborate with our engineering team to conceptualize and implement new features._
->- _Maintain and improve our codebase for optimal performance._
->- _Conduct code reviews and perform debugging tasks._
->
->### _Skills_
-> - _Proven track record with significant experience in full-stack developer roles, preferably as a Senior Software Engineer._
-> - _Comprehensive knowledge of JavaScript/Typescript, Next.js, and server-side development using Node.js._
-> - _Proficient in working with diverse database technologies, with a preference for candidates with excellent knowledge of PostgreSQL and Redis._
-> - _Experienced in operating software in a scalable manner (e.g. using Kubernetes)._
-> - _Fluent in English, able to communicate complex technical concepts clearly and effectively._
-> - _Plus: Prior experience in working with language models._
-> - _Plus: Fluent in German to communicate with our mostly German customers._
-
-__________
-
+#### Format
 Finally, we can add the output format. For many use cases, this will be covered with examples as well. If you are looking for a specific output format, you can add it explicitly as well:
 
->_Always create a job profile in the following format. Replace the placeholder inside the () brackets with the actual content._
-> ### _(Job title)_
-> _**Location:** (Location)_ <br />
-> _**Job Type:** (Job Type)_ <br />
-> _**Experience:** (Work experience in years)_ <br />
-> _**Hiring contact:** (Responsible hiring person)_ <br />
->
->### _About the role_
->_(Short role description, max 4 sentences)_
->
->### _Responsibilities_
->_(Responsibilities, in bullet points)_
->
->### _Skills_
->_(relevant skills, in bullet points; plus-skills at the end)_
->
->### _About Langdock_
->_We are building the AI platform for team productivity. We help companies from enterprises to startups, to empower their employees with LLMs while fully controlling their data. We connect to internal knowledge, deploy custom assistants, and automate workflows. We are a small, experienced team with TU Munich, Stanford, Berkeley, and CODE alumni._
+```
+Always create a job profile in the following format. Replace the placeholder inside the <> brackets with the actual content.
 
-In this example we used round `()`brackets. You can also use other brackets like `{}` or `<>`to clearly separate them from other round brackets you might use in your prompt.
+### <Job title>
+**Location:** <Location>
+**Job Type:** <Job Type>
+**Experience:** <Work experience in years>
+**Hiring contact:** <Responsible hiring person>
+
+### About the role
+<Short role description, max 4 sentences>
+
+### Responsibilities
+<Responsibilities, in bullet points>
+
+### Skills
+<relevant skills, in bullet points; plus-skills at the end>
+
+### About Langdock
+We are building the AI platform for team productivity. We help companies from enterprises to startups, to empower their employees with LLMs while fully controlling their data. We connect to internal knowledge, deploy custom assistants, and automate workflows. We are a small, experienced team with TU Munich, Stanford, Berkeley, and CODE alumni.
+```
 
 It is normal to iterate on the instruction. Try things out and see what works. If one of these criteria does not meet your expectations, try to describe it more. If you already described it, try to optimize or re-write the part in the instructions. Try different common use cases a few times to ensure the instructions work in different scenarios. 
 
@@ -134,7 +110,7 @@ You can select any model available in your workspace for your assistant. For mod
 Generally, the best model for most use cases is GPT-4o right now.
 
 ### Capabilities
-At the bottom, you can enable different capabilities the assistant should use. These are web search, image generation and data analysis. These tools are explained in detail in the guide about our chat. In our case, the assistant will not need these capabilities. If the assistant does not need the capabilities, we can turn them off.
+At the bottom, you can enable different capabilities the assistant should use. These are web search, image generation and data analysis. These tools are explained in detail in the guide about our chat [here](https://docs.langdock.com/product/chat-tools). In our case, the assistant will not need these capabilities. If the assistant does not need the capabilities, we can turn them off.
 
 ### Testing the assistant
 After and during your assistant configuration, we highly recommend testing your assistant as much as possible on the right side of the Assistant Builder.
