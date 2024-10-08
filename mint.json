@@ -97,16 +97,16 @@
       "group": "Settings",
       "pages": [
         "settings/account",
-        "settings/workspace",
-        {
-          "group": "Models",
-          "pages": [
-            "settings/adding-model",
-            "settings/byok",
-            "settings/fair-usage-policy"
-          ]
-        }
+        "settings/workspace"
       ]
+    },
+    {
+      "group": "Models",
+      "pages": [
+        "settings/adding-model",
+        "settings/byok",
+        "settings/fair-usage-policy"
+          ]
     },
     {
       "group": "Security",
