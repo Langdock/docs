@@ -1,0 +1,51 @@
+---
+title: '2) Structure Your Prompt'
+---
+There are several ways to structure your prompts for clarity and effectiveness. The most commonly used options are **simple delimiters** and/or **XML tags**.
+
+## Simple Delimiters
+Simple delimiters help structure your prompts and responses for greater clarity. 
+
+Examples of simple delimiters include:
+- Single quotes: `“TEXT”`
+- Triple quotes: `“”” TEXT ”””`
+- Triple dashes: `--- TEXT ---`
+- Angle brackets: `< TEXT >`
+
+_Prompt with angle brackets:_<br />
+`Summarize the text delimited by angle brackets into a single sentence.`<br />
+`< TEXT >`
+
+
+## XML Tags
+For more advanced structuring and complex prompts, you can incorporate XML tags. XML (eXtensible Markup Language) tags are used to define the structure and content of data.
+
+**Structure of the tag:**
+- Opening Tag: Marks the beginning of an element, enclosed in angle brackets (e.g., `<name>`).
+- Closing Tag: Marks the end of an element, similar to the opening tag but includes a forward slash (e.g., `</name>`).
+- Content: The data or text contained within the opening and closing tags (e.g., in `<name>John Doe</name>`, _John Doe_ is the content).
+
+**Use the advantage of nesting tags:**
+- You can nest tags for hierarchical content.
+
+_Prompt with XML tags:_
+```
+<task>
+    <instruction> </instruction>
+    <document>
+        <title> </title>
+           <content>
+            <paragraph id="1"> </paragraph>
+        </content>
+    </document>
+</task>
+```
+
+## When to use delimiters and when to use XML tags?
+- Use Delimiters when you need a simple separation of sections, instructions, or examples within a prompt.
+- Use XML Tags when you need to represent complex, hierarchical structures, or include metadata.
+
+<Tip>
+**Hint from Langdock:** We recommend using XML tags when creating templates in any scenario where data needs to be modified by others while maintaining a consistent structure across the company or with more complex assistant instructions.
+Although creating a well-structured prompt with XML tags may take time, the investment is worthwhile as it enables easy sharing and reuse within the organization.
+</Tip>
