@@ -1,0 +1,27 @@
+---
+title: 'Zero-shot Prompting'
+---
+
+Now that we have covered the basics of prompting, it iss time to dive into advanced techniques that will refine your ability to craft precise and powerful prompts, unlocking new possibilities and deeper interactions with LLMs.
+
+There are a few techniques you can use when prompting LLMs.The first one is “zero-shot prompting”. As these models have been trained on a large amount of data, their internal knowledge makes them capable of performing a large number of tasks without examples or precise demonstrations. As soon as we set guiding examples, we are speaking of [few-shot prompting](/prompting-guide/techniques/few-shot-prompting). 
+
+We can imagine zero-shot prompting as someone asking a guitar player to play the piano, even though they never played the piano before. They would apply their previous knowledge about music and instruments to play the piano.
+
+Most prompts we use are, by default, zero-shot prompts. 
+
+**An example could be:**
+
+_Prompt:_<br />`
+Classify the text into the categories of satisfied, neutral or unsatisfied. `<br />
+`Text: I was happy with the customer support today.`
+
+_Output:_<br />
+`Satisfied`
+
+The model is able to process the input and generate an adequate output because of its previous training. We recommend using zero-shot prompting for general and high-level tasks like classification, translation, and answering questions with general knowledge.
+
+We recommend using few-shot prompting as soon as you want to work on nuanced or complex tasks and desire a specific outcome format.
+
+
+
