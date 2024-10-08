@@ -46,6 +46,10 @@
     {
       "name": "Settings & Integrations",
       "url": "settings"
+    },
+    {
+      "name": "Billing, Legal & Compliance",
+      "url": "billing-legal"
     }
   ],
   "navigation": [
@@ -80,7 +84,7 @@
     {
       "group": "Settings & Integrations",
       "pages": [
-        "settings/integrations/how-to-use-integrations",
+        "product/integrations/how-to-use-integrations",
         "product/integrations/choosing-the-right-integration-type",
         "product/integrations/oauth",
         {
