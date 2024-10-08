@@ -48,7 +48,7 @@
       "url": "settings"
     },
     {
-      "name": "Billing, Legal & Compliance",
+      "name": "Admin",
       "url": "billing-legal"
     }
   ],
@@ -143,15 +143,14 @@
     {
       "group": "Legal & Compliance",
       "pages": [
-        "billing-legal/links/"
+        "billing-legal/links"
       ]
     },
     {
       "group": "Billing",
       "pages": [
         "billing-legal/pricing",
-        "billing-legal/invoices",
-                "billing-legal/links/"
+        "billing-legal/invoices"
       ]
     },
     {
