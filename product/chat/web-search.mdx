@@ -1,0 +1,18 @@
+---
+title: 'Web Search'
+description: 'The chat allows you to send prompts to different AI models and receive a response based on your question. You can use various tools to work with documents, search the web, or perform other operations in the chat. These tools are different capabilities the models have. Describe what you want to do, and the model will choose the right tool automatically based on your request.'
+---
+
+<Tip>The **more context and details** you add, the better your response because the model understands precisely what you expect. Do not miss our [Prompt Engineering Guide](https://docs.langdock.com/ressources/prompt-elements) to learn how to write great prompts.</Tip>
+
+Web search is a way to access the web and to deal with one technical limitation of AI models. Large language models go through two phases: The model training, when it is “built,” and the phase when training is completed and the model can be used. Once the model training is completed, the model can not learn anything anymore and will not know about events or data that are past that time (“model cutoff date” - read our [guide about how AI works](https://docs.langdock.com/ressources/basics) for more details). Therefore, the models are immediately outdated after they have been finished.
+
+To still access relevant information past the knowledge cutoff date, the model can use the web search tool. The web search consists of two steps:
+
+1. First, a search query is defined and the internet is searched for relevant results.
+2. Afterward, the results are sent to the model together with the prompt, and with this information, an answer is generated.
+
+The Web search can be used to:
+- Gather information on a specific topic
+- Use up-to-date information
+- Put a URL in the prompt and search that specific site

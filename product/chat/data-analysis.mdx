@@ -1,0 +1,31 @@
+---
+title: 'Data Analysis'
+description: 'The chat allows you to send prompts to different AI models and receive a response based on your question. You can use various tools to work with documents, search the web, or perform other operations in the chat. These tools are different capabilities the models have. Describe what you want to do, and the model will choose the right tool automatically based on your request.'
+---
+
+<Tip>The **more context and details** you add, the better your response because the model understands precisely what you expect. Do not miss our [Prompt Engineering Guide](https://docs.langdock.com/ressources/prompt-elements) to learn how to write great prompts.</Tip>
+
+## Data Analysis
+The data analysis tool in Langdock enables users to (among other things) read and process CSV files, Excel or Google Sheets.
+
+This capability can be used to:
+- Read tabular data (CSVs, Excel sheets, and Google Sheets)
+- Perform mathematical operations, e.g., finding correlations, defining distributions or deviations, etc.
+- Create graphs and charts depicting data
+- Generating new files (Excel, CSV, PowerPoint, Word, etc.)
+
+Ask what you are trying to accomplish in the chat. Try to be as specific as possible.
+
+**How the data analyst works:**
+The model chooses to use the data analyst tool and generates Python code. Python is a programming language that can be used to analyze datasets and extract information.
+A separate instance runs the Python code and returns the result. The model uses the prompt and the result to answer the user's question.
+
+**Limitations:**
+The normal document search and the data analyst are different functionalities for different tasks with advantages and disadvantages. The document search is good at understanding a whole document's content. 
+The data analyst can not understand the entire file, but only the part that is extracted with Python. Everything else in the file has not been considered for the response. But this makes it powerful in working with large data sets and tabular data, as well as performing mathematical operations.
+
+We have written a guide on **best practices for our data analyst** in our resource section.
+
+Here are some known limitations we are working on:
+- **The data analysis does not return anything / returns the wrong value:**
+Ensure that your file, especially the header row, is well-structured and has no empty cells. We have included some tricks in our data **analyst guide here** for more items to check.

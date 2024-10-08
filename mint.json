@@ -44,7 +44,7 @@
       "url": "resources"
     },
     {
-      "name": "Settings & Integrations",
+      "name": "Settings",
       "url": "settings"
     },
     {
@@ -63,7 +63,17 @@
       "group": "Chat",
       "pages": [
         "product/chat/functionalities",
-        "product/chat/tools",
+        {
+          "group": "Tools",
+          "pages": [
+            "product/chat/plain-model",
+            "product/chat/document-search",
+            "product/chat/web-search",
+            "product/chat/image-analysis",
+            "product/chat/image-generation",
+            "product/chat/data-analysis"
+          ]
+        },
         "product/chat/prompt-library"
       ]
     },
@@ -82,7 +92,7 @@
       ]
     },
     {
-      "group": "Settings & Integrations",
+      "group": "Integrations",
       "pages": [
         "settings/integrations/how-to-use-integrations",
         "settings/integrations/choosing-the-right-integration-type",
@@ -174,7 +184,7 @@
           "pages": [
             "resources/zero-shot-prompting",
             "resources/few-shot-prompting",
-            "resources/chain-of-thought"
+            "resources/chain-of-thought-prompting"
           ]
         },
         "resources/further-resources"
