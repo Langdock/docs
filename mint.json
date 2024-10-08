@@ -92,6 +92,13 @@
       ]
     },
     {
+      "group": "Settings",
+      "pages": [
+        "settings/account",
+        "settings/workspace"
+      ]
+    },
+    {
       "group": "Integrations",
       "pages": [
         "settings/integrations/how-to-use-integrations",
@@ -105,13 +112,6 @@
             "settings/integrations/slack"
           ]
         }
-      ]
-    },
-    {
-      "group": "Settings",
-      "pages": [
-        "settings/account",
-        "settings/workspace"
       ]
     },
     {
