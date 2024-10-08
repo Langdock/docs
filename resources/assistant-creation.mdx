@@ -1,0 +1,144 @@
+---
+title: 'Creating an Assistant'
+description: 'This guide shows you how to build an assistant. We will use an example of a job description assistant, but the steps and considerations can be used with any use case.'
+---
+
+Go to the [assistant overview](https://app.langdock.com/assistants) page and click on “Create assistant”. 
+
+This will open the assistant configurator. On the left, you have different options to set this assistant up, and on the right, you can test it. 
+
+When building an assistant, you often need to iterate and improve the assistant step by step. This is done by configuring something on the left, testing it on the right, improving something on the left again, testing again etc.
+
+
+### Considerations in the beginning
+Before starting, think about the goal you are trying to achieve with this assistant. Here are a few guiding questions to structure the configuration of the assistant:
+- What is the purpose of the assistant? Which task should the assistant help you with?
+- What are the steps to achieve this?
+- What are resources you need? Do you need to attach one file or several files in the knowledge?
+- How do you want to guide the user in providing information about the task?
+- Do previous examples of this task help the assistant to understand it further and to understand the style you expect?
+
+In our example, we want to build a job description assistant. The assistant should write job descriptions for different platforms and target groups. The steps here are as follows: The user needs to start the process, say which job they want to write a description for, and what should be included. If information is missing, the assistant should ask the user to provide this information.
+
+### Icon, Name, and Description
+Start by uploading an icon or selecting an emoji of the assistant, defining a name, and providing a brief description of what the assistant does.
+In our case, we call the assistant “Job Description Assistant” and describe it with: “This assistant will write job descriptions for you. Provide the details about the job you want to hire someone for and receive a finished job description.”
+
+### Instructions
+The most important part of the assistant configuration is to give the right instructions. You can use the [prompt engineering guide](https://docs.langdock.com/prompt-engineering/prompt-elements) to craft good instructions. The prompt elements (persona, task, context, format) especially help to define what the assistant should do.
+
+Let’s give the assistant the persona we defined earlier:
+
+>_You are the job description assistant._
+
+__________
+
+We can include our considerations of what the assistant should do for the other elements. We include the task and the process the assistant should follow. First, the user should provide details about the position. The assistant should ask for relevant information if something is missing. While this is a simpler example, there are use cases where different conditions apply, what the assistant should do (First do x, then do y; If the user replies with a answer with b, otherwise with c;...)
+
+>_Your job is to write job descriptions for Langdock. The user will give you a role they want to hire for and the details about the job position. Always make sure you have enough information from the user. If some information is missing, ask the user to provide the information before answering. NEVER assume any information._
+>_This information is needed to fill out the role:_
+> - _Job role_
+> - _Location_
+> - _Job type (full-time, part-time, working student, internship)_
+> - _Experience in years_
+> - _The person responsible for hiring_
+> - _Responsibilities_
+> - _Skills_
+
+__________
+
+Now, we have added a persona and a task. Let’s add context about the company the job description should be written for:
+
+>_Here is information about the company this position is from:_
+>
+> _We are building the AI platform for team productivity. We help companies from enterprises to startups, to empower their employees with LLMs while fully controlling their data. We connect to internal knowledge, deploy custom assistants, and automate workflows. We are a small, experienced team with TU Munich, Stanford, Berkeley, and CODE alumni._
+
+__________
+
+We can also add previous job posts as examples for style and format:
+
+>_Here is a previous example of a job posting:_ <br />
+>## _Full Stack Engineer (Next.js)_
+>_Location: Berlin, BE, DE_ <br />
+>_Job Type: Full-time_ <br />
+>_Experience: 3+ years_ <br />
+>_Hiring contact: Lennard Schmidt_ <br />
+>
+>### _About the role_
+>_We're seeking a highly skilled and proactive engineer to join our team full-time and in person._ <br />
+_This is a fantastic opportunity for someone eager to make a substantial impact in a fast-paced, early-stage startup environment. You are expected to thrive in a demanding and fast-moving environment. We are hiring for an on-site role in our HQ in Berlin, Germany._
+>
+>### _Responsibilities_
+>- _Own and develop core product features on both the frontend and backend of our product._
+>- _Collaborate with our engineering team to conceptualize and implement new features._
+>- _Maintain and improve our codebase for optimal performance._
+>- _Conduct code reviews and perform debugging tasks._
+>
+>### _Skills_
+> - _Proven track record with significant experience in full-stack developer roles, preferably as a Senior Software Engineer._
+> - _Comprehensive knowledge of JavaScript/Typescript, Next.js, and server-side development using Node.js._
+> - _Proficient in working with diverse database technologies, with a preference for candidates with excellent knowledge of PostgreSQL and Redis._
+> - _Experienced in operating software in a scalable manner (e.g. using Kubernetes)._
+> - _Fluent in English, able to communicate complex technical concepts clearly and effectively._
+> - _Plus: Prior experience in working with language models._
+> - _Plus: Fluent in German to communicate with our mostly German customers._
+
+__________
+
+Finally, we can add the output format. For many use cases, this will be covered with examples as well. If you are looking for a specific output format, you can add it explicitly as well:
+
+>_Always create a job profile in the following format. Replace the placeholder inside the () brackets with the actual content._
+> ### _(Job title)_
+> _**Location:** (Location)_ <br />
+> _**Job Type:** (Job Type)_ <br />
+> _**Experience:** (Work experience in years)_ <br />
+> _**Hiring contact:** (Responsible hiring person)_ <br />
+>
+>### _About the role_
+>_(Short role description, max 4 sentences)_
+>
+>### _Responsibilities_
+>_(Responsibilities, in bullet points)_
+>
+>### _Skills_
+>_(relevant skills, in bullet points; plus-skills at the end)_
+>
+>### _About Langdock_
+>_We are building the AI platform for team productivity. We help companies from enterprises to startups, to empower their employees with LLMs while fully controlling their data. We connect to internal knowledge, deploy custom assistants, and automate workflows. We are a small, experienced team with TU Munich, Stanford, Berkeley, and CODE alumni._
+
+In this example we used round `()`brackets. You can also use other brackets like `{}` or `<>`to clearly separate them from other round brackets you might use in your prompt.
+
+It is normal to iterate on the instruction. Try things out and see what works. If one of these criteria does not meet your expectations, try to describe it more. If you already described it, try to optimize or re-write the part in the instructions. Try different common use cases a few times to ensure the instructions work in different scenarios. 
+
+In our case, we would add different role descriptions and see how the results differ. It also makes sense to leave things out intentionally to test the assistant’s ability to ask for more details and additional information from the user.
+
+### Conversation starters
+Conversation starters are different options the user can click on as a first message to the assistant. These are optional but helpful in guiding the user and reducing effort.
+
+You can use conversation starters for the following situations:
+1. If you have **different tasks** the assistant can perform, you can let the user **choose** the task. For example, a writing coach assistant that can either create a new text or improve a text written by the user could have these conversation starters:
+    - _I want to write a new text_
+    - _I want to correct a text I have written_
+2. You can add the **most common prompts**. For example, in a Company process FAQ assistant that answers common questions for the user:
+    - _How do I request holidays?_
+    - _Who do I contact for tech support questions?_
+    - _What are the company meetings I need to attend?_
+3. Lastly, this functionality helps to **test the assistant**. When iteratively improving the instructions, you will write the same prompt repeatedly. Instead of re-writing it again and again or copy-pasting it, you can set it as a conversation starter and just need to click on it.
+
+### Knowledge
+You have different options when using knowledge with an assistant. For example, you can upload or select files from integrations in the chat. Additionally, you can connect your vector database or connect a data folder. You can read more about data folders here. 
+In our case, we don’t need additional knowledge.
+
+### Model
+You can select any model available in your workspace for your assistant. For models, we have written a different guide here.
+Generally, the best model for most use cases is GPT-4o right now.
+
+### Capabilities
+At the bottom, you can enable different capabilities the assistant should use. These are web search, image generation and data analysis. These tools are explained in detail in the guide about our chat. In our case, the assistant will not need these capabilities. If the assistant does not need the capabilities, we can turn them off.
+
+### Testing the assistant
+After and during your assistant configuration, we highly recommend testing your assistant as much as possible on the right side of the Assistant Builder.
+
+### Saving and sharing the assistant
+The assistant always saves your changes automatically, so you don’t have to worry about saving changes. When the assistant is ready, you can share it with others or use it yourself. To share the assistant, click on the “Share” button in the upper right corner of the Assistant Builder, and you will be forwarded to a new window where you can define with whom you want to share it.
+By clicking on the three dots next to the “Share” button in the top right corner, you can also duplicate or delete the assistant.

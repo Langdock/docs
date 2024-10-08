@@ -43,7 +43,7 @@ description: 'This is a short step by step guide how to set up Gemini models thr
 
 <img src="/images/vertex-9.png"/>
 
-10. Copy the "private_key" attribute into the "API Secret" field in the Langdock Models page
+10. Copy the "private_key" attribute into the "API Secret" field in the Langdock Models page (for example: `-----BEGIN PRIVATE KEY----- {{ private key }} -----END PRIVATE KEY-----\n`)
 
 11. Copy the "client_email" attribute into the "Endpoint" field in Langdock
 
