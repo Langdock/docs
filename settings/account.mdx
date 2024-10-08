@@ -1,39 +1,28 @@
 ---
 title: 'Account Settings'
-description: 'We distinguish between Account Settings, which influence only your personal account, and Workspace Settings, which impact the entire workspace.
-'
+description: 'The Account Settings include all preferences and adjustments for a specific user. They only apply to this specific user and no one else. The account settings can be set by any user.'
 ---
-To access your Account Settings, simply click on your workspace name located in the upper left corner, then select "Preferences”.
 
 ## Profile
-_Here you can manage your workspace profile_
-- Upload your image
-- Update your full name
-- Change email address
-- Add password
+The profile section allows you to upload an image and change your name, email, and password.
+To change an email address, contact support (support@langdock.com).
 
 ## Preferences
-_Here you can customize your experience_
-- Choose your _default model_, which will be preselected whenever you start a new chat.
-- Enable or disable chat capabilities such as web search and/or image generation.
-- Select the language you prefer for the platform interface. Currently, we have _English_ and _German_, but we will add more options over time.
-- You can select between _light, dark, or default themes_ for your profile.
+Depending on your experience and your preferences, you can configure your account to suit your individual needs.
+
+You can select a default model. This model is selected in every new chat unless you change it in the top left corner.
+
+You can enable or disable chat capabilities like web search, image generation, or data analysis. Without the ability, no chat in your account will be able to use the according capability.
+
+Below that, you can set the app language. Currently, we support English and German.
 
 ## Custom Instructions
-_Here you can add information about yourself as well as how the model should behave._
+You can add information about yourself or how the answers should be written in the settings. This text applies to all messages you send to an AI model. In the resources section, you find a [guide with examples](https://docs.langdock.com/resources/custom-instructions) of what to add in custom instructions to.
 
-The model should memorize this information. You can always activate or deactivate custom instructions. <br />
-We have developed a short guide with our recommendations on how to use Custom Instructions effectively [here](/product/instructions).
+## Data Folders
+In the chat and assistants, you can add up to 20 files and send them with your prompt to the mode. This is due to the limited amount of information the models can process simultaneously (= Context window, see **this guide for details about sending documents in the context window**).
+
+To add more than 20 files, you can create data folders in the settings. Here, you can add up to 1,000 files in one folder. This folder can then be attached to assistants and found in the Search feature. With this feature, the number of files can easily surpass the context window size of the model (the text in attached folders can be longer than the processing limit of the model). This is possible by using retrieval augmented generation (RAG). With RAG, relevant sections for answering the user prompt are identified, and only these relevant text sections are sent to the model in the context window. This data folder feature allows us to work with large document numbers but reduces accuracy, as not every part of the documents is considered.
 
 ## Privacy
-_Here you can manage your privacy settings._
-
-Activate or deactivate the toggle to send your telemetry and usage insights, which we can use to improve our product.
-
-## Groups
-_Here you can create and manage, and edit your groups._
-
-If your workspace admin has allowed you to create groups, you will be able to see this section in your settings.
-
-You can create a group and then add members who should be part of it. When adding a new member to the group, you can decide if they should be a member, editor, or admin.
-
+Langdock uses telemetric data to improve the product. In the privacy settings, you can opt out of telemetry and analytics.
