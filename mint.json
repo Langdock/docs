@@ -36,6 +36,10 @@
   },
   "tabs": [
     {
+      "name": "Product Guide",
+      "url": "product"
+    },
+    {
       "name": "Prompt Engineering Guide",
       "url": "prompt-engineering"
     }
