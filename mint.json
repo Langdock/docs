@@ -84,15 +84,15 @@
     {
       "group": "Settings & Integrations",
       "pages": [
-        "product/integrations/how-to-use-integrations",
-        "product/integrations/choosing-the-right-integration-type",
-        "product/integrations/oauth",
+        "settings/integrations/how-to-use-integrations",
+        "settings/integrations/choosing-the-right-integration-type",
+        "settings/integrations/oauth",
         {
           "group": "Workspace Integrations",
           "pages": [
-            "product/integrations/drive",
-            "product/integrations/confluence",
-            "product/integrations/slack"
+            "settings/integrations/drive",
+            "settings/integrations/confluence",
+            "settings/integrations/slack"
           ]
         }
       ]
