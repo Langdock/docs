@@ -94,7 +94,7 @@
     {
       "group": "Search",
       "pages": [
-        "product/search/introduction",
+        "product/search/introduction"
       ]
     },
     {
@@ -143,7 +143,7 @@
     {
       "group": "Legal & Compliance",
       "pages": [
-        "billing-legal/legal-and-hosting/"
+        "billing-legal/links/"
       ]
     },
     {
