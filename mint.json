@@ -56,21 +56,28 @@
       ]
     },
     {
-      "group": "Products",
+      "group": "Chat",
       "pages": [
-        {
-          "group": "Chat",
-          "pages": [
-            "product/chat/functionalities",
-            "product/chat/tools",
-            "product/chat/prompt-library"
+          "product/chat/functionalities",
+          "product/chat/tools",
+          "product/chat/prompt-library"
+      ]
+    },
+    {
+      "group": "Assistants",
+      "pages": [
+          "product/assistants/introduction",
+          "product/assistants/configuration",
+      ]
+    },
+    {
+      "group": "API",
+      "pages": [
+          "product/api/openai",
+          "product/api/anthropic"
           ]
-        },
-        {
-          "group": "Assistants",
-          "pages": [
-            "product/assistants/introduction",
-            "product/assistants/configuration",
+        }
+
           ]
         },
         "product/prompt-library",
