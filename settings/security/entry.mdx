@@ -1,0 +1,97 @@
+---
+title: "Microsoft Entra ID"
+description: "Enable your users to sign in into Langdock using their Entra ID (formerly Azure Active Directory) accounts via SAML."
+---
+
+<Info>
+  You can also reach out to support@langdock.com to set up your SSO integration
+  with assistance.
+</Info>
+
+## Prerequisites
+
+- A Langdock workspace on the Enterprise plan.
+- Access to an admin account in your Langdock workspace.
+- An Entra ID account with the ability to create and manage Enterprise applications.
+- "Join by domain" must be enabled in your [Langdock security settings](https://app.langdock.com/settings/workspace/security).
+
+## Create a new Enterprise application in Entra ID
+
+First, you need to create a new Enterprise application in your Entra ID portal. <br />
+To do this, follow these steps:
+
+1. In your Entra ID portal navigate to the Overview page and add a new Enterprise application under "+ Add" -> "Enterprise application".
+
+2. Create a new custom application by clicking on "+ Create your own application".
+
+3. Name your application (e.g. "Langdock")
+
+4. Select the option "Integrate any other application you don't find in the gallery (Non-gallery)"
+
+<img src="/images/entra-id-1.png" />
+<img src="/images/entra-id-2.png" />
+
+## SAML Configuration
+
+After creating the application, you need to configure the SAML settings, which will allow Langdock to authenticate users via SAML.
+
+First, navigate to the "Single sign-on" settings of your newly created application, by selecting "Set up single sign on" and choosing "SAML" as the single sign-on method.
+
+<img src="/images/entra-id-3.png" />
+<img src="/images/entra-id-4.png" />
+
+Next, you need to get the SAML metadata from Langdock, which you can find in your [Security settings](https://app.langdock.com/settings/workspace/security), after activating the "SAML Active" toggle.
+
+Here, you need to copy two values from the SAML metadata:
+
+1. The "Audience URI (SP Entity ID)" value (`langdock.com`)
+2. The "Assertion Consumer Service (ACS) URL" value
+
+<img src="/images/entra-id-5.png" />
+
+Now, you can configure the SAML settings in your Entra ID portal, by first clicking "Edit" in the "Basic SAML Configuration" section, and then filling in the following values:
+
+1. "Identifier (Entity ID)": The "Audience URI (SP Entity ID)" value from Langdock
+2. "Reply URL (Assertion Consumer Service URL)": The "Assertion Consumer Service (ACS) URL" value from Langdock
+3. "Sign on URL": The "Assertion Consumer Service (ACS) URL" value from Langdock
+
+You can leave the other fields empty or with their default values. Finally, save the configuration by clicking "Save".
+
+<img src="/images/entra-id-6.png" />
+<img src="/images/entra-id-7.png" />
+
+To finalize the SAML setup, you need to copy the Login URL and the SAML Signing certificate from Entra ID to Langdock.
+
+1. In the "SAML Signing Certificate" section of your Entra ID portal, click on "Download" next to "Certificate (Base64)" link to download the certificate. You have to open the certificate in a text editor and copy the content. This will be in the format of:
+
+```
+-----BEGIN CERTIFICATE-----
+...
+-----END CERTIFICATE-----
+```
+
+2. Copy the "Login URL" value from the "Set up Langdock" section in your Entra ID portal.
+
+<img src="/images/entra-id-8.png" />
+
+In your Langdock workspace, navigate to the [Security settings](https://app.langdock.com/settings/workspace/security) again and paste the copied values into the respective fields:
+
+1. Fill in the "Issuer" field with the Audience URI specified earlier (`langdock.com`).
+2. Paste the "Login URL" value from Entra ID into the "Sign on URL" field.
+3. Paste the SAML Signing certificate content into the "Certificate" field.
+
+<img src="/images/entra-id-9.png" />
+
+## Test the SAML setup
+
+To test the SAML setup, open seperate browser or an incognito window and navigate to [https://app.langdock.com](https://app.langdock.com). <br />
+Enter an email address of a user in your Entra ID account and click "Continue". <br />
+You will be redirected to the Entra ID login page, where you can enter your credentials. <br />
+After successful authentication, you will be redirected back to Langdock and logged in.
+
+<img src="/images/entra-id-10.png" />
+<img src="/images/entra-id-11.png" />
+
+## Troubleshooting
+
+If you encounter any issues during the setup, please reach out to support@langdock.com for assistance.
