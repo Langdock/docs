@@ -66,7 +66,7 @@
         {
           "group": "Tools",
           "pages": [
-            "product/chat/plain-model",
+            "product/chat/without-tools",
             "product/chat/document-search",
             "product/chat/web-search",
             "product/chat/image-analysis",
