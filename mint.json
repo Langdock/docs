@@ -107,7 +107,6 @@
     {
       "group": "Models",
       "pages": [
-        "settings/adding-model",
         "settings/byok",
         "settings/fair-usage-policy"
           ]
@@ -118,52 +117,67 @@
         {
           "group": "SAML",
           "pages": [
-            "security/entra",
-            "security/google"
+            "settings/security/entra",
+            "settings/security/google"
           ]
         },
-        "security/scim"
+        "settings/security/scim"
       ]
     },
     {
-      "group": "Getting started",
+      "group": "Legal & Compliance",
       "pages": [
-        "prompt-engineering/introduction",
-        "prompt-engineering/engineering-type"
+        "billing-legal/legal-and-hosting/"
+      ]
+    },
+    {
+      "group": "Billing",
+      "pages": [
+        "billing-legal/pricing",
+        "billing-legal/invoices"
+      ]
+    },
+    {
+      "group": "Guides",
+      "pages": [
+        "resources/basics",
+        "resources/models",
+        "resources/custom-instructions",
+        {
+          "group": "Assistants",
+          "pages": [
+            "resources/assistant-creation",
+            "resources/assistant-configurator",         
+            "resources/assistant-templates"
+          ]
+        }
       ]
     },
     {
       "group": "Prompt Engineering",
       "pages": [
-        "prompt-engineering/llm-basics",
-        "prompt-engineering/prompt-elements",
+        "resources/prompt-elements",
+        "resources/tricks",
         {
-          "group": "Advanced: Principles of Prompting",
+          "group": "Advanced Principles of Prompting",
           "pages": [
-            "prompt-engineering/instructions",
-            "prompt-engineering/structure",
-            "prompt-engineering/output-format",
-            "prompt-engineering/chain-prompts",
-            "prompt-engineering/context-window",
-            "prompt-engineering/role"
+            "resources/instructions",
+            "resources/structure-prompt",
+            "resources/output-format",
+            "resources/chain-prompts",
+            "resources/context-window",
+            "resources/role"
           ]
         },
         {
           "group": "Techniques",
           "pages": [
-            "prompt-engineering/zero-shot-prompting",
-            "prompt-engineering/few-shot-prompting",
-            "prompt-engineering/chain-of-thought"
+            "resources/zero-shot-prompting",
+            "resources/few-shot-prompting",
+            "resources/chain-of-thought"
           ]
         },
-        "prompt-engineering/tricks",
-        "prompt-engineering/resources"
-      ]
-    },
-    {
-      "group": "Knowledge",
-      "pages": [
-        "prompt-engineering/dictionary"
+        "resources/further-resources"
       ]
     }
   ],
