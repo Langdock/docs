@@ -1,0 +1,36 @@
+---
+title: '4) Chain Prompts'
+---
+
+Divide complex tasks into smaller, manageable steps for better results.
+If you write 3-4 tasks in one prompt without any structure, LLMs might overlook one or more tasks or fail to execute them well. This is connected to the concept of [Chain-of-Thought prompting](/prompt-engineering/chain-of-thought).
+
+By breaking down the tasks, you provide a clear structure that guides LLMs through each step, ensuring comprehensive and high-quality outcomes.
+
+## Breaking down in one prompt:
+You can ask the AI model to break down a task and following the instructions step by step.
+
+_Example:_
+<br /> `Search the attached documents for information about office guidelines in our Berlin office.` 
+<br /> `Then, list relevant items as bullet points and sort them by importance.`
+<br /> `Afterwards, write a piece of concise information to post on our company's Slack channel to remind everyone about the 10 most important things to remember.`
+
+## Breaking down in several prompts:
+If a complex instruction does not work by dividing it into several steps in one prompt, try to divide this instruction into several prompts.
+
+_Example:_ <br />
+>_Prompt 1:_<br />
+`Please search for our office guidelines in the Berlin office in the attached document.` <br />
+
+_Response:_ `…`
+>
+>_Prompt 2:_<br />
+`Sort the guidelines by importance. Explain your reasoning.`
+
+_Response:_ `…`
+>
+>_Prompt 3:_<br />
+`Write a Slack Post explaining the 10 most important guidelines.`
+
+_Response:_ `…`
+
