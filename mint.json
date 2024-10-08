@@ -92,6 +92,12 @@
       ]
     },
     {
+      "group": "Search",
+      "pages": [
+        "product/search/introduction",
+      ]
+    },
+    {
       "group": "Settings",
       "pages": [
         "settings/account",
