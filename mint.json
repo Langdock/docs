@@ -137,7 +137,8 @@
       "group": "Models",
       "pages": [
         "settings/byok",
-        "settings/fair-usage-policy"
+        "settings/fair-usage-policy",
+        "settings/models/gemini"
           ]
     },
     {
