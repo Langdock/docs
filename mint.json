@@ -121,7 +121,7 @@
       "group": "Integrations",
       "pages": [
         "settings/integrations/how-to-use-integrations",
-        "settings/integrations/choosing-the-right-integration-type",
+        "settings/integrations/integration-types",
         "settings/integrations/oauth",
         {
           "group": "Workspace Integrations",
