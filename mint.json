@@ -155,28 +155,13 @@
       ]
     },
     {
-      "group": "Guides",
-      "pages": [
-        "resources/basics",
-        "resources/models",
-        "resources/custom-instructions",
-        {
-          "group": "Assistants",
-          "pages": [
-            "resources/assistant-creation",
-            "resources/assistant-configurator",         
-            "resources/assistant-templates"
-          ]
-        }
-      ]
-    },
-    {
       "group": "Prompt Engineering",
       "pages": [
+        "resources/basics",
         "resources/prompt-elements",
         "resources/tricks",
         {
-          "group": "Advanced Principles of Prompting",
+          "group": "Advanced: Principles of Prompting",
           "pages": [
             "resources/instructions",
             "resources/structure-prompt",
@@ -195,6 +180,21 @@
           ]
         },
         "resources/further-resources"
+      ]
+    },
+        {
+      "group": "Guides",
+      "pages": [
+        "resources/models",
+        "resources/custom-instructions",
+        {
+          "group": "Assistants",
+          "pages": [
+            "resources/assistant-creation",
+            "resources/assistant-configurator",         
+            "resources/assistant-templates"
+          ]
+        }
       ]
     }
   ],
