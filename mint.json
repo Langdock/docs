@@ -49,7 +49,7 @@
     },
     {
       "name": "Admin",
-      "url": "billing-legal"
+      "url": "admin"
     }
   ],
   "navigation": [
@@ -144,16 +144,14 @@
     {
       "group": "Legal & Compliance",
       "pages": [
-        "billing-legal/links"
+        "admin/legal-compliance"
       ]
     },
     {
       "group": "Billing",
       "pages": [
-        "billing-legal/pricing",
-        "billing-legal/invoices",
-        "billing-legal/links"
-
+        "admin/pricing",
+        "admin/invoices",
       ]
     },
     {
