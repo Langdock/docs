@@ -151,7 +151,7 @@
       "group": "Billing",
       "pages": [
         "admin/pricing",
-        "admin/invoices",
+        "admin/invoices"
       ]
     },
     {
