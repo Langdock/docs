@@ -161,7 +161,7 @@
         "resources/prompt-elements",
         "resources/tricks",
         {
-          "group": "Advanced: Principles of Prompting",
+          "group": "Advanced Prompting Principles",
           "pages": [
             "resources/instructions",
             "resources/structure-prompt",
