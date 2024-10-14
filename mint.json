@@ -192,8 +192,8 @@
           "group": "Assistants",
           "pages": [
             "resources/assistant-creation",
-            "resources/assistant-configurator",         
             "resources/assistant-templates",
+            "resources/assistant-configurator",         
             "resources/actions-assistant"
           ]
         }
