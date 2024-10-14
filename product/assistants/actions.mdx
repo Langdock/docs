@@ -1,0 +1,86 @@
+---
+title: 'Actions'
+description: 'Assistant Actions allow users to connect external tools and perform API calls to retrieve information and send requests. This can be used to create entries in other tools.'
+---
+
+Use Cases with Assistant Actions are:
+- Connect Jira and allow an assistant to create tickets
+- Connect Google Drive to search for information and create files.
+- Connect Salesforce to retrieve specific deals, accounts, or contacts, create new deals, and update properties
+
+## How Actions work:
+Actions use tool calling to call different APIs, similar to how the data analyst creates and executes Python code. The model decides which API call is relevant. Afterward, the model generates the JSON for the API request. Then, the JSON is used to call the API.
+
+APIs enable different tools to be connected, allowing deep, custom workflows to be built. With Assistant Actions, this capability can be leveraged by teams while developers are not needed at all or only needed briefly to support implementation. Natural language can perform API actions and retrieve, update, or create entries in other tools.
+
+## Where to find actions
+1. Go to the assistant you want to connect to other tools. Scroll to the bottom until you find the “actions” section.
+2. Click on “Create action”. A new window will open where you can set up your action.
+
+## Set up
+### 1. Write the OpenAPI schema. 
+OpenAPI is a specific standard format for calling APIs and describing the API parameters. Link: https://swagger.io/specification/
+We have created an assistant, which you can find here. Simply paste the API documentation into the chat field, and the assistant will build the Open API schema for this endpoint.
+
+**Here is how the Open API schema is structured:**
+The top contains general information like the API name and description. The assistant uses this information, especially the description, to determine if it should choose this action.
+
+The parameters below define and explain the schema. The schema names and descriptions contain information on which API should be called and how it should use the parameters.
+
+After writing the Open API schema, we recommend testing the action. You can use the **Test** button at the bottom to test the action. It might make sense to debug the action using a different tool, for example, Postman.
+
+### 2. Set up authentication
+Most APIs require some form of authentication to prevent unauthorized people from accessing the information from this API. To authenticate the request, you can use OAuth or an API key.
+
+You can use the AI models to get you started again. If you use OAuth, you can send a screenshot and write, `Please help me to fill out these fields for OAuth. I am building a connection with <tool>`. This should help you to fill out the first fields. If you encounter any errors, paste them or a screenshot into the chat and let the AI model enable you to debug it.
+
+How to set up API keys:
+- Basic: Paste the API into the according field. 
+- Bearer: Paste the Token into the API Key field. Please make sure you are using a bearer token.
+- Custom header: Paste the key and the custom header name into the according fields.
+
+**How to set up OAuth:**
+To set up OAuth, you need the Client ID, the Client secret, the Authorization URL, the Token URL, and scopes from your app. You also need to define a token exchange method. With this method, every user of this assistant needs to log in with OAuth before being able to perform an action.
+
+### 3. Create the action
+Afterward, you can create the assistant. We have written a general guide on how to develop assistants [here](https://docs.langdock.com/resources/assistant-creation). In the instructions, you should refer to the action names and JSON parameters to help the assistant choose and perform the correct action.
+
+When writing the instructions, you can refer to our [prompt elements](https://docs.langdock.com/resources/prompt-elements) to provide relevant information. The task and context are crucial here.
+
+**Task:** Describe the steps the assistant should follow. Make sure to use the names of the actions in the instructions.
+- What will the user enter in the chat? 
+- How should this be used to call an API? 
+- Which action should be called, and which data should be returned? 
+- How should the output be formatted?
+
+**Context:** Add relevant information how the assistant is used.
+- What is the purpose of this assistant? 
+- What will the user put into the chat? 
+- Which topic is the assistant working on?
+- Are there essential notes to remember? For example, which units does the user use and which units do the API return (meters vs. inch; degrees Celsius vs Fahrenheit,...)
+
+**Format:** Which output format should the assistant follow?
+
+### 4. Set up a callback URL in your app (OAuth only)
+If your assistant uses OAuth to authenticate the API request to your app, you need to set up a callback URL in the appropriate app. The URL is in the authentication section at the top of the action setup screen. Copy the URL and paste it into the appropriate place in your application.
+
+### 5. Test the action
+Use the test button at the bottom of the page to test the individual actions. Afterwards, try to call the API using different representative prompts your users could have.
+
+## Potential Problems and Debugging
+1. The assistant calls the wrong API or no API at all
+- Solution: Improve the descriptions of the API call and the assistant's instructions. The instructions should refer to the same names as the action description.
+
+2. The assistant calls the correct API but uses incorrect parameters
+- Improve the descriptions of the parameters in the action description
+
+3. The assistant is not working, but I don’t have an error
+- Test the assistant in the action setup screen. If you do not get any errors here, use Postman or another third-party tool to receive more detailed errors.
+
+4. I am receiving an authentication error
+- Check our callback URL setup. Use Postman or another tool to test the same authentication in another tool.
+
+5. The assistant only answers simple prompts
+- Improve your prompt in the instructions. You can use our prompt engineering guide to improve it.
+
+If there are any questions, please reach out to support@langdock.com

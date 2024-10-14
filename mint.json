@@ -81,7 +81,8 @@
       "group": "Assistants",
       "pages": [
         "product/assistants/introduction",
-        "product/assistants/configuration"
+        "product/assistants/configuration",
+        "product/assistants/actions"
       ]
     },
     {
@@ -192,7 +193,8 @@
           "pages": [
             "resources/assistant-creation",
             "resources/assistant-configurator",         
-            "resources/assistant-templates"
+            "resources/assistant-templates",
+            "resources/actions-assistant"
           ]
         }
       ]
