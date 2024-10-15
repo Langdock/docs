@@ -130,7 +130,7 @@
           "pages": [
             "settings/integrations/google-drive",
             "settings/integrations/confluence",
-            "settings/integrations/slack-setup"
+            "settings/integrations/slack"
           ]
         }
       ]
