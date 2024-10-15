@@ -122,7 +122,7 @@
       "group": "Integrations",
       "pages": [
         "settings/integrations/how-to-use-integrations",
-        "settings/integrations/use-slack",
+        "settings/integrations/how-to-use-slack",
         "settings/integrations/integration-types",
         "settings/integrations/oauth",
         {
