@@ -122,6 +122,7 @@
       "group": "Integrations",
       "pages": [
         "settings/integrations/how-to-use-integrations",
+        "settings/integrations/slack-user",
         "settings/integrations/integration-types",
         "settings/integrations/oauth",
         {
@@ -129,7 +130,7 @@
           "pages": [
             "settings/integrations/google-drive",
             "settings/integrations/confluence",
-            "settings/integrations/slack"
+            "settings/integrations/slack-setup"
           ]
         }
       ]
