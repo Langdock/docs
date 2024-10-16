@@ -94,4 +94,12 @@ After successful authentication, you will be redirected back to Langdock and log
 
 ## Troubleshooting
 
-If you encounter any issues during the setup, please reach out to support@langdock.com for assistance.
+**Identifier was not found in directory**
+- Error: `Application with identifier ' langdock.com' was not found in the directory '<directory name>'. This can happen if the application has not been installed by the administrator of the tenant or consented to by any user in the tenant. You may have sent your authentication request to the wrong tenant.`
+- Solution: Please check the field **Issuer** (German: **Aussteller**) in Langdock and make sure that no space is entered before or after the domain.
+
+**Invalid Signature Certificate**
+- Error: `Error during login with SAML. Please try again. Error: invalid signature: the signature value <signature value> is incorrect`
+- Solution: Please download your SAML Signing Certificate again. It might have been changed after downloading it if you changed the other parameters in the meantime.
+ 
+If you encounter any other issues during the setup, please reach out to support@langdock.com for assistance.
