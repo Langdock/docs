@@ -121,16 +121,32 @@
     {
       "group": "Integrations",
       "pages": [
+        "settings/integrations/integration-types",
         "settings/integrations/how-to-use-integrations",
         "settings/integrations/how-to-use-slack",
-        "settings/integrations/integration-types",
-        "settings/integrations/oauth",
         {
-          "group": "Workspace Integrations",
+          "group": "User integrations: Search",
+          "pages": [
+          "settings/integrations/oauth"
+          ]
+        },
+        {
+          "group": "Workspace integrations: Search",
           "pages": [
             "settings/integrations/google-drive",
             "settings/integrations/confluence",
             "settings/integrations/slack"
+          ]
+        },
+        {
+          "group": "Integrations in assistant actions",
+          "pages": [
+            "settings/integrations/salesforce-actions"
+          ]
+        },
+        {
+          "group": "Workspace Integrations",
+          "pages": [
           ]
         }
       ]
