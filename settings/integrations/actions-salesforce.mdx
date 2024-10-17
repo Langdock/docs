@@ -195,37 +195,56 @@ Also, replace the objects with the objects defined in your instance.
 
 Go to your Salesforce application and create a new app:
 
-1. Navigate to the **Setup**
+1. Navigate to the **Setup** page.
+<img src="/images/actions-sf-1.png"/>
+
 2. Search for **App Manager**
+<img src="/images/actions-sf-2.png"/>
+
 3. Click on **New connected app** and then on **Create an External Client App** with OAuth 2.0.
+<img src="/images/actions-sf-3.png"/>
+
 4. Enter a name for your app, e.g. “Langdock”
 5. Enter your email address as the contact email
 6. Enable OAuth by checking the according box
 7. Add a callback URL placeholder. This can be any URL and will be updated at the end.
+<img src="/images/actions-sf-4.png"/>
+
 8. Select the permissions in **Selected OAuth Scopes** you want to grant this app and the assistant. This should be comply with your internal security guidelines.
+
 9. Check these boxes (if they are not checked already):
     - **Enable Client Credentials Flow**
     - **Enable Authorization Code and Credentials Flow**
     - **Enable Token Exchange Flow**
+
 10. Uncheck this box (if it is checked):
     - **Require Proof Key for Code Exchange (PKCE) Extension for Supported Authorization Flows**
+
+<img src="/images/actions-sf-5.png"/>
+
 11. Save the application
-12. Go to **Consumer Key and Secret** and click **Manage Consumer Details**. You will need to verify your access through a code sent to you in an email. Then, copy the key and secret. 
+12. Click on the **Settings** tab an on **Consumer Key and Secret** and click **Manage Consumer Details**. You will need to verify your access through a code sent to you in an email. Then, copy the key and secret. 
     - `The Salesforce Consumer Key` is the `Client ID` in Langdock and the `Salesforce Consumer Secret` is the `Client Secret`.
+
+  <img src="/images/actions-sf-6.png"/>
+
 13. Return to the main app page.
-14. Click on **Manage** and then on **Edit Policies**
+14. Switch back to the **Policies** tab and click on **Edit**.
+
 15. Go to **OAuth Policies** and check this box:
-**Enable Token Exchange Flow**
+**Enable Token Exchange Flow**. Also make sure that **Enforce IP Restrictions** is selected and the Refresh Toekn Policy is set to **Immediately expire refresh token**.
+<img src="/images/actions-sf-7.png"/>
+
 16. Finish the setup by clicking **Save**
 
 ### 4. OAuth Configuration in Langdock
-At the top of the action settings you find a section calles **Authentication**. Select **OAuth**.
+Go to the **Authentication** section at the top of the action settings. Select **OAuth**.
 
 Enter the according information from your Salesforce Application:
 - **Client ID**: Enter the Salesforce Consumer Key from above
 - **Client Secret**: Enter the Salesforce Consumer Secret from before
-- **Authorization URL**: https://[inserturlhere].my.salesforce.com/services/oauth2/authorize
-- **Token URL**: https://[inserturlhere].my.salesforce.com/services/oauth2/token
+- **Authorization URL**: https://[your URL].my.salesforce.com/services/oauth2/authorize
+- **Token URL**: https://[your URL].my.salesforce.com/services/oauth2/token
 - **Scopes**: full
 - **Token**: Default
 
@@ -233,7 +252,8 @@ Enter the according information from your Salesforce Application:
 
 
 1. Copy the redirect URL from the OAuth section in the action
-2. Go to your Salesforce app and replace the placeholder URL from before with this URL.
+2. Go to your Salesforce app, switch to the **Settings** tab and click on **Edit**.
+3. Replace the placeholder URL from before with this URL.
 3. Save the app.
 
 
