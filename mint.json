@@ -143,11 +143,6 @@
           "pages": [
             "settings/integrations/salesforce-actions"
           ]
-        },
-        {
-          "group": "Workspace Integrations",
-          "pages": [
-          ]
         }
       ]
     },
