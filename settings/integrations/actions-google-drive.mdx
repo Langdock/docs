@@ -1,0 +1,331 @@
+---
+title: Google Drive Actions
+description: 'Let an assistant perform actions to Google Drive.'
+---
+## Prerequisits
+This guide helps you to set up an assistant action for Google Drive. Before proceeding, we recommend reading the following guide [Introduction to Actions](https://docs.langdock.com/product/assistants/actions).
+
+The assistant action allows you to list and query files, load the file content into the assistant, and use it as additional context. If you want to attach specific files or sheets to an assistant, we recommend using our Google Drive Search Integration and attaching the file to the assistant knowledge. If you are a Langdock admin, please refer to this [workspace-level integration guide](https://docs.langdock.com/settings/integrations/google-drive). If you are not an admin, please refer to [this guide](https://docs.langdock.com/settings/integrations/oauth).
+
+Make sure to read the [API documentation](https://developers.google.com/drive/api/guides/about-sdk) from Google Drive. Also, you need to have a Google Cloud account and enable the Drive API (if not already enabled). To enable the API, follow these steps:
+
+- Create Google Cloud project
+- Enable the Google Drive API from the Google API Library
+- If the **Publishing status** is **Testing**, add users to your application
+
+## Setup
+### 1. Assistant instructions
+Create a new assistant. If you are new to creating assistants, you can read more about how to create assistants and write instructions in our [assistant guide](https://docs.langdock.com/resources/assistant-creation and our [prompt engineering guide](https://docs.langdock.com/resources/prompt-elements). Paste the following instructions into the according field.
+```
+Persona: You are the office assistant who has access to Google Drive and reads information. When asked about something, look at all relevant information in the drive. Search the file names, but also each document and sheet.
+
+Task:
+Use the ‘listFiles’ function to get a list of files within docs. Then, identify which files make sense to pull back taking into account name and title. After having the output of listFiles, act like a normal business analyst. Here are possible questions users could ask you:
+- Summaries: What is in a given file? Read the entire file and give a consistent, concise answer.
+- Behave professionally
+- Synthesis, Coding and Data Analysis: ensure coding blocks are explained.
+- When handling dates: Make sure that dates are searched through the date fields. If you don’t find anything, use titles.
+- Clarification: Ask for clarification when needed to ensure accuracy and completeness in fulfilling the user questions. Try to make sure you know exactly what is being asked.
+- Privacy and Security: Respect user privacy and handle all data securely.
+
+Examples:
+Here is the relevant query documentation from Google for the listFiles function:
+What you want to query	Example
+Files with the name "hello"	name = 'hello'
+Files with a name containing the words "hello" and "goodbye"	name contains 'hello' and name contains 'goodbye'
+Files with a name that does not contain the word "hello"	not name contains 'hello'
+Folders that are Google apps or have the folder MIME type	mimeType = 'application/vnd.google-apps.folder'
+Files that are not folders	mimeType != 'application/vnd.google-apps.folder'
+Files that contain the text "important" and in the trash	fullText contains 'important' and trashed = true
+Files that contain the word "hello"	fullText contains 'hello'
+Files that do not have the word "hello"	not fullText contains 'hello'
+Files that contain the exact phrase "hello world"	fullText contains '"hello world"'
+Files with a query that contains the "\" character (e.g., "\authors")	fullText contains '\\authors'
+Files with ID within a collection, e.g. parents collection	'1234567' in parents
+Files in an application data folder in a collection	'appDataFolder' in parents
+Files for which user "test@example.org" has write permission	'test@example.org' in writers
+Files for which members of the group "group@example.org" have write permission	'group@example.org' in writers
+Files modified after a given date	modifiedTime > '2012-06-04T12:00:00' // default time zone is UTC
+Files shared with the authorized user with "hello" in the name	sharedWithMe and name contains 'hello'
+Files that have not been shared with anyone or domains (only private, or shared with specific users or groups)	visibility = 'limited'
+Image or video files modified after a specific date	modifiedTime > '2012-06-04T12:00:00' and (mimeType contains 'image/' or mimeType contains 'video/')
+```
+
+You can add other actions from the other methods described in the [Google Drive API](https://developers.google.com/drive/api/guides/about-sdk).
+
+
+### 2. OpenAPI Schema
+Scroll to the bottom of the assistant configuration and click on **New Action**. Here you can configure actions and API requests to other tools. Copy the text below into the field **OpenAPI Schema**. You can also try out [action assistant](https://docs.langdock.com/resources/actions-assistant) to write the OpenAPI schema.
+
+With the Google Drive API, the `get` method will lead to the model trying to download the file, which is not possible. Instead, use `export`. 
+```
+
+
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Google Drive API",
+    "description": "API for interacting with Google Drive",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://www.googleapis.com/drive/v3"
+    }
+  ],
+  "paths": {
+    "/files": {
+      "get": {
+        "operationId": "ListFiles",
+        "summary": "List files",
+        "description": "Retrieve a list of files in the user's Google Drive.",
+        "parameters": [
+          {
+            "name": "q",
+            "in": "query",
+            "description": "Query string for searching files.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "includeItemsFromAllDrives",
+            "in": "query",
+            "description": "Whether both My Drive and shared drive items should be included in results.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "supportsAllDrives",
+            "in": "query",
+            "description": "Whether the requesting application supports both My Drives and shared drives.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "description": "Maximum number of files to return.",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 10
+            }
+          },
+          {
+            "name": "pageToken",
+            "in": "query",
+            "description": "Token for continuing a previous list request.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "description": "Comma-separated list of fields to include in the response.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of files.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "kind": {
+                      "type": "string",
+                      "example": "drive#fileList"
+                    },
+                    "nextPageToken": {
+                      "type": "string",
+                      "description": "Token to retrieve the next page of results."
+                    },
+                    "files": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string"
+                          },
+                          "name": {
+                            "type": "string"
+                          },
+                          "mimeType": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/files/{fileId}": {
+      "get": {
+        "operationId": "getMetadata",
+        "summary": "Get file metadata",
+        "description": "Retrieve metadata for a specific file.",
+        "parameters": [
+          {
+            "name": "fileId",
+            "in": "path",
+            "description": "ID of the file to retrieve.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "description": "Comma-separated list of fields to include in the response.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Metadata of the file.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "mimeType": {
+                      "type": "string"
+                    },
+                    "description": {
+                      "type": "string"
+                    },
+                    "createdTime": {
+                      "type": "string",
+                      "format": "date-time"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/files/{fileId}/export": {
+      "get": {
+        "operationId": "export",
+        "summary": "Export a file",
+        "description": "Export a Google Doc to the requested MIME type.",
+        "parameters": [
+          {
+            "name": "fileId",
+            "in": "path",
+            "description": "ID of the file to export.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "mimeType",
+            "in": "query",
+            "description": "The MIME type of the format to export to.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "application/pdf",
+                "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+                "text/plain"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The exported file.",
+            "content": {
+              "application/pdf": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              },
+              "application/vnd.openxmlformats-officedocument.wordprocessingml.document": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid MIME type or file ID."
+          },
+          "404": {
+            "description": "File not found."
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+## Authentication
+
+### 3. Google Drive Configuration
+1. Go to your Google Cloud Console
+2. Navigate to **Enabled API & Services**. Then, enable **Google Drive API**
+3. Use the search bar to search **Google Drive API**
+4. Now, create new OAuth credentials. You might need to set up an OAuth credentials screen if you have not done so already.
+5. Allow the app the according permissions for the methods mentioned above.
+6. Establish the primary tester as a testing email (if testing is enabled).
+7. Set the OAuth rate limit.
+8. Afterward, go to **Credentials** and click **+ Create Credentials** and then **Create Credentials**. 
+9. Copy and save the OAuth Client ID and the Client Secret.
+
+### 4. OAuth Configuration in Langdock
+At the top of the action settings you find a section called **Authentication**. Select **OAuth**.
+
+Enter the according information from your Google Drive Configuration:
+- **Client ID**: Paste the Client ID from above
+- **Client Secret**: Paste the Client Secret from before
+- **Authorization URL**: https://accounts.google.com/o/oauth2/auth
+- **Token URL**: https://oauth2.googleapis.com/token
+- **Scope**: https://www.googleapis.com/auth/drive
+    - For a list of more detailed scopes enabled, please refer to Google’s OAuth 2.0 guide.
+- **Token**: Default
+
+### 5. Paste redirect URL into Google Drive
+1. Copy the redirect URL from the OAuth section in the action.
+2. Go to Google Drive and paste it in the **Authorized redirect URIs**.
