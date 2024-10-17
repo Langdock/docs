@@ -1,0 +1,242 @@
+---
+title: 'Salesforce'
+description: 'Use Salesforce in assistant actions.'
+---
+
+## Prerequisits
+
+
+This guide helps you to set up an assistant action for Salesforce. Before proceeding, we recommend to read the following guide [Introduction to Actions](https://docs.langdock.com/product/assistants/actions).
+
+
+In Salesforce, you will need to create Lightning Apps and set up authentication with OAuth tokens. You need to have permissions to create an app in Salesforce. Here are some additional resources:
+
+
+- [Create Lightning Apps in Salesforce](https://help.salesforce.com/s/articleView?id=sf.apps_lightning_create.htm&type=5)
+- [Managing OAuth Tokens and Scopes](https://help.salesforce.com/s/articleView?id=sf.remoteaccess_oauth_tokens_scopes.htm&type=5)
+- [Salesforce API Documentation](https://developer.salesforce.com/docs/apis)
+
+
+This guide helps you to integrate Salesforce to Langdock using the [Rest API](https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_what_is_rest_api.htm). You can retrieve data or update data from Salesforce in Langdock. If you use other Salesforce solutions, the process with the app and the authentication will be the same, but you will need a different OpenAPI Schema. You can find the different Salesforce APIs [here](https://developer.salesforce.com/docs/apis).
+
+
+## Setup
+### 1. Creating assistant and its instructions
+Create a new assistant. If you are new to creating assistants, you can read more about how to create assistants and write instructions in our [assistant guide](https://docs.langdock.com/resources/assistant-creation and our [prompt engineering guide](https://docs.langdock.com/resources/prompt-elements). Paste the following instructions into the according field.
+
+
+````
+**Persona:** You are the Salesforce assistant. Your job is to pull information from Salesforce, and create and update objects.
+
+
+**Task:**
+When a user asks you to retrieve information about an object, perform the according getSObject action. If you should create an object, perform the according createSObject action. If you should update or patch an object, perform the updateSObject action.
+
+
+**Example:**
+User: Show me the properties of <Object>.
+````
+### 2. OpenAPI Schema
+Scroll to the bottom of the assistant configuration and click on **New Action**. Here you can configure actions and API requests to other tools. Copy the text below into the field **OpenAPI Schema**.
+
+
+```
+openapi: 3.1.0
+info:
+  title: Salesforce REST API
+  description: API for accessing Salesforce data programmatically.
+  version: 1.0.0
+servers:
+  - url: https://yourInstance.salesforce.com/services/data/vXX.X
+    description: Salesforce instance URL where XX.X represents the API version.
+paths:
+  /sobjects/{sobjectType}:
+    get:
+      operationId: getSObjectMetadata
+      summary: Lists the available metadata for the specified sObject.
+      parameters:
+        - name: sobjectType
+          in: path
+          required: true
+          description: The type of the sObject.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response with metadata details.
+          content:
+            application/json:
+              schema:
+                type: object
+    post:
+      operationId: createSObject
+      summary: Creates a new record of the specified sObject type.
+      parameters:
+        - name: sobjectType
+          in: path
+          required: true
+          description: The type of the sObject.
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '201':
+          description: Record created successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+  
+  /sobjects/{sobjectType}/{id}:
+    get:
+      operationId: getSObjectById
+      summary: Retrieves a record by its ID.
+      parameters:
+        - name: sobjectType
+          in: path
+          required: true
+          description: The type of the sObject.
+          schema:
+            type: string
+        - name: id
+          in: path
+          required: true
+          description: The ID of the record.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response with record details.
+          content:
+            application/json:
+              schema:
+                type: object
+    patch:
+      operationId: updateSObject
+      summary: Updates a record by its ID.
+      parameters:
+        - name: sobjectType
+          in: path
+          required: true
+          description: The type of the sObject.
+          schema:
+            type: string
+        - name: id
+          in: path
+          required: true
+          description: The ID of the record.
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '204':
+          description: Record updated successfully.
+  
+  /query:
+    get:
+      operationId: query
+      summary: Executes a SOQL query.
+      parameters:
+        - name: q
+          in: query
+          required: true
+          description: The SOQL query string.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response with query results.
+          content:
+            application/json:
+              schema:
+                type: object
+
+
+  /search:
+    get:
+      operationId: search
+      summary: Executes a SOSL search.
+      parameters:
+        - name: q
+          in: query
+          required: true
+          description: The SOSL search string.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response with search results.
+          content:
+            application/json:
+              schema:
+                type: object
+``` 
+
+
+Make sure to replace the base URL with your account’s base URL and replace XX.X with the Salesforce instance version. [Here](https://help.salesforce.com/s/articleView?id=000386929&type=1) you can find more about the instance version.
+
+
+Also, replace the objects with the objects defined in your instance.
+
+## Authentication
+
+### 3. In Salesforce
+
+Go to your Salesforce application and create a new app:
+
+1. Navigate to the **Setup**
+2. Search for **App Manager**
+3. Click on **New connected app**
+4. Enter a name for your app, e.g. “Langdock”
+5. Enter your email address as the contact email
+6. Enable OAuth by checking the according box
+7. Add a callback URL placeholder. This can be any URL and will be updated at the end.
+8. Select the permissions in **Selected OAuth Scopes** you want to grant this app and the assistant. This should be comply with your internal security guidelines.
+9. Check these boxes (if they are not checked already):
+    - **Enable Client Credentials Flow**
+    - **Enable Authorization Code and Credentials Flow**
+    - **Enable Token Exchange Flow**
+10. Uncheck this box (if it is checked):
+    - **Require Proof Key for Code Exchange (PKCE) Extension for Supported Authorization Flows**
+11. Save the application
+12. Go to **Consumer Key and Secret** and click **Manage Consumer Details**. You will need to verify your access through a code sent to you in an email. Then, copy the key and secret. 
+    - `The Salesforce Consumer Key` is the `Client ID` in Langdock and the `Salesforce Consumer Secret` is the `Client Secret`.
+13. Return to the main app page.
+14. Click on **Manage** and then on **Edit Policies**
+15. Go to **OAuth Policies** and check this box:
+**Enable Token Exchange Flow**
+16. Finish the setup by clicking **Save**
+
+### 4. OAuth Configuration in Langdock
+At the top of the action settings you find a section calles **Authentication**. Select **OAuth**.
+
+Enter the according information from your Salesforce Application:
+- **Client ID**: Enter the Salesforce Consumer Key from above
+- **Client Secret**: Enter the Salesforce Consumer Secret from before
+- **Authorization URL**: https://[inserturlhere].my.salesforce.com/services/oauth2/authorize
+- **Token URL**: https://[inserturlhere].my.salesforce.com/services/oauth2/token
+- **Scopes**: full
+- **Token**: Default
+
+### 5. Paste redirect URL into Salesforce
+
+
+1. Copy the callback URL from the OAuth section in the action
+2. Go to your Salesforce app and replace the placeholder URL from before with this URL.
+3. Save the app.
+
+
+
+
+
+
