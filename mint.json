@@ -121,9 +121,14 @@
     {
       "group": "Integrations",
       "pages": [
-        "settings/integrations/integration-types",
-        "settings/integrations/how-to-use-integrations",
-        "settings/integrations/how-to-use-slack",
+        {
+          "group": "User integrations: Search",
+          "pages": [
+          "settings/integrations/integration-types",
+          "settings/integrations/how-to-use-search-integrations",
+          "settings/integrations/how-to-use-slack"
+          ]
+        },
         {
           "group": "User integrations: Search",
           "pages": [
@@ -141,7 +146,9 @@
         {
           "group": "Integrations in assistant actions",
           "pages": [
-            "settings/integrations/salesforce-actions"
+            "settings/integrations/actions-salesforce",
+            "settings/integrations/actions-google-drive"
+
           ]
         }
       ]

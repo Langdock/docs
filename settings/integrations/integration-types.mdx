@@ -1,14 +1,18 @@
 ---
-title: 'Personal vs. Workspace Integrations'
-description: 'Langdock supports personal integrations and workspace integrations. 
-Both provide similar functionality to the Langdock user, but they differ in capability and setup complexity. In the following, we will provide guidance on when to use which integration type.'
----
-## Personal Integrations
-Personal integrations are OAuth2-based integrations that the individual user needs to set-up for himself. 
+title: 'Types of Integrations'
+description: 'Langdock supports different integration types for different purposes, like search information, creating or updating information or using Langdock in other apps. This section explains the different types.'
 
-They grant the user access to the exact view of files that he would be able to access in the integration source app. 
+## Search Integrations
+Search integrations are native integrations in Langdock, built by us, so that you just have to connect your app. These integrations use APIs of other apps and users can search files in Chats, Assistants and in Search. We have explained how they work in [this guide](../how-to-use-search-integrations).
 
-## Workspace Integrations
+For some integrations, there are two ways of connecting it. Both ways provide the same functionality. Either admins can set up the integration for the entire workspace or each user has to set it up themselves. In the following, we will provide guidance on when to use which integration type.
+
+### Personal Integrations
+Personal integrations are OAuth2-based integrations that the individual users need to set-up for themselves. 
+
+The personal integration grant the user access to the exact view of files that he would be able to access in the integration source app. 
+
+### Workspace Integrations
 Workspace integrations enable admins to connect an integration for the entire workspace, without any effort required by the individual user. 
 
 These integrations use delegated access permissions: Users can only access the exact content in Langdock, that they would be able to access in the integration source app. 
@@ -29,6 +33,24 @@ To set up workspace integrations, we have prepared guides for each tool.
 - [Confluence Workspace Integration](/product/integrations/confluence)
 - [Google Drive Workspace Integration](/product/integrations/drive)
 
-If you want to find out more about how you can use integrations within Langdock, please click [here](/product/integrations/how-to-use-integrations).
+---
+
+## Integrations to use Langdock in other apps 
+With some integrations you can use Langdock from other apps. The first integration here is our Slack bot, with which you can use Langdock chats and assistants from within Slack.
+
+For setting up the Slack bot, you can refer to [this guide](https://docs.langdock.com/settings/integrations/slack) and how to use it is explained [here](https://docs.langdock.com/settings/integrations/how-to-use-slack).
+
+We will add more apps here in the next weeks, beginning with Microsoft Teams!
+
+---
+
+## Action integrations in assistants
+[Assistant actions](../../product/assistants/actions) are a powerful functionality to connect any app with an assistant. We have prepared a detailed guide for setting this up [here](../../resources/actions-assistant)
+
+While this ability can be used together with any app that has an OpenAPI endpoint, we provided a few guides for apps that are frequently requested:
+- [Salesforce actions](../settings/integrations/actions-salesforce)
+- [Google Drive actions](../settings/integrations/actions-google-drive)
+- [Jira actions](../settings/integrations/actions-jira)
+- [Zapier actions](../settings/integrations/actions-zapier)
 
 Please contact us at support@langdock.com for any questions or support!
