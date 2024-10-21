@@ -152,8 +152,8 @@
           "group": "Action integrations in assistants",
           "pages": [
             "settings/integrations/actions-salesforce",
-            "settings/integrations/actions-google-drive"
-
+            "settings/integrations/actions-google-drive",
+            "settings/integrations/actions-jira"
           ]
         }
       ]

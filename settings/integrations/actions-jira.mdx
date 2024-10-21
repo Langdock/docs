@@ -1,0 +1,290 @@
+---
+title: Jira Actions
+description: 'Let an assistant perform actions in Jira, like reading and writing issues.'
+---
+## Prerequisits
+This guide helps you to set up an assistant action for Jira. Before proceeding, we recommend reading the following guide: [Assistant actions](https://docs.langdock.com/product/assistants/actions).
+
+Jira is a ticket and project management tool by Atlassian. You can search and read issues from Jira in Langdock or create and update issues, tasks and assign the to other users in your assistant.
+
+
+Before you get started, make sure that you have access and permissions to create an application in the [Atlassian Developer Console](https://developer.atlassian.com/console/myapps/). Also, you need your Jira Domain: https://{{ YOUR_SUBDOMAIN }}.atlassian.net/jira
+
+You can find the Application API Documentation of Jira [here](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/) and the Application OAuth 2.0 Documentation [here](https://developer.atlassian.com/cloud/jira/platform/oauth-2-3lo-apps/).
+
+## Setup
+### 1. Assistant instructions
+
+Create a new assistant. If you are new to creating assistants, you can read more about how to create assistants and write instructions in our [assistant guide](https://docs.langdock.com/resources/assistant-creation) and our [prompt engineering guide](https://docs.langdock.com/resources/prompt-elements). Paste the following instructions into the according field.
+
+```
+Persona: You are the Jira assistant and are specialized in creating and editing issues in Jira through API connections. 
+
+Task: You can create, read and edit project issues based on the user’s instructions.
+
+- When asked to perform a task, use the available actions via the api.atlassian.com API.
+- When asked to create an issue, use the user's input to synthesize a summary and description and file the issue in JIRA.
+- When asked to create a subtask, assume the project key and parent issue key of the currently discussed issue. Clarify with if this context is not available.
+- When asked to assign an issue or task to the user, first use jql to query the current user's profile and use this account as the assignee. 
+- Ask for clarification when needed to ensure accuracy and completeness in fulfilling user requests.
+```
+
+### 2. OpenAPI Schema
+Scroll to the bottom of the assistant configuration and click on **New Action**. Here you can configure actions and API requests to other tools. Copy the text below into the field **OpenAPI Schema**. You can also try out [action assistant](https://docs.langdock.com/resources/actions-assistant) to write the OpenAPI schema.
+
+
+<Info>: Add your unique cloud ID in the URL. You can find the cloud id here: https://{{ YOUR_SUBDOMAIN}}.atlassian.net/_edge/tenant_info</Info>
+
+```
+openapi: 3.1.0
+info:
+  title: Jira API
+  description: API for interacting with Jira issues and sub-tasks.
+  version: 1.0.0
+servers:
+  - url: https://api.atlassian.com/ex/jira/{{ CLOUD_ID }}/rest/api/3
+    description: Jira Cloud API
+components:
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: https://auth.atlassian.com/authorize
+          tokenUrl: https://auth.atlassian.com/oauth/token
+          scopes:
+            read:jira-user: Read Jira user information
+            read:jira-work: Read Jira work data
+            write:jira-work: Write Jira work data
+  schemas:
+    Issue:
+      type: object
+      properties:
+        id:
+          type: string
+        key:
+          type: string
+        fields:
+          type: object
+          properties:
+            summary:
+              type: string
+            description:
+              type: string
+            issuetype:
+              type: object
+              properties:
+                name:
+                  type: string
+paths:
+  /search:
+    get:
+      operationId: getIssues
+      summary: Retrieve a list of issues
+      parameters:
+        - name: jql
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: startAt
+          in: query
+          required: false
+          schema:
+            type: integer
+        - name: maxResults
+          in: query
+          required: false
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: A list of issues
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  issues:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Issue'
+  /issue:
+    post:
+      operationId: createIssue
+      summary: Create a new issue
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                fields:
+                  type: object
+                  properties:
+                    project:
+                      type: object
+                      properties:
+                        key:
+                          type: string
+                    summary:
+                      type: string
+                    description:
+                      type: string
+                    issuetype:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+      responses:
+        '201':
+          description: Issue created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Issue'
+  /issue/{issueIdOrKey}:
+    get:
+      operationId: getIssue
+      summary: Retrieve a specific issue
+      parameters:
+        - name: issueIdOrKey
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Issue details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Issue'
+    put:
+      operationId: updateIssue
+      summary: Update an existing issue
+      parameters:
+        - name: issueIdOrKey
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                fields:
+                  type: object
+                  properties:
+                    summary:
+                      type: string
+                    description:
+                      type: string
+                    issuetype:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+      responses:
+        '204':
+          description: Issue updated successfully
+  /issue:
+    post:
+      operationId: createSubTask
+      summary: Create a sub-task for an issue
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                fields:
+                  type: object
+                  properties:
+                    project:
+                      type: object
+                      properties:
+                        key:
+                          type: string
+                    parent:
+                      type: object
+                      properties:
+                        key:
+                          type: string
+                    summary:
+                      type: string
+                    description:
+                      type: string
+                    issuetype:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+      responses:
+        '201':
+          description: Sub-task created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Issue'
+security:
+  - OAuth2:
+      - read:jira-user
+      - read:jira-work
+      - write:jira-work
+
+```
+
+## Authentication
+
+### 3. Create a Jira Application
+Go to the [Atlassian Developer Console](https://developer.atlassian.com/console/myapps/).
+Click on **Create** and select **OAuth 2.0 integration**
+<img>
+Enter the name of the integration and click **Create**.
+<img>
+
+4. Go to the **Permissions** menu in the left sidebar.
+5. Click on **Add** in the Jira API. Then click **Configure**.
+6. Under **Jira platform REST API** click on **Edit Scopes**. Grant the following scopes:
+read:jira-work
+write:jira-work
+read:jira-user
+
+If you want to use other permissions than in our example, you need to set this here and in the OpenAPI Schema above.
+7. Click **Save**.
+<img>
+8. Go to **Authorization** in the left sidebar and click on **Add** next to **OAuth 2.0 (3LO)**
+<img>
+9. Enter a placeholder callback URL and click **Save Changes**. We will replace this later by the correct callback URL from the action.
+<img>
+10. Go to **Settings** in the left sidebar and scroll down to **Authentication Details**. Save the Client ID and the Secret securely. We will need them to authenticate the access from Langdock.
+
+
+### 4. OAuth Configuration in Langdock
+
+
+Go to the Authentication section at the top of the action settings. Select OAuth.
+Enter the according information from your Jira Application:
+- **Client ID:** Enter the Client Key from above
+- **Client Secret:** Enter the Secret from before
+- **Authorization URL:** https://auth.atlassian.com/authorize
+- **Token URL:** https://auth.atlassian.com/oauth/token
+- **Scopes:** read:jira-work write:jira-work read:jira-user
+- **Token:** Default
+
+### 5. Paste the redirect URL into Jira application
+1. Copy the redirect URL from the OAuth section in the action.
+2. Go to your Jira app
+3. Navigate back to the **Authorization** section in the left sidebar.
+4. Next to **OAuth 2.0 (3LO)** click on **Configure** and replace the placeholder from before with the correct callback URL.
+
+
+
+
+
