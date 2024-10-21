@@ -245,25 +245,38 @@ security:
 ### 3. Create a Jira Application
 Go to the [Atlassian Developer Console](https://developer.atlassian.com/console/myapps/).
 Click on **Create** and select **OAuth 2.0 integration**
-<img>
+<img src="/images/actions-jira-1.png"/>
+
 Enter the name of the integration and click **Create**.
-<img>
+<img src="/images/actions-jira-2.png"/>
 
 4. Go to the **Permissions** menu in the left sidebar.
 5. Click on **Add** in the Jira API. Then click **Configure**.
-6. Under **Jira platform REST API** click on **Edit Scopes**. Grant the following scopes:
+<img src="/images/actions-jira-3.png"/>
+
+6. Under **Jira platform REST API** click on **Edit Scopes**. 
+<img src="/images/actions-jira-4.png"/>
+
+7. Grant the following scopes:
 read:jira-work
 write:jira-work
 read:jira-user
 
+<img src="/images/actions-jira-5.png"/>
+
 If you want to use other permissions than in our example, you need to set this here and in the OpenAPI Schema above.
-7. Click **Save**.
-<img>
-8. Go to **Authorization** in the left sidebar and click on **Add** next to **OAuth 2.0 (3LO)**
-<img>
-9. Enter a placeholder callback URL and click **Save Changes**. We will replace this later by the correct callback URL from the action.
-<img>
-10. Go to **Settings** in the left sidebar and scroll down to **Authentication Details**. Save the Client ID and the Secret securely. We will need them to authenticate the access from Langdock.
+
+8. Click **Save**.
+
+9. Go to **Authorization** in the left sidebar and click on **Add** next to **OAuth 2.0 (3LO)**
+
+<img src="/images/actions-jira-6.png"/>
+
+10. Enter a placeholder callback URL and click **Save Changes**. We will replace this later by the correct callback URL from the action.
+
+<img src="/images/actions-jira-7.png"/>
+
+11. Go to **Settings** in the left sidebar and scroll down to **Authentication Details**. Save the Client ID and the Secret securely. We will need them to authenticate the access from Langdock.
 
 
 ### 4. OAuth Configuration in Langdock
