@@ -10,7 +10,7 @@ This will open the assistant configurator. On the left, you have different optio
 When building an assistant, you often need to iterate and improve the assistant step by step. This is done by configuring something on the left, testing it on the right, improving something on the left again, testing again etc.
 
 
-### Considerations in the beginning
+## Considerations in the beginning
 Before starting, think about the goal you are trying to achieve with this assistant. Here are a few guiding questions to structure the configuration of the assistant:
 - What is the purpose of the assistant? Which task should the assistant help you with?
 - What are the steps to achieve this?
@@ -20,14 +20,14 @@ Before starting, think about the goal you are trying to achieve with this assist
 
 In our example, we want to build a job description assistant. The assistant should write job descriptions for different platforms and target groups. The steps here are as follows: The user needs to start the process, say which job they want to write a description for, and what should be included. If information is missing, the assistant should ask the user to provide this information.
 
-### Icon, Name, and Description
+## Icon, Name, and Description
 Start by uploading an icon or selecting an emoji of the assistant, defining a name, and providing a brief description of what the assistant does.
 In our case, we call the assistant “Job Description Assistant” and describe it with: “This assistant will write job descriptions for you. Provide the details about the job you want to hire someone for and receive a finished job description.”
 
-### Instructions
+## Instructions
 The most important part of the assistant configuration is to give the right instructions. You can use the [prompt engineering guide](https://docs.langdock.com/resources/prompt-elements) to craft good instructions. The prompt elements (persona, task, context, format) especially help to define what the assistant should do.
 
-#### Persona
+### Persona
 
 Let’s give the assistant the persona we defined earlier:
 
@@ -35,7 +35,7 @@ Let’s give the assistant the persona we defined earlier:
 You are the job description assistant.
 ```
 
-#### Task
+### Task
 We can include our considerations of what the assistant should do for the other elements. We include the task and the process the assistant should follow. First, the user should provide details about the position. The assistant should ask for relevant information if something is missing. While this is a simpler example, there are use cases where different conditions apply, what the assistant should do (First do x, then do y; If the user replies with a answer with b, otherwise with c;...)
 
 ```
@@ -51,7 +51,7 @@ This information is needed to fill out the role:
 - Skills
 ```
 
-#### Context
+### Context
 Now, we have added a persona and a task. Let’s add context about the company the job description should be written for:
 ```
 Here is information about the company this position is from:_
@@ -59,7 +59,7 @@ Here is information about the company this position is from:_
 We are building the AI platform for team productivity. We help companies from enterprises to startups, to empower their employees with LLMs while fully controlling their data. We connect to internal knowledge, deploy custom assistants, and automate workflows. We are a small, experienced team with TU Munich, Stanford, Berkeley, and CODE alumni.
 ```
 
-#### Format
+### Format
 Finally, we can add the output format. For many use cases, this will be covered with examples as well. If you are looking for a specific output format, you can add it explicitly as well:
 
 ```
@@ -88,7 +88,7 @@ It is normal to iterate on the instruction. Try things out and see what works. I
 
 In our case, we would add different role descriptions and see how the results differ. It also makes sense to leave things out intentionally to test the assistant’s ability to ask for more details and additional information from the user.
 
-### Conversation starters
+## Conversation starters
 Conversation starters are different options the user can click on as a first message to the assistant. These are optional but helpful in guiding the user and reducing effort.
 
 You can use conversation starters for the following situations:
@@ -101,20 +101,20 @@ You can use conversation starters for the following situations:
     - _What are the company meetings I need to attend?_
 3. Lastly, this functionality helps to **test the assistant**. When iteratively improving the instructions, you will write the same prompt repeatedly. Instead of re-writing it again and again or copy-pasting it, you can set it as a conversation starter and just need to click on it.
 
-### Knowledge
+## Knowledge
 You have different options when using knowledge with an assistant. For example, you can upload or select files from integrations in the chat. Additionally, you can connect your vector database or connect a data folder. You can read more about data folders here. 
 In our case, we don’t need additional knowledge.
 
-### Model
+## Model
 You can select any model available in your workspace for your assistant. For models, we have written a different guide here.
 Generally, the best model for most use cases is GPT-4o right now.
 
-### Capabilities
+## Capabilities
 At the bottom, you can enable different capabilities the assistant should use. These are web search, image generation and data analysis. These tools are explained in detail in the guide about our chat [here](https://docs.langdock.com/product/chat-tools). In our case, the assistant will not need these capabilities. If the assistant does not need the capabilities, we can turn them off.
 
-### Testing the assistant
+## Testing the assistant
 After and during your assistant configuration, we highly recommend testing your assistant as much as possible on the right side of the Assistant Builder.
 
-### Saving and sharing the assistant
+## Saving and sharing the assistant
 The assistant always saves your changes automatically, so you don’t have to worry about saving changes. When the assistant is ready, you can share it with others or use it yourself. To share the assistant, click on the “Share” button in the upper right corner of the Assistant Builder, and you will be forwarded to a new window where you can define with whom you want to share it.
 By clicking on the three dots next to the “Share” button in the top right corner, you can also duplicate or delete the assistant.
