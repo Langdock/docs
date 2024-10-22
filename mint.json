@@ -95,6 +95,13 @@
       "pages": ["product/search/introduction"]
     },
     {
+      "group": "Settings",
+      "pages": [
+        "settings/account", 
+        "settings/workspace"
+        ]
+    },
+    {
       "group": "Knowledge Folders",
       "pages": [
         "settings/knowledge-folders/upload-a-file-to-a-knowledge-folder",
@@ -102,10 +109,6 @@
         "settings/knowledge-folders/retrieve-files-from-a-knowledge-folder",
         "settings/knowledge-folders/delete-an-attachment-from-a-knowledge-folder"
         ]
-    },
-    {
-      "group": "Settings",
-      "pages": ["settings/account", "settings/workspace"]
     },
     {
       "group": "Security",
