@@ -97,6 +97,105 @@ paths:
             schema:
               $ref: '#/components/schemas/CreateMessageParams'
         required: true
+  /api/knowledge/{folderId}:
+    post:
+      summary: Upload a file to a knowledge folder
+      parameters:
+        - name: folderId
+          in: path
+          required: true
+          description: The ID of the knowledge folder
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+                  description: The file to upload
+                url:
+                  type: string
+                  description: The associated URL
+      responses:
+        '200':
+          description: File uploaded successfully
+      security:
+        - bearerAuth: []
+
+    patch:
+      summary: Update an attachment in a knowledge folder
+      parameters:
+        - name: folderId
+          in: path
+          required: true
+          description: The ID of the knowledge folder
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+                  description: The new file to upload
+                url:
+                  type: string
+                  description: The new associated URL
+                attachmentId:
+                  type: string
+                  description: The ID of the attachment to update
+      responses:
+        '200':
+          description: Attachment updated successfully
+      security:
+        - bearerAuth: []
+
+  /api/public/knowledge/{folderId}/list:
+    get:
+      summary: Retrieve files from a knowledge folder
+      parameters:
+        - name: folderId
+          in: path
+          required: true
+          description: The ID of the knowledge folder
+          schema:
+            type: string
+      responses:
+        '200':
+          description: List of files retrieved successfully
+      security:
+        - bearerAuth: []
+
+  /api/knowledge/{folderId}/{attachmentId}:
+    delete:
+      summary: Delete an attachment from a knowledge folder
+      parameters:
+        - name: folderId
+          in: path
+          required: true
+          description: The ID of the knowledge folder
+          schema:
+            type: string
+        - name: attachmentId
+          in: path
+          required: true
+          description: The ID of the attachment to delete
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Attachment deleted successfully
+      security:
+        - bearerAuth: []
 components:
   schemas:
     # OpenAI schemas
