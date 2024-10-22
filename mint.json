@@ -55,9 +55,7 @@
   "navigation": [
     {
       "group": "Getting started",
-      "pages": [
-        "product/introduction"
-      ]
+      "pages": ["product/introduction"]
     },
     {
       "group": "Chat",
@@ -89,31 +87,27 @@
       "group": "API",
       "pages": [
         "product/api/openai",
-        "product/api/anthropic"
+        "product/api/anthropic",
+        "product/api/knowledge-folders/upload-a-file-to-a-knowledge-folder",
+        "product/api/knowledge-folders/update-an-attachment-in-a-knowledge-folder",
+        "product/api/knowledge-folders/retrieve-files-from-a-knowledge-folder",
+        "product/api/knowledge-folders/delete-an-attachment-from-a-knowledge-folder"
       ]
     },
     {
       "group": "Search",
-      "pages": [
-        "product/search/introduction"
-      ]
+      "pages": ["product/search/introduction"]
     },
     {
       "group": "Settings",
-      "pages": [
-        "settings/account",
-        "settings/workspace"
-      ]
+      "pages": ["settings/account", "settings/workspace"]
     },
-        {
+    {
       "group": "Security",
       "pages": [
         {
           "group": "SAML",
-          "pages": [
-            "settings/security/entra",
-            "settings/security/google"
-          ]
+          "pages": ["settings/security/entra", "settings/security/google"]
         },
         "settings/security/scim"
       ]
@@ -124,16 +118,14 @@
         {
           "group": "How integrations work",
           "pages": [
-          "settings/integrations/integration-types",
-          "settings/integrations/how-to-use-search-integrations",
-          "settings/integrations/how-to-use-slack"
+            "settings/integrations/integration-types",
+            "settings/integrations/how-to-use-search-integrations",
+            "settings/integrations/how-to-use-slack"
           ]
         },
         {
           "group": "Search integrations: User-level",
-          "pages": [
-          "settings/integrations/oauth"
-          ]
+          "pages": ["settings/integrations/oauth"]
         },
         {
           "group": "Search integrations: Workspace-level",
@@ -144,9 +136,7 @@
         },
         {
           "group": "Chatbot integrations",
-          "pages": [
-            "settings/integrations/slack"
-          ]
+          "pages": ["settings/integrations/slack"]
         },
         {
           "group": "Action integrations in assistants",
@@ -164,20 +154,15 @@
         "settings/byok",
         "settings/fair-usage-policy",
         "settings/models/gemini"
-          ]
+      ]
     },
     {
       "group": "Legal & Compliance",
-      "pages": [
-        "admin/legal-compliance"
-      ]
+      "pages": ["admin/legal-compliance"]
     },
     {
       "group": "Billing",
-      "pages": [
-        "admin/pricing",
-        "admin/invoices"
-      ]
+      "pages": ["admin/pricing", "admin/invoices"]
     },
     {
       "group": "Prompt Engineering",
@@ -207,7 +192,7 @@
         "resources/further-resources"
       ]
     },
-        {
+    {
       "group": "Guides",
       "pages": [
         "resources/models",
@@ -217,7 +202,7 @@
           "pages": [
             "resources/assistant-creation",
             "resources/assistant-templates",
-            "resources/assistant-configurator",         
+            "resources/assistant-configurator",
             "resources/actions-assistant"
           ]
         }
