@@ -43,7 +43,7 @@ info:
   description: API for interacting with Jira issues and sub-tasks.
   version: 1.0.0
 servers:
-  - url: https://api.atlassian.com/ex/jira/{{ CLOUD_ID }}/rest/api/3
+  - url: https://api.atlassian.com/ex/jira/{{CLOUD_ID}}/rest/api/3
     description: Jira Cloud API
 components:
   securitySchemes:
@@ -193,46 +193,6 @@ paths:
       responses:
         '204':
           description: Issue updated successfully
-  /issue:
-    post:
-      operationId: createSubTask
-      summary: Create a sub-task for an issue
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                fields:
-                  type: object
-                  properties:
-                    project:
-                      type: object
-                      properties:
-                        key:
-                          type: string
-                    parent:
-                      type: object
-                      properties:
-                        key:
-                          type: string
-                    summary:
-                      type: string
-                    description:
-                      type: string
-                    issuetype:
-                      type: object
-                      properties:
-                        name:
-                          type: string
-      responses:
-        '201':
-          description: Sub-task created successfully
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Issue'
 security:
   - OAuth2:
       - read:jira-user
