@@ -1,0 +1,8 @@
+---
+title: 'Introduction to knowledge folders'
+description: 'Knowledge folders can contain several hundred files and can be attached to an assistant. Below is a guide how to use this feature and where the difference is compared to attaching files directly to the assistant.'
+---
+
+In the chat and assistants, you can add up to 20 files and send them with your prompt to the model. This is due to the limited amount of information the models can process simultaneously (= Context window, see **this guide** for details about sending documents in the context window).
+
+To add more than 20 files, you can create knowledge folders in the settings. Here, you can add up to 1,000 files in one folder. This folder can then be attached to assistants and found in the Search feature. With this feature, the number of files can easily surpass the context window size of the model (the text in attached folders can be longer than the processing limit of the model). The model is split into different sections. Then, relevant sections for answering the user prompt are identified, and only these relevant text sections are sent to the model in the context window. This knowledge folder feature allows us to work with large document numbers but reduces accuracy, as not every part of the documents is considered.

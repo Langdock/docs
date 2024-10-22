@@ -19,10 +19,8 @@ Below that, you can set the app language. Currently, we support English and Germ
 ## Custom Instructions
 You can add information about yourself or how the answers should be written in the settings. This text applies to all messages you send to an AI model. In the resources section, you find a [guide with examples](https://docs.langdock.com/resources/custom-instructions) of what to add in custom instructions to.
 
-## Data Folders
-In the chat and assistants, you can add up to 20 files and send them with your prompt to the mode. This is due to the limited amount of information the models can process simultaneously (= Context window, see **this guide** for details about sending documents in the context window).
-
-To add more than 20 files, you can create data folders in the settings. Here, you can add up to 1,000 files in one folder. This folder can then be attached to assistants and found in the Search feature. With this feature, the number of files can easily surpass the context window size of the model (the text in attached folders can be longer than the processing limit of the model). The model is split into different sections. Then, relevant sections for answering the user prompt are identified, and only these relevant text sections are sent to the model in the context window. This data folder feature allows us to work with large document numbers but reduces accuracy, as not every part of the documents is considered.
+## Knowledge Folders
+You can add files into a knowledge folder and attach this folder to an assistant. This is helpful to attach a large documentation with many files to an FAQ or support assistant. This functionality works slightly differently than attaching files directly to an assistant. You can find more information about this feature in [this guide](../knowledge-folders/introduction).
 
 ## Privacy
 Langdock uses telemetric data to improve the product. In the privacy settings, you can opt out of telemetry and analytics.
