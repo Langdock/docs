@@ -95,11 +95,6 @@
       ]
     },
     {
-      "name": "API Reference",
-      "openapi": "openapi.yaml",
-      "url": "api-reference"
-    },
-    {
       "group": "Search",
       "pages": ["product/search/introduction"]
     },
