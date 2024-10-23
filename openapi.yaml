@@ -149,7 +149,7 @@ paths:
                   description: The new file to upload
                 url:
                   type: string
-                  description: The new associated URL
+                  description: URL that is shown to the user if the file is used in an answer
                 attachmentId:
                   type: string
                   description: The ID of the attachment to update
