@@ -128,7 +128,7 @@ paths:
         - bearerAuth: []
 
     patch:
-      summary: Update an attachment in a knowledge folder
+      summary: Update a file in a knowledge folder
       parameters:
         - name: folderId
           in: path
@@ -177,7 +177,7 @@ paths:
 
   /knowledge/{folderId}/{attachmentId}:
     delete:
-      summary: Delete an attachment from a knowledge folder
+      summary: Delete a file from a knowledge folder
       parameters:
         - name: folderId
           in: path
