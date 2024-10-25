@@ -43,7 +43,7 @@ info:
   description: API for interacting with Jira issues and sub-tasks.
   version: 1.0.0
 servers:
-  - url: https://api.atlassian.com/ex/jira/{{CLOUD_ID}}/rest/api/3
+  - url: https://api.atlassian.com/ex/jira/{CLOUD_ID}/rest/api/3
     description: Jira Cloud API
 components:
   securitySchemes:
@@ -77,6 +77,26 @@ components:
               properties:
                 name:
                   type: string
+    IssueUpdateDetails:
+      additionalProperties: true
+      description: Details of an issue update request.
+      properties:
+        fields:
+          additionalProperties: {}
+          description: List of issue screen fields to update, specifying the sub-field to update and its value for each field. This field provides a straightforward option when setting a sub-field. When multiple sub-fields or other operations are required, use `update`. Fields included in here cannot be included in `update`.
+          type: object
+        properties:
+          description: Details of issue properties to be add or update.
+          items:
+            $ref: '#/components/schemas/EntityProperty'
+          type: array
+        update:
+          additionalProperties:
+            items:
+              $ref: '#/components/schemas/FieldUpdateOperation'
+            type: array
+          description: A Map containing the field field name and a list of operations to perform on the issue screen field. Note that fields included in here cannot be included in `fields`.
+          type: object
 paths:
   /search:
     get:
@@ -85,17 +105,14 @@ paths:
       parameters:
         - name: jql
           in: query
-          required: false
           schema:
             type: string
         - name: startAt
           in: query
-          required: false
           schema:
             type: integer
         - name: maxResults
           in: query
-          required: false
           schema:
             type: integer
       responses:
@@ -132,7 +149,38 @@ paths:
                     summary:
                       type: string
                     description:
-                      type: string
+                      type: object
+                      properties:
+                        content:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              content:
+                                type: array
+                                items:
+                                  type: object
+                                  properties:
+                                    text:
+                                      type: string
+                                    type:
+                                      type: string
+                                      default: text
+                                      enum: [text]
+                              type:
+                                type: string
+                                default: paragraph
+                                enum: [paragraph]
+                        type:
+                          type: string
+                          enum: [doc]
+                        version:
+                          type: integer
+                          enum: [1]
+                      required:
+                        - content
+                        - type
+                        - version
                     issuetype:
                       type: object
                       properties:
@@ -193,6 +241,73 @@ paths:
       responses:
         '204':
           description: Issue updated successfully
+  /issue/subtask:
+    post:
+      operationId: createSubTask
+      summary: Create a sub-task for an issue
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                fields:
+                  type: object
+                  properties:
+                    project:
+                      type: object
+                      properties:
+                        key:
+                          type: string
+                    parent:
+                      type: object
+                      properties:
+                        key:
+                          type: string
+                    summary:
+                      type: string
+                    description:
+                      type: object
+                      properties:
+                        content:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              content:
+                                type: array
+                                items:
+                                  type: object
+                                  properties:
+                                    text:
+                                      type: string
+                                    type:
+                                      type: string
+                                      default: text
+                                      enum: [text]
+                              type:
+                                type: string
+                                default: paragraph
+                                enum: [paragraph]
+                        type:
+                          type: string
+                          enum: [doc]
+                        version:
+                          type: integer
+                          enum: [1]
+                    issuetype:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+      responses:
+        '201':
+          description: Sub-task created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Issue'
 security:
   - OAuth2:
       - read:jira-user
