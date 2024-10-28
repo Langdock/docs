@@ -363,8 +363,10 @@ Enter the according information from your Jira Application:
 - **Client Secret:** Enter the Secret from before
 - **Authorization URL:** https://auth.atlassian.com/authorize
 - **Token URL:** https://auth.atlassian.com/oauth/token
-- **Scopes:** read:jira-work write:jira-work read:jira-user
+- **Scopes:** read:jira-work write:jira-work read:jira-user offline_access
 - **Token:** Default
+
+Specifying the scope `offline_access` allows us to automatically refresh access tokens for signed-in users.
 
 ### 5. Paste the redirect URL into Jira application
 1. Copy the redirect URL from the OAuth section in the action.
