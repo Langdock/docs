@@ -97,6 +97,24 @@ paths:
             schema:
               $ref: '#/components/schemas/CreateMessageParams'
         required: true
+  /knowledge/search:
+     post:
+      summary: Search through all files in data folders shared with the API Key
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                query:
+                  type: string
+                  description: The search query
+      responses:
+        '200':
+          description: Successfully found search results
+      security:
+        - bearerAuth: []
   /knowledge/{folderId}:
     post:
       summary: Upload a file to a knowledge folder
