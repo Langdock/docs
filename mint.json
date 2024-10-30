@@ -126,7 +126,7 @@
         {
           "group": "Introduction",
           "pages": [
-            "settings/integrations/integration-types",
+            "settings/integrations/types",
             "settings/integrations/how-to-use-search-integrations",
             "settings/integrations/how-to-use-slack"
           ]
