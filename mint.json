@@ -159,8 +159,10 @@
     {
       "group": "Models",
       "pages": [
-        "settings/byok",
-        "settings/fair-usage-policy",
+        "settings/models/fair-usage-policy",
+        "settings/models/byok",
+        "settings/models/byok-setup",
+        "settings/models/adding-models",
         "settings/models/gemini"
       ]
     },
