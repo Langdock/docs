@@ -60,6 +60,11 @@ You can leave the other fields empty or with their default values. Finally, save
 <img src="/images/entra-id-6.png" />
 <img src="/images/entra-id-7.png" />
 
+You also need to modify the default SAML Certificate configuration, by clicking "Edit" in the "SAML Certificates" > "Token signing certificate" section and 1. setting the "Signing Option" to "Sign SAML response and assertion" and 2. setting the "Signing Algorithm" to "SHA-256". Save the configuration by clicking "Save".
+
+<img src="/images/entra-id-8.png" />
+<img src="/images/entra-id-9.png" />
+
 To finalize the SAML setup, you need to copy the Login URL and the SAML Signing certificate from Entra ID to Langdock.
 
 1. In the "SAML Signing Certificate" section of your Entra ID portal, click on "Download" next to "Certificate (Base64)" link to download the certificate. You have to open the certificate in a text editor and copy the content. This will be in the format of:
@@ -72,7 +77,7 @@ To finalize the SAML setup, you need to copy the Login URL and the SAML Signing 
 
 2. Copy the "Login URL" value from the "Set up Langdock" section in your Entra ID portal.
 
-<img src="/images/entra-id-8.png" />
+<img src="/images/entra-id-10.png" />
 
 In your Langdock workspace, navigate to the [Security settings](https://app.langdock.com/settings/workspace/security) again and paste the copied values into the respective fields:
 
@@ -80,7 +85,7 @@ In your Langdock workspace, navigate to the [Security settings](https://app.lang
 2. Paste the "Login URL" value from Entra ID into the "Sign on URL" field.
 3. Paste the SAML Signing certificate content into the "Certificate" field.
 
-<img src="/images/entra-id-9.png" />
+<img src="/images/entra-id-11.png" />
 
 ## Test the SAML setup
 
@@ -89,8 +94,8 @@ Enter an email address of a user in your Entra ID account and click "Continue". 
 You will be redirected to the Entra ID login page, where you can enter your credentials. <br />
 After successful authentication, you will be redirected back to Langdock and logged in.
 
-<img src="/images/entra-id-10.png" />
-<img src="/images/entra-id-11.png" />
+<img src="/images/entra-id-12.png" />
+<img src="/images/entra-id-13.png" />
 
 ## Troubleshooting
 
