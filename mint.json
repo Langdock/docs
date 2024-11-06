@@ -69,7 +69,8 @@
             "product/chat/web-search",
             "product/chat/image-analysis",
             "product/chat/image-generation",
-            "product/chat/data-analysis"
+            "product/chat/data-analysis",            "product/chat/canvas"
+
           ]
         },
         "product/chat/prompt-library"
