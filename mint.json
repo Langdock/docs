@@ -107,7 +107,8 @@
         "settings/knowledge-folders/upload-a-file-to-a-knowledge-folder",
         "settings/knowledge-folders/update-an-attachment-in-a-knowledge-folder",
         "settings/knowledge-folders/retrieve-files-from-a-knowledge-folder",
-        "settings/knowledge-folders/delete-an-attachment-from-a-knowledge-folder"
+        "settings/knowledge-folders/delete-an-attachment-from-a-knowledge-folder",
+        "settings/knowledge-folders/search-through-all-knowledge-folders"
         ]
     },
     {
