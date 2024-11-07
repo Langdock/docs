@@ -3,78 +3,68 @@ title: 'Frequently Asked Questions'
 description: 'Below you can find a collection of questions that are asked regularly.'
 ---
 
-<AccordionGroup>
-  <Accordion title="Why is there a limit of 20 files in the chat and in assistants?">
-    Large Language models have a context window, which is the maximum amount of text they can process at once. This includes the prompt you send to the model, the previous chat history as well as attached files (this is explained in [this guide](https://docs.langdock.com/resources/basics)). To work efficiently with files, reduce the number of documents to the lowest number of files possible.
+## Why is there a limit of 20 files in the chat and in assistants?
+Large Language models have a context window, which is the maximum amount of text they can process at once. This includes the prompt you send to the model, the previous chat history as well as attached files (this is explained in [this guide](https://docs.langdock.com/resources/basics)). To work efficiently with files, reduce the number of documents to the lowest number of files possible.
 
-    The limit of 20 files helps to increase the probability that all of the content fits into the context window. To work with larger documents or more files, you can use a [knowledge folder](https://docs.langdock.com/settings/knowledge-folders/introduction) and attach it to an assistant.
-  </Accordion>
+The limit of 20 files helps to increase the probability that all of the content fits into the context window. To work with larger documents or more files, you can use a [knowledge folder](https://docs.langdock.com/settings/knowledge-folders/introduction) and attach it to an assistant.
 
-  <Accordion title="When do I use which integration?">
-    There are different integration types in Langdock: Search integrations, chatbots, action integrations and APIs. You can find out more about the integration types in [this guide](https://docs.langdock.com/settings/integrations/types).
-  </Accordion>
+## When do I use which integration?
+There are different integration types in Langdock: Search integrations, chatbots, action integrations and APIs. You can find out more about the integration types in [this guide](https://docs.langdock.com/settings/integrations/types).
 
-  <Accordion title="When do I attach a file to a chat, when to an assistant and when do I use a data folder?">
-    **When to attach a file to a chat or an assistant chat:**
-    - There a small number of files
-    - The file(s) is/are relatively short
-    - You use the file only once or only in one chat
+## When do I attach a file to a chat, when to an assistant and when do I use a data folder?
+**When to attach a file to a chat or an assistant chat:**
+- There a small number of files
+- The file(s) is/are relatively short
+- You use the file only once or only in one chat
 
-    **When to add a file in the assistant knowledge:**
-    - There a small number of files
-    - The file(s) is/are relatively short
-    - You want to use the file regularly in the assistant
-    - The file does not change often (maybe every few days), so it is not too much effort to attach it again to the assistant
+**When to add a file in the assistant knowledge:**
+- There a small number of files
+- The file(s) is/are relatively short
+- You want to use the file regularly in the assistant
+- The file does not change often (maybe every few days), so it is not too much effort to attach it again to the assistant
 
-    **When to use knowledge folders:**
-    - There is a large number of files
-    - The files are very long
-    - You only need specific sections of the files for a prompt, not the entire files
-      - For example: You have built an FAQ assistant and attached documentation to it. For each prompt, only some topics are needed and only the relevant sections are used to answer the request.
+**When to use knowledge folders:**
+- There is a large number of files
+- The files are very long
+- You only need specific sections of the files for a prompt, not the entire files
+  - For example: You have built an FAQ assistant and attached documentation to it. For each prompt, only some topics are needed and only the relevant sections are used to answer the request.
 
-  To find out more about the functionality of the different features, please refer to the next section.
-  </Accordion>
+To find out more about the functionality of the different features, please refer to the next section.
 
-  <Accordion title="How does a file attachment work and how is it different to a file in a knowledge folder?">
-    There are two ways how contents of a file are processed for generating an answer:
-    - One is that the **entire document** is sent to the model, together with your prompt (see [this guide](https://docs.langdock.com/resources/basics)). This is the standard in chats and assistants.
-    - AI models have a context window, which is the limit of how much text can be processed at once. For long documents or a large number of documents, the documents are **summarized and only relevant sections** are sent to the model in the context window. This is used in [knowledge folders](https://docs.langdock.com/settings/knowledge-folders/introduction).
+## How does a file attachment work and how is it different to a file in a knowledge folder?
+There are two ways how contents of a file are processed for generating an answer:
+- One is that the **entire document** is sent to the model, together with your prompt (see [this guide](https://docs.langdock.com/resources/basics)). This is the standard in chats and assistants.
+- AI models have a context window, which is the limit of how much text can be processed at once. For long documents or a large number of documents, the documents are **summarized and only relevant sections** are sent to the model in the context window. This is used in [knowledge folders](https://docs.langdock.com/settings/knowledge-folders/introduction).
 
-    Attaching the files directly to an assistant or to a chat leads to the best results. If possible, you should follow this option. We recommend to attach as few documents as possible to an assistant or chat.
+Attaching the files directly to an assistant or to a chat leads to the best results. If possible, you should follow this option. We recommend to attach as few documents as possible to an assistant or chat.
 
-    In some use cases, for example when working with large documentation or for an FAQ assistant, attaching the documents to an assistant or to a chat directly is not possible. Here, you can use the knowledge folder feature, which works well for use cases, where only specific sections are relevant, but not the entire documents.
-  </Accordion>
+In some use cases, for example when working with large documentation or for an FAQ assistant, attaching the documents to an assistant or to a chat directly is not possible. Here, you can use the knowledge folder feature, which works well for use cases, where only specific sections are relevant, but not the entire documents.
 
+## When are newly released models available in Langdock?
+Models are usually available in the US first. It takes a few weeks until they are launched in the EU in a GDPR-compliant way. We add the models as soon as they are available in the EU.
 
-  <Accordion title="When are newly released models available in Langdock?">
-    Models are usually available in the US first. It takes a few weeks until they are launched in the EU in a GDPR-compliant way. We add the models as soon as they are available in the EU.
-  </Accordion>
+## Which file types does Langdock support?
+Langdock supports the following file types:
 
-  <Accordion title="Which file types does Langdock support?">
-    Langdock supports the following file types:
+**Text-based files:**
+- PDF
+- Markdown (.md)
+- Text (.txt)
+- Word (.docx) / Google Docs
+- Powerpoint (.ppt) / Google Slides
+- JSON
 
-    **Text-based files:**
-    - PDF
-    - Markdown (.md)
-    - Text (.txt)
-    - Word (.docx) / Google Docs
-    - Powerpoint (.ppt) / Google Slides
-    - JSON
+**Tabular Files:**
+- Excel (.xslx) / Google Sheets
+- CSV
 
-    **Tabular Files:**
-    - Excel (.xslx) / Google Sheets
-    - CSV
+**Images:**
+- JPG
+- PNG
 
-    **Images:**
-    - JPG
-    - PNG
+<Info>Because of how knowledge folders work, only text-based files can be uploaded in them. Also, Images can only be analyzed directly in a chat, not in assistants or knowledge folders</Info>
 
-    <Info>Because of how knowledge folders work, only text-based files can be uploaded in them. Also, Images can only be analyzed directly in a chat, not in assistants or knowledge folders</Info>
-  </Accordion>
+## How long are files saved in Langdock?
+Files are connected to either a chat, an assistant or a knowledge folder. To remove a file, you can delete the according entity. When a chat, an assistant or a knowledge folder is deleted, connected files are deleted immediately and can not be retrieved.
 
-  <Accordion title="How long are files saved in Langdock?">
-    Files are connected to either a chat, an assistant or a knowledge folder. To remove a file, you can delete the according entity. When a chat, an assistant or a knowledge folder is deleted, connected files are deleted immediately and can not be retrieved.
-
-    To manage how long chats are saved, Langdock has a data retention period that can be set by admins. Chats which have not been used in the defined period are deleted automatically. You can read more about this [here](https://docs.langdock.com/settings/workspace#chat).
-  </Accordion>
-</AccordionGroup>
+To manage how long chats are saved, Langdock has a data retention period that can be set by admins. Chats which have not been used in the defined period are deleted automatically. You can read more about this [here](https://docs.langdock.com/settings/workspace#chat).
