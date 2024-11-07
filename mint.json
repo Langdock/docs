@@ -162,7 +162,7 @@
     {
       "group": "Models",
       "pages": [
-        "settings/models/fair-usage-policy",
+        "settings/fair-usage-policy",
         "settings/models/byok",
         "settings/models/byok-setup",
         "settings/models/adding-models",
