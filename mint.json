@@ -163,7 +163,7 @@
       "group": "Models",
       "pages": [
         "settings/fair-usage-policy",
-        "settings/models/byok",
+        "settings/byok",
         "settings/models/byok-setup",
         "settings/models/adding-models",
         "settings/models/gemini"
