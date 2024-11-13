@@ -152,6 +152,7 @@
         {
           "group": "Action integrations: API Calls in assistants",
           "pages": [
+          "settings/integrations/how-to-create-actions",
             "settings/integrations/actions-salesforce",
             "settings/integrations/actions-google-drive",
             "settings/integrations/actions-jira"
@@ -216,7 +217,6 @@
             "resources/assistant-creation",
             "resources/assistant-templates",
             "resources/assistant-configurator",
-            "resources/actions",
             "resources/actions-assistant"
           ]
         }
