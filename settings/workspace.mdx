@@ -13,7 +13,7 @@ All these sections have a redirect to the individual section in the workspace se
 The general workspace includes the most important customizations of the workspace. You can upload your company logo here, give the tool an adequate name, and enter a short description. This description is sent to the model with all prompts for every workspace user (like the custom instructions on a user level; [here](/resources/custom-instructions) is a guide for custom instruction). Here, you also find the option to delete the workspace.
 
 ## Subscription
-The subscription page shows the plan you are currently on and the other plans Langdock offers. For details and a pricing calculator, refer to our [pricing page](https://www.langdock.com/pricing) on our website. We have written a **guide here** if you have any questions regarding invoices.
+The subscription page shows the plan you are currently on and the other plans Langdock offers. For details and a pricing calculator, refer to our [pricing page](https://www.langdock.com/pricing) on our website. We have written a [guide here](/admin/invoices) if you have any questions regarding invoices.
 
 ## Security
 You can add different security measures to manage who can access the space.
@@ -21,16 +21,16 @@ At the top, you can define specific domains that are allowed to access the space
 
 Below, you can add SSO via SAML and user synchronization via SCIM here.
 
-<Info>You can find guides for SSO, SAML and SCIM **[here]**. If you have any questions, please reach out to support@langdock.com.</Info>
+<Info>You can find guides for SSO, SAML and SCIM [here](/settings/security). If you have any questions, please reach out to support@langdock.com.</Info>
 
 ## User Management
 ### Members
 The members sections in the user management allow you to invite new members, assign different roles to them, or remove members. You can also export a list of all users. This helps with internal rollout planning and communication, such as regularly sending an internal AI newsletter.
 
-<Warning> The different roles refer to the permissions in the [Roles](https://docs.langdock.com/settings/workspace##user-management###roles) section below. A **workspace editor is not the same as an assistant editor** and can only edit assistants when the editing access is explicitly given to them.</Warning>
+<Warning> The different roles refer to the permissions in the [Roles](/settings/workspace##user-management###roles) section below. A **workspace editor is not the same as an assistant editor** and can only edit assistants when the editing access is explicitly given to them.</Warning>
 
 ### Groups
-Assistants and prompts in the prompt library can be shared with the entire workspace (if this permission is set, see the [Roles section]((https://docs.langdock.com/settings/workspace##user-management###roles) below) or with specific groups. This allows, for example, the marketing team to share a SEO copywriting prompt with marketing colleagues or the engineering team to share a coding assistant with fellow developers.
+Assistants and prompts in the prompt library can be shared with the entire workspace (if this permission is set, see the [Roles section](/settings/workspace##user-management###roles) below) or with specific groups. This allows, for example, the marketing team to share a SEO copywriting prompt with marketing colleagues or the engineering team to share a coding assistant with fellow developers.
 
 There are three ways groups can be created:
 1. Groups can be defined by your SCIM tool for user synchronization,
@@ -101,7 +101,7 @@ You can also add your models at the bottom. To add your models, you can refer to
 
 With the models you added and/or enabled, you can select a default model for all users in the workspace. This model is used in every new chat and assistant by default.
 
-To exclusively use your models, please refer to [this guide about BYOK](https://docs.langdock.com/settings/byok) (bring your own keys).
+To exclusively use your models, please refer to [this guide about BYOK](/settings/byok) (bring your own keys).
 
 Also, please reach out to the Langdock team. If BYOK is not enabled, Langdock still uses the models from Langdock in the background (for embeddings and image generation). Technically, BYOK needs to be manually enabled to switch to your keys.
 
