@@ -1,13 +1,13 @@
 ---
 title: 'Document Search'
-description: 'The chat allows you to send prompts to different AI models and receive a response based on your question. You can use various tools to work with documents, search the web, or perform other operations in the chat. These tools are different capabilities the models have. Describe what you want to do, and the model will choose the right tool automatically based on your request.'
+description: 'To access specific knowledge in files, you can use the document search tool. Simply upload or connect a file and you will take the document into account.'
 ---
 
-<Tip>The **more context and details** you add, the better your response because the model understands precisely what you expect. Do not miss our [Prompt Engineering Guide](https://docs.langdock.com/ressources/prompt-elements) to learn how to write great prompts.</Tip>
+<Tip>The **more context and details** you add, the **better your response** because the model understands precisely what you expect. Do not miss our [Prompt Engineering Guide](https://docs.langdock.com/ressources/prompt-elements) to learn how to write great prompts.</Tip>
 
-Document search is one tool the AI models have. You can add documents by either uploading them, through drag and drop or by selecting a file from an integration (how to set up integrations can be read **here**).
+Document search is one tool the AI models have. You can add documents by either uploading them, through drag and drop or by selecting a file from an integration (how to set up integrations can be read [here](/settings/integrations/types-of-integrations).
 
-If you attach a document to a chat, the document search tool will automatically be used. Document search extracts text from files, such as PDFs, Word documents, or PowerPoint presentations. You will find a list of all supported file types **here**.
+If you attach a document to a chat, the document search tool will automatically be used. Document search extracts text from files, such as PDFs, Word documents, or PowerPoint presentations. You will find a list of all supported file types [here](/resources/faq).
 
 The document's text is sent to the model in the context window, together with the prompt. The document text is then used to answer the question asked by the user.
 
@@ -17,8 +17,4 @@ Use cases for working with documents are:
 - Analyzing the files
 
 **Limitations:**
-Models are not good at retrieving data in tables from documents. Instead, we advise using the data analyst with a CSV, Excel, or Google Sheets or screenshotting the table and working with the screenshot instead. Also, it is not possible to extract images, graphs, or symbols which are not characters.
-
-Here are some known limitations we are working on:
-- **I can not paste links to files behind a login (e.g., Google Documents):** <br />
-The model accesses the web like you would for the first time when you were not logged in anywhere. Due to this, the model can not read documents behind a login. You can use the integrations to attach documents, search for files, and attach them to the chat.
+- Models are not good at retrieving data in tables from documents. Instead, we advise using the data analyst with a CSV, Excel, or Google Sheets or screenshotting the table and working with the screenshot instead. Also, it is not possible to extract images, graphs, or symbols which are not characters.
