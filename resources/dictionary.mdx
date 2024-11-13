@@ -1,0 +1,73 @@
+---
+title: 'Dictionary'
+description: 'Understand the most crucial terms in the AI world with this guide.'
+---
+
+## Artificial Intelligence (AI)
+
+AI refers to computer systems that can perform tasks that usually require human intelligence. They are trained on large amounts of data, learn patterns, and make decisions based on this information.
+
+## Context window
+
+The context window is the maximum amount of text that can be processed at once. It is measured in tokens, which are word pieces the model uses to read and generate text. For most models, this is 128k tokens, which is (depending on the font size) 100 to 150 pages of text.
+
+The context window gets filled up with your prompt, attached documents, and the previous messages in a chat (read more about this [here](https://docs.langdock.com/resources/basics#influencing-the-output-of-a-response)). When the context window is full, some information from the chat or the documents are cut out, which reduces the answer quality and speed.
+<Tip>For the best performance, please open a new chat to regularly clear the context window</Tip>
+
+## Data analyst
+
+The data analyst is a tool an LLM can use. It uses the data analyst to create Python code (computer code) to perform an operation (e.g., analyzing a CSV or Excel file). This code is then executed to retrieve data and perform the operation. The result of that is sent to the AI model again and used to write an answer. We have described this tool in more detail [here](https://docs.langdock.com/product/chat/data-analysis).
+
+## Embedding
+
+There are two ways how the models work with documents. One way is to send the entire text to the AI model with the prompt in the context window. The other one is to only send relevant sections in the context window. The second option is used for very long documents or a large number of files (e.g., in [knowledge folders](https://docs.langdock.com/settings/knowledge-folders/introduction)).
+
+To find the relevant sections, the uploaded documents are sliced into many smaller sections. These sections receive a vector, a long number that describes the topic of the section. This section is then called embedding. The selection process, which sections are relevant is an embedding search (see next section).
+
+Later, the embeddings or the sections behind the embeddings are then put into the context window.
+
+## Embedding search
+
+An embedding search identifies different embeddings that are relevant for a specific prompt. If you ask about a specific topic, the embedding search checks which sections in attached documents are connected to this topic and attaches them to the prompt and sends it to the model. The relevance is checked with vectors, which is a mathematical way of depicting a specific topic (see section about vectors below).
+
+## Hallucination
+
+Large language models are trained on data. They use this data to predict the most likely next token (or word piece) to generate a response. In some cases, for example, when the model does not have the correct context in the prompt or attached documents, it can rely too much on the training data to answer the prompt. Then, it generates a response with the training knowledge, whereas this might be incorrect in the situation you are currently in. Hallucination is made-up information by the model.
+
+Unfortunately, this behavior is (still) a part of how AI models work. There are models that hallucinate less (e.g., Claude 3.5 Sonnet), but overall you should always check the output for correctness.
+
+## Large Language Model (LLM)
+
+Large language models are AI models designed to understand and generate human language. They are trained on large amounts of text and information, which allows them to understand the context and answer based on it. [Here](https://docs.langdock.com/resources/basics) is an article describing the basics of AI models.
+
+## Machine learning (ML)
+
+Machine learning is a subset of AI where the performance of tasks is improving over time because the AI is learning how to better perform a task.
+
+## Prompt
+
+A prompt is the message you as the user send to the AI model. It should prompt the model to perform a specific task, answer a question, or respond in any way. The best way to prompt is not only in individual words (like a Google search) but rather complete, natural sentences. You can learn more about prompting in our [prompt engineering guide](https://docs.langdock.com/resources/prompt-elements).
+
+## Retrieval-Augmented Generation (RAG)
+
+To enhance the model capabilities beyond the training knowledge, AI tools use RAG. RAG helps to add information to the model. This can be adding information by attaching a document in the context window with the full text. One other form, which is often meant with "RAG," is using the embedding search (see above) to search a vector database and attach the relevant vectors to the prompt.
+
+## Token
+
+Tokens are word pieces used for text generation. The models generate the response token by token, so they start with the first word piece to write the next piece, then the next piece, etc. The longer a response is, the more tokens are used for generating the answer. There is a maximum amount of tokens that can be processed by the model (see context window above) and also a maximum limit of how many tokens a model can generate.
+
+## Tool calling / function calling
+
+Large language models can use different tools to perform an operation. These tools are not part of the model, but a feature built by an engineer, which the model can communicate with. Some tools are the web search tool or the data analysis tool. The differences between the model and different tools are described in [this section](https://docs.langdock.com/product/chat/without-tools) and the following articles about the different tools.
+
+## Vector
+
+A vector is a mathematical object in a multi-dimensional space. It is a series of numbers and is assigned to a specific embedding or text section. The numbers describe the topic of the section in multiple categories. The vectors then can have a specific distance from each other. For example, a vector for a section about pizza is not as close to a vector of a section about artificial intelligence as a vector of a section about computers.
+
+## Vector database
+
+A vector database is a specific kind of database where uploaded files receive a vector and the embedding search can find the vectors relevant for answering a query in the database. Our knowledge folders are vector databases in the background. If you want to customize this process, you can also bring your own vector database and attach it to an assistant.
+
+## Vision
+
+Vision is the capability of AI models to process and analyze images. Not all models are capable of this. The models that can process images have this shown in the app when you select the model. They are also listed [here](https://docs.langdock.com/product/chat/image-analysis).
