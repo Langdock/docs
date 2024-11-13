@@ -181,8 +181,8 @@
     {
       "group": "Prompt Engineering",
       "pages": [
-        "resources/basics",
         "resources/prompt-elements",
+        "resources/basics",
         "resources/tricks",
         {
           "group": "Advanced Prompting Principles",
