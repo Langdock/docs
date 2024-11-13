@@ -225,7 +225,8 @@
     {
     "group": "Other resources",
       "pages": [
-        "resources/faq"
+        "resources/faq",
+        "resources/dictionary"
       ]
     }
   ],
