@@ -1,9 +1,9 @@
 ---
 title: 'Image Generation'
-description: 'The chat allows you to send prompts to different AI models and receive a response based on your question. You can use various tools to work with documents, search the web, or perform other operations in the chat. These tools are different capabilities the models have. Describe what you want to do, and the model will choose the right tool automatically based on your request.'
+description: 'To generate images based on your text input, you can use the image generation tool. Here, the model you selected sends a prompt to another model, which is built to generate images (most times Dall-E3).'
 ---
 
-<Tip>The **more context and details** you add, the better your response because the model understands precisely what you expect. Do not miss our [Prompt Engineering Guide](https://docs.langdock.com/ressources/prompt-elements) to learn how to write great prompts.</Tip>
+<Tip>The **more context and details** you add, the **better your response** because the model understands precisely what you expect. Do not miss our [Prompt Engineering Guide](/resources/prompt-elements) to learn how to write great prompts.</Tip>
 
 The models can call another model in the background to generate images. The current image model in Langdock is Dall-E3 by OpenAI.
 Image generation uses the following steps:
@@ -12,8 +12,6 @@ Image generation uses the following steps:
 2. The image model generates the image based on the prompt and returns it to the main model and you as the user.
 
 You can select any language model for image generation. Each model can send prompts to the image model, but the language models prompt the image model differently. Feel free to try different models and see how the generated images differ.
-
-Our resource section contains a short guide about **prompt engineering for image generation**.
 
 Here are some known limitations we are working on:
 - **Text in images has mistakes / is written in non-existing letters:** <br />
