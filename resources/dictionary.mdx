@@ -16,11 +16,11 @@ The context window gets filled up with your prompt, attached documents, and the 
 
 ## Data analyst
 
-The data analyst is a tool an LLM can use. It uses the data analyst to create Python code (computer code) to perform an operation (e.g., analyzing a CSV or Excel file). This code is then executed to retrieve data and perform the operation. The result of that is sent to the AI model again and used to write an answer. We have described this tool in more detail [here](https://docs.langdock.com/product/chat/data-analysis).
+The data analyst is a tool an LLM can use. It uses the data analyst to create Python code (computer code) to perform an operation (e.g., analyzing a CSV or Excel file). This code is then executed to retrieve data and perform the operation. The result of that is sent to the AI model again and used to write an answer. We have described this tool in more detail [here](/product/chat/data-analysis).
 
 ## Embedding
 
-There are two ways how the models work with documents. One way is to send the entire text to the AI model with the prompt in the context window. The other one is to only send relevant sections in the context window. The second option is used for very long documents or a large number of files (e.g., in [knowledge folders](https://docs.langdock.com/settings/knowledge-folders/introduction)).
+There are two ways how the models work with documents. One way is to send the entire text to the AI model with the prompt in the context window. The other one is to only send relevant sections in the context window. The second option is used for very long documents or a large number of files (e.g., in [knowledge folders](/settings/knowledge-folders/introduction)).
 
 To find the relevant sections, the uploaded documents are sliced into many smaller sections. These sections receive a vector, a long number that describes the topic of the section. This section is then called embedding. The selection process, which sections are relevant is an embedding search (see next section).
 
@@ -38,7 +38,7 @@ Unfortunately, this behavior is (still) a part of how AI models work. There are 
 
 ## Large Language Model (LLM)
 
-Large language models are AI models designed to understand and generate human language. They are trained on large amounts of text and information, which allows them to understand the context and answer based on it. [Here](https://docs.langdock.com/resources/basics) is an article describing the basics of AI models.
+Large language models are AI models designed to understand and generate human language. They are trained on large amounts of text and information, which allows them to understand the context and answer based on it. [Here](/resources/basics) is an article describing the basics of AI models.
 
 ## Machine learning (ML)
 
@@ -46,7 +46,7 @@ Machine learning is a subset of AI where the performance of tasks is improving o
 
 ## Prompt
 
-A prompt is the message you as the user send to the AI model. It should prompt the model to perform a specific task, answer a question, or respond in any way. The best way to prompt is not only in individual words (like a Google search) but rather complete, natural sentences. You can learn more about prompting in our [prompt engineering guide](https://docs.langdock.com/resources/prompt-elements).
+A prompt is the message you as the user send to the AI model. It should prompt the model to perform a specific task, answer a question, or respond in any way. The best way to prompt is not only in individual words (like a Google search) but rather complete, natural sentences. You can learn more about prompting in our [prompt engineering guide](/resources/prompt-elements).
 
 ## Retrieval-Augmented Generation (RAG)
 
@@ -58,7 +58,7 @@ Tokens are word pieces used for text generation. The models generate the respons
 
 ## Tool calling / function calling
 
-Large language models can use different tools to perform an operation. These tools are not part of the model, but a feature built by an engineer, which the model can communicate with. Some tools are the web search tool or the data analysis tool. The differences between the model and different tools are described in [this section](https://docs.langdock.com/product/chat/without-tools) and the following articles about the different tools.
+Large language models can use different tools to perform an operation. These tools are not part of the model, but a feature built by an engineer, which the model can communicate with. Some tools are the web search tool or the data analysis tool. The differences between the model and different tools are described in [this section](/product/chat/without-tools) and the following articles about the different tools.
 
 ## Vector
 
@@ -70,4 +70,4 @@ A vector database is a specific kind of database where uploaded files receive a 
 
 ## Vision
 
-Vision is the capability of AI models to process and analyze images. Not all models are capable of this. The models that can process images have this shown in the app when you select the model. They are also listed [here](https://docs.langdock.com/product/chat/image-analysis).
+Vision is the capability of AI models to process and analyze images. Not all models are capable of this. The models that can process images have this shown in the app when you select the model. They are also listed [here](/product/chat/image-analysis).
