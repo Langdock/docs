@@ -63,7 +63,7 @@
         {
           "group": "Tools",
           "pages": [
-            "product/chat/plain-chat",
+            "product/chat/plain-model",
             "product/chat/document-search",
             "product/chat/web-search",
             "product/chat/image-analysis",
