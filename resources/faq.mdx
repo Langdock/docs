@@ -5,13 +5,13 @@ description: 'Below you can find a collection of questions that are asked regula
 
 ## Why is there a limit of 20 files in the chat and in assistants?
 
-Large Language models have a context window, which is the maximum amount of text they can process at once. This includes the prompt you send to the model, the previous chat history as well as attached files (this is explained in [this guide](https://docs.langdock.com/resources/basics)). To work efficiently with files, reduce the number of documents to the lowest number of files possible.
+Large Language models have a context window, which is the maximum amount of text they can process at once. This includes the prompt you send to the model, the previous chat history as well as attached files (this is explained in [this guide](/resources/basics)). To work efficiently with files, reduce the number of documents to the lowest number of files possible.
 
-The limit of 20 files helps to increase the probability that all of the content fits into the context window. To work with larger documents or more files, you can use a [knowledge folder](https://docs.langdock.com/settings/knowledge-folders/introduction) and attach it to an assistant.
+The limit of 20 files helps to increase the probability that all of the content fits into the context window. To work with larger documents or more files, you can use a [knowledge folder](/settings/knowledge-folders/introduction) and attach it to an assistant.
 
 ## When do I use which integration?
 
-There are different integration types in Langdock: Search integrations, chatbots, action integrations and APIs. You can find out more about the integration types in [this guide](https://docs.langdock.com/settings/integrations/types).
+There are different integration types in Langdock: Search integrations, chatbots, action integrations and APIs. You can find out more about the integration types in [this guide](/settings/integrations/types-of-integrations).
 
 ## When do I attach a file to a chat, when to an assistant and when do I use a data folder?
 
@@ -49,9 +49,9 @@ To find out more about the functionality of the different features, please refer
 
 There are two ways how contents of a file are processed for generating an answer:
 
-* One is that the **entire document** is sent to the model, together with your prompt (see [this guide](https://docs.langdock.com/resources/basics)). This is the standard in chats and assistants.
+* One is that the **entire document** is sent to the model, together with your prompt (see [this guide](/resources/basics)). This is the standard in chats and assistants.
 
-* AI models have a context window, which is the limit of how much text can be processed at once. For long documents or a large number of documents, the documents are **summarized and only relevant sections** are sent to the model in the context window. This is used in [knowledge folders](https://docs.langdock.com/settings/knowledge-folders/introduction).
+* AI models have a context window, which is the limit of how much text can be processed at once. For long documents or a large number of documents, the documents are **summarized and only relevant sections** are sent to the model in the context window. This is used in [knowledge folders](/settings/knowledge-folders/introduction).
 
 Attaching the files directly to an assistant or to a chat leads to the best results. If possible, you should follow this option. We recommend to attach as few documents as possible to an assistant or chat.
 
@@ -103,12 +103,16 @@ Langdock supports the following file types:
 
 Files are connected to either a chat, an assistant or a knowledge folder. To remove a file, you can delete the according entity. When a chat, an assistant or a knowledge folder is deleted, connected files are deleted immediately and can not be retrieved.
 
-To manage how long chats are saved, Langdock has a data retention period that can be set by admins. Chats which have not been used in the defined period are deleted automatically. You can read more about this [here](https://docs.langdock.com/settings/workspace#chat).
+To manage how long chats are saved, Langdock has a data retention period that can be set by admins. Chats which have not been used in the defined period are deleted automatically. You can read more about this [here](/settings/workspace#chat).
 
 ## Why can I not add a repository to a chat / an assistant / a knowledge folder?
+
 AI models are not good at processing a whole repository yet. There are a few reasons for this:
-- First, they have a context window (=the maximum amount of text they can process at once), which is often times smaller than the repository. The chat and assistant have a limit of 20 files to increase the chance that the files fit into the context window. Oftentimes, a repository contains more than 20 files.
-- To handle documents or document batches that are larger than the context window, we have built the knowledge folder. Since the context window is a technical limitation of the model, not everything can be sent to the model. An embedding search, so a semantic pre-selection, identifies relevant sections of the documents and only these sections are sent to the model. For coding, it is important to consider the entire document, not only selected sections. Therefore, the context window also limits this behavior
-- Lastly, even if the repository fits into the context window, the model might still struggle to understand it if it is a large repository, since the answers decrease in quality with a fuller context window.
+
+* First, they have a context window (=the maximum amount of text they can process at once), which is often times smaller than the repository. The chat and assistant have a limit of 20 files to increase the chance that the files fit into the context window. Oftentimes, a repository contains more than 20 files.
+
+* To handle documents or document batches that are larger than the context window, we have built the knowledge folder. Since the context window is a technical limitation of the model, not everything can be sent to the model. An embedding search, so a semantic pre-selection, identifies relevant sections of the documents and only these sections are sent to the model. For coding, it is important to consider the entire document, not only selected sections. Therefore, the context window also limits this behavior
+
+* Lastly, even if the repository fits into the context window, the model might still struggle to understand it if it is a large repository, since the answers decrease in quality with a fuller context window.
 
 In our experience, the best approach is to work with individual files, smaller sections or screenshots only. Sorry - that was a long message, but I hope it helps
