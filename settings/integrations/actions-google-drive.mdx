@@ -2,20 +2,27 @@
 title: Google Drive Actions
 description: 'Let an assistant perform actions to Google Drive.'
 ---
-## Prerequisites
-This guide helps you to set up an assistant action for Google Drive. Before proceeding, we recommend reading the following guide: [Assistant actions](https://docs.langdock.com/product/assistants/actions).
 
-The assistant action allows you to list and query files, load the file content into the assistant, and use it as additional context. If you want to attach specific files or sheets to an assistant, we recommend using our Google Drive Search Integration and attaching the file to the assistant knowledge. If you are a Langdock admin, please refer to this [workspace-level integration guide](https://docs.langdock.com/settings/integrations/google-drive). If you are not an admin, please refer to [this guide](https://docs.langdock.com/settings/integrations/oauth).
+## Prerequisites
+
+This guide helps you to set up an assistant action for Google Drive. Before proceeding, we recommend reading the following guide: [Assistant actions](/settings/integrations/create-actions).
+
+The assistant action allows you to list and query files, load the file content into the assistant, and use it as additional context. If you want to attach specific files or sheets to an assistant, we recommend using our Google Drive Search Integration and attaching the file to the assistant knowledge. If you are a Langdock admin, please refer to this [workspace-level integration guide](/settings/integrations/google-drive). If you are not an admin, please refer to [this guide](/settings/integrations/oauth).
 
 Make sure to read the [API documentation](https://developers.google.com/drive/api/guides/about-sdk) from Google Drive. Also, you need to have a Google Cloud account and enable the Drive API (if not already enabled). To enable the API, follow these steps:
 
-- Create Google Cloud project
-- Enable the Google Drive API from the Google API Library
-- If the **Publishing status** is **Testing**, add users to your application
+* Create Google Cloud project
+
+* Enable the Google Drive API from the Google API Library
+
+* If the **Publishing status** is **Testing**, add users to your application
 
 ## Setup
+
 ### 1. Assistant instructions
-Create a new assistant. If you are new to creating assistants, you can read more about how to create assistants and write instructions in our [assistant guide](https://docs.langdock.com/resources/assistant-creation) and our [prompt engineering guide](https://docs.langdock.com/resources/prompt-elements). Paste the following instructions into the according field.
+
+Create a new assistant. If you are new to creating assistants, you can read more about how to create assistants and write instructions in our [assistant guide](/resources/assistant-creation) and our [prompt engineering guide](/resources/prompt-elements). Paste the following instructions into the according field.
+
 ```
 Persona: You are the office assistant who has access to Google Drive and reads information. When asked about something, look at all relevant information in the drive. Search the file names, but also each document and sheet.
 
@@ -53,11 +60,12 @@ Image or video files modified after a specific date	modifiedTime > '2012-06-04T1
 
 You can add other actions from the other methods described in the [Google Drive API](https://developers.google.com/drive/api/guides/about-sdk).
 
-
 ### 2. OpenAPI Schema
-Scroll to the bottom of the assistant configuration and click on **New Action**. Here you can configure actions and API requests to other tools. Copy the text below into the field **OpenAPI Schema**. You can also try out [action assistant](https://docs.langdock.com/resources/actions-assistant) to write the OpenAPI schema.
 
-With the Google Drive API, the `get` method will lead to the model trying to download the file, which is not possible. Instead, use `export`. 
+Scroll to the bottom of the assistant configuration and click on **New Action**. Here you can configure actions and API requests to other tools. Copy the text below into the field **OpenAPI Schema**. You can also try out [action assistant](/resources/actions-assistant) to write the OpenAPI schema.
+
+With the Google Drive API, the `get` method will lead to the model trying to download the file, which is not possible. Instead, use `export`.
+
 ```
 
 
@@ -304,38 +312,55 @@ With the Google Drive API, the `get` method will lead to the model trying to dow
 ## Authentication
 
 ### 3. Google Drive Configuration
+
 1. Go to your Google Cloud Console
+
 2. Navigate to **Enabled API & Services**. Then, go to the **Library** and enable **Google Drive API**
-<img src="/images/actions-drive-1.png"/>
 
-3. Use the search bar to search **Google Drive API**
-<img src="/images/actions-drive-2.png"/>
+![](/images/actions-drive-1.png)
 
-4. Now, create new OAuth credentials. You might need to set up an OAuth credentials screen if you have not done so already.
-<img src="/images/actions-drive-3.png"/>
+1. Use the search bar to search **Google Drive API**
 
-5. Allow the app the according permissions for the methods mentioned above.
+![](/images/actions-drive-2.png)
 
-6. Establish the primary tester as a testing email (if testing is enabled).
-7. Set the OAuth rate limit.
+1. Now, create new OAuth credentials. You might need to set up an OAuth credentials screen if you have not done so already.
 
-8. Afterward, go to **Credentials** and click **+ Create Credentials** and then **Create Credentials**. 
-<img src="/images/actions-drive-4.png"/>
+![](/images/actions-drive-3.png)
 
-9. Afterward, copy and save the OAuth Client ID and the Client Secret.
+1. Allow the app the according permissions for the methods mentioned above.
+
+2. Establish the primary tester as a testing email (if testing is enabled).
+
+3. Set the OAuth rate limit.
+
+4. Afterward, go to **Credentials** and click **+ Create Credentials** and then **Create Credentials**.
+
+![](/images/actions-drive-4.png)
+
+1. Afterward, copy and save the OAuth Client ID and the Client Secret.
 
 ### 4. OAuth Configuration in Langdock
+
 At the top of the action settings you find a section called **Authentication**. Select **OAuth**.
 
 Enter the according information from your Google Drive Configuration:
-- **Client ID**: Paste the Client ID from above
-- **Client Secret**: Paste the Client Secret from before
-- **Authorization URL**: https://accounts.google.com/o/oauth2/auth
-- **Token URL**: https://oauth2.googleapis.com/token
-- **Scope**: https://www.googleapis.com/auth/drive
-    - For a list of more detailed scopes enabled, please refer to Google’s OAuth 2.0 guide.
-- **Token**: Default
+
+* **Client ID**: Paste the Client ID from above
+
+* **Client Secret**: Paste the Client Secret from before
+
+* **Authorization URL**: [https://accounts.google.com/o/oauth2/auth](https://accounts.google.com/o/oauth2/auth)
+
+* **Token URL**: [https://oauth2.googleapis.com/token](https://oauth2.googleapis.com/token)
+
+* **Scope**: [https://www.googleapis.com/auth/drive](https://www.googleapis.com/auth/drive)
+
+  * For a list of more detailed scopes enabled, please refer to Google’s OAuth 2.0 guide.
+
+* **Token**: Default
 
 ### 5. Paste redirect URL into Google Drive
+
 1. Copy the redirect URL from the OAuth section in the action.
+
 2. Go to Google Drive and paste it in the **Authorized redirect URIs**.
