@@ -4,56 +4,64 @@ description: 'Our invoices are created automatically in Stripe, our billing port
 ---
 
 ## How do our invoices work?
+
 ### Example invoice
-| **Description**                                     | **Qty** | **Unit price** | **Amount**   |
-|-------------------------------------------------|-----|------------|----------|
-| 16 Aug 2024 - 1 Sep 2024                        |     |            |          |
-| Remaining time for 7 x Langdock Team after 16 Aug | 7   |            | €67.74   |
-| Unused time for Langdock team after 16 Aug      | 6   |            | -€58.06  |
-| Remaining time for 8x Langdock Team after 24 Aug | 9   |            | €40.65   |
-| Unused time for Langdock team after 24 Aug      | 7   |            | -€31.61  |
-| 1 Sep 2024 - 1 Oct 2024                         | 9   | €20.00     | €180.00  
-|
-|                                                                                                 |     | Subtotal   | €198.72  |
-|                                                 |     | Total excl. VAT | €198.72 |
-|                                                 |     | VAT - Germany (19% on €198.72) | €37.76 |
-|                                                 |     | **Total** | **€236.48** |
+
+| **Description**                                   | **Qty** | **Unit price**                 | **Amount**  |
+| ------------------------------------------------- | ------- | ------------------------------ | ----------- |
+| 16 Aug 2024 - 1 Sep 2024                          |         |                                |             |
+| Remaining time for 7 x Langdock Team after 16 Aug | 7       |                                | €67.74      |
+| Unused time for Langdock team after 16 Aug        | 6       |                                | -€58.06     |
+| Remaining time for 8x Langdock Team after 24 Aug  | 9       |                                | €40.65      |
+| Unused time for Langdock team after 24 Aug        | 7       |                                | -€31.61     |
+| 1 Sep 2024 - 1 Oct 2024                           | 9       | €20.00                         | €180.00     |
+|                                                   |         |                                |             |
+|                                                   |         | Subtotal                       | €198.72     |
+|                                                   |         | Total excl. VAT                | €198.72     |
+|                                                   |         | VAT - Germany (19% on €198.72) | €37.76      |
+|                                                   |         | **Total**                      | **€236.48** |
 
 Our invoices consist of two parts:
-- The **second section** (1 Sep - 1 Oct) calculates the price for the **upcoming month** based on the number of users in the workspace
-- The **first section** corrects the price for the **previous month** if a user has been added or removed from the workspace
+
+* The **second section** (1 Sep - 1 Oct) calculates the price for the **upcoming month** based on the number of users in the workspace
+
+* The **first section** corrects the price for the **previous month** if a user has been added or removed from the workspace
 
 ### Section 2: Upcoming month
+
 The second section is calculated as follows:
 
-_Number of users x price per seat_
+*Number of users x price per seat*
 
 For example:
 
-_9 users x € 20 EUR = € 180_
+*9 users x € 20 EUR = € 180*
 
 ### Section 1: Past month
+
 The first section is calculated as follows:
 
 In the previous invoice, the amount paid billed was € 120, based on 6 workspace users (see how the second section above is calculated).
 
 This invoice corrects this amount as 3 users were added to the workspace:
 
-- One user was added on 16 Aug, as shown by the remaining time for 7 users in the workspace in the first row. For 15 days, 7 licenses cost €67.74.
-- The unused time below deducts the amount already paid in the previous invoice. These 6 licenses in the previous invoice lead to €58.06, deducted from the €67.74.
-___
+* One user was added on 16 Aug, as shown by the remaining time for 7 users in the workspace in the first row. For 15 days, 7 licenses cost €67.74.
+
+* The unused time below deducts the amount already paid in the previous invoice. These 6 licenses in the previous invoice lead to €58.06, deducted from the €67.74.
+
+***
 
 Two more users were added on 24 Aug, leading to €40.65 for the remaining month (9 users for 8 days).
 As 6 users were already billed in the previous invoice and 1 user was already charged in the remaining time from 16 Aug above, the price for 7 users is deducted from this amount (€31.61).
 
-___
+***
 
 The total amount consists of the correction of the current month plus the price for the next month:
 
-_Section 1 price + Section 2 price = Total amount_
+*Section 1 price + Section 2 price = Total amount*
 
-_Price of the current month + Price of the next month = Total amount_
+*Price of the current month + Price of the next month = Total amount*
 
-_= [Price for 1 license for 15 days + Price for 2 licenses for 8 days] + Price for the next month = Total amount_
+*= \[Price for 1 license for 15 days + Price for 2 licenses for 8 days] + Price for the next month = Total amount*
 
-_= [ ( € 67.74 - € 58.06 ) + ( € 40.65 - € 31.61 ) ] + € 180  = € 198.72_
+*= \[ ( € 67.74 - € 58.06 ) + ( € 40.65 - € 31.61 ) ] + € 180  = € 198.72*
