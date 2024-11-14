@@ -4,6 +4,7 @@ description: "Actions allow you to integrate any tool through an API to an assis
 ---
 
 ## What are Actions?
+
 Actions are custom integrations you can build for your assistant. They allow the assistant to "speak" with other tools. Unlike search integrations, which can only read information from other tools, actions can also create, update and delete information in other tools (depends on if you allow it).
 
 Common use Cases with Assistant Actions are:
@@ -27,11 +28,12 @@ APIs enable different tools to be connected, allowing deep, custom workflows to 
 2. Click on “Create action”. A new window will open where you can set up your action.
 
 ## Set up
+
 ### 1. Write the OpenAPI schema.
 
 OpenAPI is a specific standard format for calling APIs and describing the API parameters. Details can be found [here](https://swagger.io/specification/).
 
-We have created an assistant, which you can find [here](https://docs.langdock.com/resources/actions-assistant). Simply paste the API documentation into the chat field, and the assistant will build the Open API schema for this endpoint. You might need to change a few details like the URL to fit your app.
+We have created an assistant, which you can find [here](/resources/actions-assistant). Simply paste the API documentation into the chat field, and the assistant will build the Open API schema for this endpoint. You might need to change a few details like the URL to fit your app.
 
 **Here is how the Open API schema is structured:**
 The top contains general information like the API name and description. The assistant uses this information, especially the description, to determine if it should choose this action.
@@ -59,9 +61,9 @@ To set up OAuth, you need the Client ID, the Client secret, the Authorization UR
 
 ### 3. Create the action
 
-Afterward, you can create the assistant. We have written a general guide on how to develop assistants [here](https://docs.langdock.com/resources/assistant-creation). In the instructions, you should refer to the action names and JSON parameters to help the assistant choose and perform the correct action.
+Afterward, you can create the assistant. We have written a general guide on how to develop assistants [here](/resources/assistant-creation). In the instructions, you should refer to the action names and JSON parameters to help the assistant choose and perform the correct action.
 
-When writing the instructions, you can refer to our [prompt elements](https://docs.langdock.com/resources/prompt-elements) to provide relevant information. The task and context are crucial here.
+When writing the instructions, you can refer to our [prompt elements](/resources/prompt-elements) to provide relevant information. The task and context are crucial here.
 
 **Task:** Describe the steps the assistant should follow. Make sure to use the names of the actions in the instructions.
 
