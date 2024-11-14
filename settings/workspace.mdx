@@ -4,18 +4,22 @@ description: 'The workspace settings apply to multiple users, usually the entire
 ---
 
 ## Overview
+
 The overview serves as a brief overview of the workspace. It lists the different products you can use in the Langdock platform and shows which ones are activated.
 Below, you can see the current plan and access the subscription portal.
 At the bottom, you will see a summary of usage analytics in the last few days, the total number of users, and the total messages sent in the workspace.
 All these sections have a redirect to the individual section in the workspace settings with further insights and more detailed settings.
 
 ## General
+
 The general workspace includes the most important customizations of the workspace. You can upload your company logo here, give the tool an adequate name, and enter a short description. This description is sent to the model with all prompts for every workspace user (like the custom instructions on a user level; [here](/resources/custom-instructions) is a guide for custom instruction). Here, you also find the option to delete the workspace.
 
 ## Subscription
+
 The subscription page shows the plan you are currently on and the other plans Langdock offers. For details and a pricing calculator, refer to our [pricing page](https://www.langdock.com/pricing) on our website. We have written a [guide here](/admin/invoices) if you have any questions regarding invoices.
 
 ## Security
+
 You can add different security measures to manage who can access the space.
 At the top, you can define specific domains that are allowed to access the space. If you set it to “langdock.com”, only users with the email address @langdock.com can sign up for this space. This is overwritten if you manually invite the person with their email address (see user management below).
 
@@ -24,20 +28,26 @@ Below, you can add SSO via SAML and user synchronization via SCIM here.
 <Info>You can find guides for SSO, SAML and SCIM [here](/settings/security). If you have any questions, please reach out to support@langdock.com.</Info>
 
 ## User Management
+
 ### Members
+
 The members sections in the user management allow you to invite new members, assign different roles to them, or remove members. You can also export a list of all users. This helps with internal rollout planning and communication, such as regularly sending an internal AI newsletter.
 
 <Warning> The different roles refer to the permissions in the [Roles](/settings/workspace##user-management###roles) section below. A **workspace editor is not the same as an assistant editor** and can only edit assistants when the editing access is explicitly given to them.</Warning>
 
 ### Groups
-Assistants and prompts in the prompt library can be shared with the entire workspace (if this permission is set, see the [Roles section](/settings/workspace##user-management###roles) below) or with specific groups. This allows, for example, the marketing team to share a SEO copywriting prompt with marketing colleagues or the engineering team to share a coding assistant with fellow developers.
+
+Assistants and prompts in the prompt library can be shared with the entire workspace (if this permission is set, see the [Roles section](/settings/workspace##user-management##roles) below) or with specific groups. This allows, for example, the marketing team to share a SEO copywriting prompt with marketing colleagues or the engineering team to share a coding assistant with fellow developers.
 
 There are three ways groups can be created:
+
 1. Groups can be defined by your SCIM tool for user synchronization,
+
 2. Set up by admins or
+
 3. Set up by users themselves.
 
-We recommend creating groups based on departments and projects or an AI exchange group that regularly shares experiences. 
+We recommend creating groups based on departments and projects or an AI exchange group that regularly shares experiences.
 
 When creating a group, you can enter a name a short description, and define whether the group is public. Public groups can be discovered and joined by anyone in the workspace.
 
@@ -46,28 +56,43 @@ After creating the group, you can invite users to join the group and send them a
 Group admins can give other group members different roles. These roles have the following permissions:
 
 **Group member:**
-- See group name and description
-- See all users of the group
-- Share prompts with the group
-- Share assistants with the group
-- Leave the group
+
+* See group name and description
+
+* See all users of the group
+
+* Share prompts with the group
+
+* Share assistants with the group
+
+* Leave the group
 
 **Group editor:**
-- Everything members can do
-- Change group name and description
-- Add other users as editor/user
-- Change other editors' or members' roles to editor/member
+
+* Everything members can do
+
+* Change group name and description
+
+* Add other users as editor/user
+
+* Change other editors' or members' roles to editor/member
 
 **Group admin:**
-- Everything editors can do
-- Delete group
-- Remove users from the group
-- Add other users as admin/editor/member
-- Change other users' roles to admin/editor/member
+
+* Everything editors can do
+
+* Delete group
+
+* Remove users from the group
+
+* Add other users as admin/editor/member
+
+* Change other users' roles to admin/editor/member
 
 <Info>Group admins and editors are different from workspace admins or editors. The role applies only to the specific group but does not allow e.g. group admins to manage the workspace settings. </Info>
 
 ### Roles
+
 Admins can set up different permissions utilizing different roles in the workspace. There are three roles a user can have:
 Admins are allowed to do anything, the main difference is that they can access the workspace settings, the subscription portal, or other areas to manage the workspace setup.
 
@@ -78,24 +103,30 @@ The permissions you can enable or disable for Members and Editors are about shar
 <Info>A workspace editor differs from an editor in a group or an assistant. The workspace editor role refers to these permissions but not to groups or assistants. The permissions for these are managed in the according features.</Info>
 
 ## Product Settings
+
 ### Chat
+
 Like on a user level, admins can enable or disable the capabilities for all users in the workspace. Simply toggle the settings for web search, image generation, or data analysis.
 As an admin, you can define how long chat data should be stored in Langdock. Set the data retention to the preferred duration (7 days, 1 month, 3 months, 12 months, forever). This defines how long chats that are not used anymore are stored. Once a day, it is checked which conversations have not been used in the selected period and deleted. This deletes all chat messages, including uploaded documents, and is irreversible.
 
 ### Assistants
+
 Assistants can show the sources used to generate a response, just like a normal chat. If users click on the source, the source is opened. Admins can disable this so users can not click and open sources to prevent users from accessing the source.
 
 ### Search
+
 Search can be toggled on and off to allow the whole workspace to use this feature or only define specific people to use it.
 
 Langdock uses past search queries to optimize the search results. You can define how long the queries are saved. Setting the retention time to 12 months is recommended for the best experience.
 
 ## Integrations
+
 The [integration settings](https://app.langdock.com/settings/workspace/integrations) allow you to turn on integrations and allow the general ability to connect integrations in the product. To set up integrations, go to the [integration tab](https://app.langdock.com/integrations) in the main navbar. You can find the guides to set up the individual integrations **here**.
 
 Generally, Langdock synchronizes the permissions of the according tool. That means that a user can find exactly and only the files they have access to in the individual tool.
 
 ## Models
+
 The model section in the workspace section allows you to manage the models available. You can see which models are available in Langdock and enable or disable the individual models. By default, only models hosted in the EU are enabled.
 You can also add your models at the bottom. To add your models, you can refer to our guides **here**.
 
@@ -106,6 +137,7 @@ To exclusively use your models, please refer to [this guide about BYOK](/setting
 Also, please reach out to the Langdock team. If BYOK is not enabled, Langdock still uses the models from Langdock in the background (for embeddings and image generation). Technically, BYOK needs to be manually enabled to switch to your keys.
 
 ## Analytics
+
 The analytics screen allows you to monitor the usage and adoption of AI in your company and take measures to improve the rollout. The purpose is to learn which measures help your organization adopt AI and which power users can help you share use cases and onboard team members to enable them in their daily work.
 
 The analytics are optional and, while helpful, can be turned off. Contact the Langdock team if you want to disabled this functionality.
@@ -121,11 +153,12 @@ Also, you can see the total number of messages for each day. This is split into 
 At the bottom, you will see the lists of users and groups most active in the workspace. The first list shows the groups, ordered by the number of messages they sent. The second list shows all users, sorted by how active they were. You can set the product you want to monitor (assistants or chat) and define a custom timeframe.
 
 ## Customizations
+
 You can customize Langdock to fit your branding and legal requirements.
 These are the options you have to customize your workspace:
 
 **Custom color** <br />
-Change the color of buttons to fit your brand colors. You can use online tools to find the hex code (e.g. #4469FC) of your branding. 
+Change the color of buttons to fit your brand colors. You can use online tools to find the hex code (e.g. #4469FC) of your branding.
 We recommend not using white, light grey, black, dark blue, or dark grey. They might not be contrasting enough to the background color of the workspace in light and dark mode.
 
 **Background image** <br />
