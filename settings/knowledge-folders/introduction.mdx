@@ -5,7 +5,7 @@ description: 'Knowledge folders can contain several hundred files and can be att
 
 ## Background
 
-In the chat and assistants, you can add up to 20 files and send them with your prompt to the model. This is due to the limited amount of information the models can process simultaneously (= Context window, see **this guide** for details about sending documents in the context window).
+In the chat and assistants, you can add up to 20 files and send them with your prompt to the model. This is due to the limited amount of information the models can process simultaneously (= Context window, see [this guide](/resources/faq#context-window) for details about sending documents in the context window).
 
 To add more than 20 files, you can create knowledge folders in the settings. Here, you can add up to 1,000 files in one folder. This folder can then be attached to assistants and found in the Search feature. With this feature, the number of files can easily surpass the context window size of the model (the text in attached folders can be longer than the processing limit of the model). The model is split into different sections. Then, relevant sections for answering the user prompt are identified, and only these relevant text sections are sent to the model in the context window. This knowledge folder feature allows us to work with large document numbers but reduces accuracy, as not every part of the documents is considered.
 
@@ -15,4 +15,4 @@ You can find the knowledge folders in [your settings](https://app.langdock.com/s
 
 ## Knowledge folder API
 
-To push files to the knowledge folder, you can use the API of the folder. You can request an API key from support@langdock.com. You can find the API schema in the [following guides](https://docs.langdock.com/settings/knowledge-folders/upload-a-file-to-a-knowledge-folder). The current rate limit is 50 requests per minute.
+To push files to the knowledge folder, you can use the API of the folder. You can request an API key from [support@langdock.com](mailto:support@langdock.com). You can find the API schema in the [following guides](/settings/knowledge-folders/upload-a-file-to-a-knowledge-folder). The current rate limit is 50 requests per minute.
