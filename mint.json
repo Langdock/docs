@@ -78,17 +78,11 @@
     },
     {
       "group": "Assistants",
-      "pages": [
-        "product/assistants/introduction",
-        "product/assistants/configuration"
-      ]
+      "pages": ["product/assistants/introduction", "product/assistants/configuration"]
     },
     {
       "group": "API",
-      "pages": [
-        "product/api/openai",
-        "product/api/anthropic"
-      ]
+      "pages": ["product/api/openai", "product/api/anthropic", "product/api/assistant"]
     },
     {
       "group": "Search",
@@ -96,10 +90,7 @@
     },
     {
       "group": "Settings",
-      "pages": [
-        "settings/account", 
-        "settings/workspace"
-        ]
+      "pages": ["settings/account", "settings/workspace"]
     },
     {
       "group": "Knowledge Folders",
@@ -110,7 +101,7 @@
         "settings/knowledge-folders/retrieve-files-from-a-knowledge-folder",
         "settings/knowledge-folders/delete-an-attachment-from-a-knowledge-folder",
         "settings/knowledge-folders/search-through-all-knowledge-folders"
-        ]
+      ]
     },
     {
       "group": "Security",
@@ -139,10 +130,7 @@
         },
         {
           "group": "Search integrations: Workspace-level",
-          "pages": [
-            "settings/integrations/google-drive",
-            "settings/integrations/confluence"
-          ]
+          "pages": ["settings/integrations/google-drive", "settings/integrations/confluence"]
         },
         {
           "group": "Chatbot integrations",
@@ -151,7 +139,7 @@
         {
           "group": "Action integrations: API Calls in assistants",
           "pages": [
-          "settings/integrations/create-actions",
+            "settings/integrations/create-actions",
             "settings/integrations/actions-salesforce",
             "settings/integrations/actions-google-drive",
             "settings/integrations/actions-jira"
@@ -222,12 +210,8 @@
       ]
     },
     {
-    "group": "Other resources",
-      "pages": [
-        "resources/faq",
-        "resources/dictionary",
-        "resources/tricks-and-shortcuts"
-      ]
+      "group": "Other resources",
+      "pages": ["resources/faq", "resources/dictionary", "resources/tricks-and-shortcuts"]
     }
   ],
   "footerSocials": {

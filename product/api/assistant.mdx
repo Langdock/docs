@@ -1,0 +1,21 @@
+---
+title: "Assistant Chat completion"
+description: "Creates a model response for a given Assistant."
+openapi: "POST /assistant/v1/chat/completions"
+---
+
+Creates a model response for the given chat conversation. This endpoint follows the [OpenAI API specification](https://platform.openai.com/docs/api-reference/chat/create) and the requests are sent to the Azure OpenAI endpoint.
+
+<Info>
+  To use the API you need an API key. You can create API Keys in your [Workspace
+  settings](https://app.langdock.com/settings/workspace/api). If you want to interact with an
+  exisitng Assistant, make sure to "Share" access to the assistant with the created API Key
+  (Assistants > Your Assistant > Share).
+</Info>
+
+## Rate limits
+
+The rate limit for the Assistant Completion endpoint is **500 RPM (requests per minute)** and **60.000 TPM (tokens per minute)**. Rate limits are defined at the workspace level - and not at an API key level. Each model has its own rate limit. If you exceed your rate limit, you will receive a `429 Too Many Requests` response.
+
+Please note that the rate limits are subject to change, refer to this documentation for the most up-to-date information.
+In case you need a higher rate limit, please contact us at [support@langdock.com](mailto:support@langdock.com).

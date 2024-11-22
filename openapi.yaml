@@ -179,7 +179,6 @@ paths:
           description: Attachment updated successfully
       security:
         - bearerAuth: []
-
   /knowledge/{folderId}/list:
     get:
       summary: Retrieve files from a knowledge folder
@@ -195,7 +194,6 @@ paths:
           description: List of files retrieved successfully
       security:
         - bearerAuth: []
-
   /knowledge/{folderId}/{attachmentId}:
     delete:
       summary: Delete a file from a knowledge folder
@@ -217,6 +215,202 @@ paths:
           description: Attachment deleted successfully
       security:
         - bearerAuth: []
+  /assistant/v1/chat/completions:
+    post:
+      tags:
+        - Assistant
+      summary: Creates a chat completion with an assistant
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                assistantId:
+                  type: string
+                  nullable: true
+                  description: ID of an existing assistant to use
+                assistant:
+                  $ref: "#/components/schemas/Assistant"
+                messages:
+                  type: array
+                  items:
+                    type: object
+                    required:
+                      - role
+                      - content
+                    properties:
+                      role:
+                        type: string
+                        enum: [user, assistant, tool]
+                      content:
+                        type: string
+              oneOf:
+                - required: [assistantId, messages]
+                - required: [assistant, messages]
+
+      responses:
+        "200":
+          description: Successful chat completion
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - result
+                properties:
+                  result:
+                    type: array
+                    items:
+                      type: object
+                      required:
+                        - id
+                        - role
+                        - content
+                      properties:
+                        id:
+                          type: string
+                        role:
+                          type: string
+                          enum: [tool, assistant]
+                        content:
+                          type: array
+                          items:
+                            type: object
+                            required:
+                              - type
+                            properties:
+                              type:
+                                type: string
+                              toolCallId:
+                                type: string
+                              toolName:
+                                type: string
+                              result:
+                                type: object
+                              args:
+                                type: object
+                              text:
+                                type: string
+        "400":
+          description: Invalid request parameters
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    oneOf:
+                      - type: string
+                      - type: array
+                        items:
+                          type: object
+        "429":
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+  /assistant/v1/models:
+    get:
+      tags:
+        - Assistant
+      summary: Lists the available models
+      description: Returns a list of models that are available for use with the API.
+      responses:
+        "200":
+          description: List of available models
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - object
+                  - data
+                properties:
+                  object:
+                    type: string
+                    enum: [list]
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      required:
+                        - id
+                        - object
+                        - created
+                        - owned_by
+                      properties:
+                        id:
+                          type: string
+                          description: The model identifier
+                        object:
+                          type: string
+                          enum: [model]
+                          description: The object type, which is always "model"
+                        created:
+                          type: integer
+                          format: int64
+                          description: Unix timestamp (in milliseconds) of when the model was created
+                        owned_by:
+                          type: string
+                          enum: [system]
+                          description: The organization that owns the model
+              example:
+                object: "list"
+                data:
+                  - id: "gpt-4o"
+                    object: "model"
+                    created: 1686935735000
+                    owned_by: "system"
+                  - id: "gpt-4o-mini"
+                    object: "model"
+                    created: 1686935735000
+                    owned_by: "system"
+        "400":
+          description: Invalid request parameters
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: array
+                    items:
+                      type: object
+                      description: Validation error details
+        "429":
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Internal Server Error"
 components:
   schemas:
     # OpenAI schemas
@@ -916,14 +1110,7 @@ components:
                   `length` if the maximum number of tokens specified in the request was reached,
                   `content_filter` if content was omitted due to a flag from OpenAI's content filters,
                   `tool_calls` if the model called a tool, or `function_call` (deprecated) if the model called a function.
-                enum:
-                  [
-                    "stop",
-                    "length",
-                    "tool_calls",
-                    "content_filter",
-                    "function_call",
-                  ]
+                enum: ["stop", "length", "tool_calls", "content_filter", "function_call"]
               index:
                 type: integer
                 description: The index of the choice in the list of choices.
@@ -1980,3 +2167,114 @@ components:
             - null
             - null
           x-stainless-nominal: false
+    #============== Assistant schemas ==============
+    Assistant:
+      type: object
+      required:
+        - name
+        - instructions
+      properties:
+        name:
+          type: string
+          maxLength: 64
+        description:
+          type: string
+          maxLength: 256
+        instructions:
+          type: string
+          maxLength: 16384
+        temperature:
+          type: number
+          minimum: 0
+          maximum: 1
+        model:
+          type: string
+          maxLength: 64
+        capabilities:
+          type: object
+          properties:
+            webSearch:
+              type: boolean
+            dataAnalyst:
+              type: boolean
+            imageGeneration:
+              type: boolean
+        actions:
+          type: array
+          items:
+            $ref: "#/components/schemas/Action"
+        vectorDb:
+          type: array
+          items:
+            $ref: "#/components/schemas/VectorDb"
+        knowledgeFolderIds:
+          type: array
+          items:
+            type: string
+    Action:
+      type: object
+      required:
+        - id
+        - authType
+        - name
+        - schema
+      properties:
+        id:
+          type: string
+        authType:
+          type: string
+          enum: [API_KEY, CUSTOM_HEADER]
+        name:
+          type: string
+        schema:
+          type: string
+        apiKey:
+          type: string
+        customHeaderName:
+          type: string
+        clientId:
+          type: string
+        clientSecret:
+          type: string
+        authorizationUrl:
+          type: string
+        tokenUrl:
+          type: string
+        redirectUrl:
+          type: string
+    VectorDb:
+      type: object
+      required:
+        - vectorDbId
+        - embeddingModelId
+        - provider
+        - url
+        - apiKey
+        - collection
+        - name
+        - description
+        - sourceRestriction
+      properties:
+        vectorDbId:
+          type: string
+        embeddingModelId:
+          type: string
+        provider:
+          type: string
+          enum: [QDRANT]
+        url:
+          type: string
+        apiKey:
+          type: string
+        collection:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        sourceRestriction:
+          type: boolean
+        topK:
+          type: number
+        filter:
+          type: string
