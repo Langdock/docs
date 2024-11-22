@@ -4,14 +4,103 @@ description: "Creates a model response for a given Assistant."
 openapi: "POST /assistant/v1/chat/completions"
 ---
 
-Creates a model response for the given chat conversation. This endpoint follows the [OpenAI API specification](https://platform.openai.com/docs/api-reference/chat/create) and the requests are sent to the Azure OpenAI endpoint.
+Creates a model response for a given assistant id, or pass in an Assistant configuration that should be used for your request.
 
 <Info>
   To use the API you need an API key. You can create API Keys in your [Workspace
   settings](https://app.langdock.com/settings/workspace/api). If you want to interact with an
-  exisitng Assistant, make sure to "Share" access to the assistant with the created API Key
+  existing Assistant, make sure to "Share" access to the assistant with the created API Key
   (Assistants > Your Assistant > Share).
 </Info>
+
+## Request Parameters
+
+| Parameter     | Type   | Required                              | Description                                    |
+| ------------- | ------ | ------------------------------------- | ---------------------------------------------- |
+| `assistantId` | string | One of assistantId/assistant required | ID of an existing assistant to use             |
+| `assistant`   | object | One of assistantId/assistant required | Configuration for a new assistant              |
+| `messages`    | array  | Yes                                   | Array of message objects with role and content |
+
+### Assistant Configuration
+
+When creating a new assistant, you can specify:
+
+- `name` (required) - Name of the assistant (max 64 chars)
+- `instructions` (required) - System instructions (max 16384 chars)
+- `description` - Optional description (max 256 chars)
+- `temperature` - Temperature between 0-1
+- `model` - Model ID to use
+- `capabilities` - Enable features like web search, data analysis, image generation
+- `actions` - Custom API integrations
+- `vectorDb` - Vector database connections
+- `knowledgeFolderIds` - IDs of knowledge folders to use
+
+## Examples
+
+### Using an Existing Assistant
+
+```javascript
+const axios = require("axios");
+
+async function chatWithAssistant() {
+  const response = await axios.post(
+    "https://api.langdock.com/assistant/v1/chat/completions",
+    {
+      assistantId: "asst_123",
+      messages: [
+        {
+          role: "user",
+          content: "Hello! Can you help me with a task?",
+        },
+      ],
+    },
+    {
+      headers: {
+        Authorization: "Bearer YOUR_API_KEY",
+      },
+    }
+  );
+
+  console.log(response.data.result);
+}
+```
+
+### Using a temporary Assistant configuration
+
+```javascript
+const axios = require("axios");
+
+async function chatWithNewAssistant() {
+  const response = await axios.post(
+    "https://api.langdock.com/assistant/v1/chat/completions",
+    {
+      assistant: {
+        name: "Math Tutor",
+        instructions: "You are a helpful math tutor who explains concepts clearly",
+        temperature: 0.7,
+        model: "gpt-4o",
+        capabilities: {
+          webSearch: true,
+          dataAnalyst: true,
+        },
+      },
+      messages: [
+        {
+          role: "user",
+          content: "Can you explain quadratic equations?",
+        },
+      ],
+    },
+    {
+      headers: {
+        Authorization: "Bearer YOUR_API_KEY",
+      },
+    }
+  );
+
+  console.log(response.data.result);
+}
+```
 
 ## Rate limits
 
@@ -19,3 +108,46 @@ The rate limit for the Assistant Completion endpoint is **500 RPM (requests per 
 
 Please note that the rate limits are subject to change, refer to this documentation for the most up-to-date information.
 In case you need a higher rate limit, please contact us at [support@langdock.com](mailto:support@langdock.com).
+
+## Response Format
+
+The API returns an array of results, where each result contains:
+
+```typescript
+{
+  result: Array<{
+    id: string;
+    role: "tool" | "assistant";
+    content: Array<{
+      type: string;
+      toolCallId?: string;
+      toolName?: string;
+      result?: object;
+      args?: object;
+      text?: string;
+    }>;
+  }>;
+}
+```
+
+## Error Handling
+
+```javascript
+try {
+  const response = await axios.post('https://api.langdock.com/assistant/v1/chat/completions', ...);
+} catch (error) {
+  if (error.response) {
+    switch (error.response.status) {
+      case 400:
+        console.error('Invalid parameters:', error.response.data.message);
+        break;
+      case 429:
+        console.error('Rate limit exceeded');
+        break;
+      case 500:
+        console.error('Server error');
+        break;
+    }
+  }
+}
+```
