@@ -22,13 +22,11 @@ Ask what you are trying to accomplish in the chat. Try to be as specific as poss
 ## How it works
 
 1. The data analyst is a tool the model can choose. It gets triggered when you prompt the model to use it ("use the data analyst") or when the according file is uploaded (GSheets, CSVs, Excel files). Here is an example of a file we will use in Langdock:
-  
   ![](/images/data-analyst-1.png)
 
 <Tip>To receive the best results, please use **GPT-4o** and ensure that the **column titles are in the first row**.</Tip>
 
 2. The model then generates Python code. Python is a programming language that can be used to analyze datasets and extract information. In the dark code block at the top you can see the generated Python code to analyze our example file:
-
   ![](/images/data-analyst-2.png)
 
 3. After the code has been generated, a separate instance runs the Python code and returns the result to the model. It is shown under the code block in the screenshot above.
@@ -37,7 +35,6 @@ Ask what you are trying to accomplish in the chat. Try to be as specific as poss
   ![](/images/data-analyst-3.png)
 
 5. If you request a file or a diagram, the model generates code again to generate the file and executes it afterwards. The generated file or diagram is then displayed in the chat and can be downloaded.
-
   ![](/images/data-analyst-4.png)
 
 
