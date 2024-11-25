@@ -169,7 +169,7 @@
         ]
     },
     {
-      "group": "Adopting AI",
+      "group": "Roll out and adopt Langdock",
       "pages": [
         "admin/rollout-setup",
         "admin/rollout-playbook",
