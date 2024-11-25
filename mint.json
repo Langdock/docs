@@ -171,6 +171,8 @@
     {
       "group": "Adopting AI",
       "pages": [
+        "admin/rollout-setup",
+        "admin/rollout-playbook",
         "admin/identify-use-cases"
       ]
     },
