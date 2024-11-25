@@ -158,6 +158,14 @@
       ]
     },
     {
+      "group": "AI adoption",
+      "pages": [
+        "admin/rollout-setup",
+        "admin/rollout-playbook",
+        "admin/identify-use-cases"
+      ]
+    },
+    {
       "group": "Legal & Compliance",
       "pages": ["admin/legal-compliance"]
     },
@@ -168,15 +176,6 @@
         "admin/invoices"
         ]
     },
-    {
-      "group": "AI adoption",
-      "pages": [
-        "admin/rollout-setup",
-        "admin/rollout-playbook",
-        "admin/identify-use-cases"
-      ]
-    },
-
     {
       "group": "Prompt Engineering",
       "pages": [
