@@ -163,8 +163,18 @@
     },
     {
       "group": "Billing",
-      "pages": ["admin/pricing", "admin/invoices"]
+      "pages": [
+        "admin/pricing",
+        "admin/invoices"
+        ]
     },
+    {
+      "group": "Adopting AI",
+      "pages": [
+        "admin/identify-use-cases"
+      ]
+    },
+
     {
       "group": "Prompt Engineering",
       "pages": [
