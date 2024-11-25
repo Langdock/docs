@@ -6,45 +6,63 @@ description: 'In the model settings, admins can add their own AI models.'
 To add your own models, we have prepared the following guides for you. If you have any questions, do not hesitate to contact the Langdock team.
 
 ## Adding models
+
 ### Open model dialogue
+
 1. Go to the [model settings](https://app.langdock.com/settings/workspace/models) and click on **Add Model** to add a new model to the platform
-2. A modal where you can add models opens. Here, you find two sections. 
-- The **Display Settings** at the top allows you to customize what the user sees in the model selector. 
-- The **Model Configuration** lets you connect your Langdock workspace to your model API.
+
+2. A modal where you can add models opens. Here, you find two sections.
+
+* The **Display Settings** at the top allows you to customize what the user sees in the model selector.
+
+* The **Model Configuration** lets you connect your Langdock workspace to your model API.
 
 ### Display Settings
-3. To configure the **Display settings**, you can follow the following steps. This information is also available by the company hosting the model.
-   - The **provider** is the organization that built and trained the model. This does not necessarily align with the company you consume the model from. For example, you can use Microsoft Azure to use OpenAI models in the EU. But the provider will still be OpenAI.
-   - The **model name** is the name of the model.
-   - The **hosting provider** is where you consume the model. For example, GPT-4o can be hosted by Microsoft Azure.
-   - The **region** shows the user where the model is hosted. This can be set to the US or the EU.
-   - To give users an indication of how the model performs speed- and quality-wise, you can add a **ranking from 1 to 5**. Smaller models, like Claude 3 Haiku, GPT-4o mini or Llama 3.1 8B, are faster but do not have the highest quality. The top models, GPT-4o or Claude 3.5, have high output quality.
-   - The **knowledge cutoff** is when the model training data ended. Most models have a knowledge cutoff at the end of 2023.
-   - The last option lets you indicate whether the model can **analyze images**. This information is available from the model provider and the model hoster. Please only enable this setting if the model supports vision/image analysis. Models that allow image analysis are GPT-4o, GPT-4o mini, Claude, and Gemini models.
+
+1. To configure the **Display settings**, you can follow the following steps. This information is also available by the company hosting the model.
+
+   * The **provider** is the organization that built and trained the model. This does not necessarily align with the company you consume the model from. For example, you can use Microsoft Azure to use OpenAI models in the EU. But the provider will still be OpenAI.
+
+   * The **model name** is the name of the model.
+
+   * The **hosting provider** is where you consume the model. For example, GPT-4o can be hosted by Microsoft Azure.
+
+   * The **region** shows the user where the model is hosted. This can be set to the US or the EU.
+
+   * To give users an indication of how the model performs speed- and quality-wise, you can add a **ranking from 1 to 5**. Smaller models, like Claude 3 Haiku, GPT-4o mini or Llama 3.1 8B, are faster but do not have the highest quality. The top models, GPT-4o or Claude 3.5, have high output quality.
+
+   * The **knowledge cutoff** is when the model training data ended. Most models have a knowledge cutoff at the end of 2023.
+
+   * The last option lets you indicate whether the model can **analyze images**. This information is available from the model provider and the model hoster. Please only enable this setting if the model supports vision/image analysis. Models that allow image analysis are GPT-4o, GPT-4o mini, Claude, and Gemini models.
 
 ### Model Configurations
-4. To set up the **Model Configuration**, select the SDK you are using. You will find some information on the configuration of the model provider (e.g., Azure or AWS). This is:
-	- The **SDK**, the kit or library Langdock needs to use the model you added.
-The **Base URL** to send prompts to the corresponding endpoint of your model.
-The **Model ID** which is the name of the model in your configuration (this might not be the “official” model name, like GPT-4o).
-The **API key** allows your users to authenticate using the model from within Langdock when they send prompts.
-The **Context Size** is the number of tokens the model can process in its context window. Please use the exact value of the model to ensure the context management in Langdock works correctly.
 
-5. Other configuration options:
-    - **Maximum messages in 3 hours** allows you to influence usage/costs and limit messages per user. This setting is optional.
-    - **Input and output token pricing** allows the set of the token pricing of the individual model to monitor usage and costs.
-    - You can set the model to be **visible to everyone** in the workspace. If this option is disabled, the model is only visible to admins and can not be used by other users. This allows you to test the model before launching it to the entire workspace.
-    - The **maintenance mode** can be activated to show users in the interface that the model might not work as expected. This is useful if you are changing some configuration or there is a temporary issue with the model from your model provider.
+1. To set up the **Model Configuration**, select the SDK you are using. You will find some information on the configuration of the model provider (e.g., Azure or AWS). This is:
 
+   * The **SDK**, the kit or library Langdock needs to use the model you added.
+     The **Base URL** to send prompts to the corresponding endpoint of your model.
+     The **Model ID** which is the name of the model in your configuration (this might not be the “official” model name, like GPT-4o).
+     The **API key** allows your users to authenticate using the model from within Langdock when they send prompts.
+     The **Context Size** is the number of tokens the model can process in its context window. Please use the exact value of the model to ensure the context management in Langdock works correctly.
 
-6. After entering all mandatory settings, click on **Save**.
+2. Other configuration options:
 
-7. We recommend testing the model before making it visible to everyone. Send a message to the model and see if there is a response generated by the model. If you run into any issues, please contact support@langdock.com
+   * **Maximum messages in 3 hours** allows you to influence usage/costs and limit messages per user. This setting is optional.
 
-### Special cases during setup
+   * **Input and output token pricing** allows the set of the token pricing of the individual model to monitor usage and costs.
+
+   * You can set the model to be **visible to everyone** in the workspace. If this option is disabled, the model is only visible to admins and can not be used by other users. This allows you to test the model before launching it to the entire workspace.
+
+   * The **maintenance mode** can be activated to show users in the interface that the model might not work as expected. This is useful if you are changing some configuration or there is a temporary issue with the model from your model provider.
+
+3. After entering all mandatory settings, click on **Save**.
+
+4. We recommend testing the model before making it visible to everyone. Send a message to the model and see if there is a response generated by the model. If you run into any issues, please contact [support@langdock.com](mailto:support@langdock.com)
+
+## Special cases during setup
+
 **Mistral from Azure:**
 Make sure to select “Mistral” as the SDK.
-
 
 **Claude from AWS Bedrock:**
 The Base URL needs to contain the "access key" /“Zugriffsschlüssel”.
