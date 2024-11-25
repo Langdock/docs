@@ -169,7 +169,7 @@
         ]
     },
     {
-      "group": "Roll out and adoption",
+      "group": "AI adoption",
       "pages": [
         "admin/rollout-setup",
         "admin/rollout-playbook",
