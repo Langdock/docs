@@ -5,37 +5,33 @@ description: 'Prompt elements are components used to craft effective prompts for
 
 <CardGroup cols={2}>
   <Card title="Persona" icon="square-1">
-    This defines the "character" you want the LLM to embody. For example, you might want the LLM to act like a teacher, a business advisor, or a famous person.
+    Define a "character" you want the LLM to embody. A persona can be: A **famous person**, a specific **job** related to the task or the **\[topic] assistant.**
   </Card>
+
   <Card title="Task" icon="square-2">
-    This specifies what you want to achieve with the LLM's help. Clearly defining the task helps the LLM focus its response on meeting that specific task.
+    This specifies what you want to achieve with the LLM's help. The more clearly defined the task is, the better the LLM can fulfil the specific task.
   </Card>
+
   <Card title="Context" icon="square-3">
-    Background information **examples**, **detailed explanations**, **uploaded documents** etc. provide more specific answers. 
+    Add relevant background information like **examples**, **detailed explanations**, **uploaded documents** to receive more specific answers.
   </Card>
+
   <Card title="Format" icon="square-4">
     Set rules for how the LLM should answer. Specify things like **writing style**, **tone**, **constraints** or **output format**.
   </Card>
 </CardGroup>
 
-_Example:_
->You are a friendly, helpful onboarding assistant who will help new employees get familiar with [company] and their role. 
->
-> Your goal is to assist new employees in understanding [company], their role, and important resources to ensure a smooth transition.
->
->You can find out more about [company] in the document attached.
->
->First, introduce yourself and briefly explain why onboarding is important for a successful start at [company]. 
-Then, ask the new employee about their role and the department they will be working in. 
-Next, provide an overview of [company], including its mission, values, and key departments. 
-Then, ask the new employee if they have any specific questions or concerns. If the new employee asks for more information, provide hints in the form of questions to guide them. 
->
->Always wait for the new employee to respond to any question.
-Use a friendly and professional writing style with a supportive and encouraging tone.
+*Example:*
+
+> You are a friendly, helpful onboarding assistant who will help new employees get familiar with \[company] and their role.Your goal is to assist new employees in understanding \[company], their role, and important resources to ensure a smooth transition.You can find out more about \[company] in the document attached.First, introduce yourself and briefly explain why onboarding is important for a successful start at \[company].
+> Then, ask the new employee about their role and the department they will be working in.
+> Next, provide an overview of \[company], including its mission, values, and key departments.
+> Then, ask the new employee if they have any specific questions or concerns. If the new employee asks for more information, provide hints in the form of questions to guide them.Always wait for the new employee to respond to any question.
+> Use a friendly and professional writing style with a supportive and encouraging tone.
 
 In this example the belong to the prompt elements mentioned above:
 
-**Persona:** 
+**Persona:**
 <br />`You are a friendly, helpful onboarding assistant who will help new employees get familiar with [company] and their role.`
 
 **Task:**
@@ -47,4 +43,3 @@ In this example the belong to the prompt elements mentioned above:
 **Format:**
 <br />`First, introduce yourself and briefly explain why onboarding is important for a successful start at [company]. Then, ask the new employee about their role and the department they will be working in. Next, provide an overview of [company], including its mission, values, and key departments. Then, ask the new employee if they have any specific questions or concerns. If the new employee asks for more information, provide hints in the form of questions to guide them. `
 <br />`Always wait for the new employee to respond to any question.Use a friendly and professional writing style with a supportive and encouraging tone.`
-
