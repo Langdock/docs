@@ -320,71 +320,65 @@ security:
 
 ### 3. Create a Jira Application
 
-Go to the [Atlassian Developer Console](https://developer.atlassian.com/console/myapps/).
+1. Go to the [Atlassian Developer Console](https://developer.atlassian.com/console/myapps/).
 Click on **Create** and select **OAuth 2.0 integration**
+  ![](/images/actions-jira-1.png)
 
-![](/images/actions-jira-1.png)
+2. Enter the name of the integration and click **Create**.
+  ![](/images/actions-jira-2.png)
 
-Enter the name of the integration and click **Create**.
+3. Go to the **Permissions** menu in the left sidebar.
 
-![](/images/actions-jira-2.png)
+4. Click on **Add** in the Jira API. Then click **Configure**.
+  ![](/images/actions-jira-3.png)
 
-1. Go to the **Permissions** menu in the left sidebar.
+5. Under **Jira platform REST API** click on **Edit Scopes**.
+  ![](/images/actions-jira-4.png)
 
-2. Click on **Add** in the Jira API. Then click **Configure**.
-
-![](/images/actions-jira-3.png)
-
-1. Under **Jira platform REST API** click on **Edit Scopes**.
-
-![](/images/actions-jira-4.png)
-
-1. Grant the following scopes:
+6. Grant the following scopes:
    read:jira-work
    write:jira-work
    read:jira-user
+  
+  ![](/images/actions-jira-5.png)
 
-![](/images/actions-jira-5.png)
+  If you want to use other permissions than in our example, you need to set this here and in the OpenAPI Schema above.
 
-If you want to use other permissions than in our example, you need to set this here and in the OpenAPI Schema above.
+7. Click **Save**.
 
-1. Click **Save**.
+8. Go to **Authorization** in the left sidebar and click on **Add** next to **OAuth 2.0 (3LO)**
+  ![](/images/actions-jira-6.png)
 
-2. Go to **Authorization** in the left sidebar and click on **Add** next to **OAuth 2.0 (3LO)**
+9. Enter a placeholder callback URL and click **Save Changes**. We will replace this later by the correct callback URL from the action.
+  ![](/images/actions-jira-7.png)
 
-![](/images/actions-jira-6.png)
-
-1. Enter a placeholder callback URL and click **Save Changes**. We will replace this later by the correct callback URL from the action.
-
-![](/images/actions-jira-7.png)
-
-1. Go to **Settings** in the left sidebar and scroll down to **Authentication Details**. Save the Client ID and the Secret securely. We will need them to authenticate the access from Langdock.
+10. Go to **Settings** in the left sidebar and scroll down to **Authentication Details**. Save the Client ID and the Secret securely. We will need them to authenticate the access from Langdock.
 
 ### 4. OAuth Configuration in Langdock
 
-Go to the Authentication section at the top of the action settings. Select OAuth.
+11. Go to the Authentication section at the top of the action settings. Select OAuth.
 Enter the according information from your Jira Application:
+  
+  * **Client ID:** Enter the Client Key from above
 
-* **Client ID:** Enter the Client Key from above
+  * **Client Secret:** Enter the Secret from before
 
-* **Client Secret:** Enter the Secret from before
+  * **Authorization URL:** [https://auth.atlassian.com/authorize](https://auth.atlassian.com/authorize)
 
-* **Authorization URL:** [https://auth.atlassian.com/authorize](https://auth.atlassian.com/authorize)
+  * **Token URL:** [https://auth.atlassian.com/oauth/token](https://auth.atlassian.com/oauth/token)
 
-* **Token URL:** [https://auth.atlassian.com/oauth/token](https://auth.atlassian.com/oauth/token)
+  * **Scopes:** read:jira-work write:jira-work read:jira-user offline\_access
 
-* **Scopes:** read:jira-work write:jira-work read:jira-user offline\_access
+  * **Token:** Default
 
-* **Token:** Default
-
-Specifying the scope `offline_access` allows us to automatically refresh access tokens for signed-in users.
+  Specifying the scope `offline_access` allows us to automatically refresh access tokens for signed-in users.
 
 ### 5. Paste the redirect URL into Jira application
 
-1. Copy the redirect URL from the OAuth section in the action.
+12. Copy the redirect URL from the OAuth section in the action.
 
-2. Go to your Jira app
+13. Go to your Jira app
 
-3. Navigate back to the **Authorization** section in the left sidebar.
+14. Navigate back to the **Authorization** section in the left sidebar.
 
-4. Next to **OAuth 2.0 (3LO)** click on **Configure** and replace the placeholder from before with the correct callback URL.
+15. Next to **OAuth 2.0 (3LO)** click on **Configure** and replace the placeholder from before with the correct callback URL.

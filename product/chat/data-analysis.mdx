@@ -20,11 +20,24 @@ This capability can be used to:
 Ask what you are trying to accomplish in the chat. Try to be as specific as possible.
 
 ## How it works
-1. The data analyst is a tool the model can choose. It gets triggered when you prompt the model to use it ("use the data analyst") or when the according file is uploaded (GSheets, CSVs, Excel files). 
-2. The model then generates Python code. Python is a programming language that can be used to analyze datasets and extract information.
-3. After the code has been generated, a separate instance runs the Python code and returns the result to the model. 
-4. The model uses the prompt and the result to answer the user's question.
-<Tip>The best model for the data analyst is GPT-4o.</Tip>
+
+1. The data analyst is a tool the model can choose. It gets triggered when you prompt the model to use it ("use the data analyst") or when the according file is uploaded (GSheets, CSVs, Excel files). Here is an example of a file we will use in Langdock:
+  ![](/images/data-analyst-1.png)
+
+<Tip>To receive the best results, please use **GPT-4o** and ensure that the **column titles are in the first row**.</Tip>
+
+2. The model then generates Python code. Python is a programming language that can be used to analyze datasets and extract information. In the dark code block at the top you can see the generated Python code to analyze our example file:
+  ![](/images/data-analyst-2.png)
+
+3. After the code has been generated, a separate instance runs the Python code and returns the result to the model. It is shown under the code block in the screenshot above.
+
+4. The model uses the prompt and the result to answer the user's question. In our exmample, this looks like this:
+  ![](/images/data-analyst-3.png)
+
+5. If you request a file or a diagram, the model generates code again to generate the file and executes it afterwards. The generated file or diagram is then displayed in the chat and can be downloaded.
+  ![](/images/data-analyst-4.png)
+
+
 
 ## Differences to other documents
 The normal document search and the data analyst are different functionalities for different tasks with advantages and disadvantages. The document search is good at understanding a **whole document content**. It is not good at processing tabular data.
@@ -32,14 +45,13 @@ The normal document search and the data analyst are different functionalities fo
 The data analyst **can not understand the entire file**, but only the part that is extracted with Python. Everything else in the file has not been considered for the response. But this makes it powerful in working with large data sets and tabular data, as well as performing mathematical operations.
 
 ## Best practices and troubleshooting
-- We recommend the model GPT-4o when using the data analyst.
-- To work properly, the column names need to be in the first row. Avoid merged cells and try to display all data in vertical columns.
-- In order to parse the file correctly, all column titles should have a descriptive name. When referring to the column name, ideally use the full column title and not “Column K”. This is relevant as the AI model creates Python code which can only reference the correct column if the name is the same. Giving the same column name reduces the risk of letting the model generate code that references an incorrect column.
-- Make sure to enable the data analysis functionality in your settings and (if you are using a sheet in an assistant) also in the capabilities section at the bottom of the assistant editor.
-- Try to describe what you expect as precisely as possible. You can use the prompt elements from our prompt engineering guide (especially task, context, response format)
-- If possible, avoid empty cells in a sheet.
-- When you expect complex operations and receive no result or incorrect results, try to break the instruction into different prompts.
 
-Here are some known limitations we are working on:
-* **The data analysis does not return anything / returns the wrong value:**
-  Ensure that your file, especially the header row, is well-structured and has no empty cells. We have included some tricks in our data **analyst guide here** for more items to check.
+* In order to parse the file correctly, all column titles should have a descriptive name. When referring to the column name, ideally use the full column title and not “Column K”. This is relevant as the AI model creates Python code which can only reference the correct column if the name is the same. Giving the same column name reduces the risk of letting the model generate code that references an incorrect column.
+
+* Make sure to enable the data analysis functionality in your settings and (if you are using a sheet in an assistant) also in the capabilities section at the bottom of the assistant editor.
+
+* Try to describe what you expect as precisely as possible. You can use the prompt elements from our prompt engineering guide (especially task, context, response format)
+
+* If possible, avoid empty cells in a sheet.
+
+* When you expect complex operations and receive no result or incorrect results, try to break the instruction into different prompts.

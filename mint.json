@@ -164,12 +164,23 @@
       ]
     },
     {
+      "group": "AI adoption",
+      "pages": [
+        "admin/rollout-setup",
+        "admin/rollout-playbook",
+        "admin/identify-use-cases"
+      ]
+    },
+    {
       "group": "Legal & Compliance",
       "pages": ["admin/legal-compliance"]
     },
     {
       "group": "Billing",
-      "pages": ["admin/pricing", "admin/invoices"]
+      "pages": [
+        "admin/pricing",
+        "admin/invoices"
+        ]
     },
     {
       "group": "Prompt Engineering",
