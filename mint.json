@@ -81,10 +81,12 @@
       "pages": ["product/assistants/introduction", "product/assistants/configuration"]
     },
     {
-      "group": "API",
+      "group": "Model APIs",
+      "pages": ["product/api/openai", "product/api/anthropic"]
+    },
+    {
+      "group": "Assistant APIs",
       "pages": [
-        "product/api/openai",
-        "product/api/anthropic",
         "product/api/assistant",
         "product/api/assistant-models",
         "product/api/upload-attachments"
@@ -165,11 +167,7 @@
     },
     {
       "group": "AI adoption",
-      "pages": [
-        "admin/rollout-setup",
-        "admin/rollout-playbook",
-        "admin/identify-use-cases"
-      ]
+      "pages": ["admin/rollout-setup", "admin/rollout-playbook", "admin/identify-use-cases"]
     },
     {
       "group": "Legal & Compliance",
@@ -177,10 +175,7 @@
     },
     {
       "group": "Billing",
-      "pages": [
-        "admin/pricing",
-        "admin/invoices"
-        ]
+      "pages": ["admin/pricing", "admin/invoices"]
     },
     {
       "group": "Prompt Engineering",
