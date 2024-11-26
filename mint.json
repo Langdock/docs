@@ -81,16 +81,16 @@
       "pages": ["product/assistants/introduction", "product/assistants/configuration"]
     },
     {
-      "group": "Model APIs",
-      "pages": ["product/api/openai", "product/api/anthropic"]
-    },
-    {
       "group": "Assistant APIs",
       "pages": [
         "product/api/assistant",
         "product/api/assistant-models",
         "product/api/upload-attachments"
       ]
+    },
+    {
+      "group": "Model APIs",
+      "pages": ["product/api/openai", "product/api/anthropic"]
     },
     {
       "group": "Search",
