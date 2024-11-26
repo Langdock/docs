@@ -1,0 +1,89 @@
+---
+title: "Upload Attachment API"
+description: "Upload files to be used with Assistants"
+openapi: "POST /attachment/v1/upload"
+---
+
+Upload files that can be referenced in Assistant conversations using their attachment IDs.
+
+<Info>
+  To use the API you need an API key. You can create API Keys in your [Workspace
+  settings](https://app.langdock.com/settings/workspace/api).
+</Info>
+
+## Request Format
+
+This endpoint accepts `multipart/form-data` requests with a single file upload.
+
+| Parameter | Type | Required | Description                 |
+| --------- | ---- | -------- | --------------------------- |
+| `file`    | File | Yes      | The file you want to upload |
+
+## Response Format
+
+The API returns the uploaded file information:
+
+```typescript
+{
+  attachmentId: string;
+  file: {
+    name: string;
+    mimeType: string;
+    sizeInBytes: number;
+  }
+}
+```
+
+## Example
+
+```javascript
+const axios = require("axios");
+const FormData = require("form-data");
+const fs = require("fs");
+
+async function uploadAttachment() {
+  const form = new FormData();
+  form.append("file", fs.createReadStream("example.pdf"));
+
+  const response = await axios.post("https://api.langdock.com/attachment/v1/upload", form, {
+    headers: {
+      ...form.getHeaders(),
+      Authorization: "Bearer YOUR_API_KEY",
+    },
+  });
+
+  console.log(response.data);
+  // {
+  //   attachmentId: "550e8400-e29b-41d4-a716-446655440000",
+  //   file: {
+  //     name: "example.pdf",
+  //     mimeType: "application/pdf",
+  //     sizeInBytes: 1234567
+  //   }
+  // }
+}
+```
+
+## Error Handling
+
+```javascript
+try {
+  const response = await axios.post('https://api.langdock.com/attachment/v1/upload', ...);
+} catch (error) {
+  if (error.response) {
+    switch (error.response.status) {
+      case 400:
+        console.error('No file provided');
+        break;
+      case 401:
+        console.error('Invalid API key');
+        break;
+      case 500:
+        console.error('Server error');
+        break;
+    }
+  }
+}
+```
+
+The uploaded attachment ID can be used in the Assistant API by including it in the `attachmentIds` array either at the assistant level or message level.

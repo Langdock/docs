@@ -82,7 +82,13 @@
     },
     {
       "group": "API",
-      "pages": ["product/api/openai", "product/api/anthropic", "product/api/assistant"]
+      "pages": [
+        "product/api/openai",
+        "product/api/anthropic",
+        "product/api/assistant",
+        "product/api/assistant-models",
+        "product/api/upload-attachments"
+      ]
     },
     {
       "group": "Search",

@@ -21,6 +21,14 @@ Creates a model response for a given assistant id, or pass in an Assistant confi
 | `assistant`   | object | One of assistantId/assistant required | Configuration for a new assistant              |
 | `messages`    | array  | Yes                                   | Array of message objects with role and content |
 
+### Message Format
+
+Each message in the `messages` array should contain:
+
+- `role` (required) - One of: "user", "assistant", or "tool"
+- `content` (required) - The message content as a string
+- `attachmentIds` (optional) - Array of UUID strings identifying attachments for this message
+
 ### Assistant Configuration
 
 When creating a temporary assistant, you can specify:
@@ -34,12 +42,17 @@ When creating a temporary assistant, you can specify:
 - `actions` - Custom API integrations
 - `vectorDb` - Vector database connections
 - `knowledgeFolderIds` - IDs of knowledge folders to use
+- `attachmentIds` - Array of UUID strings identifying attachments to use
 
 <Info>
   You can retrieve a list of available models using the [Models
   API](/product/api/assistant-models). This is useful when you want to see which models you can
   use in your assistant configuration.
 </Info>
+
+## Obtaining Attachment IDs
+
+To use attachments in your assistant conversations, you first need to upload the files using the [Upload Attachment API](/product/api/upload-attachments). This will return an `attachmentId` for each file, which you can then include in the `attachmentIds` array in your assistant or message configuration.
 
 ## Examples
 
@@ -56,7 +69,8 @@ async function chatWithAssistant() {
       messages: [
         {
           role: "user",
-          content: "Hello! Can you help me with a task?",
+          content: "Can you analyze this document for me?",
+          attachmentIds: ["550e8400-e29b-41d4-a716-446655440000"], // Obtain attachmentIds from upload attachment endpoint
         },
       ],
     },
@@ -81,19 +95,21 @@ async function chatWithNewAssistant() {
     "https://api.langdock.com/assistant/v1/chat/completions",
     {
       assistant: {
-        name: "Math Tutor",
-        instructions: "You are a helpful math tutor who explains concepts clearly",
+        name: "Document Analyzer",
+        instructions:
+          "You are a helpful assistant who analyzes documents and answers questions about them",
         temperature: 0.7,
-        model: "gpt-4o",
+        model: "gpt-4",
         capabilities: {
           webSearch: true,
           dataAnalyst: true,
         },
+        attachmentIds: ["550e8400-e29b-41d4-a716-446655440000"], // Obtain attachmentIds from upload attachment endpoint
       },
       messages: [
         {
           role: "user",
-          content: "Can you explain quadratic equations?",
+          content: "What are the key points in the document?",
         },
       ],
     },

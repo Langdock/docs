@@ -246,6 +246,12 @@ paths:
                         enum: [user, assistant, tool]
                       content:
                         type: string
+                      attachmentIds:
+                        type: array
+                        items:
+                          type: string
+                          format: uuid
+                        description: Array of UUID strings identifying attachments for this message
               oneOf:
                 - required: [assistantId, messages]
                 - required: [assistant, messages]
@@ -411,6 +417,83 @@ paths:
                   message:
                     type: string
                     example: "Internal Server Error"
+  /attachment/v1/upload:
+    post:
+      operationId: uploadAttachment
+      summary: Upload an attachment
+      description: Upload a file that can be referenced in Assistant conversations.
+      tags: [Attachments]
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required:
+                - file
+              properties:
+                file:
+                  type: string
+                  format: binary
+                  description: The file to upload
+      responses:
+        "200":
+          description: Successfully uploaded file
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - attachmentId
+                  - file
+                properties:
+                  attachmentId:
+                    type: string
+                    format: uuid
+                    description: Unique identifier for the uploaded attachment
+                  file:
+                    type: object
+                    required:
+                      - name
+                      - mimeType
+                      - sizeInBytes
+                    properties:
+                      name:
+                        type: string
+                        description: Original filename
+                      mimeType:
+                        type: string
+                        description: MIME type of the file
+                      sizeInBytes:
+                        type: integer
+                        description: Size of the file in bytes
+        "400":
+          description: No file provided
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+        "401":
+          description: Invalid API key
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
 components:
   schemas:
     # OpenAI schemas
@@ -1364,7 +1447,7 @@ components:
 
             See [examples](https://docs.anthropic.com/en/api/messages-examples#vision) for more input examples.
 
-            Note that if you want to include a [system prompt](https://docs.anthropic.com/en/docs/system-prompts), you can use the top-level `system` parameter â€” there is no `"system"` role for input messages in the Messages API.
+            Note that if you want to include a [system prompt](https://docs.anthropic.com/en/docs/system-prompts), you can use the top-level `system` parameter â€" there is no `"system"` role for input messages in the Messages API.
           items:
             $ref: "#/components/schemas/InputMessage"
           title: Messages
@@ -2211,70 +2294,9 @@ components:
           type: array
           items:
             type: string
-    Action:
-      type: object
-      required:
-        - id
-        - authType
-        - name
-        - schema
-      properties:
-        id:
-          type: string
-        authType:
-          type: string
-          enum: [API_KEY, CUSTOM_HEADER]
-        name:
-          type: string
-        schema:
-          type: string
-        apiKey:
-          type: string
-        customHeaderName:
-          type: string
-        clientId:
-          type: string
-        clientSecret:
-          type: string
-        authorizationUrl:
-          type: string
-        tokenUrl:
-          type: string
-        redirectUrl:
-          type: string
-    VectorDb:
-      type: object
-      required:
-        - vectorDbId
-        - embeddingModelId
-        - provider
-        - url
-        - apiKey
-        - collection
-        - name
-        - description
-        - sourceRestriction
-      properties:
-        vectorDbId:
-          type: string
-        embeddingModelId:
-          type: string
-        provider:
-          type: string
-          enum: [QDRANT]
-        url:
-          type: string
-        apiKey:
-          type: string
-        collection:
-          type: string
-        name:
-          type: string
-        description:
-          type: string
-        sourceRestriction:
-          type: boolean
-        topK:
-          type: number
-        filter:
-          type: string
+        attachmentIds:
+          type: array
+          items:
+            type: string
+            format: uuid
+          description: Array of UUID strings identifying attachments for this message
