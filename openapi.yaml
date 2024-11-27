@@ -252,6 +252,41 @@ paths:
                           type: string
                           format: uuid
                         description: Array of UUID strings identifying attachments for this message
+                output:
+                  type: object
+                  description: Specification for structured output format. When type is object/array and no schema is provided, the response will be JSON but can have any structure. When the type is enum, you must provide an enum parameter with an array of strings as options.
+                  properties:
+                    type:
+                      type: string
+                      enum: [object, array, enum]
+                      description: The type of structured output
+                    schema:
+                      type: object
+                      description: JSON Schema definition for the output (required for object/array types with specific structure). Search for "JSON to JSON Schema" in the web to find a tool to convert any JSON into the required JSON Schema format.
+                    enum:
+                      type: array
+                      items:
+                        type: string
+                      description: Array of allowed values (required for enum type). Values must be of type string.
+                  required:
+                    - type
+                  oneOf:
+                    - properties:
+                        type:
+                          enum: [enum]
+                        enum:
+                          type: array
+                          items:
+                            type: string
+                      required: [enum]
+                    - properties:
+                        type:
+                          enum: [object, array]
+                        schema:
+                          type: object
+                    - properties:
+                        type:
+                          enum: [object, array]
               oneOf:
                 - required: [assistantId, messages]
                 - required: [assistant, messages]
@@ -299,6 +334,15 @@ paths:
                                 type: object
                               text:
                                 type: string
+                  output:
+                    description: Present when output parameter was specified in the request
+                    oneOf:
+                      - type: object
+                        description: When output.type is "object"
+                      - type: array
+                        description: When output.type is "array"
+                      - type: string
+                        description: When output.type is "enum" (one of the provided enum values)
         "400":
           description: Invalid request parameters
           content:

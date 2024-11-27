@@ -20,6 +20,7 @@ Creates a model response for a given assistant id, or pass in an Assistant confi
 | `assistantId` | string | One of assistantId/assistant required | ID of an existing assistant to use             |
 | `assistant`   | object | One of assistantId/assistant required | Configuration for a new assistant              |
 | `messages`    | array  | Yes                                   | Array of message objects with role and content |
+| `output`      | object | No                                    | Structured output format specification         |
 
 ### Message Format
 
@@ -48,6 +49,29 @@ When creating a temporary assistant, you can specify:
   You can retrieve a list of available models using the [Models
   API](/product/api/assistant-models). This is useful when you want to see which models you can
   use in your assistant configuration.
+</Info>
+
+## Structured Output
+
+You can specify a structured output format using the optional `output` parameter:
+
+| Field    | Type                          | Description                                                    |
+| -------- | ----------------------------- | -------------------------------------------------------------- |
+| `type`   | "object" \| "array" \| "enum" | The type of structured output                                  |
+| `schema` | object                        | JSON Schema definition for the output (for object/array types) |
+| `enum`   | string[]                      | Array of allowed values (for enum type)                        |
+
+The `output` parameter behavior depends on the specified type:
+
+- `type: "object"` with no schema: Forces the response to be a single JSON object (no specific structure)
+- `type: "object"` with schema: Forces the response to match the provided JSON Schema
+- `type: "array"` with schema: Forces the response to be an array of objects matching the provided schema
+- `type: "enum"`: Forces the response to be one of the values specified in the `enum` array
+
+<Info>
+  You can use tools like [transform.tools](https://transform.tools/json-to-json-schema) or
+  [easy-json-schema](https://easy-json-schema.github.io/) to generate JSON Schemas from example
+  JSON objects.
 </Info>
 
 ## Obtaining Attachment IDs
@@ -124,6 +148,98 @@ async function chatWithNewAssistant() {
 }
 ```
 
+### Using Structured Output with Schema
+
+```javascript
+const axios = require("axios");
+
+async function getStructuredWeather() {
+  const response = await axios.post(
+    "https://api.langdock.com/assistant/v1/chat/completions",
+    {
+      assistant: {
+        name: "Weather Assistant",
+        instructions: "You are a helpful weather assistant",
+        capabilities: {
+          webSearch: true,
+        },
+      },
+      messages: [
+        {
+          role: "user",
+          content: "What's the weather in paris, berlin and london today?",
+        },
+      ],
+      output: {
+        type: "array",
+        schema: {
+          type: "object",
+          properties: {
+            weather: {
+              type: "object",
+              properties: {
+                city: {
+                  type: "string",
+                },
+                tempInCelsius: {
+                  type: "number",
+                },
+                tempInFahrenheit: {
+                  type: "number",
+                },
+              },
+              required: ["city", "tempInCelsius", "tempInFahrenheit"],
+            },
+          },
+        },
+      },
+    },
+    {
+      headers: {
+        Authorization: "Bearer YOUR_API_KEY",
+      },
+    }
+  );
+
+  console.log(response.data);
+}
+```
+
+### Using Structured Output with Enum
+
+```javascript
+const axios = require("axios");
+
+async function getSentimentAnalysis() {
+  const response = await axios.post(
+    "https://api.langdock.com/assistant/v1/chat/completions",
+    {
+      assistant: {
+        name: "Sentiment Analyzer",
+        instructions: "You analyze the sentiment of text",
+      },
+      messages: [
+        {
+          role: "user",
+          content: "How would you rate this review: 'This product exceeded my expectations!'",
+        },
+      ],
+      output: {
+        type: "enum",
+        enum: ["positive", "neutral", "negative"],
+      },
+    },
+    {
+      headers: {
+        Authorization: "Bearer YOUR_API_KEY",
+      },
+    }
+  );
+
+  console.log(response.data);
+}
+```
+
 ## Rate limits
 
 The rate limit for the Assistant Completion endpoint is **500 RPM (requests per minute)** and **60.000 TPM (tokens per minute)**. Rate limits are defined at the workspace level - and not at an API key level. Each model has its own rate limit. If you exceed your rate limit, you will receive a `429 Too Many Requests` response.
@@ -133,10 +249,11 @@ In case you need a higher rate limit, please contact us at [support@langdock.com
 
 ## Response Format
 
-The API returns an array of results, where each result contains:
+The API returns an object containing:
 
 ```typescript
 {
+  // Standard message results - always present
   result: Array<{
     id: string;
     role: "tool" | "assistant";
@@ -149,6 +266,63 @@ The API returns an array of results, where each result contains:
       text?: string;
     }>;
   }>;
+
+  // Structured output - present when output parameter was specified
+  output?: object | array | string;
+}
+```
+
+### Standard Result
+
+The `result` array contains the message exchange between user and assistant, including any tool calls that were made. This is always present in the response.
+
+### Structured Output
+
+When the request includes an `output` parameter, the response will also include an `output` field. The type of this field depends on the requested output format:
+
+- If `output.type` was "object": Returns a JSON object (with schema validation if schema was provided)
+- If `output.type` was "array": Returns an array (with schema validation if schema was provided)
+- If `output.type` was "enum": Returns a string matching one of the provided enum values
+
+For example, when requesting weather data with structured output:
+
+```javascript
+// Request
+{
+  "output": {
+    "type": "array",
+    "schema": {
+      "type": "object",
+      "properties": {
+        "weather": {
+          "type": "object",
+          "properties": {
+            "city": { "type": "string" },
+            "tempInCelsius": { "type": "number" }
+          }
+        }
+      }
+    }
+  }
+}
+
+// Response
+{
+  "result": [ /* standard message results */ ],
+  "output": [
+    {
+      "weather": {
+        "city": "Paris",
+        "tempInCelsius": 22
+      }
+    },
+    {
+      "weather": {
+        "city": "London",
+        "tempInCelsius": 18
+      }
+    }
+  ]
 }
 ```
 
