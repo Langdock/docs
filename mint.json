@@ -55,7 +55,9 @@
   "navigation": [
     {
       "group": "Getting started",
-      "pages": ["product/introduction"]
+      "pages": [
+        "product/introduction"
+      ]
     },
     {
       "group": "Chat",
@@ -78,7 +80,10 @@
     },
     {
       "group": "Assistants",
-      "pages": ["product/assistants/introduction", "product/assistants/configuration"]
+      "pages": [
+        "product/assistants/introduction",
+        "product/assistants/configuration"
+      ]
     },
     {
       "group": "Assistant APIs",
@@ -90,15 +95,24 @@
     },
     {
       "group": "Model APIs",
-      "pages": ["product/api/openai", "product/api/anthropic"]
+      "pages": [
+        "product/api/openai",
+        "product/api/anthropic",
+        "product/api/mistral"
+      ]
     },
     {
       "group": "Search",
-      "pages": ["product/search/introduction"]
+      "pages": [
+        "product/search/introduction"
+      ]
     },
     {
       "group": "Settings",
-      "pages": ["settings/account", "settings/workspace"]
+      "pages": [
+        "settings/account",
+        "settings/workspace"
+      ]
     },
     {
       "group": "Knowledge Folders",
@@ -116,7 +130,10 @@
       "pages": [
         {
           "group": "SAML",
-          "pages": ["settings/security/entra", "settings/security/google"]
+          "pages": [
+            "settings/security/entra",
+            "settings/security/google"
+          ]
         },
         "settings/security/scim"
       ]
@@ -134,15 +151,22 @@
         },
         {
           "group": "Search integrations: User-level",
-          "pages": ["settings/integrations/oauth"]
+          "pages": [
+            "settings/integrations/oauth"
+          ]
         },
         {
           "group": "Search integrations: Workspace-level",
-          "pages": ["settings/integrations/google-drive", "settings/integrations/confluence"]
+          "pages": [
+            "settings/integrations/google-drive",
+            "settings/integrations/confluence"
+          ]
         },
         {
           "group": "Chatbot integrations",
-          "pages": ["settings/integrations/slack"]
+          "pages": [
+            "settings/integrations/slack"
+          ]
         },
         {
           "group": "Action integrations: API Calls in assistants",
@@ -167,15 +191,24 @@
     },
     {
       "group": "AI adoption",
-      "pages": ["admin/rollout-setup", "admin/rollout-playbook", "admin/identify-use-cases"]
+      "pages": [
+        "admin/rollout-setup",
+        "admin/rollout-playbook",
+        "admin/identify-use-cases"
+      ]
     },
     {
       "group": "Legal & Compliance",
-      "pages": ["admin/legal-compliance"]
+      "pages": [
+        "admin/legal-compliance"
+      ]
     },
     {
       "group": "Billing",
-      "pages": ["admin/pricing", "admin/invoices"]
+      "pages": [
+        "admin/pricing",
+        "admin/invoices"
+      ]
     },
     {
       "group": "Prompt Engineering",
@@ -223,7 +256,11 @@
     },
     {
       "group": "Other resources",
-      "pages": ["resources/faq", "resources/dictionary", "resources/tricks-and-shortcuts"]
+      "pages": [
+        "resources/faq",
+        "resources/dictionary",
+        "resources/tricks-and-shortcuts"
+      ]
     }
   ],
   "footerSocials": {

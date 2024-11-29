@@ -3,3 +3,14 @@ title: "Codestral"
 description: "Code generation using the Codestral model from Mistral."
 openapi: "POST /mistral/{region}/v1/fim/completions"
 ---
+
+Creates a code completion using the [Codestral model from Mistral](https://docs.mistral.ai/capabilities/code_generation/).
+
+All parameters from the [Mistral fill-in-the-middle Completion endpoint](https://docs.mistral.ai/capabilities/code_generation/#fill-in-the-middle-endpoint) are supported according to the Mistral specifications.
+
+## Rate limits
+
+The rate limit for the FIM Completion endpoint is **500 RPM (requests per minute)** and **60.000 TPM (tokens per minute)**. Rate limits are defined at the workspace level - and not at an API key level. Each model has its own rate limit. If you exceed your rate limit, you will receive a `429 Too Many Requests` response.
+
+Please note that the rate limits are subject to change, refer to this documentation for the most up-to-date information.
+In case you need a higher rate limit, please contact us at [support@langdock.com](mailto:support@langdock.com).
