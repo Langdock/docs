@@ -97,6 +97,36 @@ paths:
             schema:
               $ref: "#/components/schemas/CreateMessageParams"
         required: true
+  /mistral/{region}/v1/fim/completions:
+    post:
+      summary: Fim Completion
+      description: FIM completion.
+      parameters:
+        - name: region
+          in: path
+          required: true
+          description: The region of the API to use.
+          schema:
+            type: string
+            enum: ["eu"]
+      operationId: fim_completion_v1_fim_completions_post
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/FIMCompletionRequest"
+      responses:
+        "200":
+          description: Successful Response
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/FIMCompletionResponse" }
+            text/event-stream:
+              schema:
+                $ref: "#/components/schemas/CompletionEvent"
+      tags:
+        - fim
   /knowledge/search:
     post:
       summary: Search through all files in data folders shared with the API Key
@@ -2344,3 +2374,394 @@ components:
             type: string
             format: uuid
           description: Array of UUID strings identifying attachments for this message
+    #============== Mistral schemas ==============
+    AssistantMessage:
+      properties:
+        content:
+          title: Content
+          anyOf:
+            - type: string
+            - type: 'null'
+            - items:
+                $ref: '#/components/schemas/ContentChunk'
+              type: array
+        tool_calls:
+          anyOf:
+            - items:
+                $ref: '#/components/schemas/ToolCall'
+              type: array
+            - type: 'null'
+          title: Tool Calls
+        prefix:
+          type: boolean
+          title: Prefix
+          default: false
+        role:
+          type: string
+          default: assistant
+          title: Role
+          enum:
+            - assistant
+      additionalProperties: false
+      type: object
+      title: AssistantMessage
+    FIMCompletionRequest:
+      properties:
+        model:
+          anyOf:
+            - type: string
+            - type: 'null'
+          title: Model
+          default: codestral-2405
+          description: |-
+            ID of the model to use. Only compatible for now with:
+              - `codestral-2405`
+              - `codestral-latest`
+          examples:
+            - codestral-2405
+        temperature:
+          anyOf:
+            - type: number
+              maximum: 1.5
+              minimum: 0
+            - type: 'null'
+          title: Temperature
+          description: What sampling temperature to use, we recommend between 0.0 and 0.7. Higher values like 0.7 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. We generally recommend altering this or `top_p` but not both. The default value varies depending on the model you are targeting. Call the `/models` endpoint to retrieve the appropriate value.
+        top_p:
+          type: number
+          maximum: 1
+          minimum: 0
+          title: Top P
+          default: 1
+          description: Nucleus sampling, where the model considers the results of the tokens with `top_p` probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered. We generally recommend altering this or `temperature` but not both.
+        max_tokens:
+          anyOf:
+            - type: integer
+              minimum: 0
+            - type: 'null'
+          title: Max Tokens
+          description: The maximum number of tokens to generate in the completion. The token count of your prompt plus `max_tokens` cannot exceed the model's context length.
+        stream:
+          type: boolean
+          title: Stream
+          default: false
+          description: 'Whether to stream back partial progress. If set, tokens will be sent as data-only server-side events as they become available, with the stream terminated by a data: [DONE] message. Otherwise, the server will hold the request open until the timeout or until completion, with the response containing the full result as JSON.'
+        stop:
+          anyOf:
+            - type: string
+            - items:
+                type: string
+              type: array
+          title: Stop
+          description: Stop generation if this token is detected. Or if one of these tokens is detected when providing an array
+        random_seed:
+          anyOf:
+            - type: integer
+              minimum: 0
+            - type: 'null'
+          title: Random Seed
+          description: The seed to use for random sampling. If set, different calls will generate deterministic results.
+        prompt:
+          type: string
+          title: Prompt
+          description: The text/code to complete.
+          examples:
+            - def
+        suffix:
+          anyOf:
+            - type: string
+            - type: 'null'
+          title: Suffix
+          default: ''
+          description: Optional text/code that adds more context for the model. When given a `prompt` and a `suffix` the model will fill what is between them. When `suffix` is not provided, the model will simply execute completion starting with `prompt`.
+          examples:
+            - return a+b
+        min_tokens:
+          anyOf:
+            - type: integer
+              minimum: 0
+            - type: 'null'
+          title: Min Tokens
+          description: The minimum number of tokens to generate in the completion.
+      additionalProperties: false
+      type: object
+      required:
+        - prompt
+        - model
+      title: FIMCompletionRequest
+    FunctionCall:
+      properties:
+        name:
+          type: string
+          title: Name
+        arguments:
+          title: Arguments
+          anyOf:
+            - type: object
+              additionalProperties: true
+            - type: string
+      additionalProperties: false
+      type: object
+      required:
+        - name
+        - arguments
+      title: FunctionCall
+    ImageURL:
+      properties:
+        url:
+          type: string
+          title: Url
+        detail:
+          anyOf:
+            - type: string
+            - type: 'null'
+          title: Detail
+      additionalProperties: false
+      type: object
+      required:
+        - url
+      title: ImageURL
+    ImageURLChunk:
+      properties:
+        type:
+          type: string
+          enum:
+            - image_url
+          const: image_url
+          title: Type
+          default: image_url
+        image_url:
+          anyOf:
+            - $ref: '#/components/schemas/ImageURL'
+            - type: string
+          title: Image Url
+      additionalProperties: false
+      type: object
+      required:
+        - image_url
+      title: ImageURLChunk
+      description: '{"type":"image_url","image_url":{"url":"data:image/png;base64,iVBORw0'
+    TextChunk:
+      properties:
+        type:
+          type: string
+          enum:
+            - text
+          const: text
+          title: Type
+          default: text
+        text:
+          type: string
+          title: Text
+      additionalProperties: false
+      type: object
+      required:
+        - text
+      title: TextChunk
+    ToolCall:
+      properties:
+        id:
+          type: string
+          title: Id
+          default: 'null'
+        type:
+          $ref: '#/components/schemas/ToolTypes'
+          default: function
+        function:
+          $ref: '#/components/schemas/FunctionCall'
+      additionalProperties: false
+      type: object
+      required:
+        - function
+      title: ToolCall
+    ToolTypes:
+      type: string
+      enum:
+        - function
+      const: function
+      title: ToolTypes
+    ContentChunk:
+      oneOf:
+        - $ref: '#/components/schemas/TextChunk'
+        - $ref: '#/components/schemas/ImageURLChunk'
+      discriminator:
+        propertyName: type
+        mapping:
+          image_url: '#/components/schemas/ImageURLChunk'
+          text: '#/components/schemas/TextChunk'
+      title: ContentChunk
+    UsageInfo:
+      title: UsageInfo
+      type: object
+      properties:
+        prompt_tokens:
+          type: integer
+          example: 16
+        completion_tokens:
+          type: integer
+          example: 34
+        total_tokens:
+          type: integer
+          example: 50
+      required:
+        - prompt_tokens
+        - completion_tokens
+        - total_tokens
+    ResponseBase:
+      type: object
+      title: ResponseBase
+      properties:
+        id:
+          type: string
+          example: cmpl-e5cc70bb28c444948073e77776eb30ef
+        object:
+          type: string
+          example: chat.completion
+        model:
+          type: string
+          example: mistral-small-latest
+        usage:
+          $ref: '#/components/schemas/UsageInfo'
+    ChatCompletionChoice:
+      title: ChatCompletionChoice
+      type: object
+      required:
+        - index
+        - finish_reason
+        - message
+      properties:
+        index:
+          type: integer
+          example: 0
+        message:
+          $ref: '#/components/schemas/AssistantMessage'
+        finish_reason:
+          type: string
+          enum:
+            - stop
+            - length
+            - model_length
+            - error
+            - tool_calls
+          example: stop
+    DeltaMessage:
+      title: DeltaMessage
+      type: object
+      properties:
+        role:
+          anyOf:
+            - type: string
+            - type: 'null'
+        content:
+          anyOf:
+            - type: string
+            - type: 'null'
+            - items:
+                $ref: '#/components/schemas/ContentChunk'
+              type: array
+        tool_calls:
+          anyOf:
+            - type: 'null'
+            - type: array
+              items:
+                $ref: '#/components/schemas/ToolCall'
+    ChatCompletionResponseBase:
+      allOf:
+        - $ref: '#/components/schemas/ResponseBase'
+        - type: object
+          title: ChatCompletionResponseBase
+          properties:
+            created:
+              type: integer
+              example: 1702256327
+    ChatCompletionResponse:
+      allOf:
+        - $ref: '#/components/schemas/ChatCompletionResponseBase'
+        - type: object
+          title: ChatCompletionResponse
+          properties:
+            choices:
+              type: array
+              items:
+                $ref: '#/components/schemas/ChatCompletionChoice'
+          required:
+            - id
+            - object
+            - data
+            - model
+            - usage
+    FIMCompletionResponse:
+      allOf:
+        - $ref: '#/components/schemas/ChatCompletionResponse'
+        - type: object
+          properties:
+            model:
+              type: string
+              example: codestral-latest
+    EmbeddingResponse:
+      allOf:
+        - $ref: '#/components/schemas/ResponseBase'
+        - type: object
+          properties:
+            data:
+              type: array
+              items:
+                - $ref: '#/components/schemas/EmbeddingResponseData'
+          required:
+            - id
+            - object
+            - data
+            - model
+            - usage
+    CompletionEvent:
+      title: CompletionEvent
+      type: object
+      required:
+        - data
+      properties:
+        data:
+          $ref: '#/components/schemas/CompletionChunk'
+    CompletionChunk:
+      title: CompletionChunk
+      type: object
+      required:
+        - id
+        - model
+        - choices
+      properties:
+        id:
+          type: string
+        object:
+          type: string
+        created:
+          type: integer
+        model:
+          type: string
+        usage:
+          $ref: '#/components/schemas/UsageInfo'
+        choices:
+          type: array
+          items:
+            $ref: '#/components/schemas/CompletionResponseStreamChoice'
+    CompletionResponseStreamChoice:
+      title: CompletionResponseStreamChoice
+      type: object
+      required:
+        - index
+        - delta
+        - finish_reason
+      properties:
+        index:
+          type: integer
+        delta:
+          $ref: '#/components/schemas/DeltaMessage'
+        finish_reason:
+          type:
+            - string
+            - 'null'
+          enum:
+            - stop
+            - length
+            - error
+            - tool_calls
+            - null
