@@ -116,12 +116,33 @@ paths:
           application/json:
             schema:
               $ref: "#/components/schemas/FIMCompletionRequest"
+            example:  
+              model: "codestral-2405"
+              prompt: "console.log("
+              max_tokens: 64
       responses:
         "200":
           description: Successful Response
           content:
             application/json:
               schema: { $ref: "#/components/schemas/FIMCompletionResponse" }
+              example:
+                data: "asd"
+                id: "245c52bc936f53ba90327800c73d1c3e"
+                object: "chat.completion"
+                model: "codestral"
+                usage:
+                  prompt_tokens: 16
+                  completion_tokens: 102
+                  total_tokens: 118
+                created: 1732902806
+                choices:
+                  - index: 0
+                    message:
+                      content: "\n  // Use a regular expression to match any non-alphanumeric character and replace it with an empty string\n  return str.replace(/[^a-zA-Z0-9]/g, '');\n}\n\n// Test the function\nconst inputString = \"Hello, World! 123\";\nconst outputString = removeSpecialCharactersWithRegex(inputString);\nconsole.log(outputString); // Output: \"HelloWorld123\""
+                      prefix: false
+                      role: "assistant"
+                    finish_reason: "stop"
             text/event-stream:
               schema:
                 $ref: "#/components/schemas/CompletionEvent"
