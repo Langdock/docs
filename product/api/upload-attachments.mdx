@@ -8,7 +8,7 @@ Upload files that can be referenced in Assistant conversations using their attac
 
 <Info>
   To use the API you need an API key. You can create API Keys in your [Workspace
-  settings](https://app.langdock.com/settings/workspace/api).
+  settings](https://app.langdock.com/settings/workspace/products/api).
 </Info>
 
 ## Request Format
@@ -45,12 +45,16 @@ async function uploadAttachment() {
   const form = new FormData();
   form.append("file", fs.createReadStream("example.pdf"));
 
-  const response = await axios.post("https://api.langdock.com/attachment/v1/upload", form, {
-    headers: {
-      ...form.getHeaders(),
-      Authorization: "Bearer YOUR_API_KEY",
-    },
-  });
+  const response = await axios.post(
+    "https://api.langdock.com/attachment/v1/upload",
+    form,
+    {
+      headers: {
+        ...form.getHeaders(),
+        Authorization: "Bearer YOUR_API_KEY",
+      },
+    }
+  );
 
   console.log(response.data);
   // {
