@@ -2413,7 +2413,6 @@ components:
           description: |-
             ID of the model to use. Only compatible for now with:
               - `codestral-2405`
-              - `codestral-latest`
         temperature:
           anyOf:
             - type: number
