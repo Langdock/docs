@@ -14,3 +14,40 @@ The rate limit for the FIM Completion endpoint is **500 RPM (requests per minute
 
 Please note that the rate limits are subject to change, refer to this documentation for the most up-to-date information.
 In case you need a higher rate limit, please contact us at [support@langdock.com](mailto:support@langdock.com).
+
+## Using the Continue.dev AI Code Assistant
+
+Using the Codestral model, combined with chat completion models from the Langdock API, makes it possible to use the open-source AI code assistant [Continue](https://continue.dev) fully via the Langdock API.
+
+Continue is available as a [VS Code extension](https://marketplace.visualstudio.com/items?itemName=Continue.continue) and as a JetBrains extension. To customize the models used by Continue, you can edit the configuration file at `~/.continue/config.json` (MacOS / Linux) or `%USERPROFILE%\.continue\config.json` (Windows).
+
+Below is an example setup for using Continue with the Codestral model for autocomplete and Claude 3.5 Sonnet and GPT-4o models for chats and edits, all served from the Langdock API.
+
+```json
+{
+  "models": [
+    {
+      "title": "GPT-4o",
+      "provider": "openai",
+      "model": "gpt-4o",
+      "apiKey": "<YOUR_LANGDOCK_API_KEY>",
+      "apiBase": "https://api.langdock.com/openai/eu/v1"
+    },
+    {
+      "title": "Claude 3.5 Sonnet",
+      "provider": "anthropic",
+      "model": "claude-3-5-sonnet-20240620",
+      "apiKey": "<YOUR_LANGDOCK_API_KEY>",
+      "apiBase": "https://api.langdock.com/anthropic/eu/v1"
+    }
+  ],
+  "tabAutocompleteModel": {
+    "title": "Codestral",
+    "provider": "mistral",
+    "model": "codestral-2405",
+    "apiKey": "<YOUR_LANGDOCK_API_KEY>",
+    "apiBase": "https://api.langdock.com/mistral/eu/v1"
+  }
+  /* ... other configuration ... */
+}
+```
