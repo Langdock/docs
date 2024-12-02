@@ -118,7 +118,7 @@ paths:
               $ref: "#/components/schemas/FIMCompletionRequest"
             example:  
               model: "codestral-2405"
-              prompt: "console.log("
+              prompt: "function removeSpecialCharactersWithRegex(str: string) {"
               max_tokens: 64
       responses:
         "200":
