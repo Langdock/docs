@@ -1,6 +1,6 @@
 ---
 title: "How to create Actions"
-description: "Actions allow you to integrate any tool through an API to an assistant. This gives you a vera large range of opportunities. Below you find a short introduction of how to use it."
+description: "Actions allow you to integrate any tool through an API to an assistant. This gives you a very large range of opportunities. Below you find a short introduction of how to use it."
 ---
 
 ## What are Actions?
@@ -9,11 +9,11 @@ Actions are custom integrations you can build for your assistant. They allow the
 
 Common use Cases with Assistant Actions are:
 
-* Connect Jira and allow an assistant to create tickets
+- Connect Jira and allow an assistant to create tickets
 
-* Connect Google Drive to search for information and create files.
+- Connect Google Drive to search for information and create files.
 
-* Connect Salesforce to retrieve specific deals, accounts, or contacts, create new deals, and update properties
+- Connect Salesforce to retrieve specific deals, accounts, or contacts, create new deals, and update properties
 
 ## How Actions work:
 
@@ -50,11 +50,11 @@ You can use the AI models to get you started again. If you use OAuth, you can se
 
 How to set up API keys:
 
-* Basic: Paste the API into the according field.
+- Basic: Paste the API into the according field.
 
-* Bearer: Paste the Token into the API Key field. Please make sure you are using a bearer token.
+- Bearer: Paste the Token into the API Key field. Please make sure you are using a bearer token.
 
-* Custom header: Paste the key and the custom header name into the according fields.
+- Custom header: Paste the key and the custom header name into the according fields.
 
 **How to set up OAuth:**
 To set up OAuth, you need the Client ID, the Client secret, the Authorization URL, the Token URL, and scopes from your app. You also need to define a token exchange method. With this method, every user of this assistant needs to log in with OAuth before being able to perform an action.
@@ -67,23 +67,23 @@ When writing the instructions, you can refer to our [prompt elements](/resources
 
 **Task:** Describe the steps the assistant should follow. Make sure to use the names of the actions in the instructions.
 
-* What will the user enter in the chat?
+- What will the user enter in the chat?
 
-* How should this be used to call an API?
+- How should this be used to call an API?
 
-* Which action should be called, and which data should be returned?
+- Which action should be called, and which data should be returned?
 
-* How should the output be formatted?
+- How should the output be formatted?
 
 **Context:** Add relevant information how the assistant is used.
 
-* What is the purpose of this assistant?
+- What is the purpose of this assistant?
 
-* What will the user put into the chat?
+- What will the user put into the chat?
 
-* Which topic is the assistant working on?
+- Which topic is the assistant working on?
 
-* Are there essential notes to remember? For example, which units does the user use and which units do the API return (meters vs. inch; degrees Celsius vs Fahrenheit,...)
+- Are there essential notes to remember? For example, which units does the user use and which units do the API return (meters vs. inch; degrees Celsius vs Fahrenheit,...)
 
 **Format:** Which output format should the assistant follow?
 
@@ -99,22 +99,22 @@ Use the test button at the bottom of the page to test the individual actions. Af
 
 1. The assistant calls the wrong API or no API at all
 
-* Solution: Improve the descriptions of the API call and the assistant's instructions. The instructions should refer to the same names as the action description.
+- Solution: Improve the descriptions of the API call and the assistant's instructions. The instructions should refer to the same names as the action description.
 
 1. The assistant calls the correct API but uses incorrect parameters
 
-* Improve the descriptions of the parameters in the action description
+- Improve the descriptions of the parameters in the action description
 
 1. The assistant is not working, but I don’t have an error
 
-* Test the assistant in the action setup screen. If you do not get any errors here, use Postman or another third-party tool to receive more detailed errors.
+- Test the assistant in the action setup screen. If you do not get any errors here, use Postman or another third-party tool to receive more detailed errors.
 
 1. I am receiving an authentication error
 
-* Check our callback URL setup. Use Postman or another tool to test the same authentication in another tool.
+- Check our callback URL setup. Use Postman or another tool to test the same authentication in another tool.
 
 1. The assistant only answers simple prompts
 
-* Improve your prompt in the instructions. You can use our prompt engineering guide to improve it.
+- Improve your prompt in the instructions. You can use our prompt engineering guide to improve it.
 
 If there are any questions, please reach out to [support@langdock.com](mailto:support@langdock.com)
