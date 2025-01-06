@@ -99,6 +99,13 @@ Langdock supports the following file types:
 
 <Info>Because of how knowledge folders work, only text-based files can be uploaded in them. Also, Images can only be analyzed directly in a chat, not in assistants or knowledge folders</Info>
 
+## Why can I not upload Excel Files / CSVs to a knowledge folder?
+The knowledge folders are a workaround to work with very large amounts of text, that are larger than the limit of what models can process at once. A semantic search if identifying relevant sections and only these sections are then used to generate the response ([here](/settings/knowledge-folders/introduction) is a detailed explanation).
+
+Excel and CSV files need a different workaround to be processed. We use the data analyst functionality, which generated Python code, which is then executed to extract relevant information ([here](/product/chat/data-analysis) explained in depth).
+
+In summary, these functionalities are used to process specific formats of data. Unfortunately, they can be not combined, since the knowledge folder functionality would only extract parts of the attached file and this information would be missing to work with the data analyst effectively.
+
 ## How long are files saved in Langdock?
 
 Files are connected to either a chat, an assistant or a knowledge folder. To remove a file, you can delete the according entity. When a chat, an assistant or a knowledge folder is deleted, connected files are deleted immediately and can not be retrieved.
