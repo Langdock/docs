@@ -47,7 +47,7 @@ This guide provides a walkthrough for integrating Power BI with Langdock. By fol
 
 9\. Add the permissions you need for your use-case. E.g. for querying data from datasets, select the "Dataset.Read.All" permission.
 
-The required scopes for each PowerBI API Endpoint are documented in the[Power BI REST APIs documentation.](https://learn.microsoft.com/en-us/rest/api/power-bi/)
+The required scopes for each PowerBI API Endpoint are documented in the [Power BI REST APIs documentation.](https://learn.microsoft.com/en-us/rest/api/power-bi/)
 
 ![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2025-01-03/90966ae0-6beb-42be-ae7e-9537fa654443/ascreenshot.jpeg?tl_px=72,430&br_px=2824,1969&force_format=jpeg&q=100&width=1120.0&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=524,276)
 
@@ -176,9 +176,9 @@ components:
 
 ![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2025-01-03/4074d660-74cc-4d30-ad5b-8ef3a71f93e2/ascreenshot.jpeg?tl_px=0,0&br_px=2343,1309&force_format=jpeg&q=100&width=1120.0&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=354,366)
 
-25\. Add the scopes defined earlier in the following format: [[https://analysis.windows.net/powerbi/api/Dataset.Read.All]]
+25\. Add the scopes defined earlier in the following format: `https://analysis.windows.net/powerbi/api/Dataset.Read.All`
 
-(Replace "Dataset.Read.All" with other values if needed)
+(Replace `Dataset.Read.All` with other values if needed)
 
 ![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2025-01-03/9a2acfd5-66e2-48a2-991c-8e111510777d/ascreenshot.jpeg?tl_px=0,93&br_px=2343,1403&force_format=jpeg&q=100&width=1120.0&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=395,387)
 
@@ -186,7 +186,7 @@ components:
 
 ![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2025-01-03/0ea83164-af95-41da-b2f6-1b88680797f4/ascreenshot.jpeg?tl_px=0,304&br_px=2752,1843&force_format=jpeg&q=100&width=1120.0&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=470,277)
 
-27\. Click "Switch to reusable url" to make sure the Redirect URL is [[https://app.langdock.com/api/actions/callback]]
+27\. Click "Switch to reusable url" to make sure the Redirect URL is `https://app.langdock.com/api/actions/callback`
 
 ![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2025-01-03/9b5d4204-e46c-4830-ade9-d881afa7a02e/ascreenshot.jpeg?tl_px=282,302&br_px=3034,1841&force_format=jpeg&q=100&width=1120.0&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=524,277)
 
@@ -198,7 +198,7 @@ components:
 
 29\. One way to find out the ID of a dataset is to copy the semantic model link by clicking "Share" &gt; "Copy semantic model link" &gt; "Copy" and finding the ID in the copied URL.
 
-E.g. if the URL is [[https://app.powerbi.com/datahub/datasets/c9c45bb4-060e-41da-a762-80b2f4eb5bd5?ctid=ee973eb7-3390-40ea-a258-2e453dcd61cf&pbi_source=linkShare]] the ID can be found after [[.../datahub/datasets/]] and before [[?ctid...]], so in this example it's [[c9c45bb4-060e-41da-a762-80b2f4eb5bd5]]
+E.g. if the URL is `https://app.powerbi.com/datahub/datasets/c9c45bb4-060e-41da-a762-80b2f4eb5bd5?ctid=ee973eb7-3390-40ea-a258-2e453dcd61cf&pbi_source=linkShare` the ID can be found after `.../datahub/datasets/` and before `?ctid...`, so in this example it's `c9c45bb4-060e-41da-a762-80b2f4eb5bd5`
 
 ![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2025-01-03/99c0d761-c8ea-4602-8a49-55c53dedb9fc/ascreenshot.jpeg?tl_px=329,0&br_px=3082,1538&force_format=jpeg&q=100&width=1120.0&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=589,243)
 
@@ -275,7 +275,7 @@ Note: it is possible that your conversation is not visible anymore, don't worry,
 
 ![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2025-01-03/28d459c8-049b-4f37-b155-b9b064dc8704/ascreenshot.jpeg?tl_px=174,218&br_px=2926,1757&force_format=jpeg&q=100&width=1120.0&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=609,482)
 
-34\. You can preview the request that the assistant is about to send, by clicking on the name of the action (in this case, [[executeQueries on "api.powerbi.com"]]).
+34\. You can preview the request that the assistant is about to send, by clicking on the name of the action (in this case, `executeQueries on "api.powerbi.com"`).
 
 ![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2025-01-03/30e44cd7-55d8-460a-89b9-8c43f72e284c/ascreenshot.jpeg?tl_px=329,0&br_px=3082,1538&force_format=jpeg&q=100&width=1120.0&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=719,143)
 
