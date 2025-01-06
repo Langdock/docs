@@ -1,0 +1,290 @@
+---
+title: "PowerBI"
+description: "Use PowerBI in assistant actions."
+---
+
+This guide provides a walkthrough for integrating Power BI with Langdock. By following the steps below, you create a functional assistant that responds to data-related queries using DAX. In the example, the assistant is able to answer question about an Airbnb listings dataset.
+
+# Prerequisites:
+
+- Langdock account
+- PowerBI account
+- Access to the Azure Portal with rights to create an App registration
+
+#### Create an App registration in Azure
+
+1\. Navigate to your Azure Portal [https://portal.azure.com/](https://portal.azure.com/#home)and click "App registrations"
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2025-01-03/75273e19-83e2-4b53-ba68-874664554cb0/ascreenshot.jpeg?tl_px=109,0&br_px=2452,1309&force_format=jpeg&q=100&width=1120.0&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=311,131)
+
+2\. Add a new app registration by clicking "New registration"
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2025-01-03/ef7b2b48-6030-4b8e-b6b7-0dcec50b822d/ascreenshot.jpeg?tl_px=0,0&br_px=2752,1538&force_format=jpeg&q=100&width=1120.0&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=41,86)
+
+3\. Name your application (e.g. "Langdock Actions Integration"
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2025-01-03/203db02d-431a-4abe-bd7d-15eea8cdc4b5/ascreenshot.jpeg?tl_px=0,0&br_px=2752,1538&force_format=jpeg&q=100&width=1120.0&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=63,147)
+
+4\. Select "Web" under Redirect URI and set the URL to[https://app.langdock.com/api/actions/callback](https://app.langdock.com/api/)
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2025-01-03/fcec3232-2447-497a-b2b8-ac9843612ed3/ascreenshot.jpeg?tl_px=0,445&br_px=2752,1984&force_format=jpeg&q=100&width=1120.0&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=364,306)
+
+5\. Register your app by clicking "Register"
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2025-01-03/2b0a181d-7db3-4878-bd64-9fefa666b86f/ascreenshot.jpeg?tl_px=0,885&br_px=1965,1984&force_format=jpeg&q=100&width=1120.0&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=65,547)
+
+6\. Under "Manage" &gt; "API permissions", click "Add a permission"
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2025-01-03/ae83c625-66e4-4757-a8a1-d06c397a3fb4/ascreenshot.jpeg?tl_px=0,86&br_px=1965,1185&force_format=jpeg&q=100&width=1120.0&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=366,444)
+
+7\. Find "Power BI Service" from the catalog
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2025-01-03/db8b7dc8-1163-4b93-859d-a6f7bb59a62f/ascreenshot.jpeg?tl_px=329,434&br_px=3082,1973&force_format=jpeg&q=100&width=1120.0&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=539,272)
+
+8\. Select "Delegated permissions"
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2025-01-03/3b65ef90-d346-48c3-b6dd-dd69870f3713/ascreenshot.jpeg?tl_px=329,0&br_px=3082,1538&force_format=jpeg&q=100&width=1120.0&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=549,179)
+
+9\. Add the permissions you need for your use-case. E.g. for querying data from datasets, select the "Dataset.Read.All" permission.
+
+The required scopes for each PowerBI API Endpoint are documented in the[Power BI REST APIs documentation.](https://learn.microsoft.com/en-us/rest/api/power-bi/)
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2025-01-03/90966ae0-6beb-42be-ae7e-9537fa654443/ascreenshot.jpeg?tl_px=72,430&br_px=2824,1969&force_format=jpeg&q=100&width=1120.0&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=524,276)
+
+10\. Click "Add permissions"
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2025-01-03/1cc8cf57-b41d-42a7-b391-8cae0d9d490b/ascreenshot.jpeg?tl_px=228,445&br_px=2980,1984&force_format=jpeg&q=100&width=1120.0&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=524,566)
+
+#### Connect an assistant to PowerBI
+
+11\. In Langdock, go to [Assistants](https://app.langdock.com/assistants) and create a new assistant. Give it a name, e.g. "PowerBI Assistant".
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2025-01-03/73bc581d-59f4-4e25-92f7-fb52d07aa509/ascreenshot.jpeg?tl_px=0,0&br_px=2752,1538&force_format=jpeg&q=100&width=1120.0&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=293,165)
+
+12\. Under instructions, add the following prompt:
+
+```
+ALWAYS use DAX queries and NEVER use SQL queries (they will fail). When needed: You can use two actions after each other to 1) understand the data, 2) answer the user's question.
+```
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2025-01-03/3feea031-43d1-4d62-9e11-c7d67ac1e540/ascreenshot.jpeg?tl_px=0,392&br_px=2752,1931&force_format=jpeg&q=100&width=1120.0&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=270,276)
+
+13\. Add a new action by clicking "New action"
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2025-01-03/ef774d8c-fffb-4d88-af75-5e7bddb83c8e/ascreenshot.jpeg?tl_px=0,445&br_px=2752,1984&force_format=jpeg&q=100&width=1120.0&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=240,510)
+
+14\. Copy and paste the following OpenAPI Schema:
+
+```
+openapi: 3.0.1
+info:
+  title: Power BI API
+  description: API for executing queries on Power BI datasets.
+  version: 1.0.0
+servers:
+  - url: https://api.powerbi.com/v1.0/myorg
+paths:
+  /datasets/{datasetId}/executeQueries:
+    post:
+      summary: Execute queries on a Power BI dataset
+      operationId: executeQueries
+      parameters:
+        - name: datasetId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The ID of the dataset to query.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                queries:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      query:
+                        type: string
+                        description: The DAX query to execute. Always in a DAX format.
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                description: The response from the Power BI API.
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Dataset not found
+      security:
+        - bearerAuth: []
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+```
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2025-01-03/51f20f4a-2d60-45d7-9cd0-fe722bc91ae0/ascreenshot.jpeg?tl_px=0,11&br_px=2343,1321&force_format=jpeg&q=100&width=1120.0&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=458,465)
+
+15\. Select "OAuth" as an Authentication method
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2025-01-03/7bb4ef9d-d420-405e-afdb-65c9cd545e70/ascreenshot.jpeg?tl_px=0,0&br_px=2343,1309&force_format=jpeg&q=100&width=1120.0&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=752,371)
+
+16\. Go back to your Azure Portal and under "Certificates & secrets", create a new client secret, by clicking "New client secret"
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2025-01-03/24af3257-b76e-40c7-a11f-9e63405ffc1d/ascreenshot.jpeg?tl_px=0,0&br_px=1965,1098&force_format=jpeg&q=100&width=1120.0&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=390,488)
+
+17\. Add a description and click "Add" to create the secret
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2025-01-03/a21caf05-c41a-4386-8f81-c12024f0b02f/ascreenshot.jpeg?tl_px=0,0&br_px=3082,1984&force_format=jpeg&q=100&width=1120.0&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=695,653)
+
+18\. Copy the newly created secret
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2025-01-03/e285d65c-9013-429c-9673-7956b74db9c0/ascreenshot.jpeg?tl_px=329,402&br_px=3082,1941&force_format=jpeg&q=100&width=1120.0&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=611,277)
+
+19\. Go back to Langdock and paste the secret into the "Client Secret" field.
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2025-01-03/a4f15d5d-b036-4026-9412-26a8517d94b9/ascreenshot.jpeg?tl_px=0,0&br_px=2343,1309&force_format=jpeg&q=100&width=1120.0&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=564,303)
+
+20\. In your Azure Portal, go to "Overview" and copy your "Application (client) ID"
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2025-01-03/9b2b3d3c-02ef-43b7-90ed-666047ceee11/ascreenshot.jpeg?tl_px=0,0&br_px=2752,1538&force_format=jpeg&q=100&width=1120.0&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=551,220)
+
+21\. In Langdock, paste the value into the "Client ID" field
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2025-01-03/86f4ce94-0477-428a-99e6-65200798c591/ascreenshot.jpeg?tl_px=0,0&br_px=2343,1309&force_format=jpeg&q=100&width=1120.0&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=322,292)
+
+22\. In your Azure Portal, click on "Endpoints" under "Overview"
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2025-01-03/1bf3db2a-a467-4be1-94b7-b747b375bb37/ascreenshot.jpeg?tl_px=0,0&br_px=2752,1538&force_format=jpeg&q=100&width=1120.0&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=279,80)
+
+23\. Note the "OAuth 2.0 authorization endpoint (v2)" and "OAuth 2.0 token endpoint (v2)" values
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2025-01-03/80d69ab4-ecd5-4ad4-9d02-a95b1a362ead/ascreenshot.jpeg?tl_px=329,0&br_px=3082,1538&force_format=jpeg&q=100&width=1120.0&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=1056,292)
+
+24\. Paste these values into the matching fields in Langdock
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2025-01-03/4074d660-74cc-4d30-ad5b-8ef3a71f93e2/ascreenshot.jpeg?tl_px=0,0&br_px=2343,1309&force_format=jpeg&q=100&width=1120.0&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=354,366)
+
+25\. Add the scopes defined earlier in the following format: [[https://analysis.windows.net/powerbi/api/Dataset.Read.All]]
+
+(Replace "Dataset.Read.All" with other values if needed)
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2025-01-03/9a2acfd5-66e2-48a2-991c-8e111510777d/ascreenshot.jpeg?tl_px=0,93&br_px=2343,1403&force_format=jpeg&q=100&width=1120.0&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=395,387)
+
+26\. Select "Default" as a Token Exchange Method
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2025-01-03/0ea83164-af95-41da-b2f6-1b88680797f4/ascreenshot.jpeg?tl_px=0,304&br_px=2752,1843&force_format=jpeg&q=100&width=1120.0&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=470,277)
+
+27\. Click "Switch to reusable url" to make sure the Redirect URL is [[https://app.langdock.com/api/actions/callback]]
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2025-01-03/9b5d4204-e46c-4830-ade9-d881afa7a02e/ascreenshot.jpeg?tl_px=282,302&br_px=3034,1841&force_format=jpeg&q=100&width=1120.0&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=524,277)
+
+#### Add information about your data
+
+28\. Open PowerBI and find the IDs of all the Datasets you would like to use in your assistant
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2025-01-03/1ffcd0cd-17a3-49e7-acb5-156274769ae4/ascreenshot.jpeg?tl_px=0,0&br_px=2752,1538&force_format=jpeg&q=100&width=1120.0&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=343,165)
+
+29\. One way to find out the ID of a dataset is to copy the semantic model link by clicking "Share" &gt; "Copy semantic model link" &gt; "Copy" and finding the ID in the copied URL.
+
+E.g. if the URL is [[https://app.powerbi.com/datahub/datasets/c9c45bb4-060e-41da-a762-80b2f4eb5bd5?ctid=ee973eb7-3390-40ea-a258-2e453dcd61cf&pbi_source=linkShare]] the ID can be found after [[.../datahub/datasets/]] and before [[?ctid...]], so in this example it's [[c9c45bb4-060e-41da-a762-80b2f4eb5bd5]]
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2025-01-03/99c0d761-c8ea-4602-8a49-55c53dedb9fc/ascreenshot.jpeg?tl_px=329,0&br_px=3082,1538&force_format=jpeg&q=100&width=1120.0&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=589,243)
+
+30\. Back in Langdock, you should describe your datasets in the assistant instructions.
+
+Make sure to provide the assistant with the ID of the dataset, a short description and the structure of the data. Tip: you can take a screenshot about an overview of your dataset in PowerBI and let Langdock write a description for you.
+
+In our example, these are the final instructions of our assistant:
+
+```
+ALWAYS use DAX queries and NEVER use SQL queries (they will fail).
+When needed: You can use two actions after each other to 1) understand the data, 2) answer the user's question.
+
+Available datasets:
+
+# Airbnb Dataset
+- ID: c9c45bb4-060e-41da-a762-80b2f4eb5bd5
+- Comment: Airbnb Dataset, use this if the user doesn't specify anything
+- Structure:
+- Tables:
+  - AB_NYC_2019:
+      Columns:
+        - name: availability_365
+          type: integer
+        - name: calculated_host_listings_count
+          type: integer
+        - name: host_id
+          type: integer
+        - name: host_name
+          type: string
+        - name: id
+          type: integer
+        - name: last_review
+          type: date
+        - name: latitude
+          type: float
+        - name: longitude
+          type: float
+        - name: minimum_nights
+          type: integer
+        - name: name
+          type: string
+        - name: neighbourhood
+          type: string
+        - name: neighbourhood_group
+          type: string
+        - name: number_of_reviews
+          type: integer
+        - name: price
+          type: integer
+        - name: reviews_per_month
+          type: float
+        - name: room_type
+          type: string
+```
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2025-01-03/3115b915-4611-4422-8af8-6343ec4d510a/ascreenshot.jpeg?tl_px=306,445&br_px=3058,1984&force_format=jpeg&q=100&width=1120.0&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=524,322)
+
+#### Test your assistant
+
+31\. You are ready to test your assistant. Ask a question that the assistant should be able to answer by querying your dataset.
+
+In our example a question could be: "What are the most expensive neighborhoods?"
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2025-01-03/083b7e90-1089-4ff8-9ebc-0373f458c4be/ascreenshot.jpeg?tl_px=329,445&br_px=3082,1984&force_format=jpeg&q=100&width=1120.0&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=617,550)
+
+32\. You will be asked to authenticate to continue, click "Sign in with [api.powerbi.com](http://api.powerbi.com)"
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2025-01-03/fca5fe11-5894-4239-b8b1-c77d1cf7f9c0/ascreenshot.jpeg?tl_px=329,0&br_px=3082,1538&force_format=jpeg&q=100&width=1120.0&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=673,197)
+
+33\. You will see the requested permissions and will be asked to accept the request. After this you will be redirected to the assistant editor.
+
+Note: it is possible that your conversation is not visible anymore, don't worry, this will not happen to the users of the assistant, it's only a limitation of the assistant builder.
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2025-01-03/28d459c8-049b-4f37-b155-b9b064dc8704/ascreenshot.jpeg?tl_px=174,218&br_px=2926,1757&force_format=jpeg&q=100&width=1120.0&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=609,482)
+
+34\. You can preview the request that the assistant is about to send, by clicking on the name of the action (in this case, [[executeQueries on "api.powerbi.com"]]).
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2025-01-03/30e44cd7-55d8-460a-89b9-8c43f72e284c/ascreenshot.jpeg?tl_px=329,0&br_px=3082,1538&force_format=jpeg&q=100&width=1120.0&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=719,143)
+
+35\. Click "Allow" (or "Always Allow") to approve the query.
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2025-01-03/7f828381-17a3-46a3-a5fc-3ca6d605f7d8/ascreenshot.jpeg?tl_px=329,0&br_px=3082,1538&force_format=jpeg&q=100&width=1120.0&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=647,194)
+
+36\. That's it! The assistant executed the query and replied with an answer based on your data from PowerBI.
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2025-01-03/45d5c0e2-bc29-4943-b5b6-b9cc3403438d/ascreenshot.jpeg?tl_px=329,0&br_px=3082,1538&force_format=jpeg&q=100&width=1120.0&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=671,713)
+
+#### [Made with Scribe](https://scribehow.com/shared/Integrating_PowerBI_with_Langdock_Actions__ZZOGPK8hRCafixB_ervuUg)
