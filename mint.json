@@ -174,7 +174,8 @@
             "settings/integrations/create-actions",
             "settings/integrations/actions-salesforce",
             "settings/integrations/actions-google-drive",
-            "settings/integrations/actions-jira"
+            "settings/integrations/actions-jira",
+            "settings/integrations/actions-powerbi"
           ]
         }
       ]
