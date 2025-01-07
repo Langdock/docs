@@ -1,0 +1,105 @@
+---
+title: "SCIM with Microsoft Entra ID"
+description: "Provision users from Entra ID to Langdock using SCIM."
+---
+
+<Info>
+  You can also reach out to support@langdock.com to set up your SCIM integration
+  with assistance.
+</Info>
+
+## Prerequisites
+
+- Access to an admin account in your Langdock workspace.
+- An Entra ID account with the rights to manage Enterprise applications.
+- An Enterprise application (see the SAML with Entra ID documentation page to learn how to create one: https://docs.langdock.com/settings/security/entra)
+
+#### Configure connection
+
+1\. Navigate to the Enterprise application that you set up for the SAML connection in your Azure Portal (as described in https://docs.langdock.com/settings/security/entra).
+
+Click on "Get started" under "Provision User Accounts".
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2025-01-07/43ed9f77-4315-4b81-ac02-54c9361f7675/ascreenshot.jpeg?tl_px=329,308&br_px=3082,1847&force_format=jpeg&q=100&width=1120.0&wat=1&wat_opacity=1&wat_gravity=northwest&wat_url=https://colony-recorder.s3.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=767,277)
+
+2\. Click "Connect your application"
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2025-01-07/a6e2763c-7b0a-4675-8a26-4e6048be0027/ascreenshot.jpeg?tl_px=329,78&br_px=3082,1617&force_format=jpeg&q=100&width=1120.0&wat=1&wat_opacity=1&wat_gravity=northwest&wat_url=https://colony-recorder.s3.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=690,277)
+
+3\. Go over to your [Langdock security settings](https://app.langdock.com/settings/workspace/security) and copy the "SCIM Base URL" value.
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2025-01-07/5551672c-295c-4506-b0aa-685b0f5c964b/ascreenshot.jpeg?tl_px=0,0&br_px=3082,1984&force_format=jpeg&q=100&width=1120.0&wat=1&wat_opacity=1&wat_gravity=northwest&wat_url=https://colony-recorder.s3.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=841,469)
+
+4\. Back in your Azure Portal, enter the SCIM Base URL into the "Tenant URL" field and (!) append `?aadOptscim062020` to the end of the URL to [fix known issues in Microsoft's implementation of the SCIM protocol](https://learn.microsoft.com/en-us/entra/identity/app-provisioning/application-provisioning-config-problem-scim-compatibility#flags-to-alter-the-scim-behavior).
+
+Your final "Tenant URL" will look like this: `https://app.langdock.com/api/scim/v2?aadOptscim062020`
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2025-01-07/a8a6001d-fdcf-4667-a639-e875f2b83913/user_cropped_screenshot.jpeg?tl_px=0,0&br_px=2752,1538&force_format=jpeg&q=100&width=1120.0)
+
+5\. Copy the "SCIM Bearer Token (API Key)" value from your [Langdock security settings](https://app.langdock.com/settings/workspace/security)...
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2025-01-07/22d0ed87-f405-44f2-a0fa-16698a32d4e2/ascreenshot.jpeg?tl_px=329,445&br_px=3082,1984&force_format=jpeg&q=100&width=1120.0&wat=1&wat_opacity=1&wat_gravity=northwest&wat_url=https://colony-recorder.s3.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=792,425)
+
+6\. ...and paste it into the "Secret token" field in your Azure Portal.
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2025-01-07/a381901c-5352-4a98-be0b-6e2b8b3a9d01/user_cropped_screenshot.jpeg?tl_px=0,0&br_px=2752,1538&force_format=jpeg&q=100&width=1120.0)
+
+7\. Toggle "SCIM User Sync Active" to enable SCIM for your workspace in your [Langdock security settings](https://app.langdock.com/settings/workspace/security). This is required to test the connection.
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2025-01-07/165236b4-5ee9-4414-a7fd-9ed1e0b7bf10/user_cropped_screenshot.jpeg?tl_px=329,445&br_px=3082,1984&force_format=jpeg&q=100&width=1120.0&wat=1&wat_opacity=1&wat_gravity=northwest&wat_url=https://colony-recorder.s3.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=832,278)
+
+8\. Back in your Azure Portal click on "Test connection" and you should see a message confirming that the connection between Entra ID and Langdock is working.
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2025-01-07/601c0f9a-8572-456e-945e-e9289e76f050/user_cropped_screenshot.jpeg?tl_px=0,0&br_px=3082,1984&force_format=jpeg&q=100&width=1120.0&wat=1&wat_opacity=1&wat_gravity=northwest&wat_url=https://colony-recorder.s3.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=106,393)
+
+9\. Click "Create" to finish the configuration
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2025-01-07/376e5d71-1095-418e-90d1-651d7922aa73/ascreenshot.jpeg?tl_px=0,674&br_px=2343,1984&force_format=jpeg&q=100&width=1120.0&wat=1&wat_opacity=1&wat_gravity=northwest&wat_url=https://colony-recorder.s3.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=41,537)
+
+#### Optional: Disable group synchronization
+
+10\. (Optional) To customize your provisioning settings, go to "Manage" &gt; "Provisioning". You might need this if you want to only synchronize users (but not groups) or if you want to disable one or more types of object actions (create, update or delete).
+
+E.g. to disable synchronizing groups, click on "Mappings" and follow the optional steps below
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2025-01-07/880de0b1-52a7-4a7c-9b52-22c33cb11e79/ascreenshot.jpeg?tl_px=0,86&br_px=2752,1625&force_format=jpeg&q=100&width=1120.0&wat=1&wat_opacity=1&wat_gravity=northwest&wat_url=https://colony-recorder.s3.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=219,276)
+
+11\. (Optional: Disabling group synchronization) Click "Provision Microsoft Entra ID Groups"
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2025-01-07/fa5d42cc-55c8-4016-bbc3-b06a6548be4e/ascreenshot.jpeg?tl_px=0,368&br_px=2752,1907&force_format=jpeg&q=100&width=1120.0&wat=1&wat_opacity=1&wat_gravity=northwest&wat_url=https://colony-recorder.s3.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=391,276)
+
+12\. (Optional: Disabling group synchronization) Click "No"
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2025-01-07/ed81a32e-4ac5-49e1-8d1e-c835361e4d2f/ascreenshot.jpeg?tl_px=0,0&br_px=2752,1538&force_format=jpeg&q=100&width=1120.0&wat=1&wat_opacity=1&wat_gravity=northwest&wat_url=https://colony-recorder.s3.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=58,187)
+
+13\. (Optional: Disabling group synchronization) Click "Save" then "Yes" to confirm changes
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2025-01-07/df1b894a-1c60-4dd7-9542-4e209491ad67/ascreenshot.jpeg?tl_px=0,0&br_px=2752,1538&force_format=jpeg&q=100&width=1120.0&wat=1&wat_opacity=1&wat_gravity=northwest&wat_url=https://colony-recorder.s3.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=22,191)
+
+#### Enable provisioning
+
+14\. Recommended: Open down "Settings", click "Send an email notification when a failure occurs" and enter your email address
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2025-01-07/96f58742-33f2-47c3-b52d-4499dde61627/user_cropped_screenshot.jpeg?tl_px=0,234&br_px=2752,1773&force_format=jpeg&q=100&width=1120.0)
+
+15\. Click "On" to set provisioning status to enabled
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2025-01-07/a10b7176-be24-4419-a3a1-38e3603f0cab/ascreenshot.jpeg?tl_px=0,222&br_px=2752,1761&force_format=jpeg&q=100&width=1120.0&wat=1&wat_opacity=1&wat_gravity=northwest&wat_url=https://colony-recorder.s3.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=234,518)
+
+16\. Click on "Save" to finalize your changes
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2025-01-07/463051dc-93d3-4758-a502-0ce6e5aab4e2/ascreenshot.jpeg?tl_px=0,0&br_px=2752,1538&force_format=jpeg&q=100&width=1120.0&wat=1&wat_opacity=1&wat_gravity=northwest&wat_url=https://colony-recorder.s3.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=223,95)
+
+#### Verify your setup
+
+17\. To verify that the provisioning is working as expected, go to "Monitor" &gt; "Provisioning logs" and check if your users have been successfully mapped to Langdock.
+
+In case you don't see any logs, make sure to wait and check back in a couple of minutes. It can take a bit until the first synchronization is triggered.
+
+If your setup was successful, you will see "Success" values in the status column.
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2025-01-07/a6d3b3a4-4800-4e04-9fc4-81c3b865c38a/user_cropped_screenshot.jpeg?tl_px=0,0&br_px=3082,1984&force_format=jpeg&q=100&width=1120.0&wat=1&wat_opacity=1&wat_gravity=northwest&wat_url=https://colony-recorder.s3.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=2,343)
+
+18\. You should also see the newly synchronized users in your [Langdock member settings](https://app.langdock.com/settings/workspace/user-management/members).
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2025-01-07/52afa39c-1d68-405c-9c14-5d31309785ce/user_cropped_screenshot.jpeg?tl_px=0,0&br_px=3082,1720&force_format=jpeg&q=100&width=1120.0)

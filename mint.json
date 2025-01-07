@@ -135,7 +135,12 @@
             "settings/security/google"
           ]
         },
-        "settings/security/scim"
+        {
+          "group": "SCIM",
+          "pages": [
+            "settings/security/scim/entra"
+          ]
+        }
       ]
     },
     {
