@@ -6,12 +6,13 @@ openapi: "POST /assistant/v1/chat/completions"
 
 Creates a model response for a given assistant id, or pass in an Assistant configuration that should be used for your request.
 
-<Info>
-  To use the API you need an API key. You can create API Keys in your [Workspace
-  settings](https://app.langdock.com/settings/workspace/products/api). If you
-  want to interact with an existing Assistant, make sure to "Share" access to
-  the assistant with the created API Key (Assistants > Your Assistant > Share).
-</Info>
+## Set up
+To use the API, you need an API key and share the assistant with the API key. An admin needs to perform these steps:
+- Admins can create API keys in the [workspace
+  settings](https://app.langdock.com/settings/workspace/products/api).
+- Afterward, an admin needs to be an editor of the assistant to share the assistant with the API key.
+  - Invite an admin as an editor to your assistant with the "Share" button in the top right corner (skip this step if you are a Langdock admin yourself).
+  - Ask the admin to also click on the "Share" button, type in the API key name and then share the assistant with the API key.
 
 ## Request Parameters
 
