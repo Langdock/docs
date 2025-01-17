@@ -50,6 +50,10 @@
     {
       "name": "Admin",
       "url": "admin"
+    },
+    {
+      "name": "API",
+      "url": "api"
     }
   ],
   "navigation": [
@@ -86,20 +90,27 @@
       ]
     },
     {
+      "group": "APIs",
+      "pages": [
+        "product/api/introduction"
+      ]
+    },
+
+    {
       "group": "Assistant APIs",
       "pages": [
-        "product/api/assistant-api-guide",
-        "product/api/assistant",
-        "product/api/assistant-models",
-        "product/api/upload-attachments"
+        "api/assistant-api-guide",
+        "api/assistant",
+        "api/assistant-models",
+        "api/upload-attachments"
       ]
     },
     {
       "group": "Model APIs",
       "pages": [
-        "product/api/openai",
-        "product/api/anthropic",
-        "product/api/mistral"
+        "api/openai",
+        "api/anthropic",
+        "api/mistral"
       ]
     },
     {
