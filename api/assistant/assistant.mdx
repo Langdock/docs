@@ -1,0 +1,344 @@
+---
+title: "Assistant API"
+description: "Creates a model response for a given Assistant."
+openapi: "POST /assistant/v1/chat/completions"
+---
+
+Creates a model response for a given assistant id, or pass in an Assistant configuration that should be used for your request.
+
+<Info>To share an assistant with an API key, follow [this guide](/product/api/assistant-api-guide)</Info>
+
+## Request Parameters
+
+| Parameter     | Type   | Required                              | Description                                    |
+| ------------- | ------ | ------------------------------------- | ---------------------------------------------- |
+| `assistantId` | string | One of assistantId/assistant required | ID of an existing assistant to use             |
+| `assistant`   | object | One of assistantId/assistant required | Configuration for a new assistant              |
+| `messages`    | array  | Yes                                   | Array of message objects with role and content |
+| `output`      | object | No                                    | Structured output format specification         |
+
+### Message Format
+
+Each message in the `messages` array should contain:
+
+- `role` (required) - One of: "user", "assistant", or "tool"
+- `content` (required) - The message content as a string
+- `attachmentIds` (optional) - Array of UUID strings identifying attachments for this message
+
+### Assistant Configuration
+
+When creating a temporary assistant, you can specify:
+
+- `name` (required) - Name of the assistant (max 64 chars)
+- `instructions` (required) - System instructions (max 16384 chars)
+- `description` - Optional description (max 256 chars)
+- `temperature` - Temperature between 0-1
+- `model` - Model ID to use (see [Available Models](/product/api/assistant-models) for options)
+- `capabilities` - Enable features like web search, data analysis, image generation
+- `actions` - Custom API integrations
+- `vectorDb` - Vector database connections
+- `knowledgeFolderIds` - IDs of knowledge folders to use
+- `attachmentIds` - Array of UUID strings identifying attachments to use
+
+<Info>
+  You can retrieve a list of available models using the [Models
+  API](/product/api/assistant-models). This is useful when you want to see which
+  models you can use in your assistant configuration.
+</Info>
+
+## Structured Output
+
+You can specify a structured output format using the optional `output` parameter:
+
+| Field    | Type                          | Description                                                    |
+| -------- | ----------------------------- | -------------------------------------------------------------- |
+| `type`   | "object" \| "array" \| "enum" | The type of structured output                                  |
+| `schema` | object                        | JSON Schema definition for the output (for object/array types) |
+| `enum`   | string[]                      | Array of allowed values (for enum type)                        |
+
+The `output` parameter behavior depends on the specified type:
+
+- `type: "object"` with no schema: Forces the response to be a single JSON object (no specific structure)
+- `type: "object"` with schema: Forces the response to match the provided JSON Schema
+- `type: "array"` with schema: Forces the response to be an array of objects matching the provided schema
+- `type: "enum"`: Forces the response to be one of the values specified in the `enum` array
+
+<Info>
+  You can use tools like [easy-json-schema](https://easy-json-schema.github.io/)
+  to generate JSON Schemas from example JSON objects.
+</Info>
+
+## Obtaining Attachment IDs
+
+To use attachments in your assistant conversations, you first need to upload the files using the [Upload Attachment API](/product/api/upload-attachments). This will return an `attachmentId` for each file, which you can then include in the `attachmentIds` array in your assistant or message configuration.
+
+## Examples
+
+### Using an Existing Assistant
+
+```javascript
+const axios = require("axios");
+
+async function chatWithAssistant() {
+  const response = await axios.post(
+    "https://api.langdock.com/assistant/v1/chat/completions",
+    {
+      assistantId: "asst_123",
+      messages: [
+        {
+          role: "user",
+          content: "Can you analyze this document for me?",
+          attachmentIds: ["550e8400-e29b-41d4-a716-446655440000"], // Obtain attachmentIds from upload attachment endpoint
+        },
+      ],
+    },
+    {
+      headers: {
+        Authorization: "Bearer YOUR_API_KEY",
+      },
+    }
+  );
+
+  console.log(response.data.result);
+}
+```
+
+### Using a temporary Assistant configuration
+
+```javascript
+const axios = require("axios");
+
+async function chatWithNewAssistant() {
+  const response = await axios.post(
+    "https://api.langdock.com/assistant/v1/chat/completions",
+    {
+      assistant: {
+        name: "Document Analyzer",
+        instructions:
+          "You are a helpful assistant who analyzes documents and answers questions about them",
+        temperature: 0.7,
+        model: "gpt-4",
+        capabilities: {
+          webSearch: true,
+          dataAnalyst: true,
+        },
+        attachmentIds: ["550e8400-e29b-41d4-a716-446655440000"], // Obtain attachmentIds from upload attachment endpoint
+      },
+      messages: [
+        {
+          role: "user",
+          content: "What are the key points in the document?",
+        },
+      ],
+    },
+    {
+      headers: {
+        Authorization: "Bearer YOUR_API_KEY",
+      },
+    }
+  );
+
+  console.log(response.data.result);
+}
+```
+
+### Using Structured Output with Schema
+
+```javascript
+const axios = require("axios");
+
+async function getStructuredWeather() {
+  const response = await axios.post(
+    "https://api.langdock.com/assistant/v1/chat/completions",
+    {
+      assistant: {
+        name: "Weather Assistant",
+        instructions: "You are a helpful weather assistant",
+        capabilities: {
+          webSearch: true,
+        },
+      },
+      messages: [
+        {
+          role: "user",
+          content: "What's the weather in paris, berlin and london today?",
+        },
+      ],
+      output: {
+        type: "array",
+        schema: {
+          type: "object",
+          properties: {
+            weather: {
+              type: "object",
+              properties: {
+                city: {
+                  type: "string",
+                },
+                tempInCelsius: {
+                  type: "number",
+                },
+                tempInFahrenheit: {
+                  type: "number",
+                },
+              },
+              required: ["city", "tempInCelsius", "tempInFahrenheit"],
+            },
+          },
+        },
+      },
+    },
+    {
+      headers: {
+        Authorization: "Bearer YOUR_API_KEY",
+      },
+    }
+  );
+
+  console.log(response.data);
+}
+```
+
+### Using Structured Output with Enum
+
+```javascript
+const axios = require("axios");
+
+async function getSentimentAnalysis() {
+  const response = await axios.post(
+    "https://api.langdock.com/assistant/v1/chat/completions",
+    {
+      assistant: {
+        name: "Sentiment Analyzer",
+        instructions: "You analyze the sentiment of text",
+      },
+      messages: [
+        {
+          role: "user",
+          content:
+            "How would you rate this review: 'This product exceeded my expectations!'",
+        },
+      ],
+      output: {
+        type: "enum",
+        enum: ["positive", "neutral", "negative"],
+      },
+    },
+    {
+      headers: {
+        Authorization: "Bearer YOUR_API_KEY",
+      },
+    }
+  );
+
+  console.log(response.data);
+}
+```
+
+## Rate limits
+
+The rate limit for the Assistant Completion endpoint is **500 RPM (requests per minute)** and **60.000 TPM (tokens per minute)**. Rate limits are defined at the workspace level - and not at an API key level. Each model has its own rate limit. If you exceed your rate limit, you will receive a `429 Too Many Requests` response.
+
+Please note that the rate limits are subject to change, refer to this documentation for the most up-to-date information.
+In case you need a higher rate limit, please contact us at [support@langdock.com](mailto:support@langdock.com).
+
+## Response Format
+
+The API returns an object containing:
+
+```typescript
+{
+  // Standard message results - always present
+  result: Array<{
+    id: string;
+    role: "tool" | "assistant";
+    content: Array<{
+      type: string;
+      toolCallId?: string;
+      toolName?: string;
+      result?: object;
+      args?: object;
+      text?: string;
+    }>;
+  }>;
+
+  // Structured output - present when output parameter was specified
+  output?: object | array | string;
+}
+```
+
+### Standard Result
+
+The `result` array contains the message exchange between user and assistant, including any tool calls that were made. This is always present in the response.
+
+### Structured Output
+
+When the request includes an `output` parameter, the response will also include an `output` field. The type of this field depends on the requested output format:
+
+- If `output.type` was "object": Returns a JSON object (with schema validation if schema was provided)
+- If `output.type` was "array": Returns an array (with schema validation if schema was provided)
+- If `output.type` was "enum": Returns a string matching one of the provided enum values
+
+For example, when requesting weather data with structured output:
+
+```javascript
+// Request
+{
+  "output": {
+    "type": "array",
+    "schema": {
+      "type": "object",
+      "properties": {
+        "weather": {
+          "type": "object",
+          "properties": {
+            "city": { "type": "string" },
+            "tempInCelsius": { "type": "number" }
+          }
+        }
+      }
+    }
+  }
+}
+
+// Response
+{
+  "result": [ /* standard message results */ ],
+  "output": [
+    {
+      "weather": {
+        "city": "Paris",
+        "tempInCelsius": 22
+      }
+    },
+    {
+      "weather": {
+        "city": "London",
+        "tempInCelsius": 18
+      }
+    }
+  ]
+}
+```
+
+## Error Handling
+
+```javascript
+try {
+  const response = await axios.post('https://api.langdock.com/assistant/v1/chat/completions', ...);
+} catch (error) {
+  if (error.response) {
+    switch (error.response.status) {
+      case 400:
+        console.error('Invalid parameters:', error.response.data.message);
+        break;
+      case 429:
+        console.error('Rate limit exceeded');
+        break;
+      case 500:
+        console.error('Server error');
+        break;
+    }
+  }
+}
+```

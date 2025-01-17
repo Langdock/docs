@@ -1,0 +1,93 @@
+---
+title: "Models for Assistant API"
+description: "Retrieve all available models for use with the Assistant API."
+openapi: "GET /assistant/v1/models"
+---
+
+Retrieve the list of models and their ids, available for use with the Assistant API. This endpoint is useful when you want to see which models you can use when creating a temporary assistant.
+
+## Example Request
+
+```javascript
+const axios = require("axios");
+
+async function getAvailableModels() {
+  try {
+    const response = await axios.get("https://api.langdock.com/assistant/v1/models", {
+      headers: {
+        Authorization: "Bearer YOUR_API_KEY",
+      },
+    });
+
+    console.log("Available models:", response.data.data);
+  } catch (error) {
+    console.error("Error fetching models:", error);
+  }
+}
+```
+
+## Response Format
+
+The API returns a list of available models in the following format:
+
+```json
+{
+  "object": "list",
+  "data": [
+    {
+      "id": "gpt-4o",
+      "object": "model",
+      "created": 1686935735000,
+      "owned_by": "system"
+    },
+    {
+      "id": "gpt-4o-mini",
+      "object": "model",
+      "created": 1686935735000,
+      "owned_by": "system"
+    }
+  ]
+}
+```
+
+## Error Handling
+
+```javascript
+try {
+  const response = await axios.get("https://api.langdock.com/assistant/v1/models", {
+    headers: {
+      Authorization: "Bearer YOUR_API_KEY",
+    },
+  });
+} catch (error) {
+  if (error.response) {
+    switch (error.response.status) {
+      case 400:
+        console.error("Invalid request parameters");
+        break;
+      case 500:
+        console.error("Internal server error");
+        break;
+    }
+  }
+}
+```
+
+You can use any of these model IDs when creating a temporary assistant through the Assistant API. Simply specify the model ID in the `model` field of your assistant configuration:
+
+```javascript
+const response = await axios.post("https://api.langdock.com/assistant/v1/chat/completions", {
+  assistant: {
+    name: "Custom Assistant",
+    instructions: "You are a helpful assistant",
+    model: "gpt-4o", // Specify the model ID here
+    // ... other configuration options
+  },
+  messages: [
+    {
+      role: "user",
+      content: "Hello!",
+    },
+  ],
+});
+```

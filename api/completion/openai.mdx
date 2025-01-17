@@ -1,0 +1,71 @@
+---
+title: "OpenAI Chat completion"
+description: "Creates a model response for the given chat conversation using an OpenAI model."
+openapi: "POST /openai/{region}/v1/chat/completions"
+---
+
+Creates a model response for the given chat conversation. This endpoint follows the [OpenAI API specification](https://platform.openai.com/docs/api-reference/chat/create) and the requests are sent to the Azure OpenAI endpoint.
+
+<Info>
+  To use the API you need an API key. To request access, please contact us at
+  [support@langdock.com](mailto:support@langdock.com)
+</Info>
+
+All parameters from the [OpenAI Chat Completion endpoint](https://platform.openai.com/docs/api-reference/chat/create) are supported according to the OpenAI specifications, with the following exceptions:
+
+- `model`: Currently only the `gpt-4o`, `gpt-4o-mini`, `gpt-4` and `gpt-35-turbo` models are supported.
+- `n`: Not supported.
+- `service_tier`: Not supported.
+- `parallel_tool_calls`: Not supported.
+- `stream_options`: Not supported.
+
+## Rate limits
+
+The rate limit for the Chat Completion endpoint is **500 RPM (requests per minute)** and **60.000 TPM (tokens per minute)**. Rate limits are defined at the workspace level - and not at an API key level. Each model has its own rate limit. If you exceed your rate limit, you will receive a `429 Too Many Requests` response.
+
+Please note that the rate limits are subject to change, refer to this documentation for the most up-to-date information.
+In case you need a higher rate limit, please contact us at [support@langdock.com](mailto:support@langdock.com).
+
+## Using OpenAI-compatible libraries
+
+As the request and response format is the same as the OpenAI API, you can use popular libraries like the [OpenAI Python library](https://github.com/openai/openai-python) or the [Vercel AI SDK](https://sdk.vercel.ai/docs/introduction) to use the Langdock API.
+
+### Example using the OpenAI Python library
+
+```python
+from openai import OpenAI
+client = OpenAI(
+  base_url="https://api.langdock.com/openai/eu/v1",
+  api_key="<YOUR_LANGDOCK_API_KEY>"
+)
+
+completion = client.chat.completions.create(
+  model="gpt-4o-mini",
+  messages=[
+    {"role": "user", "content": "Write a short poem about cats."}
+  ]
+)
+
+print(completion.choices[0].message.content)
+```
+
+### Example using the Vercel AI SDK in Node.js
+
+```typescript
+import { streamText } from "ai";
+import { createOpenAI } from "@ai-sdk/openai";
+
+const langdockProvider = createOpenAI({
+  baseURL: "https://api.langdock.com/openai/eu/v1",
+  apiKey: "<YOUR_LANGDOCK_API_KEY>",
+});
+
+const result = await streamText({
+  model: langdockProvider("gpt-4o-mini"),
+  prompt: "Write a short poem about cats",
+});
+
+for await (const textPart of result.textStream) {
+  process.stdout.write(textPart);
+}
+```

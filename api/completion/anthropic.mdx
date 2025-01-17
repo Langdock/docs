@@ -1,0 +1,66 @@
+---
+title: "Anthropic Messages"
+description: "Creates a model response given a structured list of input messages using the Anthropic API."
+openapi: "POST /anthropic/{region}/v1/messages"
+---
+
+Creates a model response for the given chat conversation. This endpoint follows the [Anthropic API specification](https://docs.anthropic.com/en/api/messages) and the requests are sent to the AWS Bedrock Anthropic endpoint.
+
+<Info>
+  To use the API you need an API key. To request access, please contact us at
+  [support@langdock.com](mailto:support@langdock.com)
+</Info>
+
+All parameters from the [Anthropic "Create a message" endpoint](https://docs.anthropic.com/en/api/messages) are supported according to the Anthropic specifications, with the following exception:
+
+- `model`: The supported models depend on the region, currently the following models are supported in the EU: `claude-3-5-sonnet-20240620`, `claude-3-sonnet-20240229`, `claude-3-haiku-20240307` and the following models are supported in the US: `claude-3-5-sonnet-20240620`, `claude-3-sonnet-20240229`, `claude-3-haiku-20240307`, `claude-3-opus-20240229`.
+
+## Rate limits
+
+The rate limit for the Messages endpoint is **500 RPM (requests per minute)** and **60.000 TPM (tokens per minute)**. Rate limits are defined at the workspace level - and not at an API key level. Each model has its own rate limit. If you exceed your rate limit, you will receive a `429 Too Many Requests` response.
+
+Please note that the rate limits are subject to change, refer to this documentation for the most up-to-date information.
+In case you need a higher rate limit, please contact us at [support@langdock.com](mailto:support@langdock.com).
+
+## Using Anthropic-compatible libraries
+
+As the request and response format is the same as the Anthropic API, you can use popular libraries like the [Anthropic Python library](https://github.com/anthropics/anthropic-sdk-python) or the [Vercel AI SDK](https://sdk.vercel.ai/docs/introduction) to use the Langdock API.
+
+### Example using the Anthropic Python library
+
+```python
+from anthropic import Anthropic
+client = Anthropic(
+  base_url="https://api.langdock.com/anthropic/eu/",
+  api_key="<YOUR_LANGDOCK_API_KEY>"
+)
+
+message = client.messages.create(
+	model="claude-3-haiku-20240307",
+	messages=[
+			{ "role": "user", "content": "Write a haiku about cats" }
+	],
+	max_tokens=1024,
+)
+
+print(message.content[0].text)
+```
+
+### Example using the Vercel AI SDK in Node.js
+
+```typescript
+import { generateText } from "ai";
+import { createAnthropic } from "@ai-sdk/anthropic";
+
+const langdockProvider = createAnthropic({
+  baseURL: "https://api.langdock.com/anthropic/eu/v1",
+  apiKey: "<YOUR_LANGDOCK_API_KEY>",
+});
+
+const result = await generateText({
+  model: langdockProvider("claude-3-haiku-20240307"),
+  prompt: "Write a haiku about cats",
+});
+
+console.log(result.text);
+```

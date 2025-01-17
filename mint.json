@@ -95,24 +95,6 @@
         "product/api/introduction"
       ]
     },
-
-    {
-      "group": "Assistant APIs",
-      "pages": [
-        "api/assistant-api-guide",
-        "api/assistant",
-        "api/assistant-models",
-        "api/upload-attachments"
-      ]
-    },
-    {
-      "group": "Model APIs",
-      "pages": [
-        "api/openai",
-        "api/anthropic",
-        "api/mistral"
-      ]
-    },
     {
       "group": "Search",
       "pages": [
@@ -123,18 +105,8 @@
       "group": "Settings",
       "pages": [
         "settings/account",
-        "settings/workspace"
-      ]
-    },
-    {
-      "group": "Knowledge Folders",
-      "pages": [
         "settings/knowledge-folders/introduction",
-        "settings/knowledge-folders/upload-a-file-to-a-knowledge-folder",
-        "settings/knowledge-folders/update-an-attachment-in-a-knowledge-folder",
-        "settings/knowledge-folders/retrieve-files-from-a-knowledge-folder",
-        "settings/knowledge-folders/delete-an-attachment-from-a-knowledge-folder",
-        "settings/knowledge-folders/search-through-all-knowledge-folders"
+        "settings/workspace"
       ]
     },
     {
@@ -205,6 +177,34 @@
         "settings/models/byok-setup",
         "settings/models/adding-models",
         "settings/models/gemini"
+      ]
+    },
+        {
+      "group": "Model APIs",
+      "pages": [
+        "api/completion/openai",
+        "api/completion/anthropic",
+        "api/mistral"
+      ]
+    },
+    {
+      "group": "Assistant APIs",
+      "pages": [
+        "api/assistant/assistant-api-guide",
+        "api/assistant/assistant",
+        "api/assistant/assistant-models",
+        "api/assistant/upload-attachments"
+      ]
+    },
+        {
+      "group": "Knowledge Folders",
+      "pages": [
+        "api/knowledge-folder/introduction",
+        "api/knowledge-folder/upload-file",
+        "api/knowledge-folders/update-attachment",
+        "api/knowledge-folder/retrieve-files",
+        "api/knowledge-folder/delete-attachment",
+        "api/knowledge-folder/search-knowledge-folder"
       ]
     },
     {
