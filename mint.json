@@ -180,7 +180,7 @@
       ]
     },
         {
-      "group": "Model APIs",
+      "group": "Completion API",
       "pages": [
         "api/completion/openai",
         "api/completion/anthropic",
@@ -188,7 +188,7 @@
       ]
     },
     {
-      "group": "Assistant APIs",
+      "group": "Assistant API",
       "pages": [
         "api/assistant/assistant-api-guide",
         "api/assistant/assistant",
@@ -197,7 +197,7 @@
       ]
     },
         {
-      "group": "Knowledge Folders",
+      "group": "Knowledge Folder API",
       "pages": [
         "api/knowledge-folder/introduction",
         "api/knowledge-folder/upload-file",
