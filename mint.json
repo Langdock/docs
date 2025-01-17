@@ -182,28 +182,28 @@
     {
       "group": "Completion API",
       "pages": [
-        "api/completion/openai",
-        "api/completion/anthropic",
-        "api/mistral"
+        "api-endpoints/completion/openai",
+        "api-endpoints/completion/anthropic",
+        "api-endpoints/mistral"
       ]
     },
     {
       "group": "Assistant API",
       "pages": [
-        "api/assistant/assistant-api-guide",
-        "api/assistant/assistant",
-        "api/assistant/assistant-models",
-        "api/assistant/upload-attachments"
+        "api-endpoints/assistant/assistant-api-guide",
+        "api-endpoints/assistant/assistant",
+        "api-endpoints/assistant/assistant-models",
+        "api-endpoints/assistant/upload-attachments"
       ]
     },
         {
       "group": "Knowledge Folder API",
       "pages": [
-        "api/knowledge-folder/upload-file",
-        "api/knowledge-folders/update-attachment",
-        "api/knowledge-folder/retrieve-files",
-        "api/knowledge-folder/delete-attachment",
-        "api/knowledge-folder/search-knowledge-folder"
+        "api-endpoints/knowledge-folder/upload-file",
+        "api-endpoints/knowledge-folders/update-attachment",
+        "api-endpoints/knowledge-folder/retrieve-files",
+        "api-endpoints/knowledge-folder/delete-attachment",
+        "api-endpoints/knowledge-folder/search-knowledge-folder"
       ]
     },
     {
