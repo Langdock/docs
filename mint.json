@@ -105,7 +105,7 @@
       "group": "Settings",
       "pages": [
         "settings/account",
-        "settings/knowledge-folders/introduction",
+        "settings/knowledge-folders/knowledge-folders",
         "settings/workspace"
       ]
     },
