@@ -50,10 +50,6 @@
     {
       "name": "Admin",
       "url": "admin"
-    },
-    {
-      "name": "API",
-      "url": "api"
     }
   ],
   "navigation": [
