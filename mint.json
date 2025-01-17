@@ -50,6 +50,10 @@
     {
       "name": "Admin",
       "url": "admin"
+    },
+    {
+      "name": "API",
+      "url": "api-endpoints"
     }
   ],
   "navigation": [
