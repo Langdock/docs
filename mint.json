@@ -79,7 +79,8 @@
         },
         "product/chat/functionalities",
         "product/chat/canvas",
-        "product/chat/prompt-library"
+        "product/chat/prompt-library",
+        "product/chat/audio-transcription"
       ]
     },
     {
