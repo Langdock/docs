@@ -67,39 +67,45 @@ Langdock supports the following file types:
 
 **Text-based files:**
 
-* PDF
-
-* Markdown (.md)
-
-* Text (.txt)
-
-* Word (.docx) / Google Docs
-
-* Powerpoint (.ppt) / Google Slides
-
-* JSON
-
-* XML (.xml)
-
-* EML (.eml)
-
-* VTT (.vtt)
+| File Type        | File Extension | File Size Limit |
+|------------------|----------------|-----------------|
+| PDF              | .pdf           | 256 MB          |
+| Markdown         | .md            | 10 MB           |
+| Text             | .txt           | 10 MB           |
+| Word / Google Docs | .docx         | 256 MB          |
+| Powerpoint / Google Slides | .ppt  | 256 MB          |
+| JSON             | .json    
 
 **Tabular Files:**
 
-* Excel (.xslx, .xls) / Google Sheets
+| File Type        | File Extension | File Size Limit |
+|------------------|----------------|-----------------|
+| Excel / Google Sheets | .xlsx, .xls | 30 MB          |
+| CSV              | .csv           | 30 MB           |
 
-* CSV
+Tabular files can only be uploaded in chat and assistants, not in knowledge folders.
 
 **Images:**
 
-* JPG
+| File Type        | File Extension | File Size Limit |
+|------------------|----------------|-----------------|
+| JPG              | .jpg           | 20 MB           |
+| PNG              | .png           | 20 MB           |
 
-* PNG
+Images can only be uploaded in chat, not in knowledge folders and assistants.
+
+**Audio Files**
+| File Type        | File Extension | File Size Limit |
+|------------------|----------------|-----------------|
+| Audio/Video Transcription | .mp3, .wav, .ogg | 200 MB |
+
+Audio files can only be uploaded in chat, not in knowledge folders and assistants.
+
 
 <Info>Because of how knowledge folders work, only text-based files can be uploaded in them. Also, Images can only be analyzed directly in a chat, not in assistants or knowledge folders</Info>
 
 ## Why can I not upload Excel Files / CSVs to a knowledge folder?
+
 The knowledge folders are a workaround to work with very large amounts of text, that are larger than the limit of what models can process at once. A semantic search if identifying relevant sections and only these sections are then used to generate the response ([here](/settings/knowledge-folders/introduction) is a detailed explanation).
 
 Excel and CSV files need a different workaround to be processed. We use the data analyst functionality, which generated Python code, which is then executed to extract relevant information ([here](/product/chat/data-analysis) explained in depth).
