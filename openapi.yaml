@@ -1977,23 +1977,6 @@ components:
       type: object
       x-stainless-python-custom-imports:
         - from .content_block import ContentBlock as ContentBlock
-    Metadata:
-      additionalProperties: false
-      properties:
-        user_id:
-          anyOf:
-            - maxLength: 256
-              type: string
-
-          description: |-
-            An external identifier for the user who is associated with the request.
-
-            This should be a uuid, hash value, or other opaque identifier. Anthropic may use this id to help detect abuse. Do not include any identifying information such as name, email address, or phone number.
-          example:
-            - 13803d75-b4b5-4c3e-b2a2-6f21399b021b
-          title: User Id
-      title: Metadata
-      type: object
     NotFoundError:
       properties:
         type:
