@@ -1559,10 +1559,6 @@ components:
           minimum: 1
           title: Max Tokens
           type: integer
-        metadata:
-          allOf:
-            - $ref: "#/components/schemas/Metadata"
-          description: An object describing metadata about the request.
         stop_sequences:
           description: |-
             Custom text sequences that will cause the model to stop generating.
